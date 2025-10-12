@@ -22,7 +22,9 @@
             "input": "apps/RoseE-Commerce/public"
           }
         ],
-        "styles": ["apps/RoseE-Commerce/src/styles.scss"],
+        "styles": [
+          "node_modules/ngx-spinner/animations/ball-scale-multiple.css",
+          "apps/RoseE-Commerce/src/styles.scss"],
         "scripts": [],
         "server": "apps/RoseE-Commerce/src/main.server.ts",
         "ssr": {
