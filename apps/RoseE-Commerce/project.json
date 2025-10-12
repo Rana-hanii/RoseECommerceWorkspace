@@ -23,7 +23,7 @@
           }
         ],
         "styles": [
-          "../../node_modules/ngx-spinner/animations/ball-scale-multiple.css",
+          "node_modules/ngx-spinner/animations/ball-scale-multiple.css",
           "apps/RoseE-Commerce/src/styles.scss"],
         "scripts": [],
         "server": "apps/RoseE-Commerce/src/main.server.ts",
