@@ -1,39 +1,92 @@
-// Light Mode
-$light-colors: (
-  primary: #741c21,
-  secondary: #fbeaea,
-  background-button: #dc2626,
-  hoverCard: #e6507380,
-  text: #ff668b,
-);
+/* ===============================
+   Theme Colors
+   =============================== */
 
-// Dark Mode
-$dark-colors: (
-  primary: #ffc2d0,
-  background-button: #ffa3b9,
-  hoverCard: #E6507380,
-  text: #d75458,
-);
+/* Light Mode */
+:root {
+  --color-primary: #741c21;
+  --color-secondary: #fbeaea;
+  --color-background-button: #dc2626;
+  --color-hover-card: #e6507380;
+  --color-text: #ff668b;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+  --color-primary: #ffc2d0;
+  --color-background-button: #ffa3b9;
+  --color-hover-card: #e6507380;
+  --color-text: #d75458;
+}
+
+/* ===============================
+   Typography System
+   Project: Rose E-Commerce
+   =============================== */
+
+:root {
+  --font-primary: 'Sarabun', sans-serif;
+
+  /* Font weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Font sizes */
+  --font-size-xs: 14px;
+  --font-size-sm: 16px;
+  --font-size-md: 18px;
+  --font-size-lg: 20px;
+  --font-size-xl: 24px;
+  --font-size-xxl: 36px;
+}
 
 
-// ===============================
-//  Typography System
-// Project: Rose E-Commerce
-// ===============================
 
-$font-primary: 'Sarabun', sans-serif;
 
-//  Font Weights
-$font-weight-regular: 400; 
-$font-weight-medium: 500; 
-$font-weight-semibold: 600; 
-$font-weight-bold: 700;
 
-// Font Sizes 
-$font-size-xs: 14px;
-$font-size-sm: 16px;
-$font-size-md: 18px;
-$font-size-lg: 20px;
-$font-size-xl: 24px;
-$font-size-xxl: 36px;
+
+
+
+
+
+// // Light Mode
+// $light-colors: (
+//   primary: #741c21,
+//   secondary: #fbeaea,
+//   background-button: #dc2626,
+//   hoverCard: #e6507380,
+//   text: #ff668b,
+// );
+
+// // Dark Mode
+// $dark-colors: (
+//   primary: #ffc2d0,
+//   background-button: #ffa3b9,
+//   hoverCard: #E6507380,
+//   text: #d75458,
+// );
+
+
+// // ===============================
+// //  Typography System
+// // Project: Rose E-Commerce
+// // ===============================
+
+// $font-primary: 'Sarabun', sans-serif;
+
+// //  Font Weights
+// $font-weight-regular: 400; 
+// $font-weight-medium: 500; 
+// $font-weight-semibold: 600; 
+// $font-weight-bold: 700;
+
+// // Font Sizes 
+// $font-size-xs: 14px;
+// $font-size-sm: 16px;
+// $font-size-md: 18px;
+// $font-size-lg: 20px;
+// $font-size-xl: 24px;
+// $font-size-xxl: 36px;
 
