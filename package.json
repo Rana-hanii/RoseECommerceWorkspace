@@ -2,7 +2,9 @@
   "name": "@rose-ecommerce-workspace/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "start-rose": "npx nx run RoseE-Commerce:s -o"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~19.1.0",
@@ -15,8 +17,15 @@
     "@angular/platform-server": "~19.1.0",
     "@angular/router": "~19.1.0",
     "@angular/ssr": "~19.1.0",
+    "@primeng/themes": "^19.1.4",
+    "@tailwindcss/postcss": "^4.1.14",
     "express": "^4.21.2",
+    "ngx-spinner": "^17.0.0",
+    "ngx-toastr": "^19.1.0",
+    "postcss": "^8.5.6",
+    "primeng": "^19.1.4",
     "rxjs": "~7.8.0",
+    "tailwindcss": "^4.1.14",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {

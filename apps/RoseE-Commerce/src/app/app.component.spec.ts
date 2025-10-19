@@ -2,11 +2,14 @@ import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
 import { RouterModule } from '@angular/router';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent, NxWelcomeComponent, RouterModule.forRoot([])],
+      imports: [AppComponent, NxWelcomeComponent, RouterModule.forRoot([]) , BrowserAnimationsModule,  
+      ToastrModule.forRoot()    ],
     }).compileComponents();
   });
 
@@ -25,3 +28,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('RoseE-Commerce');
   });
 });
+
