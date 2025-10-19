@@ -8,7 +8,7 @@ export const appRoutes: Route[] = [
 
    
 
-    {path:'' , redirectTo:'auth' , pathMatch:'full' },
+
 
     // Changing redirectTo path (from auth to home when we work on Home page) 
     // Don't forget the Guards for auth and Home
