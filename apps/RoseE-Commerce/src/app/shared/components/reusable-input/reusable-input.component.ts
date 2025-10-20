@@ -1,6 +1,6 @@
-import { Component, forwardRef, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ControlValueAccessor, FormControl,  FormsModule, NG_VALUE_ACCESSOR, NgControl, ReactiveFormsModule } from '@angular/forms';
+import { ControlValueAccessor, FormControl,  FormsModule, NgControl, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
@@ -16,17 +16,17 @@ export class ReusableInputComponent implements ControlValueAccessor , OnInit {
   private readonly controlDir=inject(NgControl , { optional: true, self: true })
 
   @Input() type: 'text' | 'password' | 'email' | 'phone' | 'select' = 'text';
-  @Input() placeholder: string = '';
-  @Input() label: string = '';
-  @Input() customClass: string = '';
-  @Input() formControl?: FormControl<any>;
+  @Input() placeholder = '';
+  @Input() label = '';
+  @Input() customClass = '';
+  @Input() formControl?: FormControl;
 
 
    value: string | undefined;
 
 
-  onChange: any = () => {};
-  onTouched: any = () => {};
+  onChange: any = () => { };
+  onTouched: any = () => { };
 
 
   

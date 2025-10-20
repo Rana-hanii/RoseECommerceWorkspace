@@ -13,7 +13,7 @@ describe('ReusableInputComponent', () => {
 
     fixture = TestBed.createComponent(ReusableInputComponent);
     component = fixture.componentInstance;
-     (component as any).formControl = new FormControl('');
+     (component).formControl = new FormControl('');
     fixture.detectChanges();
   });
 
