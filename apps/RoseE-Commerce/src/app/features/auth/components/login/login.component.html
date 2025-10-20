@@ -1,1 +1,46 @@
-<p>login works!</p>
+<section>
+<div class="flex flex-col justify-center items-center space-y-5">
+  <button
+    class="bg-amber-600 rounded-2xl px-4 py-2 font-[500] text-white text-2xl cursor-pointer"
+    (click)="showSuccess()"
+  >
+    Show Toaster
+  </button>
+
+
+<div class="card flex justify-center bg-red-500 ">
+    <p-button label="Check" />
+</div>  
+
+<div class="flex justify-center items-center w-1/2  my-5">
+
+  
+<form [formGroup]="loginform" (ngSubmit)="submitForm()" class="w-3/4" >
+  <app-reusable-input 
+label="Email"
+type="email"
+placeholder="enter your email"
+formControlName="email"
+[formControl]="loginform.controls.email"
+
+></app-reusable-input>
+
+  <app-reusable-input 
+label="Password"
+type="password"
+placeholder="enter your password"
+formControlName="password"
+[formControl]="loginform.controls.password"
+
+
+></app-reusable-input>
+
+
+<Button type="submit" class="cursor-pointer bg-yellow-400 rounded-2xl py-2 px-4">click to submit </Button>
+</form>
+</div>
+
+
+</div>
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+</section>

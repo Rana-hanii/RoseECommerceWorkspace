@@ -1,1 +1,24 @@
-<p>reusable-input works!</p>
+<div class="card items-center w-full space-y-5 my-4">
+    <div class="flex flex-col  gap-2">
+        <label class="font-[600]" for={{label}}>{{label}}</label>
+
+        <input pInputText 
+                id={{label}}
+                type={{type}} 
+                placeholder={{placeholder}} 
+                [formControl]="controlField"
+                
+                aria-describedby="username-help"  />
+
+
+        <small id="username-help">
+            @if (invalid) {
+                {{erroMessage}}
+            }
+        </small>
+
+        
+    </div>
+</div>
+
+
