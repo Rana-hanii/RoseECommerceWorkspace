@@ -8,6 +8,7 @@ import { InputTextModule } from 'primeng/inputtext';
   imports: [CommonModule ,InputTextModule ,FormsModule,ReactiveFormsModule],
   templateUrl: './reusable-input.component.html',
   styleUrl: './reusable-input.component.css',
+  standalone: true,
 })
 export class ReusableInputComponent implements ControlValueAccessor , OnInit {
 

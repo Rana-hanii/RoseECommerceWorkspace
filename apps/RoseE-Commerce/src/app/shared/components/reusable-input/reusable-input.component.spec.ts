@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReusableInputComponent } from './reusable-input.component';
+import { FormControl } from '@angular/forms';
 
 describe('ReusableInputComponent', () => {
   let component: ReusableInputComponent;
@@ -12,6 +13,7 @@ describe('ReusableInputComponent', () => {
 
     fixture = TestBed.createComponent(ReusableInputComponent);
     component = fixture.componentInstance;
+     (component as any).formControl = new FormControl('');
     fixture.detectChanges();
   });
 
