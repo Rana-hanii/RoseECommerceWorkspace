@@ -32,7 +32,7 @@ export class ReusableInputComponent implements ControlValueAccessor , OnInit {
     this.value=value;
   };
 
-
+  //npx nx affected -t lint build e2e
   
   writeValue(obj:any): void {
     this.value = obj;
@@ -59,7 +59,8 @@ export class ReusableInputComponent implements ControlValueAccessor , OnInit {
 
     get controlField(): FormControl {
     return (this.controlDir?.control as FormControl) ?? this.formControl ?? null;
-  }
+  } 
+  
 
   get erroMessage():string{
     if(this.formControl?.errors?.['required']){
