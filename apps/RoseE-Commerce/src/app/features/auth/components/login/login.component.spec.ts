@@ -15,11 +15,7 @@ describe('LoginComponent', () => {
         BrowserAnimationsModule,
         ToastrModule.forRoot(),
         ReactiveFormsModule,
-       
-      ],
-      declarations: [
-        LoginComponent,
-        ReusableInputComponent
+       LoginComponent , ReusableInputComponent
       ]
     }).compileComponents();
 
