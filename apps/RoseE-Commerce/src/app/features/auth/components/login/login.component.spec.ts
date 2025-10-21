@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
+import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -8,6 +10,11 @@ describe('LoginComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [LoginComponent],
+      providers: [
+    
+        ToastrService,
+        NgxSpinnerService
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(LoginComponent);
