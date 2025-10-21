@@ -1,3 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
- @use 'styles/variables.scss'
+@import 'tailwindcss';
+// @use 'styles/variables.scss';
 
+/* ===============================
+Theme Colors
+=============================== */
+@theme {
+  --color-primary: #741c21;
+  --color-secondary: #fbeaea;
+  --color-background-button: #dc2626;
+  --color-hover-card: #e6507380;
+  --color-text: #ff668b;
+
+  /* ===============================
+     Typography System
+    =============================== */
+  --font-primary: 'Sarabun', sans-serif;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --font-size-xs: 14px;
+  --font-size-sm: 16px;
+  --font-size-md: 18px;
+  --font-size-lg: 20px;
+  --font-size-xl: 24px;
+  --font-size-xxl: 36px;
+}
+/* 🖤 Dark Mode */
+[data-theme='dark'] {
+  --color-primary: #ffc2d0;
+  --color-secondary: #2a2a2a;
+  --color-background-button: #ffa3b9;
+  --color-hover-card: #e6507380;
+  --color-text: #d75458;
+}
