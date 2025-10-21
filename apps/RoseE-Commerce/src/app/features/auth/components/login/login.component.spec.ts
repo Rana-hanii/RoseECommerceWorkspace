@@ -10,11 +10,6 @@ describe('LoginComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [LoginComponent],
-      providers: [
-    
-        ToastrService,
-        NgxSpinnerService
-      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(LoginComponent);
