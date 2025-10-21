@@ -3,14 +3,13 @@ import { CommonModule } from '@angular/common';
 import { NgxSpinnerComponent, NgxSpinnerService } from "ngx-spinner";
 import { ButtonModule } from "primeng/button";
 import { ToastrService } from 'ngx-toastr';
-import { FormBuilder,  ReactiveFormsModule, Validators } from '@angular/forms';
-import { ReusableInputComponent } from '../../../../shared/components/reusable-input/reusable-input.component';
-import { RouterModule } from '@angular/router';
+import { FormBuilder,  FormGroup,  ReactiveFormsModule, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-login',
   imports: [CommonModule, NgxSpinnerComponent, ButtonModule,
-            ReactiveFormsModule, ReusableInputComponent, RouterModule],
+            ReactiveFormsModule,],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -23,7 +22,7 @@ export class LoginComponent implements OnInit {
   private readonly formBuilder=inject(FormBuilder)
 
 
-  loginform=this.formBuilder.group({
+  loginform:FormGroup=this.formBuilder.group({
        email:['' , [Validators.required , Validators.email]],
        password:['' , [Validators.required , Validators.minLength(8)]],
        phone:['' , [Validators.required , ]],

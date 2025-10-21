@@ -12,32 +12,6 @@
     <p-button label="Check" />
 </div>  
 
-<div class="flex justify-center items-center w-1/2  my-5">
-
-  
-<form [formGroup]="loginform" (ngSubmit)="submitForm()" class="w-3/4" >
-  <app-reusable-input 
-label="Email"
-type="email"
-placeholder="enter your email"
-[formControl]="loginform.controls.email"
-
-></app-reusable-input>
-
-  <app-reusable-input 
-label="Password"
-type="password"
-placeholder="enter your password"
-formControlName="password"
-[formControl]="loginform.controls.password"
-
-
-></app-reusable-input>
-
-
-<Button type="submit" class="cursor-pointer bg-yellow-400 rounded-2xl py-2 px-4">click to submit </Button>
-</form>
-</div>
 
 
 </div>
