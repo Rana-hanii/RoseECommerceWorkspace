@@ -1,11 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-@import 'tailwindcss';
-// @use 'styles/variables.scss';
+ @use 'styles/variables.scss';
+ @import "tailwindcss" ;
 
-/* ===============================
-Theme Colors
-=============================== */
-@theme {
+
+ @theme {
   --color-primary: #741c21;
   --color-secondary: #fbeaea;
   --color-background-button: #dc2626;
