@@ -4,7 +4,7 @@ import { NgxSpinnerComponent, NgxSpinnerService } from "ngx-spinner";
 import { ButtonModule } from "primeng/button";
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder,  ReactiveFormsModule, Validators } from '@angular/forms';
-import { ReusableInputComponent } from 'apps/RoseE-Commerce/src/app/shared/components/reusable-input/reusable-input.component';
+import { ReusableInputComponent } from '../../../../shared/components/reusable-input/reusable-input.component';
 import { RouterModule } from '@angular/router';
 
 @Component({

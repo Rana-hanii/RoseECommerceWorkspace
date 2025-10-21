@@ -25,20 +25,24 @@ export class ReusableInputComponent implements ControlValueAccessor , OnInit {
    value: string | undefined;
 
 
-  onChange: any = () => { };
-  onTouched: any = () => { };
+  onChange = (value:string) => {
+    this.value=value;
+  };
+  onTouched = (value:string) => {
+    this.value=value;
+  };
 
 
   
-  writeValue(obj: any): void {
+  writeValue(obj:any): void {
     this.value = obj;
   }
 
-  registerOnChange(fn: any): void {
+  registerOnChange(fn:any): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn:any): void {
     this.onTouched = fn;
   }
 
