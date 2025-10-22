@@ -18,13 +18,9 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(withEventReplay()),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(appRoutes),
-
     provideAnimations(),
     provideToastr(),
- 
     importProvidersFrom(NgxSpinnerModule),
-
-    
     providePrimeNG({
             theme: {
                 preset: Aura ,
