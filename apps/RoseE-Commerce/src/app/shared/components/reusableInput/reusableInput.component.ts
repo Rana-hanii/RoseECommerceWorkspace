@@ -1,6 +1,6 @@
 import { Component, Input, Self } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormControl, FormsModule, NgControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, NgControl, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { Message } from 'primeng/message';
 import {  NgxIntlTelInputModule } from 'ngx-intl-tel-input';
@@ -8,7 +8,7 @@ import {  NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 @Component({
   selector: 'app-reusable-input',
-  imports: [CommonModule, InputTextModule ,Message, FormsModule, ReactiveFormsModule , NgxIntlTelInputModule],
+  imports: [CommonModule, InputTextModule ,Message, ReactiveFormsModule , NgxIntlTelInputModule],
   templateUrl: './reusableInput.component.html',
   styleUrl: './reusableInput.component.css',
   
