@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ReusableInputComponent } from "apps/RoseE-Commerce/src/app/shared/components/reusableInput/reusableInput.component";
+import { ReusableInputComponent } from "../../../../shared/components/reusableInput/reusableInput.component";
 
 
 @Component({
@@ -31,18 +31,18 @@ export class LoginComponent  {
   submitForm():void{
     
     console.log(this.loginForm.value);
-    // if(this.loginForm.valid){
-    // const formValue = this.loginForm.value;
+    if(this.loginForm.valid){
+    const formValue = this.loginForm.value;
     
     
-    // if (formValue.phone && typeof formValue.phone === 'object') {
-    //   formValue.phone = formValue.phone.internationalNumber; 
-    // }
+    if (formValue.phone && typeof formValue.phone === 'object') {
+      formValue.phone = formValue.phone.internationalNumber; 
+    }
     
-    // console.log('Form Data:', formValue);
+    console.log('Form Data:', formValue);
 
 
-    // }
+    }
   
     
   }

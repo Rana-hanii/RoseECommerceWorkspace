@@ -18,13 +18,13 @@ export class ReusableInputComponent  {
 
   @Input() type:'text' | 'password' | 'email' | 'tel' | 'select' = 'text';
   @Input() option:string[]=[]
-  @Input() label:string = ''
-  @Input() placeholder:string = '' 
+  @Input() label = ''
+  @Input() placeholder = '' 
 
 
 
 
-  showPassword:boolean = false
+  showPassword= false
   value: string | number | undefined;
 
   constructor(@Self() public controlDir:NgControl){
@@ -36,14 +36,14 @@ export class ReusableInputComponent  {
 
 
   writeValue(obj: any): void {
-      
+      this.value=obj
   }
   registerOnChange(fn: any): void {
-      
+      this.value=fn
   }
 
   registerOnTouched(fn: any): void {
-      
+      this.value=fn
   }
 
   get control():FormControl{
