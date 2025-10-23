@@ -1,6 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
  @use 'styles/variables.scss';
  @import "tailwindcss" ;
+ @import "primeicons/primeicons.css";
+
+
+.valid-input{
+  @apply border-[#A1A1AA] focus:border-[#f33037] focus:ring-[#A6252A] dark:border-[#FF85A2] dark:focus:border-[#FF85A2];
+}
+
+.in-valid-input{
+    @apply border-[#A1A1AA] focus:border-[#DC2626] focus:ring-[#DC2626] dark:border-[#EF4444] dark:focus:border-[#EF4444]
+  }
+
+  .form-input{
+    @apply border-2 border-[#A1A1AA] text-lg hover:border-[#A6252A] rounded-xl px-3 py-2 focus:border-[#A6252A]
+     w-full
+  }
+
+
 
 
  @theme {
