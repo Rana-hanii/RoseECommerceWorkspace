@@ -33,9 +33,9 @@
         }
 
         @if(type === 'tel'){
-
+          
          <ngx-intl-tel-input
-                  [cssClass]="'form-input'"
+                  [cssClass]="'form-input w-[100%]'"
                   [preferredCountries]="['eg']"
                   [enableAutoCountrySelect]="true"
                   [enablePlaceholder]="true"
@@ -43,7 +43,7 @@
                   [selectFirstCountry]="true"
                   [formControl]="control"
                   [separateDialCode]="true"
-                   [phoneValidation]="true"
+                  [phoneValidation]="true"
                   type="tel"
                   
          ></ngx-intl-tel-input>
@@ -67,9 +67,18 @@
         <option *ngFor="let option of option" [value]="option">{{ option }}</option>
       </select>
       }
-      
 
-        @if (control.touched && control.errors?.['required']) {
+
+        
+        <div class="mb-3 ">
+           <app-error-msg 
+              [control]="control" 
+              [label]="label" 
+              [type]="type"
+          ></app-error-msg>
+        </div>
+
+        <!-- @if (control.touched && control.errors?.['required']) {
           <p-message severity="error" icon="pi pi-times-circle" styleClass="ms-0">{{label}} is required </p-message>
         }
         @if (control.errors?.['email']) {
@@ -78,7 +87,7 @@
         @if (type === 'password' && control.errors?.['pattern']) {
           <p-message severity="error" icon="pi pi-times-circle" styleClass="">{{label}} must Conrain Capital char and Sympol </p-message>
         }
-        <!-- @if (type === 'tel' && control.errors?.['pattern']) {
+        @if (type === 'tel' && control.errors?.['pattern']) {
           <p-message severity="error" icon="pi pi-times-circle" styleClass="">{{label}} must be Valid Egyptian Number </p-message>
         } -->
         
