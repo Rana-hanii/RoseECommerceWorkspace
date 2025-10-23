@@ -3,10 +3,9 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-custom-button',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './custom-button.component.html',
-  styleUrls: ['./custom-button.component.css'],
+  styleUrl: './custom-button.component.css',
 })
 export class CustomButtonComponent {
   @Input() pageType: 'Login' | 'register' | 'forgetPassword' = 'Login';
@@ -26,8 +25,7 @@ export class CustomButtonComponent {
     }
   }
 
-
-    onClick() {
+  onClick() {
     this.clicked.emit();
   }
 }
