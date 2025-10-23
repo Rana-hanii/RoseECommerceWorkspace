@@ -1,0 +1,11 @@
+
+
+
+.styleButton{
+    background-color: var(--color-primary);
+    color: white;
+    width: 406px;
+    height: 41px;
+    border-radius: 10px;
+    padding: 14px 16px;
+}

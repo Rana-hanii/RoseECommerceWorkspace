@@ -1,20 +1,32 @@
 <main>
   <div class="header">
-    <div class="translate-button">
+    <div class="translate-button text-right mb-10">
       <p>arabic</p>
     </div>
-    <div class="logo w-100">
+    <div class="logo w-100 flex flex-col justify-center items-center">
       <img src="separator.png" alt="separator" />
+      <h2 class="styleLogo">Welcome back!</h2>
     </div>
-    <div class="forgetPassword">
-      <p>Forgot your password?</p>
+    <div class="forgetPassword text-lg text-right mb-2">
+      <a
+        routerLink="/auth/forgotpassword"
+        class="text-red-900 hover:text-red-800 transition-colors duration-200 cursor-pointer"
+      >
+        Forgot your password?
+      </a>
     </div>
   </div>
 
-  <!-- <form>
-    <div class="email">
-      <input type="email">
-      <label for="">email</label>
-    </div>
-  </form> -->
+  <app-custom-button pageType="Login"></app-custom-button>
+
+  <div class="line"></div>
+
+  <div class="CreateAccount mt-5 flex justify-center">
+    <p>Don’t have an account yet?</p>
+    <a routerLink="/auth/register"> Create one now!</a>
+  </div>
+
+  <div class="logoBtn mt-5 w-100 flex flex-col justify-center items-center">
+    <img class="scale-x-[-1]" src="sparetoButtom.png" alt="separator" />
+  </div>
 </main>

@@ -9,7 +9,25 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./custom-button.component.css'],
 })
 export class CustomButtonComponent {
-  @Input() pageType: 'Login' | 'register' | 'ForgotPassword' = 'Login';
+  @Input() pageType: 'Login' | 'register' | 'forgetPassword' = 'Login';
   @Input() disable = false;
-  @Input() clicked = new EventEmitter<void>()
+  @Input() clicked = new EventEmitter<void>();
+
+  get buttonText(): string {
+    switch (this.pageType) {
+      case 'Login':
+        return 'Login';
+      case 'register':
+        return 'Create Account';
+      case 'forgetPassword':
+        return 'Reset Password';
+      default:
+        return 'Submit';
+    }
+  }
+
+
+    onClick() {
+    this.clicked.emit();
+  }
 }
