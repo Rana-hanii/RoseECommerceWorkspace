@@ -1,10 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-custom-button',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './custom-button.component.html',
-  styleUrl: './custom-button.component.css',
+  styleUrls: ['./custom-button.component.css'],
 })
-export class CustomButtonComponent {}
+export class CustomButtonComponent {
+  @Input() pageType: 'Login' | 'register' | 'ForgotPassword' = 'Login';
+  @Input() disable = false;
+  @Input() clicked = new EventEmitter<void>()
+}
