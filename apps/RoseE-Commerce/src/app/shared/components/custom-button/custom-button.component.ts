@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-custom-button',
   imports: [CommonModule],
   templateUrl: './custom-button.component.html',
-  styleUrl: './custom-button.component.css',
+  styleUrl: './custom-button.component.scss',
 })
 export class CustomButtonComponent {
   @Input() pageType: 'Login' | 'register' | 'forgetPassword' = 'Login';
