@@ -1,18 +1,13 @@
-@import '../../../../../styles/variables.scss';
+@use '../../../../../styles/variables.scss';
 
-
-.styleLogo {
-    font-weight: var(--font-weight-regular);
-    font-size: var(--font-size-xxxl) ;
-    color: var(--color-primary);
-    font-family: var(--font-Secondary);
-    vertical-align: middle;
+.line {
+  width: 406px;
+  height: 1px;
+  background-color: rgba(128, 128, 128, 0.556);
+  margin-top: 50px;
 }
 
-
-
-
-.CreateAccount a{
-    color: var(--color-primary);
-    font-weight: var(--font-weight-bold);
+.CreateAccount {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
 }
