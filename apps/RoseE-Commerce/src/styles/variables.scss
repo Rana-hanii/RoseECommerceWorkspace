@@ -12,7 +12,7 @@
 }
 
 /* Dark Mode */
-[data-theme="dark"] {
+[data-theme='dark'] {
   --color-primary: #ffc2d0;
   --color-background-button: #ffa3b9;
   --color-hover-card: #e6507380;
@@ -42,15 +42,6 @@
   --font-size-xxl: 36px;
 }
 
-
-
-
-
-
-
-
-
-
 // // Light Mode
 // $light-colors: (
 //   primary: #741c21,
@@ -68,7 +59,6 @@
 //   text: #d75458,
 // );
 
-
 // // ===============================
 // //  Typography System
 // // Project: Rose E-Commerce
@@ -77,16 +67,15 @@
 // $font-primary: 'Sarabun', sans-serif;
 
 // //  Font Weights
-// $font-weight-regular: 400; 
-// $font-weight-medium: 500; 
-// $font-weight-semibold: 600; 
+// $font-weight-regular: 400;
+// $font-weight-medium: 500;
+// $font-weight-semibold: 600;
 // $font-weight-bold: 700;
 
-// // Font Sizes 
+// // Font Sizes
 // $font-size-xs: 14px;
 // $font-size-sm: 16px;
 // $font-size-md: 18px;
 // $font-size-lg: 20px;
 // $font-size-xl: 24px;
 // $font-size-xxl: 36px;
-
