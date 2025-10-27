@@ -23,6 +23,8 @@
           }
         ],
         "styles": [
+          "node_modules/intl-tel-input/build/css/intlTelInput.css",
+          "node_modules/primeicons/primeicons.css",
           "node_modules/ngx-spinner/animations/ball-scale-multiple.css",
           "node_modules/ngx-toastr/toastr.css",
           "apps/RoseE-Commerce/src/styles.scss"],

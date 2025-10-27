@@ -1,6 +1,11 @@
-import { Route } from "@angular/router";
+import { Routes } from '@angular/router';
+import { authGuard } from '../../../core/guards/auth.guard';
 
-export const mainRoutes:Route[]=[
-
-    
-]
+export const mainRoutes: Routes = [
+  {
+    path: '',
+    canActivate: [authGuard],
+    children: [
+    ],
+  },
+];
