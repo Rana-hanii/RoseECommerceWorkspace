@@ -1,21 +1,54 @@
-<main>
-  <app-auth-title [text]="'Welcome Back!'" ></app-auth-title>
-    <div class="forgetPassword text-lg text-right mb-2">
-      <a
-        routerLink="/auth/forgotpassword"
-        class="text-red-900 hover:text-red-800 transition-colors duration-200 cursor-pointer"
-      >
-        Forgot your password? 
-      </a>
+<section>
+
+
+    
+  <h1 class="my-6 text-red-600 underline text-3xl text-center font-600">Check Component</h1>
+
+    <div class=" w-full  ">
+        <form [formGroup]="loginForm" (ngSubmit)="submitForm()" class="">   
+
+            <app-reusable-input
+            [label]="'Email'"
+            [type]="'email'"
+            [placeholder]="'enter valid mail'"
+            formControlName="email"
+            >
+            </app-reusable-input>
+
+
+            <app-reusable-input
+            [label]="'Password'"
+            [type]="'password'"
+            [placeholder]="'enter your Password'"
+            formControlName="password"
+            >
+            </app-reusable-input>
+
+
+            
+            <app-reusable-input
+            [label]="'Phone'"
+            [type]="'tel'"
+            [placeholder]="'enter your phone'"
+            formControlName="phone"
+            >
+            </app-reusable-input>
+
+            
+            <app-reusable-input
+            [label]="'Gender'"
+            [type]="'select'"
+            [placeholder]="'enter your gender'"
+            [option]="['male' , 'female']"
+            formControlName="gender"
+            >
+            </app-reusable-input>
+
+
+            <div class="flex justify-center items-center">
+                <button class=" bg-amber-300 rounded-2xl px-2 py-1" type="submit">Submit</button>
+            </div>
+        </form>
     </div>
 
-  <app-custom-button pageType="Login"></app-custom-button>
-  <div class="mt-5 flex justify-center">
-
-    <p>Don’t have an account yet? </p>
-    <a class="cursor-pointer CreateAccount" routerLink="/auth/register">
-      Create one now! </a
-      >
-    </div>
-
-</main>
+</section>
