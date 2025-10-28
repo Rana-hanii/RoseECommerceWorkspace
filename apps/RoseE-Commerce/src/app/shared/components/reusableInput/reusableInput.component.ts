@@ -22,7 +22,7 @@ export class ReusableInputComponent {
   @Input() option: string[] = [];
   @Input() label = '';
   @Input() placeholder = '';
-  @Input() customClass = ''
+  @Input() customClass = '';
 
   showPassword = false;
   value: string | number | undefined;

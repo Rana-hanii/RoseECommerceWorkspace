@@ -1,7 +1,7 @@
-<main>
+<main class="mt-55">
   <app-auth-title [text]="'Become part of our family!'"></app-auth-title>
   <div class="line"></div>
-  <div class="flex flex-column justify-center items-center ">
+  <div class="flex flex-column justify-center items-center">
     <form [formGroup]="registerFOrm">
       <div class="flex justify-between items-center">
         <app-reusable-input
@@ -19,7 +19,7 @@
           formControlName="lastName"
         ></app-reusable-input>
       </div>
-      <div class=" flex-column items-center justify-center">
+      <div class="flex-column items-center justify-center">
         <app-reusable-input
           type="email"
           label="Email"
@@ -58,7 +58,12 @@
         ></app-reusable-input>
       </div>
 
-      <app-custom-button pageType="Create Account"></app-custom-button>
+      <div [ngClass]="">
+        <app-custom-button
+          pageType="Create Account"
+        (buttonClick)="registerSubmit()"
+        ></app-custom-button>
+      </div>
     </form>
   </div>
 

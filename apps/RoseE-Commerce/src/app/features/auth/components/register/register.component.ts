@@ -36,7 +36,6 @@ export class RegisterComponent {
 
   registerSubmit(){
     console.log(this.registerFOrm.value);
-    
   }
 
 }
