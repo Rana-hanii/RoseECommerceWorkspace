@@ -1,84 +1,94 @@
+<div class="flex justify-center items-center">
+  <div
+    [ngClass]="customClass"
+    class="flex flex-col items-start justify-center gap-1  my-0"
+  >
+    <label for="{{ label }}"
+      ><strong>{{ label }}</strong></label
+    >
 
+    @if (type !== 'select') {
 
-  <div class=" flex justify-center items-center ">
-    <div class="flex flex-col items-start justify-center gap-1 w-1/4 my-5">
-        <label for="{{label}}"><strong>{{label}}</strong></label>
-        
-        @if (type !== 'select') {
-          
-          <div class="w-full relative" >
-          @if (type!== 'tel') {
-               <input 
-                class="form-input relative"
-                id={{label}}
-                [type]="type === 'password' ? (showPassword ? 'text' : 'password') : type"
-                placeholder={{placeholder}} 
-                value={{value}}
-                [formControl]="control"
-                [class]="control.touched ? (control.invalid? 'valid-input': 'invalid-input') :null"
-                
-                />
-
-          }
-       
-
-         @if (type === 'password' ) {
-          <button
-            type="button"
-             class="absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-gray-700"
-            (click)="togglePasswordEye()"
-            [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'">
-            <i class="cursor-pointer pi" [class]="showPassword ? 'pi-eye-slash' : 'pi-eye'"></i>
-          </button>
-        }
-
-        @if(type === 'tel'){
-          
-         <ngx-intl-tel-input
-                  [cssClass]="'form-input w-[100%]'"
-                  [preferredCountries]="['eg']"
-                  [enableAutoCountrySelect]="true"
-                  [enablePlaceholder]="true"
-                  [searchCountryFlag]="true"
-                  [selectFirstCountry]="true"
-                  [formControl]="control"
-                  [separateDialCode]="true"
-                  [phoneValidation]="true"
-                  type="tel"
-                  
-         ></ngx-intl-tel-input>
-      
-
-        }
-        </div>
-
-        
-
-      }
-
-      @if (type === 'select') {
-
-        <select
-        class="form-input"
-        [id]="label"
+    <div class="w-full relative">
+      @if (type!== 'tel') {
+      <input
+        class="form-input relative"
+        id="{{ label }}"
+        [type]="
+          type === 'password' ? (showPassword ? 'text' : 'password') : type
+        "
+        placeholder="{{ placeholder }}"
+        value="{{ value }}"
         [formControl]="control"
-        [class]="control.touched ? (control.invalid ? 'valid-input' : 'invalid-input') : null">
-        <option value="" disabled selected hidden>{{ placeholder }}</option>
-        <option *ngFor="let option of option" [value]="option">{{ option }}</option>
-      </select>
+        [class]="
+          control.touched
+            ? control.invalid
+              ? 'valid-input'
+              : 'invalid-input'
+            : null
+        "
+      />
+
+      } @if (type === 'password' ) {
+      <button
+        type="button"
+        class="absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-gray-700"
+        (click)="togglePasswordEye()"
+        [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'"
+      >
+        <i
+          class="cursor-pointer pi"
+          [class]="showPassword ? 'pi-eye-slash' : 'pi-eye'"
+        ></i>
+      </button>
+      } @if(type === 'tel'){
+
+      <ngx-intl-tel-input
+        [cssClass]="'form-input w-[100%]'"
+        [preferredCountries]="['eg']"
+        [enableAutoCountrySelect]="true"
+        [enablePlaceholder]="true"
+        [searchCountryFlag]="true"
+        [selectFirstCountry]="true"
+        [formControl]="control"
+        [separateDialCode]="true"
+        [phoneValidation]="true"
+        type="tel"
+      ></ngx-intl-tel-input>
+
       }
+    </div>
 
+    } @if (type === 'select') {
 
-        
-        <div class="mb-3 ">
-           <app-error-msg 
-              [control]="control" 
-              [label]="label" 
-              [type]="type"
-          ></app-error-msg>
-        </div>
+    <select
+      class="form-input"
+      [id]="label"
+      [formControl]="control"
+      [class]="
+        control.touched
+          ? control.invalid
+            ? 'valid-input'
+            : 'invalid-input'
+          : null
+      "
+    >
+      <option value="" disabled selected hidden>{{ placeholder }}</option>
+      <option *ngFor="let option of option" [value]="option">
+        {{ option }}
+      </option>
+    </select>
+    }
 
-        <!-- @if (control.touched && control.errors?.['required']) {
+    <div class="mb-3">
+      <app-error-msg
+        [control]="control"
+        [label]="label"
+        [type]="type"
+      ></app-error-msg>
+    </div>
+
+    <!-- @if (control.touched && control.errors?.['required']) {
           <p-message severity="error" icon="pi pi-times-circle" styleClass="ms-0">{{label}} is required </p-message>
         }
         @if (control.errors?.['email']) {
@@ -90,8 +100,5 @@
         @if (type === 'tel' && control.errors?.['pattern']) {
           <p-message severity="error" icon="pi pi-times-circle" styleClass="">{{label}} must be Valid Egyptian Number </p-message>
         } -->
-        
-        
-        
-    </div>
+  </div>
 </div>

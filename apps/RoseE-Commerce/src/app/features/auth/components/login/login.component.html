@@ -1,21 +1,39 @@
 <main>
-  <app-auth-title [text]="'Welcome Back!'" ></app-auth-title>
+  <app-auth-title text="Welcome back!"></app-auth-title>
+  <div class="line"></div>
+  <form action="" [formGroup]="loginForm">
+    <app-reusable-input
+      type="email"
+      label="Email"
+      placeholder="Enter Your Email"
+      formControlName="email"
+      customClass="w-full"
+    ></app-reusable-input>
+    <app-reusable-input
+      type="password"
+      label="Password"
+      placeholder="Enter Your Password"
+      formControlName="password"
+      customClass="w-full"
+    ></app-reusable-input>
     <div class="forgetPassword text-lg text-right mb-2">
       <a
         routerLink="/auth/forgotpassword"
         class="text-red-900 hover:text-red-800 transition-colors duration-200 cursor-pointer"
       >
-        Forgot your password? 
+        Forgot your password?
       </a>
     </div>
+    <app-custom-button
+      pageType="Login"
+      (buttonClick)="loginSubmit()"
+    ></app-custom-button>
+  </form>
 
-  <app-custom-button pageType="Login"></app-custom-button>
   <div class="mt-5 flex justify-center">
-
-    <p>Don’t have an account yet? </p>
+    <p>Don’t have an account yet?</p>
     <a class="cursor-pointer CreateAccount" routerLink="/auth/register">
-      Create one now! </a
-      >
-    </div>
-
+      Create one now!
+    </a>
+  </div>
 </main>
