@@ -1,0 +1,9 @@
+import { Validators } from '@angular/forms';
+
+export const strongPassword = Validators.pattern(
+  '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&])[A-Za-z0-9@$!%*?&]{8,}$/'
+);
+export const required = Validators.required;
+export const minLength = Validators.minLength(10);
+export const maxLength = Validators.maxLength(20);
+export const email = Validators.email;

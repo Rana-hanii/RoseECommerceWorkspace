@@ -1,24 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 @use 'styles/variables.scss';
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
- @import "tailwindcss" ;
- @import "primeicons/primeicons.css";
+@import 'tailwindcss';
+@import 'primeicons/primeicons.css';
 
-
-.valid-input{
+.valid-input {
   @apply border-[#A1A1AA] focus:border-[#f33037] focus:ring-[#A6252A] dark:border-[#FF85A2] dark:focus:border-[#FF85A2];
 }
 
-.in-valid-input{
-    @apply border-[#A1A1AA] focus:border-[#DC2626] focus:ring-[#DC2626] dark:border-[#EF4444] dark:focus:border-[#EF4444]
-  }
+.in-valid-input {
+  @apply border-[#A1A1AA] focus:border-[#DC2626] focus:ring-[#DC2626] dark:border-[#EF4444] dark:focus:border-[#EF4444];
+}
 
-  .form-input{
-    @apply border-2 border-[#A1A1AA] text-lg hover:border-[#A6252A] rounded-xl px-3 py-2 focus:border-[#A6252A]
-     w-full
-  }
-
-
+.form-input {
+  @apply border-2 border-[#A1A1AA] text-lg hover:border-[#A6252A] rounded-xl px-3 py-2 focus:border-[#A6252A]
+     w-full;
+}
 
 @theme {
   --color-primary: #741c21;

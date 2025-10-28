@@ -1,8 +1,66 @@
 <main>
   <app-auth-title [text]="'Become part of our family!'"></app-auth-title>
-
   <div class="line"></div>
-  <app-custom-button pageType="Create Account"></app-custom-button>
+  <div class="flex flex-column justify-center items-center ">
+    <form [formGroup]="registerFOrm">
+      <div class="flex justify-between items-center">
+        <app-reusable-input
+          type="text"
+          label="First name"
+          placeholder="Jonathan"
+          customClass="w-1/2"
+          formControlName="firstName"
+        ></app-reusable-input>
+        <app-reusable-input
+          type="text"
+          label="Last Name"
+          placeholder="Adrian"
+          customClass="w-1/2"
+          formControlName="lastName"
+        ></app-reusable-input>
+      </div>
+      <div class=" flex-column items-center justify-center">
+        <app-reusable-input
+          type="email"
+          label="Email"
+          placeholder="Enter Your Email"
+          customClass="w-3/4"
+          formControlName="email"
+        ></app-reusable-input>
+        <app-reusable-input
+          type="tel"
+          label="phone"
+          placeholder="Enter Valid Number"
+          customClass="w-3/4"
+          formControlName="phone"
+        ></app-reusable-input>
+        <app-reusable-input
+          type="select"
+          label="Gender"
+          [option]="['male', 'female']"
+          placeholder="Select Gender "
+          customClass="w-3/4"
+          formControlName="gender"
+        ></app-reusable-input>
+        <app-reusable-input
+          type="password"
+          label="password"
+          placeholder="password@1234 "
+          customClass="w-3/4"
+          formControlName="password"
+        ></app-reusable-input>
+        <app-reusable-input
+          type="password"
+          label="Confirm Password"
+          placeholder="******** "
+          customClass="w-3/4"
+          formControlName="rePassword"
+        ></app-reusable-input>
+      </div>
+
+      <app-custom-button pageType="Create Account"></app-custom-button>
+    </form>
+  </div>
 
   <div class="CreateAccount mt-5 flex justify-center">
     <p>Already have an account?</p>

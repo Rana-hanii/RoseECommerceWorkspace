@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,8 +8,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './custom-button.component.scss',
 })
 export class CustomButtonComponent {
-  @Input({required:true})  pageType = 'submit';
-  @Input() buttonClick = new EventEmitter<void>()
+  @Input({required:true})  pageType = '';
+  @Output() buttonClick: EventEmitter<void> = new EventEmitter();
   onClick() {
     this.buttonClick.emit()
   }
