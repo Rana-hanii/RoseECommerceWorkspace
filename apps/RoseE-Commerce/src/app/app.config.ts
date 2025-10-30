@@ -29,7 +29,7 @@ export const appConfig: ApplicationConfig = {
     provideToastr(),
     provideHttpClient(withFetch()),
     importProvidersFrom(NgxSpinnerModule, BrowserAnimationsModule),
-
+    
     providePrimeNG({
       theme: {
         preset: Aura,

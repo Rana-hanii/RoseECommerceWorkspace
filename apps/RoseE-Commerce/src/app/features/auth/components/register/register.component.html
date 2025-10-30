@@ -8,14 +8,14 @@
           type="text"
           label="First name"
           placeholder="Jonathan"
-          customClass="w-1/2"
+          customClass="w-3/4"
           formControlName="firstName"
         ></app-reusable-input>
         <app-reusable-input
           type="text"
           label="Last Name"
           placeholder="Adrian"
-          customClass="w-1/2"
+          customClass="w-3/4"
           formControlName="lastName"
         ></app-reusable-input>
       </div>
@@ -24,51 +24,51 @@
           type="email"
           label="Email"
           placeholder="Enter Your Email"
-          customClass="w-3/4"
+          customClass="w-100"
           formControlName="email"
         ></app-reusable-input>
         <app-reusable-input
           type="tel"
           label="phone"
           placeholder="Enter Valid Number"
-          customClass="w-3/4"
+          customClass="w-100"
           formControlName="phone"
         ></app-reusable-input>
         <app-reusable-input
           type="select"
           label="Gender"
-          [option]="['male', 'female']"
+          [options]="['male', 'female']"
           placeholder="Select Gender "
-          customClass="w-3/4"
+          customClass="w-100"
           formControlName="gender"
         ></app-reusable-input>
         <app-reusable-input
           type="password"
           label="password"
           placeholder="password@1234 "
-          customClass="w-3/4"
+          customClass="w-100"
           formControlName="password"
         ></app-reusable-input>
         <app-reusable-input
           type="password"
           label="Confirm Password"
           placeholder="******** "
-          customClass="w-3/4"
+          customClass="w-100"
           formControlName="rePassword"
         ></app-reusable-input>
       </div>
 
-      <div [ngClass]="">
+      <div class="cursor-pointer flex justify-content-center align-center">
         <app-custom-button
           pageType="Create Account"
-        (buttonClick)="registerSubmit()"
+          (buttonClick)="registerSubmit()"
         ></app-custom-button>
       </div>
     </form>
   </div>
 
-  <div class="CreateAccount mt-5 flex justify-center">
+  <div class="mt-5 flex justify-center">
     <p>Already have an account?</p>
-    <a class="cursor-pointer" routerLink="/auth/login">Login</a>
+    <a class="cursor-pointer CreateAccount" routerLink="/auth/login">Login</a>
   </div>
 </main>

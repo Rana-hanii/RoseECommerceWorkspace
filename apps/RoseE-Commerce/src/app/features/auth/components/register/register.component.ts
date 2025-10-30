@@ -4,7 +4,14 @@ import { RouterLink } from '@angular/router';
 import { CustomButtonComponent } from '../../../../shared/components/custom-button/custom-button.component';
 import { AuthTitleComponent } from '../../../../shared/components/auth-title/auth-title.component';
 import { ReusableInputComponent } from '../../../../shared/components/reusableInput/reusableInput.component';
-import { FormBuilder, FormGroup, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  Validators,
+  ReactiveFormsModule,
+  AbstractControl,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -15,27 +22,59 @@ import { FormBuilder, FormGroup, FormsModule, Validators, ReactiveFormsModule } 
     AuthTitleComponent,
     ReusableInputComponent,
     FormsModule,
-    ReactiveFormsModule
-],
+    ReactiveFormsModule,
+  ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
 export class RegisterComponent {
   private fb = inject(FormBuilder);
+  // private readonly a = inject(auth)
 
   registerFOrm: FormGroup = this.fb.group({
-    firstName:[null,[Validators.minLength(10), Validators.maxLength(20), Validators.required]],
-    lastName:[null,[Validators.minLength(10), Validators.maxLength(20), Validators.required]],
-    email:[null,[Validators.email, Validators.required]],
-    password:[null,[Validators.required,Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)]],
-    rePassword:[null,[Validators.required,Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)]],
-    phone:[null,[Validators.required,]],
-    gender:[null,[Validators.required,]],
-  })
+    firstName: [
+      null,
+      [Validators.minLength(10), Validators.maxLength(20), Validators.required],
+    ],
+    lastName: [
+      null,
+      [Validators.minLength(10), Validators.maxLength(20), Validators.required],
+    ],
+    email: [null, [Validators.email, Validators.required]],
+    password: [
+      null,
+      [
+        Validators.required,
+        Validators.pattern(
+          /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
+        ),
+      ],
+    ],
+    rePassword: [
+      null,
+      [
+        Validators.required,
+        Validators.pattern(
+          /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
+        ),
+      ],
+    ],
+    phone: [null, [Validators.required]],
+    gender: [null, [Validators.required]],
+  }, this.confirmPassword );
 
-
-  registerSubmit(){
-    console.log(this.registerFOrm.value);
+  confirmPassword(group: AbstractControl) {
+    if (group.get('password') != group.get('rePassword')) {
+      return null;
+    } else {
+      this.registerFOrm.get('rePassword')?.setErrors({ misMatch: true });
+      return { misMatch: true };
+    }
   }
 
+  registerSubmit() {
+    if (this.registerFOrm.valid) {
+      console.log(this.registerFOrm.value);
+    }
+  }
 }
