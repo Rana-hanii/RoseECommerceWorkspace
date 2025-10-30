@@ -27,7 +27,7 @@ import {
 })
 export class LoginComponent {
   private readonly fb = inject(FormBuilder);
-
+  // private readonly hh = inject()
   loginForm: FormGroup = this.fb.group({
     email: [null, [Validators.required, Validators.email]],
     password: [
@@ -42,6 +42,8 @@ export class LoginComponent {
   });
 
   loginSubmit() {
-    console.log(this.loginForm.value);
+    if (this.loginForm.valid) {
+      console.log(this.loginForm.value);
+    }
   }
 }
