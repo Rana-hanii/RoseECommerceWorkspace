@@ -16,6 +16,7 @@ import { AuthService } from '@rose-ecommerce-workspace/auth';
 import { ToastrService } from 'ngx-toastr';
 import { InputOtpModule } from 'primeng/inputotp';
 import { CookieService } from 'ngx-cookie-service';
+import { LineComponent } from "../../../../shared/components/line/line.component";
 @Component({
   selector: 'app-forgot-password',
   imports: [
@@ -28,7 +29,8 @@ import { CookieService } from 'ngx-cookie-service';
     ReusableInputComponent,
     InputOtpModule,
     FormsModule,
-  ],
+    LineComponent
+],
   templateUrl: './forgot-password.component.html',
   styleUrl: './forgot-password.component.css',
 })
@@ -38,7 +40,6 @@ export class ForgotPasswordComponent {
   private readonly toastr = inject(ToastrService);
   private readonly router = inject(Router);
   private readonly cookieService = inject(CookieService);
-  value: any;
   step = 1;
   emailValue = '';
   forgetPassword: FormGroup = this.fb.group({
@@ -76,7 +77,10 @@ export class ForgotPasswordComponent {
         },
         error: (err) => {
           // display error message
-          this.toastr.error(err.error?.message || 'Failed to send reset code', 'Error');
+          this.toastr.error(
+            err.error?.message || 'Failed to send reset code',
+            'Error'
+          );
         },
       });
     }
@@ -89,7 +93,7 @@ export class ForgotPasswordComponent {
         resetCode: this.otpForm.get('otp')?.value.trim(),
       };
       this.authService.VerifyCode(model).subscribe({
-        next: (res) => {
+        next: () => {
           this.toastr.success('OTP verified successfully', 'Success');
           this.step = 3;
         },
@@ -109,7 +113,6 @@ export class ForgotPasswordComponent {
         email: this.emailValue,
         newPassword: this.resetPasswordForm.get('newPassword')?.value,
       };
-
       this.authService.ResetPassword(model).subscribe({
         next: (res) => {
           // display message

@@ -13,6 +13,7 @@ import {
 import { AuthService } from '@rose-ecommerce-workspace/auth';
 import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
+import { LineComponent } from "../../../../shared/components/line/line.component";
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,8 @@ import { ToastrService } from 'ngx-toastr';
     AuthTitleComponent,
     ReusableInputComponent,
     ReactiveFormsModule,
-  ],
+    LineComponent
+],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })

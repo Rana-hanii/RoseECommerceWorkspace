@@ -13,6 +13,7 @@ import {
   AbstractControl,
 } from '@angular/forms';
 import { AuthService } from '@rose-ecommerce-workspace/auth';
+import { LineComponent } from "../../../../shared/components/line/line.component";
 
 @Component({
   selector: 'app-register',
@@ -24,7 +25,8 @@ import { AuthService } from '@rose-ecommerce-workspace/auth';
     ReusableInputComponent,
     FormsModule,
     ReactiveFormsModule,
-  ],
+    LineComponent
+],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
@@ -72,17 +74,16 @@ export class RegisterComponent {
       phone: [null, [Validators.required]],
       gender: [null, [Validators.required]],
     }
-    // this.confirmPassword
   );
 
-  // confirmPassword(group: AbstractControl) {
-  //   if (group.get('password') != group.get('rePassword')) {
-  //     return null;
-  //   } else {
-  //     this.registerFOrm.get('rePassword')?.setErrors({ misMatch: true });
-  //     return { misMatch: true };
-  //   }
-  // }
+  confirmPassword(group: AbstractControl) { 
+    if (group.get('password') != group.get('rePassword')) {
+      return null;
+    } else {
+      this.registerFOrm.get('rePassword')?.setErrors({ misMatch: true });
+      return { misMatch: true };
+    }
+  }
 
   registerSubmit() {
     if (this.registerFOrm.valid) {

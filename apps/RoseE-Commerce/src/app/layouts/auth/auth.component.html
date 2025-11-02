@@ -1,11 +1,11 @@
-<div class="flex justify-between items-center h-full overflow-hidden">
-  <div class="content w-1/2 flex flex-col items-center justify-center">
+<div class="flex flex-col md:flex-row justify-center items-center  ">
+  <div class="content w-full md:w-1/2 flex flex-col items-center justify-center ">
     <app-auth-header-footer>
         <router-outlet></router-outlet>
     </app-auth-header-footer>
   </div>
 
-  <div class="image w-1/2 h-full">
-    <img src="bg.png" alt="background" class="w-full h-full object-cover" />
+  <div class="image opacity-0 md:opacity-100 md:w-1/2 h-full ">
+    <img src="bg.png" alt="background" class=" object-contain w-full " />
   </div>
 </div>

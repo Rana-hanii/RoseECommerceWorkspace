@@ -1,6 +1,6 @@
 <main>
   <app-auth-title text="Welcome back!"></app-auth-title>
-  <div class="line"></div>
+  <app-line></app-line>
   <form action="" [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
     <app-reusable-input
       type="email"
@@ -28,6 +28,7 @@
       pageType="Login"
       (buttonClick)="loginSubmit()"
     ></app-custom-button>
+    <app-line></app-line>
   </form>
 
   <div class="mt-5 flex justify-center">

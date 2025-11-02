@@ -1,13 +1,6 @@
-@use '../../../../../styles/variables.scss';
-
 .line {
   width: 406px;
   height: 1px;
   background-color: #8080808e;
   margin-top: 50px;
-}
-
-.CreateAccount {
-  color: var(--color-primary);
-  font-weight: var(--font-weight-bold);
 }
