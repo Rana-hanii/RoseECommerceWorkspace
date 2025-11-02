@@ -1,7 +1,7 @@
 <main>
   <app-auth-title text="Welcome back!"></app-auth-title>
   <div class="line"></div>
-  <form action="" [formGroup]="loginForm">
+  <form action="" [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
     <app-reusable-input
       type="email"
       label="Email"

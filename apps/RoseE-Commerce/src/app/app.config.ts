@@ -19,6 +19,8 @@ import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { API_URL } from '@rose-ecommerce-workspace/auth';
+import { CookieService } from 'ngx-cookie-service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -28,8 +30,11 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideToastr(),
     provideHttpClient(withFetch()),
-    importProvidersFrom(NgxSpinnerModule, BrowserAnimationsModule),
-    
+    importProvidersFrom(
+      NgxSpinnerModule,
+      BrowserAnimationsModule,
+      CookieService
+    ),
     providePrimeNG({
       theme: {
         preset: Aura,
@@ -38,5 +43,6 @@ export const appConfig: ApplicationConfig = {
         },
       },
     }),
+    { provide: API_URL, useValue: 'https://flower.elevateegy.com/api/v1' },
   ],
 };

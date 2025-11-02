@@ -12,6 +12,7 @@ import {
   ReactiveFormsModule,
   AbstractControl,
 } from '@angular/forms';
+import { AuthService } from '@rose-ecommerce-workspace/auth';
 
 @Component({
   selector: 'app-register',
@@ -29,52 +30,72 @@ import {
 })
 export class RegisterComponent {
   private fb = inject(FormBuilder);
-  // private readonly a = inject(auth)
+  private readonly authService = inject(AuthService);
 
-  registerFOrm: FormGroup = this.fb.group({
-    firstName: [
-      null,
-      [Validators.minLength(10), Validators.maxLength(20), Validators.required],
-    ],
-    lastName: [
-      null,
-      [Validators.minLength(10), Validators.maxLength(20), Validators.required],
-    ],
-    email: [null, [Validators.email, Validators.required]],
-    password: [
-      null,
-      [
-        Validators.required,
-        Validators.pattern(
-          /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
-        ),
+  registerFOrm: FormGroup = this.fb.group(
+    {
+      firstName: [
+        null,
+        [
+          Validators.minLength(3),
+          Validators.maxLength(20),
+          Validators.required,
+        ],
       ],
-    ],
-    rePassword: [
-      null,
-      [
-        Validators.required,
-        Validators.pattern(
-          /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
-        ),
+      lastName: [
+        null,
+        [
+          Validators.minLength(3),
+          Validators.maxLength(20),
+          Validators.required,
+        ],
       ],
-    ],
-    phone: [null, [Validators.required]],
-    gender: [null, [Validators.required]],
-  }, this.confirmPassword );
-
-  confirmPassword(group: AbstractControl) {
-    if (group.get('password') != group.get('rePassword')) {
-      return null;
-    } else {
-      this.registerFOrm.get('rePassword')?.setErrors({ misMatch: true });
-      return { misMatch: true };
+      email: [null, [Validators.email, Validators.required]],
+      password: [
+        null,
+        [
+          Validators.required,
+          Validators.pattern(
+            /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
+          ),
+        ],
+      ],
+      rePassword: [
+        null,
+        [
+          Validators.required,
+          Validators.pattern(
+            /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
+          ),
+        ],
+      ],
+      phone: [null, [Validators.required]],
+      gender: [null, [Validators.required]],
     }
-  }
+    // this.confirmPassword
+  );
+
+  // confirmPassword(group: AbstractControl) {
+  //   if (group.get('password') != group.get('rePassword')) {
+  //     return null;
+  //   } else {
+  //     this.registerFOrm.get('rePassword')?.setErrors({ misMatch: true });
+  //     return { misMatch: true };
+  //   }
+  // }
 
   registerSubmit() {
     if (this.registerFOrm.valid) {
-      console.log(this.registerFOrm.value);
+      const formData = { ...this.registerFOrm.value };
+
+      if (formData.phone && typeof formData.phone == 'object') {
+        formData.phone = formData.phone.internationalNumber;
+      }
+      this.authService.SignUp(formData).subscribe({
+        next(value) {
+          console.log(value);
+        },
+      });
     }
   }
 }

@@ -6,6 +6,13 @@ export const mainRoutes: Routes = [
     path: '',
     canActivate: [authGuard],
     children: [
+      {
+        path: 'home',
+        loadComponent: () =>
+          import('../../../../app/features/home/component/home.component').then(
+            (c) => c.HomeComponent
+          ),
+      },
     ],
   },
 ];

@@ -1,11 +1,11 @@
-<div class="flex justify-between items-center h-screen">
-  <div class="content w-1/2 flex flex-column items-center justify-center">
+<div class="flex justify-between items-center h-full overflow-hidden">
+  <div class="content w-1/2 flex flex-col items-center justify-center">
     <app-auth-header-footer>
         <router-outlet></router-outlet>
     </app-auth-header-footer>
   </div>
 
   <div class="image w-1/2 h-full">
-    <img src="bg.png" alt="background" class="w-full h-fit object-cover" />
+    <img src="bg.png" alt="background" class="w-full h-full object-cover" />
   </div>
 </div>
