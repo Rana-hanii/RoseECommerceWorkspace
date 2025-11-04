@@ -13,7 +13,10 @@ import {
   AbstractControl,
 } from '@angular/forms';
 import { AuthService } from '@rose-ecommerce-workspace/auth';
-import { LineComponent } from "../../../../shared/components/line/line.component";
+import { LineComponent } from '../../../../shared/components/line/line.component';
+import { PASSWORD_PATTERN } from '../../../../shared/constants/regex.constants';
+import { Subject, takeUntil } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -25,15 +28,16 @@ import { LineComponent } from "../../../../shared/components/line/line.component
     ReusableInputComponent,
     FormsModule,
     ReactiveFormsModule,
-    LineComponent
-],
+    LineComponent,
+  ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
 export class RegisterComponent {
   private fb = inject(FormBuilder);
   private readonly authService = inject(AuthService);
-
+  private readonly toastr = inject(ToastrService);
+  private readonly destroy$ = new Subject<void>();
   registerFOrm: FormGroup = this.fb.group(
     {
       firstName: [
@@ -55,34 +59,24 @@ export class RegisterComponent {
       email: [null, [Validators.email, Validators.required]],
       password: [
         null,
-        [
-          Validators.required,
-          Validators.pattern(
-            /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
-          ),
-        ],
+        [Validators.required, Validators.pattern(PASSWORD_PATTERN)],
       ],
       rePassword: [
         null,
-        [
-          Validators.required,
-          Validators.pattern(
-            /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
-          ),
-        ],
+        [Validators.required, Validators.pattern(PASSWORD_PATTERN)],
       ],
       phone: [null, [Validators.required]],
       gender: [null, [Validators.required]],
+    },
+    {
+      validators: this.confirmPassword,
     }
   );
 
-  confirmPassword(group: AbstractControl) { 
-    if (group.get('password') != group.get('rePassword')) {
-      return null;
-    } else {
-      this.registerFOrm.get('rePassword')?.setErrors({ misMatch: true });
-      return { misMatch: true };
-    }
+  confirmPassword(group: AbstractControl) {
+    const password = group.get('password')?.value;
+    const rePassword = group.get('rePassword')?.value;
+    return password === rePassword ? null : { mismatch: true };
   }
 
   registerSubmit() {
@@ -92,11 +86,17 @@ export class RegisterComponent {
       if (formData.phone && typeof formData.phone == 'object') {
         formData.phone = formData.phone.internationalNumber;
       }
-      this.authService.SignUp(formData).subscribe({
-        next(value) {
-          console.log(value);
-        },
-      });
+      this.authService
+        .SignUp(formData)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          next: (res) => {
+            this.toastr.success(
+              res.message || 'Registration | succssusfly',
+              'success'
+            );
+          },
+        });
     }
   }
 }
