@@ -10,13 +10,13 @@ import {
   FormsModule,
   Validators,
   ReactiveFormsModule,
-  AbstractControl,
 } from '@angular/forms';
 import { AuthService } from '@rose-ecommerce-workspace/auth';
 import { LineComponent } from '../../../../shared/components/line/line.component';
 import { PASSWORD_PATTERN } from '../../../../shared/constants/regex.constants';
 import { Subject, takeUntil } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { confirmPasswordValidator } from '../../../../shared/password_Validator/passwordValidator';
 
 @Component({
   selector: 'app-register',
@@ -69,15 +69,9 @@ export class RegisterComponent {
       gender: [null, [Validators.required]],
     },
     {
-      validators: this.confirmPassword,
+      validators: confirmPasswordValidator,
     }
   );
-
-  confirmPassword(group: AbstractControl) {
-    const password = group.get('password')?.value;
-    const rePassword = group.get('rePassword')?.value;
-    return password === rePassword ? null : { mismatch: true };
-  }
 
   registerSubmit() {
     if (this.registerFOrm.valid) {

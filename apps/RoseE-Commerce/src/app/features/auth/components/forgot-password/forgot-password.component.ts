@@ -22,7 +22,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { LineComponent } from '../../../../shared/components/line/line.component';
 import { PASSWORD_PATTERN } from '../../../../shared/constants/regex.constants';
 import { Subject, takeUntil } from 'rxjs';
-import { error } from 'console';
+import { confirmPasswordValidator } from '../../../../shared/password_Validator/passwordValidator';
 @Component({
   selector: 'app-forgot-password',
   imports: [
@@ -66,14 +66,15 @@ export class ForgotPasswordComponent implements OnDestroy {
         null,
         [Validators.required, Validators.pattern(PASSWORD_PATTERN)],
       ],
-      rePassword: [null, [Validators.required]],
+      confirmPassword: [null, [Validators.required]],
     },
     {
-      validators: this.passwordMatchValidator,
+      validators: confirmPasswordValidator,
     }
   );
 
   startTimer() {
+    clearInterval(this.intervalId);
     this.resendDisabled = true;
     this.countDown = 60;
     this.intervalId = setInterval(() => {
@@ -84,12 +85,6 @@ export class ForgotPasswordComponent implements OnDestroy {
       }
     }, 1000);
   }
-
-  passwordMatchValidator(formGroup: FormGroup) {
-    const password = formGroup.get('newPassword')?.value;
-    const confirmPassword = formGroup.get('confirmPassword')?.value;
-    return password === confirmPassword ? null : { mismatch: true };
-  }
   submitForgetPassword() {
     if (this.forgetPassword.valid) {
       this.authService
@@ -97,7 +92,6 @@ export class ForgotPasswordComponent implements OnDestroy {
         .pipe(takeUntil(this.destroy$))
         .subscribe({
           next: (res) => {
-            localStorage.setItem('resetEmail', this.forgetPassword.value.email);
             this.emailValue = this.forgetPassword.get('email')?.value;
             this.step = 2;
             // display message Success
@@ -117,7 +111,7 @@ export class ForgotPasswordComponent implements OnDestroy {
     }
   }
   resendOtp() {
-    const email = localStorage.getItem('resetEmail');
+    const email = this.forgetPassword.get('email')?.value;
     if (!email) {
       this.toastr.error(
         'Email not found. Please go back and enter your email again.',
@@ -125,20 +119,23 @@ export class ForgotPasswordComponent implements OnDestroy {
       );
       return;
     }
-    const payload: IForgetPasswordReq = { email };
+    const model: IForgetPasswordReq = { email };
     this.authService
-      .ForgetPassword(payload)
+      .ForgetPassword(model)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (res) => {
           this.toastr.success(
-            'A new OTP has been sent to your email',
+            res.message || 'A new OTP has been sent to your email',
             'Success'
           );
           this.startTimer();
         },
         error: (err) => {
-          this.toastr.error('failed to resend OTP', 'Error');
+          this.toastr.error(
+            err.error?.message || 'failed to resend OTP',
+            'Error'
+          );
         },
       });
   }
@@ -146,7 +143,6 @@ export class ForgotPasswordComponent implements OnDestroy {
   submitVerifyCode() {
     if (this.otpForm.valid) {
       const model = {
-        email: this.emailValue,
         resetCode: this.otpForm.get('otp')?.value.trim(),
       };
       this.authService
@@ -183,9 +179,7 @@ export class ForgotPasswordComponent implements OnDestroy {
               'Your password has been reset successfully',
               'Success'
             );
-            // set Token
-            this.cookieService.set('roseToken', res.token);
-            // navigation to home
+            // navigation to login
             this.router.navigate(['/auth/login']);
           },
           error: (err) => {
@@ -199,6 +193,7 @@ export class ForgotPasswordComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
+    clearInterval(this.intervalId);
     this.destroy$.next();
     this.destroy$.complete();
   }
