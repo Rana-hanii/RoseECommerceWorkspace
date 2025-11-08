@@ -12,13 +12,17 @@ import {
   FormsModule,
 } from '@angular/forms';
 import { ReusableInputComponent } from '../../../../shared/components/reusableInput/reusableInput.component';
-import { AuthService } from '@rose-ecommerce-workspace/auth';
+import {
+  AuthService,
+  IForgetPasswordReq,
+} from '@rose-ecommerce-workspace/auth';
 import { ToastrService } from 'ngx-toastr';
 import { InputOtpModule } from 'primeng/inputotp';
 import { CookieService } from 'ngx-cookie-service';
 import { LineComponent } from '../../../../shared/components/line/line.component';
 import { PASSWORD_PATTERN } from '../../../../shared/constants/regex.constants';
 import { Subject, takeUntil } from 'rxjs';
+import { error } from 'console';
 @Component({
   selector: 'app-forgot-password',
   imports: [
@@ -45,6 +49,9 @@ export class ForgotPasswordComponent implements OnDestroy {
   private readonly destroy$ = new Subject<void>();
   step = 1;
   emailValue = '';
+  resendDisabled = true;
+  countDown = 60;
+  intervalId: any;
   forgetPassword: FormGroup = this.fb.group({
     email: [null, [Validators.required, Validators.email]],
   });
@@ -66,6 +73,18 @@ export class ForgotPasswordComponent implements OnDestroy {
     }
   );
 
+  startTimer() {
+    this.resendDisabled = true;
+    this.countDown = 60;
+    this.intervalId = setInterval(() => {
+      this.countDown--;
+      if (this.countDown <= 0) {
+        clearInterval(this.intervalId);
+        this.resendDisabled = false;
+      }
+    }, 1000);
+  }
+
   passwordMatchValidator(formGroup: FormGroup) {
     const password = formGroup.get('newPassword')?.value;
     const confirmPassword = formGroup.get('confirmPassword')?.value;
@@ -78,7 +97,7 @@ export class ForgotPasswordComponent implements OnDestroy {
         .pipe(takeUntil(this.destroy$))
         .subscribe({
           next: (res) => {
-            console.log(res);
+            localStorage.setItem('resetEmail', this.forgetPassword.value.email);
             this.emailValue = this.forgetPassword.get('email')?.value;
             this.step = 2;
             // display message Success
@@ -98,8 +117,17 @@ export class ForgotPasswordComponent implements OnDestroy {
     }
   }
   resendOtp() {
+    const email = localStorage.getItem('resetEmail');
+    if (!email) {
+      this.toastr.error(
+        'Email not found. Please go back and enter your email again.',
+        'Error'
+      );
+      return;
+    }
+    const payload: IForgetPasswordReq = { email };
     this.authService
-      .VerifyCode(this.otpForm.value)
+      .ForgetPassword(payload)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (res) => {
@@ -107,13 +135,10 @@ export class ForgotPasswordComponent implements OnDestroy {
             'A new OTP has been sent to your email',
             'Success'
           );
+          this.startTimer();
         },
         error: (err) => {
-          this.toastr.error(
-            'An error occurred while resending the OTP',
-            'Error'
-          );
-          console.log(err);
+          this.toastr.error('failed to resend OTP', 'Error');
         },
       });
   }
