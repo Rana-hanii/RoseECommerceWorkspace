@@ -31,7 +31,6 @@ export class ReusableInputComponent {
   value: string | number | undefined;
 
 
-
   constructor(@Self() public controlDir: NgControl) {
     this.controlDir.valueAccessor = this;
      

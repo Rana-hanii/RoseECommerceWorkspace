@@ -6,5 +6,5 @@ export const confirmPasswordValidator: ValidatorFn = (
   const password = group.get('password')?.value;
   const rePassword = group.get('rePassword')?.value;
 
-  return password != rePassword ? null : { mismatch: true };
+  return password === rePassword ? null : { mismatch: true };
 };
