@@ -1,9 +1,16 @@
-import { Component, Input, Self } from '@angular/core';
+import { Component, Input, OnInit, Self } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, NgControl, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
+import { Select } from 'primeng/select';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { ErrorMsgComponent } from '../errorMsg/errorMsg.component';
+
+
+
+interface Gender {
+    type: string;
+}
 
 @Component({
   selector: 'app-reusable-input',
@@ -13,12 +20,13 @@ import { ErrorMsgComponent } from '../errorMsg/errorMsg.component';
     ReactiveFormsModule,
     NgxIntlTelInputModule,
     ErrorMsgComponent,
+    Select,
   ],
   templateUrl: './reusableInput.component.html',
   styleUrl: './reusableInput.component.css',
 })
-export class ReusableInputComponent {
-  @Input() type: 'text' | 'password' | 'email' | 'tel' | 'select' = 'text';
+export class ReusableInputComponent implements OnInit{
+  @Input() type: 'text' | 'password' | 'rePassword' |'email' | 'tel' | 'select' = 'text';
   @Input() option: string[] = [];
   @Input() label = '';
   @Input() placeholder = '';
@@ -27,8 +35,19 @@ export class ReusableInputComponent {
   showPassword = false;
   value: string | number | undefined;
 
+      gender!:Gender[] 
+    ngOnInit() {
+            this.gender = [
+           {type:'male'},
+           {type:'female'},
+            
+        ];
+    }
+  
+
   constructor(@Self() public controlDir: NgControl) {
     this.controlDir.valueAccessor = this;
+     
   }
 
   writeValue(obj: any): void {
