@@ -9,12 +9,12 @@ export const authGuard: CanActivateFn = () => {
   if (isPlatformBrowser(platformId)) {
     const token = localStorage.getItem('token');
 
-    if (token) {
-      return true;
-    } else {
-      router.navigate(['/auth/login']);
-      return false;
-    }
+    // if (token) {
+    //   return true;
+    // } else {
+    //   router.navigate(['/auth/login']);
+    //   return false;
+    // }
   }
 
 
