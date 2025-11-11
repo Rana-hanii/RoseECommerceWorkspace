@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Product } from '../../../shared/interfaces/products';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,9 @@ import { Observable } from 'rxjs';
 export class ProductCardService {
   private readonly httpClient = inject(HttpClient);
 
-  getAllProduct(): Observable<any> {
-    return this.httpClient.get(`https://flower.elevateegy.com/api/v1/home`);
+  getAllProduct(): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(
+      `https://flower.elevateegy.com/api/v1/products`
+    );
   }
 }
