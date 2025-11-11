@@ -4,6 +4,7 @@ import { authGuard } from '../../../core/guards/auth.guard';
 export const mainRoutes: Routes = [
   {
     path: '',
+    redirectTo:'home',
     canActivate: [authGuard],
     children: [
       {

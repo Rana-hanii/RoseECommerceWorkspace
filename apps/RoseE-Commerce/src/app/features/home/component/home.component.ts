@@ -16,8 +16,7 @@ export class HomeComponent implements OnInit {
   loadProducts() {
     this.productCardService.getAllProduct().subscribe({
       next: (res) => {
-        this.product = res;
-        console.log(this.product);
+        console.log(res);
       },
     });
   }
