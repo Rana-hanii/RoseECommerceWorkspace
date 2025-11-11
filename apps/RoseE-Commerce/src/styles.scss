@@ -17,6 +17,12 @@
      w-full;
 } 
 
+@layer utilities {
+  .containers{
+    @apply  w-[90%] mx-auto
+  }
+}
+
 @theme {
   --color-primary: #A6252A;
   --color-secondary: #fbeaea;

@@ -7,11 +7,6 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { ErrorMsgComponent } from '../errorMsg/errorMsg.component';
 
 
-
-interface Gender {
-    type: string;
-}
-
 @Component({
   selector: 'app-reusable-input',
   imports: [
@@ -25,25 +20,18 @@ interface Gender {
   templateUrl: './reusableInput.component.html',
   styleUrl: './reusableInput.component.css',
 })
-export class ReusableInputComponent implements OnInit{
+export class ReusableInputComponent {
   @Input() type: 'text' | 'password' | 'rePassword' |'email' | 'tel' | 'select' = 'text';
   @Input() option: string[] = [];
   @Input() label = '';
   @Input() placeholder = '';
   @Input() customClass = ''
+  
 
   showPassword = false;
   value: string | number | undefined;
 
-      gender!:Gender[] 
-    ngOnInit() {
-            this.gender = [
-           {type:'male'},
-           {type:'female'},
-            
-        ];
-    }
-  
+
 
   constructor(@Self() public controlDir: NgControl) {
     this.controlDir.valueAccessor = this;
