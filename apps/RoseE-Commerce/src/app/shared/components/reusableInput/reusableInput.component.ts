@@ -21,7 +21,7 @@ import { ErrorMsgComponent } from '../errorMsg/errorMsg.component';
   styleUrl: './reusableInput.component.css',
 })
 export class ReusableInputComponent {
-  @Input() type: 'text' | 'password' | 'email' | 'tel' | 'select' = 'text';
+  @Input() type: 'text' | 'password' | 'rePassword' | 'email' | 'tel' | 'select' = 'text';
   @Input() options: string[] = [];
   @Input() label = '';
   @Input() placeholder = '';
