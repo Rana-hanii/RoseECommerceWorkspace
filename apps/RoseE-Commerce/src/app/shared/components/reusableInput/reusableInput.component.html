@@ -29,7 +29,7 @@
         "
       />
 
-      } @if (type === 'password' ) {
+      } @if (type === 'password') {
       <button
         type="button"
         class="absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-gray-700"
@@ -41,7 +41,22 @@
           [class]="showPassword ? 'pi-eye-slash' : 'pi-eye'"
         ></i>
       </button>
-      } @if(type === 'tel'){
+      } 
+       @if (type ==='rePassword' ) {
+      <button
+        type="button"
+        class="absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-gray-700"
+        (click)="togglePasswordEye()"
+        [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'"
+      >
+        <i
+          class="cursor-pointer pi"
+          [class]="showPassword ? 'pi-eye-slash' : 'pi-eye'"
+        ></i>
+      </button>
+      } 
+      
+      @if(type === 'tel'){
 
       <ngx-intl-tel-input
         [cssClass]="'form-input w-[100%]'"
@@ -87,18 +102,5 @@
         [type]="type"
       ></app-error-msg>
     </div>
-
-    <!-- @if (control.touched && control.errors?.['required']) {
-          <p-message severity="error" icon="pi pi-times-circle" styleClass="ms-0">{{label}} is required </p-message>
-        }
-        @if (control.errors?.['email']) {
-          <p-message severity="error" icon="pi pi-times-circle" styleClass="">{{label}} must be valid </p-message>
-        }
-        @if (type === 'password' && control.errors?.['pattern']) {
-          <p-message severity="error" icon="pi pi-times-circle" styleClass="">{{label}} must Conrain Capital char and Sympol </p-message>
-        }
-        @if (type === 'tel' && control.errors?.['pattern']) {
-          <p-message severity="error" icon="pi pi-times-circle" styleClass="">{{label}} must be Valid Egyptian Number </p-message>
-        } -->
   </div>
 </div>

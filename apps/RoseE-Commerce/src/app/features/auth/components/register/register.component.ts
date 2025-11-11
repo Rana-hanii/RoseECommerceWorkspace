@@ -1,3 +1,4 @@
+
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -35,62 +36,21 @@ import { confirmPasswordValidator } from '../../../../shared/password_Validator/
 })
 export class RegisterComponent {
   private fb = inject(FormBuilder);
-  private readonly authService = inject(AuthService);
-  private readonly toastr = inject(ToastrService);
-  private readonly destroy$ = new Subject<void>();
-  registerFOrm: FormGroup = this.fb.group(
-    {
-      firstName: [
-        null,
-        [
-          Validators.minLength(3),
-          Validators.maxLength(20),
-          Validators.required,
-        ],
-      ],
-      lastName: [
-        null,
-        [
-          Validators.minLength(3),
-          Validators.maxLength(20),
-          Validators.required,
-        ],
-      ],
-      email: [null, [Validators.email, Validators.required]],
-      password: [
-        null,
-        [Validators.required, Validators.pattern(PASSWORD_PATTERN)],
-      ],
-      rePassword: [
-        null,
-        [Validators.required, Validators.pattern(PASSWORD_PATTERN)],
-      ],
-      phone: [null, [Validators.required]],
-      gender: [null, [Validators.required]],
-    },
-    {
-      validators: confirmPasswordValidator,
-    }
-  );
 
-  registerSubmit() {
-    if (this.registerFOrm.valid) {
-      const formData = { ...this.registerFOrm.value };
+  registerFOrm: FormGroup = this.fb.group({
+    firstName:[null,[Validators.minLength(10), Validators.maxLength(20), Validators.required]],
+    lastName:[null,[Validators.minLength(10), Validators.maxLength(20), Validators.required]],
+    email:[null,[Validators.email, Validators.required]],
+    password:[null,[Validators.required,Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)]],
+    rePassword:[null,[Validators.required,Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)]],
+    phone:[null,[Validators.required,]],
+    gender:[null,[Validators.required,]],
+  })
 
-      if (formData.phone && typeof formData.phone == 'object') {
-        formData.phone = formData.phone.internationalNumber;
-      }
-      this.authService
-        .SignUp(formData)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe({
-          next: (res) => {
-            this.toastr.success(
-              res.message || 'Registration | succssusfly',
-              'success'
-            );
-          },
-        });
-    }
+
+  registerSubmit(){
+    console.log(this.registerFOrm.value);
+    
   }
+
 }

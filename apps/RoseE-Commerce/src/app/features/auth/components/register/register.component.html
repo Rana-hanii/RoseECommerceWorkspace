@@ -1,7 +1,7 @@
 <main class="">
   <app-auth-title [text]="'Become part of our family!'"></app-auth-title>
-  <div class="flex flex-col justify-center items-center">
-    <app-line></app-line>
+  <div class="line"></div>
+  <div class="flex flex-column justify-center items-center ">
     <form [formGroup]="registerFOrm">
       <div class="flex justify-between items-center">
         <app-reusable-input
@@ -37,9 +37,9 @@
         <app-reusable-input
           type="select"
           label="Gender"
-          [options]="['male', 'female']"
+          [option]="['male', 'female']"
           placeholder="Select Gender "
-          customClass="w-100"
+          customClass="w-3/4"
           formControlName="gender"
         ></app-reusable-input>
         <app-reusable-input
@@ -50,7 +50,7 @@
           formControlName="password"
         ></app-reusable-input>
         <app-reusable-input
-          type="password"
+          type="rePassword"
           label="Confirm Password"
           placeholder="********"
           customClass="w-100"
@@ -58,12 +58,7 @@
         ></app-reusable-input>
       </div>
 
-      <div class="cursor-pointerflex justify-content-center align-center">
-        <app-custom-button
-          pageType="Create Account"
-          (buttonClick)="registerSubmit()"
-        ></app-custom-button>
-      </div>
+      <app-custom-button pageType="Create Account"></app-custom-button>
     </form>
     <app-line></app-line>
   </div>

@@ -1,9 +1,11 @@
-import { Component, Input, Self } from '@angular/core';
+import { Component, Input, OnInit, Self } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, NgControl, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
+import { Select } from 'primeng/select';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { ErrorMsgComponent } from '../errorMsg/errorMsg.component';
+
 
 @Component({
   selector: 'app-reusable-input',
@@ -13,6 +15,7 @@ import { ErrorMsgComponent } from '../errorMsg/errorMsg.component';
     ReactiveFormsModule,
     NgxIntlTelInputModule,
     ErrorMsgComponent,
+    Select,
   ],
   templateUrl: './reusableInput.component.html',
   styleUrl: './reusableInput.component.css',
@@ -27,8 +30,11 @@ export class ReusableInputComponent {
   showPassword = false;
   value: string | number | undefined;
 
+
+
   constructor(@Self() public controlDir: NgControl) {
     this.controlDir.valueAccessor = this;
+     
   }
 
   writeValue(obj: any): void {
