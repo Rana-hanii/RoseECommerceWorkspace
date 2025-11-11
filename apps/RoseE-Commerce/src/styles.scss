@@ -15,6 +15,12 @@
 .form-input {
   @apply border-2 border-[#A1A1AA] text-lg hover:border-[#A6252A] rounded-xl px-3 py-2 focus:border-[#A6252A]
      w-full;
+} 
+
+@layer utilities {
+  .containers{
+    @apply  w-[90%] mx-auto
+  }
 }
 
 @theme {

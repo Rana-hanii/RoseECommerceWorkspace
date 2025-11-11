@@ -6,7 +6,7 @@ import { MainComponent } from './layouts/main/main.component';
 
 export const appRoutes: Routes = [
 
-  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+  { path: '', redirectTo: 'main/home', pathMatch: 'full' },
   {
     path: 'auth',
     component: AuthComponent,

@@ -1,22 +1,17 @@
+
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { CustomButtonComponent } from '../../../../shared/components/custom-button/custom-button.component';
 import { AuthTitleComponent } from '../../../../shared/components/auth-title/auth-title.component';
 import { ReusableInputComponent } from '../../../../shared/components/reusableInput/reusableInput.component';
-import {
-  FormBuilder,
-  FormGroup,
-  FormsModule,
-  Validators,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, Validators, ReactiveFormsModule, AbstractControl } from '@angular/forms';
+import { LineComponent } from 'apps/RoseE-Commerce/src/app/shared/components/line/line.component';
 import { AuthService } from '@rose-ecommerce-workspace/auth';
-import { LineComponent } from '../../../../shared/components/line/line.component';
-import { PASSWORD_PATTERN } from '../../../../shared/constants/regex.constants';
-import { Subject, takeUntil } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { confirmPasswordValidator } from '../../../../shared/password_Validator/passwordValidator';
+import { PASSWORD_PATTERN } from 'apps/RoseE-Commerce/src/app/shared/constants/regex.constants';
+import { confirmPasswordValidator } from 'apps/RoseE-Commerce/src/app/shared/password_Validator/passwordValidator';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-register',

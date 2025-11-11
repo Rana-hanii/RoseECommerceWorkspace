@@ -6,6 +6,6 @@ import { RouterModule } from "@angular/router";
   selector: 'app-main',
   imports: [CommonModule, RouterModule],
   templateUrl: './main.component.html',
-  styleUrl: './main.component.css',
+  styleUrl: './main.component.scss',
 })
 export class MainComponent {}

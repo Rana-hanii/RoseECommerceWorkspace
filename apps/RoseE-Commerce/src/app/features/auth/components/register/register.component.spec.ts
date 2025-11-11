@@ -9,12 +9,10 @@ describe('RegisterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RegisterComponent,
-        HttpClientTestingModule,
-        ReactiveFormsModule,
-      ],
-      providers: [provideRouter([])],
+      imports: [RegisterComponent],
+      providers:[
+        provideRouter([])
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(RegisterComponent);
