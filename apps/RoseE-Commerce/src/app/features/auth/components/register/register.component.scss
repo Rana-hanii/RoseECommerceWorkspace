@@ -1,21 +1,6 @@
-@use '../../../../../styles/variables.scss';
-
-.styleLogo {
-  font-weight: var(--font-weight-regular);
-  font-size: var(--font-size-xxxl);
-  color: var(--color-primary);
-  font-family: var(--font-Secondary);
-  vertical-align: middle;
-}
-
 .line {
   width: 406px;
   height: 1px;
   background-color: #8080808e;
   margin-top: 50px;
-}
-
-.CreateAccount a {
-  color: var(--color-primary);
-  font-weight: var(--font-weight-bold);
 }

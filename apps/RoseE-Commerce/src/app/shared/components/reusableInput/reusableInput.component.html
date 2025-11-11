@@ -1,7 +1,7 @@
 <div class="flex justify-center items-center">
   <div
     [ngClass]="customClass"
-    class="flex flex-col items-start justify-center gap-1  my-0"
+    class="flex flex-col items-start justify-center gap-1 my-0"
   >
     <label for="{{ label }}"
       ><strong>{{ label }}</strong></label
@@ -76,16 +76,23 @@
 
     } @if (type === 'select') {
 
-         <div class="form-input !py-1 ">
-          <p-select
-            [options]="option"
-            
-            [placeholder]="placeholder"
-            [formControl]="control"
-            styleClass=" w-full !border-0 no-prime-style"
-            panelStyleClass=""
-          />
-        </div>
+    <select
+      class="form-input"
+      [id]="label"
+      [formControl]="control"
+      [class]="
+        control.touched
+          ? control.invalid
+            ? 'valid-input'
+            : 'invalid-input'
+          : null
+      "
+    >
+      <option value="" disabled selected hidden>{{ placeholder }}</option>
+      <option *ngFor="let option of options" [value]="option">
+        {{ option }}
+      </option>
+    </select>
     }
 
     <div class="mb-3">

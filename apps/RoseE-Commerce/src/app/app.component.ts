@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-
 @Component({
   imports: [RouterModule],
   selector: 'app-root',
@@ -9,8 +8,5 @@ import { RouterModule } from '@angular/router';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'RoseE-Commerce'; 
-
- 
-
-} 
+  title = 'RoseE-Commerce';
+}
