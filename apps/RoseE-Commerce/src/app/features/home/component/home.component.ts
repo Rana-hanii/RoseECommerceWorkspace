@@ -1,8 +1,6 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductCardComponent } from '../../../shared/components/product-card/product-card.component';
-import { ProductCardService } from '../../../core/services/product-card/product-card.service';
-import { Product } from '../../../shared/interfaces/products';
 
 @Component({
   selector: 'app-home',
@@ -10,18 +8,4 @@ import { Product } from '../../../shared/interfaces/products';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent implements OnInit {
-  private readonly productCardService = inject(ProductCardService);
-  product: Product[] = [];
-  loadProducts() {
-    this.productCardService.getAllProduct().subscribe({
-      next: (res) => {
-        console.log(res);
-      },
-    });
-  }
-
-  ngOnInit(): void {
-    this.loadProducts();
-  }
-}
+export class HomeComponent {}

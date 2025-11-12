@@ -1,25 +1,37 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductCardService } from '../../../core/services/product-card/product-card.service';
-
+import { CardModule } from 'primeng/card';
+import { ButtonModule } from 'primeng/button';
+import { Product, Products } from '../../interfaces/products';
+import { RatingModule } from 'primeng/rating';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-product-card',
-  imports: [CommonModule],
+  standalone: true,
+  imports: [CommonModule, CardModule, ButtonModule,RatingModule,FormsModule],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss',
 })
-export class ProductCardComponent   {
-  // private readonly productCardService = inject(ProductCardService);
+export class ProductCardComponent implements OnInit {
+  private readonly productCardService = inject(ProductCardService);
+  products: Product[] = [];
+   value!: number;
+  loadProducts() {
+    this.productCardService.getAllProduct().subscribe({
+      next: (res: Products) => {
+        console.log(res);
+        this.products = res.products || [];
+        // this.value = res.products
+      },
+      error: (err) => {
+        console.log(err);
+        
+      },
+    });
+  }
 
-  // products() {
-  //   this.productCardService.getAllProduct().subscribe({
-  //     next: (res) => {
-  //       console.log(res);
-  //     },
-  //   });
-  // }
-
-  // ngOnInit(): void {
-  //   this.products();
-  // }
+  ngOnInit(): void {
+    this.loadProducts();
+  }
 }

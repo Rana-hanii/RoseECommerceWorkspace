@@ -1,1 +1,28 @@
-<p>product-card works!</p>
+<div
+  class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+>
+  @for(product of products ; track product._id ){
+  <p-card [style]="{ width: '100%', overflow: 'hidden' }">
+    <ng-template #header class="rounded-3">
+      <img [alt]="product.title" class="w-full h-65" [src]="product.imgCover" />
+    </ng-template>
+    <ng-template #title>{{ product.title.slice(0, 20) }} </ng-template>
+    <div class="card flex justify-start">
+      <p-rating
+        [(ngModel)]="product.rateAvg"
+        stars="4"
+        iconOnClass="pi pi-star-fill text-yellow-400"
+        iconOffClass="pi pi-star text-gray-300"
+      />
+    </div>
+    <div class="flex gap-2">
+      <p class="text-[var(--color-primary)] font-[var(--font-weight-medium)]">
+        {{ product.price | currency : 'EGP' : 'symbol' : '1.2-2' }}
+      </p>
+      <p class="text-[#A1A1AA] line-through">
+        {{ product.priceAfterDiscount | number : '1.2-2' }}EGP
+      </p>
+    </div>
+  </p-card>
+  }
+</div>
