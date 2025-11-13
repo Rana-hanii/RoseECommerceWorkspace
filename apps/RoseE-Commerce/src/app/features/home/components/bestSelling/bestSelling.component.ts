@@ -8,7 +8,7 @@ import { CarouselModule } from 'primeng/carousel';
 
 @Component({
   selector: 'app-best-selling',
-  imports: [CommonModule, CustomButtonComponent, CarouselModule, ButtonModule, Tag],
+  imports: [CommonModule, CustomButtonComponent, CarouselModule, ButtonModule],
   templateUrl: './bestSelling.component.html',
   styleUrl: './bestSelling.component.scss',
 })
