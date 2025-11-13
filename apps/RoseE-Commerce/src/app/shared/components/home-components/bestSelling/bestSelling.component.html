@@ -1,0 +1,54 @@
+<section class="w-full flex flex-col xl:flex-row justify-center items-center">
+
+    <div class="w-full xl:w-1/4 flex flex-col justify-center items-center xl:items-start">
+
+            <div>
+                <p class="uppercase tracking-[.25rem] text-lg font-[700] text-[var(--color-text-pink)]">best selling</p>
+                <h1 class=" w-3/4 sm:w-1/2 xl:w-3/4 my-2 text-3xl font-[700] text-[1.875rem] text-[var(--color-text-maroon)] ">
+                    <span class="text-[var(--color-text-pink)]">Check Out </span>
+                What Everyone's
+                    <span class="text-[var(--color-text-pink)]">Buying </span>
+                    Right Now
+                </h1>
+                <p class=" w-full xl:w-3/4 mb-7 text-sm">Not sure what to choose?
+                    Start with our best sellers, these are the gifts our customers keep coming back for.
+                    Whether you're celebrating a birthday, anniversary or wedding, our top picks are guaranteed
+                    to leave a lasting impression. </p>
+            </div>
+
+            <div class="mt-12 w-1/2 md:w-1/2 xl:w-1/2 flex-nowrap self-start ">
+                 <app-custom-button pageType="Explore gifts" icon="pi-arrow-right"></app-custom-button>
+            </div>
+
+    </div>
+
+    <!-- caruosel section -->
+    <div class="w-full xl:w-3/4 bg-amber-600">
+        <div class="card">
+           
+            <!-- <p-carousel [value]="products" [numVisible]="3" [numScroll]="1" [responsiveOptions]="responsiveOptions"  [showNavigators]="true">
+                <ng-template let-product #item>
+                    <div class="border border-surface-200 dark:border-surface-700 rounded m-2 p-4">
+                        <div class="mb-4">
+                            <div class="relative mx-auto">
+                                <img src="https://primefaces.org/cdn/primeng/images/demo/product/{{ product.image }}" 
+                                [alt]="product.name" class="w-full rounded-border" />
+                                <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)" 
+                                class="absolute dark:!bg-surface-900" [ngStyle]="{ 'left.px': 5, 'top.px': 5 }" />
+                            </div>
+                        </div>
+                        <div class="mb-4 font-medium">{{ product.name }}</div>
+                        <div class="flex justify-between items-center">
+                            <div class="mt-0 font-semibold text-xl">{{ '$' + product.price }}</div>
+                            <span>
+                                <p-button icon="pi pi-heart" severity="secondary" [outlined]="true" />
+                                <p-button icon="pi pi-shopping-cart" styleClass="ml-2" />
+                            </span>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel> -->
+</div>
+    </div>
+
+</section>

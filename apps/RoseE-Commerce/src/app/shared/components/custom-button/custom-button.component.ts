@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 })
 export class CustomButtonComponent {
   @Input({required:true})  pageType = '';
+  @Input() icon?:string
   @Output() buttonClick: EventEmitter<void> = new EventEmitter();
   onClick() {
     this.buttonClick.emit()
