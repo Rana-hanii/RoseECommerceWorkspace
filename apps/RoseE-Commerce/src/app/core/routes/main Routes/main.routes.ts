@@ -9,7 +9,7 @@ export const mainRoutes: Routes = [
       {
         path: 'home',
         loadComponent: () =>
-          import('../../../../app/features/home/component/home.component').then(
+          import('../../../../app/features/home/home.component').then(
             (c) => c.HomeComponent
           ),
       },
