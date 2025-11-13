@@ -6,17 +6,18 @@ import { ButtonModule } from 'primeng/button';
 import { Product, Products } from '../../interfaces/products';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [CommonModule, CardModule, ButtonModule,RatingModule,FormsModule],
+  imports: [CommonModule, CardModule, ButtonModule, RatingModule, FormsModule],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss',
 })
 export class ProductCardComponent implements OnInit {
   private readonly productCardService = inject(ProductCardService);
   products: Product[] = [];
-   value!: number;
+  value!: number;
   loadProducts() {
     this.productCardService.getAllProduct().subscribe({
       next: (res: Products) => {
@@ -26,12 +27,25 @@ export class ProductCardComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
-        
       },
     });
   }
 
   ngOnInit(): void {
     this.loadProducts();
+  }
+  isNew(date: string) {
+    const days =
+      (new Date().getTime() - new Date(date).getTime()) / (1000 * 60 * 60 * 24);
+    return days <= 300;
+  }
+
+  calculateDiscountPercentage(
+    originalPrice: number,
+    discountedPrice: number
+  ): number {
+    return Math.round(
+      ((originalPrice - discountedPrice) / originalPrice) * 100
+    );
   }
 }
