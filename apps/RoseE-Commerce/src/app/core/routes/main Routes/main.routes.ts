@@ -9,11 +9,7 @@ export const mainRoutes: Routes = [
       {
         path: 'home',
         loadComponent: () =>
-<<<<<<< HEAD
           import('../../../features/home/home.component').then(
-=======
-          import('../../../../app/features/home/home.component').then(
->>>>>>> origin/develop
             (c) => c.HomeComponent
           ),
       },
