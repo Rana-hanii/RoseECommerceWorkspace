@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SectionTitleComponent } from "../../shared/components/sectionTitle/sectionTitle.component";
-import { BestSellingComponent } from "../../shared/components/home-components/bestSelling/bestSelling.component";
-import { BenefitsSectionComponent } from "../../shared/components/home-components/BenefitsSection/BenefitsSection.component";
+import { BestSellingComponent } from './components/bestSelling/bestSelling.component';
+import { BenefitsSectionComponent } from './components/BenefitsSection/BenefitsSection.component';
+
 
 @Component({
   selector: 'app-home',

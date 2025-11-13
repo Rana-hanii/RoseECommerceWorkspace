@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CustomButtonComponent } from "../../custom-button/custom-button.component";
+import { CustomButtonComponent } from 'apps/RoseE-Commerce/src/app/shared/components/custom-button/custom-button.component';
 import { Carousel } from 'primeng/carousel';
 import { ButtonModule } from 'primeng/button';
 import { Tag } from 'primeng/tag';
