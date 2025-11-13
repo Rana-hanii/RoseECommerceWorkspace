@@ -1,6 +1,5 @@
 import { inject, Injectable } from '@angular/core';
 import { ApiService } from '../../../core/services/api.service';
-import { Observable } from 'rxjs';
 import { API_ENDPOINTS } from '../../../core/constants/api-endPoints';
 
 @Injectable({

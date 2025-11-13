@@ -4,7 +4,7 @@ import { authGuard } from '../../../core/guards/auth.guard';
 export const mainRoutes: Routes = [
   {
     path: '',
-    canActivate: [authGuard],
+    // canActivate: [authGuard],
     children: [
       {
         path: 'home',
