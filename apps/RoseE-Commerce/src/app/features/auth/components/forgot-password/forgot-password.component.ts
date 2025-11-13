@@ -79,6 +79,8 @@ export class ForgotPasswordComponent implements OnDestroy {
     this.countDown = 60;
     this.intervalId = setInterval(() => {
       this.countDown--;
+      console.log(this.intervalId);
+
       if (this.countDown <= 0) {
         clearInterval(this.intervalId);
         this.resendDisabled = false;
@@ -94,6 +96,8 @@ export class ForgotPasswordComponent implements OnDestroy {
           next: (res) => {
             this.emailValue = this.forgetPassword.get('email')?.value;
             this.step = 2;
+            // resendDisabled
+            this.resendDisabled = false;
             // display message Success
             this.toastr.success(
               res.message || 'OTP sent to your email',
