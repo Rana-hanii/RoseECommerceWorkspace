@@ -1,13 +1,16 @@
 <div
-  class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4"
+  class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-0 p-4"
 >
   @for(product of products; track product._id) {
   <p-card class="relative rounded-2xl overflow-hidden">
     <div class="relative group overflow-hidden rounded-2xl">
       <img
-        [src]="product.imgCover"
+        ngOptimizedImage
+        [ngSrc]="product.imgCover"
         [alt]="product.title"
-        class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"
+        width="500"
+        height="500"
+        class="w-full h-64 object-cover"
       />
 
       <div
@@ -26,23 +29,32 @@
       </div>
       <div class="absolute top-3 right-3 flex flex-col gap-2">
         @if(product.quantity <= 0) {
-        <span
-          class="bg-[#DC2626]  text-white px-3 py-1 rounded-full text-xs font-medium shadow-lg"
+        <app-product-label
+          text="OUT OF STOCK"
+          textColor="text-white"
+          bgColor="bg-[#DC2626]"
+          borderColor="border-none"
         >
-          OUT OF STOCK
-        </span>
+        </app-product-label>
+
         } @if((product.sold ?? 0) >= 300) {
-        <span
-          class="bg-[#FBEAEA] text-[#A6252A] px-3 py-1 rounded-full text-xs font-medium shadow-lg border border-[#A6252A] border-opacity-20"
+        <app-product-label
+          text="HOT"
+          textColor="text-[#A6252A]"
+          bgColor="bg-[#FBEAEA]"
+          borderColor="border-gray-200"
         >
-          HOT
-        </span>
+        </app-product-label>
+
         } @if(isNew(product.createdAt)) {
-        <span
-          class="bg-white text-gray-800 px-3 py-1 rounded-full text-xs font-medium shadow-lg border border-gray-200"
+        <app-product-label
+          text="NEW"
+          textColor="text-gray-800"
+          bgColor="bg-white"
+          borderColor="border-gray-200"
         >
-          NEW
-        </span>
+        </app-product-label>
+
         }
       </div>
     </div>
@@ -77,32 +89,37 @@
       </div>
 
       <div class="flex items-center gap-2">
-        <ng-container
-          *ngIf="
-            product.priceAfterDiscount &&
-              product.priceAfterDiscount < product.price;
-            else noDiscount
-          "
+        @if (product.priceAfterDiscount && product.priceAfterDiscount <
+        product.price) {
+
+        <span class="text-[#A6252A] font-bold text-xl">
+          {{
+            product.priceAfterDiscount | currency : 'EGP' : 'symbol' : '1.2-2'
+          }}
+        </span>
+
+        <span class="text-gray-400 text-sm line-through opacity-70">
+          {{ product.price | currency : 'EGP' : 'symbol' : '1.2-2' }}
+        </span>
+
+        <span
+          class="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded-full"
         >
-          <span class="text-[#A6252A] font-bold text-xl">
-            {{
-              product.priceAfterDiscount | currency : 'EGP' : 'symbol' : '1.2-2'
-            }}
-          </span>
-          <span class="text-gray-400 text-sm line-through opacity-70">
-            {{ product.price | currency : 'EGP' : 'symbol' :'1.2-2' }} 
-          </span>
-          <span
-            class="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded-full"
-          >
-            {{
-              calculateDiscountPercentage(
-                product.price,
-                product.priceAfterDiscount
-              )
-            }}%
-          </span>
-        </ng-container>
+          {{
+            calculateDiscountPercentage(
+              product.price,
+              product.priceAfterDiscount
+            )
+          }}%
+        </span>
+
+        } @else {
+
+        <span class="text-[#A6252A] font-bold text-xl">
+          {{ product.price | currency : 'EGP' : 'symbol' : '1.2-2' }}
+        </span>
+
+        }
 
         <ng-template #noDiscount>
           <span class="text-[#A6252A] font-bold text-sm">

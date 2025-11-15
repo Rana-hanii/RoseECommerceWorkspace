@@ -1,16 +1,25 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ProductCardService } from '../../../core/services/product-card/product-card.service';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { Product, Products } from '../../interfaces/products';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
+import { ProductLabelComponent } from '../product-label/product-label.component';
 
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [CommonModule, CardModule, ButtonModule, RatingModule, FormsModule],
+  imports: [
+    CommonModule,
+    CardModule,
+    ButtonModule,
+    RatingModule,
+    FormsModule,
+    ProductLabelComponent,
+    NgOptimizedImage,
+  ],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss',
 })
