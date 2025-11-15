@@ -23,6 +23,7 @@
     "ngx-bootstrap": "^19.0.2",
     "ngx-cookie-service": "^19.0.0",
     "ngx-intl-tel-input": "^17.0.0",
+    "ngx-owl-carousel-o": "^20.0.1",
     "ngx-spinner": "^17.0.0",
     "ngx-toastr": "^19.1.0",
     "postcss": "^8.5.6",
