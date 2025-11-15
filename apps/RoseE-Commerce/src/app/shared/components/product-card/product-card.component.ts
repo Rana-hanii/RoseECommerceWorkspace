@@ -1,12 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { ProductCardService } from '../../../core/services/product-card/product-card.service';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { Product, Products } from '../../interfaces/products';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import { ProductLabelComponent } from '../product-label/product-label.component';
+import { HomeService } from '../../../features/home/services/home.service';
 
 @Component({
   selector: 'app-product-card',
@@ -24,15 +24,13 @@ import { ProductLabelComponent } from '../product-label/product-label.component'
   styleUrl: './product-card.component.scss',
 })
 export class ProductCardComponent implements OnInit {
-  private readonly productCardService = inject(ProductCardService);
+  private readonly homeService = inject(HomeService);
   products: Product[] = [];
   value!: number;
   loadProducts() {
-    this.productCardService.getAllProduct().subscribe({
+    this.homeService.getMostpopular().subscribe({
       next: (res: Products) => {
-        console.log(res);
         this.products = res.products || [];
-        // this.value = res.products
       },
       error: (err) => {
         console.log(err);
