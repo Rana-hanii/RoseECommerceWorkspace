@@ -1,6 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { ApiService } from '../../../core/services/api.service';
 import { API_ENDPOINTS } from '../../../core/constants/api-endPoints';
+import { TestimonialsResponse } from '../../../shared/interfaces/testimonials/testimonials-response';
+import { BestSellerData } from '../../../shared/interfaces/bestSeller/best-seller';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +17,11 @@ export class HomeService {
   }
   //* Get bestSeller products
   getBestSeller(){
-    return this.apiService.get(API_ENDPOINTS.home.bestSeller);
+    return this.apiService.get<BestSellerData>(API_ENDPOINTS.home.bestSeller);
   }
+
+  //* Get Tesimonials
+  getTestimonials(){
+    return this.apiService.get<TestimonialsResponse>(API_ENDPOINTS.home.testimonials)
+  } 
 }

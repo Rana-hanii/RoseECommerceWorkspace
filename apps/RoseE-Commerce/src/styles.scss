@@ -26,7 +26,17 @@
 //this class is for the Phone input fixing input border design <Mostafa Allam>
 .iti--allow-dropdown input.iti__tel-input {
   padding-right: 150px !important;
+} 
+
+::ng-deep p-rating .pi-star,
+::ng-deep p-rating .pi-star-fill,
+::ng-deep p-rating .pi-star-half {
+  color: #fbbf24 !important; // Amber-400
 }
+
+p-rating {
+  --p-rating-icon-active-color: #facc15;
+} 
 
 @theme {
   --color-primary: #A6252A;

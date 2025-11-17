@@ -1,8 +1,9 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RegisterComponent } from './register.component';
+import { API_URL } from '@rose-ecommerce-workspace/auth';
+import { provideToastr } from 'ngx-toastr';
 import { provideRouter } from '@angular/router';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ReactiveFormsModule } from '@angular/forms';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 describe('RegisterComponent', () => {
@@ -11,10 +12,10 @@ describe('RegisterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RegisterComponent],
-      providers:[
-        provideRouter([]),provideAnimations()
-      ]
+      imports: [RegisterComponent,HttpClientTestingModule],
+    providers: [provideToastr(),provideRouter([]),provideAnimations(),
+                  { provide: API_URL, useValue: 'http://localhost:3000/' }
+                ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(RegisterComponent);

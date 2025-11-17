@@ -5,13 +5,15 @@ import { RouterLink } from '@angular/router';
 import { CustomButtonComponent } from '../../../../shared/components/custom-button/custom-button.component';
 import { AuthTitleComponent } from '../../../../shared/components/auth-title/auth-title.component';
 import { ReusableInputComponent } from '../../../../shared/components/reusableInput/reusableInput.component';
-import { FormBuilder, FormGroup, FormsModule, Validators, ReactiveFormsModule, AbstractControl } from '@angular/forms';
-import { LineComponent } from 'apps/RoseE-Commerce/src/app/shared/components/line/line.component';
+import { FormBuilder, FormGroup, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '@rose-ecommerce-workspace/auth';
 import { ToastrService } from 'ngx-toastr';
+
+
+import { Subject, takeUntil } from 'rxjs';
 import { PASSWORD_PATTERN } from 'apps/RoseE-Commerce/src/app/shared/constants/regex.constants';
 import { confirmPasswordValidator } from 'apps/RoseE-Commerce/src/app/shared/password_Validator/passwordValidator';
-import { Subject, takeUntil } from 'rxjs';
+import { LineComponent } from "apps/RoseE-Commerce/src/app/shared/components/line/line.component";
 
 @Component({
   selector: 'app-register',
@@ -23,8 +25,8 @@ import { Subject, takeUntil } from 'rxjs';
     ReusableInputComponent,
     FormsModule,
     ReactiveFormsModule,
-    LineComponent,
-  ],
+    LineComponent
+],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })

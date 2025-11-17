@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SectionTitleComponent } from "../../shared/components/sectionTitle/sectionTitle.component";
 import { BestSellingComponent } from './components/bestSelling/bestSelling.component';
 import { BenefitsSectionComponent } from './components/BenefitsSection/BenefitsSection.component';
+import { TestimonialsComponent } from "./components/testimonials/testimonials.component";
 
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, SectionTitleComponent, BestSellingComponent, BenefitsSectionComponent],
+  imports: [CommonModule, BestSellingComponent, BenefitsSectionComponent, TestimonialsComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
