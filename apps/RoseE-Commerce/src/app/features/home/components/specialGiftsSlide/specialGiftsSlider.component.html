@@ -1,0 +1,43 @@
+<div class="relative rounded-3xl overflow-hidden">
+  <p-carousel
+    [value]="SpecialGiftsSlider"
+    [numVisible]="1"
+    [numScroll]="1"
+    [circular]="true"
+    [autoplayInterval]="3500"
+    [showNavigators]="true"
+    [showIndicators]="true"
+    [responsiveOptions]="responsiveOptions"
+    class="custom-carousel"
+  >
+    <ng-template pTemplate="item" let-item>
+      <div class="w-full h-[380px] flex-none relative rounded-3xl overflow-hidden">
+        <img
+          [src]="item.images"
+          class="w-full h-full object-cover"
+          [alt]="item.title"
+        />
+
+        <div
+          class="absolute inset-0 flex items-center pl-14 bg-gradient-to-r from-black/60 to-black/20"
+        >
+          <div class="text-white mt-50 space-y-4 max-w-lg">
+            <h1 class="text-4xl font-semibold leading-tight">
+              {{ item.title }}
+            </h1>
+
+            <p class="text-white/80 text-lg">
+              {{ item.desc }}
+            </p>
+
+            <button
+              class="px-6 py-3 bg-[#efb9b9] text-black font-semibold rounded-xl"
+            >
+              {{ item.buying }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-carousel>
+</div>

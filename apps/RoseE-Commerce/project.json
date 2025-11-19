@@ -27,7 +27,10 @@
           "node_modules/primeicons/primeicons.css",
           "node_modules/ngx-spinner/animations/ball-scale-multiple.css",
           "node_modules/ngx-toastr/toastr.css",
-          "apps/RoseE-Commerce/src/styles.scss"],
+          "node_modules/slick-carousel/slick/slick.scss",
+          "node_modules/slick-carousel/slick/slick-theme.scss",
+          "apps/RoseE-Commerce/src/styles.scss"
+        ],
         "scripts": [],
         "server": "apps/RoseE-Commerce/src/main.server.ts",
         "ssr": {

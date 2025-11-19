@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
@@ -27,7 +27,9 @@ export class ProductCardComponent implements OnInit {
   private readonly homeService = inject(HomeService);
   products: Product[] = [];
   value!: number;
-  loadProducts() {
+  @Input() product!:Product[];
+
+  ngOnInit(): void {
     this.homeService.getMostpopular().subscribe({
       next: (res: Products) => {
         this.products = res.products || [];
@@ -36,10 +38,6 @@ export class ProductCardComponent implements OnInit {
         console.log(err);
       },
     });
-  }
-
-  ngOnInit(): void {
-    this.loadProducts();
   }
   isNew(date: string) {
     const days =
