@@ -6,7 +6,7 @@ import { Carousel } from 'primeng/carousel';
 import { Tag } from 'primeng/tag';
 import { HomeService } from '../../services/home.service';
 import { BestSeller, BestSellerData } from 'apps/RoseE-Commerce/src/app/shared/interfaces/bestSeller/best-seller';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-best-selling',
@@ -55,16 +55,8 @@ export class BestSellingComponent implements OnInit {
     }
 
     getBestSellerProducts():void{
-        this.homeService.getBestSeller().subscribe({
-            next:(res:BestSellerData)=>{
-                console.log(res.bestSeller);
-                this.bestSellerProducts$=of(res.bestSeller ?? [])
-                
-            },error:(err)=>{
-                console.log(err);
-                
-            }
-        })
+       this.bestSellerProducts$=this.homeService.getBestSeller().pipe(
+        map((res:BestSellerData)=>res.bestSeller))
     }
 
     getSeverity(status: string):any {

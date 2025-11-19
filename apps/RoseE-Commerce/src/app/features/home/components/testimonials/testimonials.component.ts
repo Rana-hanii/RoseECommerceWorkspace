@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { Rating } from 'primeng/rating';
 import { HomeService } from '../../services/home.service';
 import { Testimonials, TestimonialsResponse } from 'apps/RoseE-Commerce/src/app/shared/interfaces/testimonials/testimonials-response';
-import { Observable, of } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-testimonials',
@@ -28,17 +28,9 @@ export class TestimonialsComponent implements OnInit {
  
   // Fetching Tetsimonials Data 
   getData():void{
-    this.homeService.getTestimonials().subscribe({
-      next:(res:TestimonialsResponse)=>{   
-        this.testimonials$=of(res.testimonials) 
-          console.log(res);
-        
-       
-      }, error:(err)=>{
-        console.log(err);
-        
-      }
-    })
+    this.testimonials$= this.homeService.getTestimonials().pipe(
+      map((res:TestimonialsResponse)=>res.testimonials))
+    
   }
 
  
