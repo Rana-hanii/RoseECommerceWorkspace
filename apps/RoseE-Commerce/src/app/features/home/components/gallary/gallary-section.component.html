@@ -1,35 +1,56 @@
-<section class="container mx-auto py-20 lg:px-20">
+<section class="container mx-auto lg:px-20 py-20 ">
     <div class="flex justify-center items-center flex-col">
         <app-main-title subtitle="GALLERY"> </app-main-title>
-        <app-section-title title="Check Out our Wonderful Gallery" ></app-section-title>
+        <app-section-title title="Check Out our Wonderful Gallery"></app-section-title>
     </div>
-    <div class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 my-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 my-10">
+
         <!--! col one -->
         <div class="col-span-1 gap-3 flex flex-col">
-            <div class="">
-                <img src="/images/gallery-sec/one.png" class="w-full h-[70vh] object-cover md:rounded-tl-2xl" alt="gallery" />
+
+            <!-- one -->
+            <div class="relative w-full h-[70vh] md:rounded-tl-2xl overflow-hidden">
+                <img ngOptimizedImage ngSrc="/images/gallery-sec/one.png" fill alt="gallery" class="object-cover" />
             </div>
-            <div>
-                <img src="/images/gallery-sec/two.png" class="w-full h-[40vh] object-cover lg:rounded-bl-2xl" alt="gallery" />
+
+            <!-- two -->
+            <div class="relative w-full h-[40vh] lg:rounded-bl-2xl overflow-hidden">
+                <img ngOptimizedImage ngSrc="/images/gallery-sec/two.png" fill alt="gallery" class="object-cover" />
             </div>
+
         </div>
+
         <!--! col two -->
         <div class="col-span-1 gap-3 flex flex-col">
-            <div>
-                <img src="/images/gallery-sec/three.png" class="w-full h-[60vh] object-cover md:rounded-tr-2xl lg:rounded-tr-none" alt="gallery" />
+
+            <!-- three -->
+            <div class="relative w-full h-[60vh] md:rounded-tr-2xl lg:rounded-tr-none overflow-hidden">
+                <img ngOptimizedImage ngSrc="/images/gallery-sec/three.png" fill alt="gallery" class="object-cover" />
             </div>
-            <div class="">
-                <img src="/images/gallery-sec/four.png" class="w-full h-[50vh] object-cover " alt="gallery" />
+
+            <!-- four -->
+            <div class="relative w-full h-[50vh] overflow-hidden">
+                <img ngOptimizedImage ngSrc="/images/gallery-sec/four.png" fill alt="gallery" class="object-cover" />
             </div>
+
         </div>
+
         <!--! col three -->
         <div class="col-span-1 md:col-span-2 lg:col-span-1 gap-3 flex flex-col">
-            <div>
-                <img src="/images/gallery-sec/five.png" class="w-full h-[60vh] object-cover lg:rounded-tr-2xl " alt="gallery" />
+
+            <!-- five -->
+            <div class="relative w-full h-[60vh] lg:rounded-tr-2xl overflow-hidden">
+                <img ngOptimizedImage ngSrc="/images/gallery-sec/five.png" fill alt="gallery" class="object-cover" />
             </div>
-            <div>
-                <img src="/images/gallery-sec/six.png" class="w-full h-[50vh] object-cover md:rounded-b-2xl lg:rounded-br-2xl" alt="gallery" />
+
+            <!-- six -->
+            <div class="relative w-full h-[50vh] md:rounded-b-2xl lg:rounded-br-2xl lg:rounded-bl-none overflow-hidden">
+                <img ngOptimizedImage ngSrc="/images/gallery-sec/six.png" fill alt="gallery" class="object-cover" />
             </div>
+
         </div>
+
     </div>
+
+
 </section>

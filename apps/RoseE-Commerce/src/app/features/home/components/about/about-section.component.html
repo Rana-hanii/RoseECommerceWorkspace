@@ -3,7 +3,8 @@
   <div class="flex flex-col items-center gap-6 ">
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 place-items-center">
       <div class="border-primary border-4  rounded-tl-[50px] rounded-tr-[120px] rounded-b-[120px] rotate-4 md:mx-2">
-        <div class="rounded-tl-[50px] rounded-tr-[120px] rounded-b-[120px] overflow-hidden translate-x-5 translate-y-2 -rotate-4">
+        <div
+          class="rounded-tl-[50px] rounded-tr-[120px] rounded-b-[120px] overflow-hidden translate-x-5 translate-y-2 -rotate-4">
           <img src="images/about-sec/one.png" alt="Gift box" class="object-cover w-[300px] h-[340px]" />
         </div>
       </div>
@@ -11,7 +12,8 @@
         <div class="rounded-full overflow-hidden ">
           <img src="images/about-sec/two.png" alt="Gift" class="object-cover w-[193px] h-[193px]" />
         </div>
-        <div class=" rounded-full overflow-hidden rounded-tl-[50px] rounded-tr-[100px] rounded-br-[100px] rounded-bl-[50px] mt-5">
+        <div
+          class=" rounded-full overflow-hidden rounded-tl-[50px] rounded-tr-[100px] rounded-br-[100px] rounded-bl-[50px] mt-5">
           <img src="images/about-sec/three.png" alt="Gift" class="object-cover  w-[193px] h-36" />
         </div>
       </div>
@@ -39,22 +41,13 @@
       <img class="w-8 ms-2" src="images/about-sec/arrow.png" alt="icon" />
     </button>
     <ul class="mt-4 grid sm:grid-cols-2 gap-3 text-gray-700">
+      @for (item of features; track $index) {
       <li class="flex items-center gap-2">
-        <img src="images/about-sec/check.png" alt="icon" /> Competitive Prices &
-        Easy Shopping
+        <img src="images/about-sec/check.png" alt="icon" />
+        {{ item }}
       </li>
-      <li class="flex items-center gap-2">
-        <img src="images/about-sec/check.png" alt="icon" /> Premium Quality &
-        Elegant Packaging
-      </li>
-      <li class="flex items-center gap-2">
-        <img src="images/about-sec/check.png" alt="icon" /> Perfect for Every
-        Occasion
-      </li>
-      <li class="flex items-center gap-2">
-        <img src="images/about-sec/check.png" alt="icon" /> Fast & Reliable
-        Delivery
-      </li>
+      }
     </ul>
+
   </div>
 </section>
