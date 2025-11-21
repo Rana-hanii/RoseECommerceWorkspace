@@ -54,7 +54,10 @@ export class AuthService implements authAPI {
 
   ForgetPassword(data: IForgetPasswordReq): Observable<IForgetPasswordRes> {
     return this._httpClient
-      .post<IForgetPasswordRes>(this.Base_API_URL + AuthEndPoint.FORGETPASSWORD, data)
+      .post<IForgetPasswordRes>(
+        this.Base_API_URL + AuthEndPoint.FORGETPASSWORD,
+        data
+      )
       .pipe(
         map((res: IForgetPasswordRes) => res),
         catchError((err) => throwError(() => err))

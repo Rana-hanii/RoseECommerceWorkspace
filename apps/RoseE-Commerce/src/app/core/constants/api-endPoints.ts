@@ -3,6 +3,7 @@ export const API_ENDPOINTS = {
   home: {
     mostPopular: '/home',
     bestSeller: '/home',
+    testimonials: '/testimonials'
   },
 
   //*Products endpoints

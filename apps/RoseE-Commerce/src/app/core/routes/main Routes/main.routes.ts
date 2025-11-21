@@ -11,7 +11,7 @@ export const mainRoutes: Routes = [
       {
         path: 'home',
         loadComponent: () =>
-          import('../../../../app/features/home/home.component').then(
+          import('../../../features/home/home.component').then(
             (c) => c.HomeComponent
           ),
       },
