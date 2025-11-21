@@ -11,31 +11,35 @@
     class="custom-carousel"
   >
     <ng-template pTemplate="item" let-item>
-      <div class="w-full h-[380px] flex-none relative rounded-3xl overflow-hidden">
+      <div class="relative w-full h-[380px] md:h-[430px] rounded-3xl overflow-hidden">
+
+        <!-- Image -->
         <img
+          ngOptimizedImage
           [src]="item.images"
-          class="w-full h-full object-cover"
           [alt]="item.title"
+          class="w-full h-full object-cover"
         />
 
-        <div
-          class="absolute inset-0 flex items-center pl-14 bg-gradient-to-r from-black/60 to-black/20"
-        >
-          <div class="text-white mt-50 space-y-4 max-w-lg">
-            <h1 class="text-4xl font-semibold leading-tight">
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-black/10 flex items-center px-10 md:px-16">
+
+          <div class="text-white max-w-lg space-y-4">
+
+            <h1 class="text-3xl md:text-4xl font-semibold leading-snug">
               {{ item.title }}
             </h1>
 
-            <p class="text-white/80 text-lg">
+            <p class="text-white/80 text-base md:text-lg leading-relaxed">
               {{ item.desc }}
             </p>
 
-            <button
-              class="px-6 py-3 bg-[#efb9b9] text-black font-semibold rounded-xl"
-            >
+            <button class="px-6 py-3 bg-[#efb9b9] text-black font-semibold rounded-xl hover:bg-[#e9a3a3] transition">
               {{ item.buying }}
             </button>
+
           </div>
+
         </div>
       </div>
     </ng-template>

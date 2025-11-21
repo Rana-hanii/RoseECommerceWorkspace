@@ -56,6 +56,10 @@ export class LoginComponent {
           next: (res) => {
             // save token
             this.cookieService.set('roseToken', res.token);
+            // save user data
+            if (typeof window !== 'undefined') {
+              localStorage.setItem('user', JSON.stringify(res.user));
+            }
             // successful login message
             this.toastr.success('Login successful!', 'Success');
             // navigate to home

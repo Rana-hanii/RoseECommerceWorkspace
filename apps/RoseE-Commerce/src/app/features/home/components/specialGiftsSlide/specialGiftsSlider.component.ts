@@ -1,11 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { FlowerSpecial } from '../../model/flower-special';
 import { CarouselModule } from 'primeng/carousel';
 @Component({
   selector: 'app-special-gifts-slider',
   standalone: true,
-  imports: [CommonModule, CarouselModule],
+  imports: [CommonModule, CarouselModule,NgOptimizedImage],
   templateUrl: './specialGiftsSlider.component.html',
   styleUrl: './specialGiftsSlider.component.scss',
 })
@@ -22,6 +22,13 @@ export class SpecialGiftsSliderComponent {
     {
       id: 1,
       images: 'slider2.png',
+      title: 'Say It with Flowers',
+      desc: 'Elegant gifts for every special moment.',
+      buying: "I'm buying!",
+    },
+    {
+      id: 1,
+      images: 'slider3.png',
       title: 'Say It with Flowers',
       desc: 'Elegant gifts for every special moment.',
       buying: "I'm buying!",

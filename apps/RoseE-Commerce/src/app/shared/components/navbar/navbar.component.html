@@ -1,0 +1,115 @@
+<nav class="w-full shadow-md bg-white">
+  <!-- Top Bar -->
+  <div class="container mx-auto flex items-center justify-between py-3 px-4">
+    <!-- Logo -->
+    <div class="flex items-center gap-3">
+      <img src="logo.png" class="w-18" alt="logo" />
+    </div>
+
+    <!-- Search -->
+    <div class="flex-1 mx-6">
+      <div class="relative w-full">
+        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+          <i class="pi pi-search"></i>
+        </span>
+        <input
+          type="text"
+          placeholder="What awesome gift are you looking for?"
+          class="w-full border border-gray-300 rounded-xl pl-10 pr-4 py-2 outline-none focus:border-red-400"
+        />
+      </div>
+    </div>
+
+    <!-- Icons -->
+    <div class="flex items-center gap-5 text-gray-700 text-xl">
+      @if (isLoggedIn) {
+      <div class="flex flex-col items-start text-sm leading-tight">
+        <p-menu
+          #menu
+          [model]="items"
+          [popup]="true"
+          styleClass="bg-white rounded-lg shadow-md w-52 text-[#741C21]"
+        >
+        </p-menu>
+        <!-- Greeting -->
+        <p class="mb-0 pb-0 text-gray-600">Hello</p>
+
+        <!-- Username + Dropdown -->
+        <div class="flex items-center gap-1"  >
+          <span class="text-[#741C21] font-bold">
+            {{ user.firstName }}
+          </span>
+
+          <button class="cursor-pointer" (click)="menu.toggle($event)">
+            <i class="pi pi-chevron-down text-xs"></i>
+          </button>
+        </div>
+      </div>
+
+      }@else {
+      <!-- Login -->
+      <button class="flex items-center gap-2 text-sm hover:text-red-600">
+        <i class="pi pi-user text-lg"></i>
+        <a routerLink="auth/login">
+          <span>Login</span>
+        </a>
+      </button>
+      }
+
+      <!-- Wishlist -->
+      <div class="icons flex gap-2">
+        <i class="pi pi-heart hover:text-red-600"></i>
+
+        <!-- Cart -->
+        <i class="pi pi-shopping-cart hover:text-red-600"></i>
+
+        <!-- Notifications -->
+        <i class="pi pi-bell hover:text-red-600"></i>
+      </div>
+
+      <!-- Language -->
+      <button class="text-sm hover:text-red-600">العربية</button>
+    </div>
+  </div>
+
+  <!-- Bottom Menu -->
+  <div class="w-full bg-[#7b1414]">
+    <div
+      class="container mx-auto flex items-center justify-center gap-10 py-3 text-white"
+    >
+      <button class="flex items-center gap-2 hover:text-gray-300">
+        <i class="pi pi-home"></i>
+        <span>Home</span>
+      </button>
+
+      <button class="flex items-center gap-2 hover:text-gray-300">
+        <i class="pi pi-tags"></i>
+        <span>Products</span>
+      </button>
+
+      <button class="flex items-center gap-2 hover:text-gray-300">
+        <i class="pi pi-list"></i>
+        <span>Categories</span>
+      </button>
+
+      <button class="flex items-center gap-2 hover:text-gray-300">
+        <i class="pi pi-sparkles"></i>
+        <span>Occasions</span>
+      </button>
+
+      <button class="flex items-center gap-2 hover:text-gray-300">
+        <i class="pi pi-phone"></i>
+        <span>Contact</span>
+      </button>
+
+      <button class="flex items-center gap-2 hover:text-gray-300">
+        <i class="pi pi-info-circle"></i>
+        <span>About</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- <div class="card flex justify-center w-50 mt-5">
+  <p-menu [model]="items" />
+</div> -->

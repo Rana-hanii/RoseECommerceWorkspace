@@ -1,21 +1,32 @@
 <section>
-  <div class="parent container mx-auto flex justify-center items-center gap-3  ">
-    @for (item of items; track item.id) {
-    <div class="SpecialGifts relative">
-      <div class="image">
-        <img [src]="item.images" class="w-100 rounded-2xl" alt="SpecialGifts" />
-      </div>
+  <div class="parent container mx-auto flex justify-center items-center gap-6">
 
-      <div class="starting absolute top-40 left-5">
-        <span class="text-[#A6252A] bg-[#FBEAEA] p-1 rounded-2xl">
+    @for (item of items; track item.id) {
+    <div class="SpecialGifts relative w-[410px] h-[270px] rounded-2xl overflow-hidden">
+
+      <!-- Image -->
+      <img
+        ngOptimizedImage
+        [src]="item.images"
+        [alt]="item.title"
+        class="w-full h-full object-cover rounded-2xl"
+      />
+
+      <!-- Overlay Text -->
+      <div class="absolute bottom-5 left-5 space-y-2">
+
+        <span class="text-[#A6252A] bg-[#FBEAEA] px-3 py-1 rounded-2xl text-sm">
           {{ item.desc }}
         </span>
 
-        <h2 class="text-white font-[var(--font-weight-semibold)] fontSize">
+        <h2 class="text-white text-xl font-semibold drop-shadow-md leading-snug">
           {{ item.title }}
         </h2>
+
       </div>
+
     </div>
     }
+
   </div>
 </section>

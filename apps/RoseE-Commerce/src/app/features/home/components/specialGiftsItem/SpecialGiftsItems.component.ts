@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Items } from '../../model/items';
 
 @Component({
   selector: 'app-special-gifts-items',
-  imports: [CommonModule],
+  imports: [CommonModule,NgOptimizedImage],
   templateUrl: './SpecialGiftsItems.component.html',
   styleUrl: './SpecialGiftsItems.component.scss',
 })

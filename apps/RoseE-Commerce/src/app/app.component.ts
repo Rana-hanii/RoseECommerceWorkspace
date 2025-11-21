@@ -1,12 +1,28 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { filter } from 'rxjs';
 
 @Component({
-  imports: [RouterModule],
+  imports: [RouterModule, NavbarComponent],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'RoseE-Commerce';
+  hideNavbar = false;
+
+  private hideOnRoutes = [
+    '/auth/register',
+    '/auth/login',
+    '/auth/forgotpassword',
+  ];
+
+  constructor(private router: Router) {
+    this.router.events
+      .pipe(filter((e) => e instanceof NavigationEnd))
+      .subscribe((event: any) => {
+        this.hideNavbar = this.hideOnRoutes.includes(event.urlAfterRedirects);
+      });
+  }
 }

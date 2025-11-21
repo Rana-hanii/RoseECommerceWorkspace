@@ -6,17 +6,15 @@ import { AdaptedSignInRes } from '../interfaces/adapter/AdaptedSignInRes';
 import { Adaptor } from '../interfaces/adapter/IAdabter';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthAPIResService implements Adaptor {
-
-
   // * ADAPTOR METHODS FOR SIGNUP RESPONSE
-  adaptSignUp(data:ISignUpRes):   AdaptedSignUpRes {
+  adaptSignUp(data: ISignUpRes): AdaptedSignUpRes {
     return {
-      message:data.message ,
+      message: data.message,
       email: data.user.email,
-      role: data.user.role
+      role: data.user.role,
     };
   }
 
@@ -25,7 +23,7 @@ export class AuthAPIResService implements Adaptor {
     return {
       message: data.message,
       token: data.token,
-      role: data.user.role
+      user: data.user,
     };
   }
 }

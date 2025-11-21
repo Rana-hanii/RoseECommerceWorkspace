@@ -1,26 +1,33 @@
-<section class="" >
-  <div class="parent container mx-auto h-[441px] ">
-    <div class="SpecialGifts relative">
-      <div class="image">
-        <img src="bg.png" class="w-100 rounded-2xl" alt="SpecialGifts" />
-      </div>
+<section>
+  <div class="container mx-auto">
+    <div
+      class="SpecialGifts relative w-[301px] h-[441px] rounded-2xl overflow-hidden"
+    >
+      <!-- Image -->
+      <img
+        ngOptimizedImage
+        src="bg.png"
+        alt="SpecialGifts"
+        class="w-full h-full object-cover rounded-2xl"
+      />
 
-      <div class="starting absolute top-60 left-5">
-        <span class="text-[#A6252A] bg-[#FBEAEA] p-1 rounded-2xl">
+      <!-- Text Overlay -->
+      <div class="absolute bottom-6 left-5 space-y-3">
+        <span class="text-[#A6252A] bg-[#FBEAEA] px-3 py-1 rounded-2xl text-sm">
           Starting from 10.99 EGP
         </span>
 
-        <h2 class="text-white font-[var(--font-weight-semibold)] fontSize">
+        <h2 class="text-white text-xl font-semibold leading-snug">
           Special Gifts For The <br />
           People You Love
         </h2>
 
-        <div
-          class="button bg-[#FBEAEA] w-fit p-2 rounded-2xl flex justify-center items-center gap-2"
+        <button
+          class="bg-[#FBEAEA] px-4 py-2 rounded-2xl flex items-center gap-2 text-[#741C21] font-semibold hover:bg-[#f3d7d7] transition"
         >
-          <button class="text-[#741C21]">Shop Now</button>
-          <i class="pi pi-arrow-right text-[#741C21]"></i>
-        </div>
+          Shop Now
+          <i class="pi pi-arrow-right"></i>
+        </button>
       </div>
     </div>
   </div>
