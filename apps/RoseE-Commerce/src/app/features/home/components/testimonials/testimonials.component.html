@@ -2,11 +2,7 @@
   <div class="flex flex-col items-center justify-center w-full gap-y-9">
     <!-- title -->
     <div class="flex flex-col justify-center items-center">
-      <p
-        class="uppercase tracking-[.25rem] text-lg font-[700] text-[var(--color-text-pink)]"
-      >
-        testimonials
-      </p>
+      <app-main-title subtitle="Testimonials"></app-main-title>
       <app-section-title
         title="Real Words from Happy Customers"
       ></app-section-title>
@@ -14,40 +10,46 @@
 
     <!-- testimonials body -->
     <div
-      class="w-full z-20 bg-[var(--color-secondary)] p-32  flex flex-col items-center justify-evenly lg:flex-row"
+      class="w-full z-20 bg-[var(--color-secondary)] p-32 flex flex-col items-center justify-evenly lg:flex-row"
     >
       <!-- card body which in loop -->
 
-      @for (item of testimonials$ |async; track $index) {
-          <div class="w-[21.4375rem] min-h-[15.625rem] bg-white rounded-3xl relative  my-12 lg:my-8">
-
+      @for (item of testimonials |async; track $index) {
+      <div
+        class="w-[21.4375rem] min-h-[15.625rem] bg-white rounded-3xl relative my-12 lg:my-8"
+      >
         <!-- img for card -->
         <div
           class="bg-white rounded-full absolute -top-[25%] left-[50%] -translate-x-[50%] border-[3px] border-white"
         >
-          <img [src]="item.user.photo" alt="user-photo" class="w-[7.5rem] h-[7.5rem] object-cover rounded-full"  />
+          <img
+            [src]="item.user.photo"
+            alt="user-photo"
+            class="w-[7.5rem] h-[7.5rem] object-cover rounded-full"
+          />
         </div>
 
         <!-- content  -->
-        <div class="flex flex-col items-center justify-center containers mt-14  " >
-          <h1 class="text-lg font-[600] text-[#27272A] mb-9">{{item.user.firstName}} {{item.user.lastName}}</h1>
+        <div class="flex flex-col items-center justify-center containers mt-14">
+          <h1 class="text-lg font-[600] text-[#27272A] mb-9">
+            {{ item.user.firstName }} {{ item.user.lastName }}
+          </h1>
 
-            <div class="card flex justify-center mb-3">
-                    <p-rating [(ngModel)]="item.rating" [readonly]="true" />
-                </div>
+          <div class="card flex justify-center mb-3">
+            <p-rating [(ngModel)]="item.rating" [readonly]="true" />
+          </div>
 
-
-          <p class="text-lg font-[500] leading-6  ">
-            {{item.content}}
-            
+          <p class="text-lg font-[500] leading-6">
+            {{ item.content }}
           </p>
 
-          <p class="text-[#A1A1AA] text-[12px] font-[500] my-5">{{item.createdAt | date}}</p>
+          <p class="text-[#A1A1AA] text-[12px] font-[500] my-5">
+            {{ item.createdAt | date }}
+          </p>
         </div>
       </div>
 
       }
-    
     </div>
   </div>
 </section>

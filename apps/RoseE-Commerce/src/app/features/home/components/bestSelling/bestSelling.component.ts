@@ -1,30 +1,27 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { AsyncPipe, CommonModule } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
+import { AsyncPipe, CommonModule, CurrencyPipe } from '@angular/common';
 import { CustomButtonComponent } from '../../../../shared/components/custom-button/custom-button.component';
 import { ButtonModule } from 'primeng/button';
 import { Carousel } from 'primeng/carousel';
 import { Tag } from 'primeng/tag';
-import { HomeService } from '../../services/home.service';
-import { BestSeller, BestSellerData } from 'apps/RoseE-Commerce/src/app/shared/interfaces/bestSeller/best-seller';
-import { map, Observable, of } from 'rxjs';
+import { BestSeller } from 'apps/RoseE-Commerce/src/app/shared/interfaces/bestSeller/best-seller';
+import { Observable } from 'rxjs';
+import { MainTitleComponent } from "../shared/main-title/main-title.component";
 
 @Component({
   selector: 'app-best-selling',
-  imports: [CommonModule, CustomButtonComponent, Carousel , Tag, ButtonModule ,AsyncPipe],
+  imports: [CommonModule, CustomButtonComponent, Carousel, Tag, ButtonModule, AsyncPipe, MainTitleComponent ,CurrencyPipe],
   templateUrl: './bestSelling.component.html',
   styleUrl: './bestSelling.component.scss',
 })
 export class BestSellingComponent implements OnInit {
 
-    private readonly homeService=inject(HomeService)
-  
-  bestSellerProducts$: Observable<BestSeller[]> = of([]);
+
+  @Input()bestSellerProducts!: Observable<BestSeller[]> 
 
   responsiveOptions: any[] =[]
   
     ngOnInit(): void {
-        
-        this.getBestSellerProducts()
         this.responsive()
     } 
 
@@ -52,11 +49,6 @@ export class BestSellingComponent implements OnInit {
                 numScroll: 1,
             },
         ];
-    }
-
-    getBestSellerProducts():void{
-       this.bestSellerProducts$=this.homeService.getBestSeller().pipe(
-        map((res:BestSellerData)=>res.bestSeller))
     }
 
     getSeverity(status: string):any {

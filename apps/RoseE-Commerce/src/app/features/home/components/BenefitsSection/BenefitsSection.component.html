@@ -1,15 +1,16 @@
-<Section class=" bg-[var(--color-secondary)] rounded-3xl w-full py-10  min-h-[145px] mt-8 container mx-auto ">
-    
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-5 ">
+<Section class="container mx-auto lg:px-20">
+  <div
+    class="bg-[var(--color-secondary)] rounded-3xl w-full py-10 min-h-[145px] mt-8 mb-14 px-6"
+  >
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-5">
+      @for (item of benifitsCard; track $index) {
+      <app-benefits-ui
+        [icon]="item.icon"
+        [title]="item.title"
+        [description]="item.description"
+      ></app-benefits-ui>
 
-         @for (item of benifitsCard; track $index) {
-                 <app-benefits-ui 
-                    [icon]="item.icon"
-                    [title]="item.title"
-                    [description]="item.description"
-                ></app-benefits-ui>
-
-         }
+      }
     </div>
-
+  </div>
 </Section>
