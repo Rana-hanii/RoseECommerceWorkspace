@@ -8,4 +8,13 @@ import { MainTitleComponent } from "../shared/main-title/main-title.component";
   templateUrl: './about-section.component.html',
   styleUrl: './about-section.component.scss',
 })
-export class AboutSectionComponent {}
+export class AboutSectionComponent {
+
+  features = [
+  'Competitive Prices & Easy Shopping',
+  'Premium Quality & Elegant Packaging',
+  'Perfect for Every Occasion',
+  'Fast & Reliable Delivery'
+];
+
+}

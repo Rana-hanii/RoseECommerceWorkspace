@@ -5,11 +5,12 @@ import { BenefitsSectionComponent } from './components/BenefitsSection/BenefitsS
 import { TestimonialsComponent } from "./components/testimonials/testimonials.component";
 import { SectionTitleComponent } from "../../shared/components/sectionTitle/sectionTitle.component";
 import { AboutSectionComponent } from "./components/about/about-section.component";
+import { GallarySectionComponent } from "./components/gallary/gallary-section.component";
 
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, AboutSectionComponent, SectionTitleComponent, BestSellingComponent, BenefitsSectionComponent, TestimonialsComponent],
+  imports: [CommonModule, AboutSectionComponent, SectionTitleComponent, BestSellingComponent, BenefitsSectionComponent, TestimonialsComponent , GallarySectionComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
