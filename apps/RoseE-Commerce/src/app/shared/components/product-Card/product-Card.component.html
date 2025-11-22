@@ -1,0 +1,67 @@
+<section class=" flex items-center justify-center my-5 py-5 ">
+
+    <!-- Card -->
+    <div class="flex flex-col justify-center items-center h-[364px] w-[302px]">
+
+        <!-- image -->
+        <div class="relative group">
+            <img [src]="image" [alt]="alt" class=" w-[302px] h-[272px] object-cover rounded-2xl" >
+
+
+             <div class="absolute inset-0 bg-[#E6507380] opacity-0 rounded-2xl
+              group-hover:opacity-90 transition-opacity duration-300 flex items-center justify-center gap-1 ">
+                <button class="h-[35px] w-[35px] cursor-pointer rounded-full bg-white flex items-center justify-center">
+                            <i class="pi pi-heart text-[var(--color-primary)] !text-xl"></i>
+                        </button>
+                <button class="h-[35px] w-[35px] cursor-pointer rounded-full bg-white flex items-center justify-center">
+                            <i class="pi pi-eye text-[var(--color-primary)] !text-xl"></i>
+                        </button>
+            </div>
+        </div>
+        
+        <!-- card content -->
+        <div class="flex flex-col justify-between items-start h-full w-full">
+
+            <!-- title -->
+             <div class=" mt-5 ">
+                <h1 class="text-[var(--color-text-maroon)] text-xl font-[600] line-clamp-1">{{title}}</h1>
+             </div>
+
+             <!-- description -->
+             <div class="flex flex-row justify-between items-center w-full mt-4">
+
+                <!-- rating-Price  -->
+                <div class="w-3/4 flex flex-col justify-center items-start ">
+
+                    <div class="card flex justify-start mb-2">
+                        <p-rating [(ngModel)]="value" [readonly]="true" />
+                    </div>
+                    <div>
+                        <p class="text-xl font-semibold text-[var(--color-text-maroon)] ">{{price|currency:'EGP'}} 
+                            <span class="line-through font-light text-gray-400">{{priceBefore |currency:'EGP'}}</span></p>
+                    </div>
+                </div>
+
+                <!-- button -->
+                <div class="w-1/4 flex justify-end items-end">
+                
+                      <button class="h-[42px] w-[42px] rounded-full bg-[var(--color-primary)] flex items-center justify-center">
+                            <i class="pi pi-shopping-cart cursor-pointer text-white !text-2xl"></i>
+                        </button>
+                  
+                    
+                </div>
+             </div>
+        </div>
+
+
+
+    </div>
+
+
+</section>
+
+
+
+
+    

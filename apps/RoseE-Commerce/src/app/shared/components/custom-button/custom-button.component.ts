@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './custom-button.component.scss',
 })
 export class CustomButtonComponent {
-  @Input({required:true})  pageType = '';
+  @Input()  pageType = '';
   @Input() icon?:string
   @Input() customClass = ''; 
   @Output() buttonClick: EventEmitter<void> = new EventEmitter();

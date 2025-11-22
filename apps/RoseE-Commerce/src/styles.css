@@ -23,7 +23,7 @@
   }
 }
 
-//this class is for the Phone input fixing input border design <Mostafa Allam>
+/* //this class is for the Phone input fixing input border design <Mostafa Allam> */
 .iti--allow-dropdown input.iti__tel-input {
   padding-right: 150px !important;
 } 
@@ -31,12 +31,13 @@
 ::ng-deep p-rating .pi-star,
 ::ng-deep p-rating .pi-star-fill,
 ::ng-deep p-rating .pi-star-half {
-  color: #fbbf24 !important; // Amber-400
+  color: #fbbf24 !important; 
 }
 
 p-rating {
   --p-rating-icon-active-color: #facc15;
 } 
+
 
 
 @theme {
@@ -46,13 +47,13 @@ p-rating {
   --color-hover-card: #e6507380;
   --color-text-pink: #ff668b;
   --color-text-maroon: #741C21;
-  --color-text-gray:#71717A
+  --color-text-gray:#71717A;
 
   /* ===============================
      Typography System
     =============================== */
   --font-primary: 'Sarabun', sans-serif;
-  --font-Secondary: 'Great Vibes', cursive;
+  --font-Secondary: 'Great Vibes'
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;

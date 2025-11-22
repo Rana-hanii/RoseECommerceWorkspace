@@ -13,7 +13,8 @@ import { BestSeller, BestSellerData } from '../../shared/interfaces/bestSeller/b
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, AboutSectionComponent,BestSellingComponent, BenefitsSectionComponent, TestimonialsComponent , GallarySectionComponent],
+  imports: [CommonModule, AboutSectionComponent, BestSellingComponent, BenefitsSectionComponent,
+     TestimonialsComponent, GallarySectionComponent, ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
