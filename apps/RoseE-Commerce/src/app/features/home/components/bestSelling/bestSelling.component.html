@@ -1,9 +1,7 @@
-<section
-  class="w-full flex flex-col xl:flex-row justify-evenly items-center container mx-auto lg:px-20"
->
-  <div
-    class="w-full xl:w-1/4 flex flex-col justify-center items-center xl:items-start"
-  >
+<section class="w-full flex flex-col xl:flex-row justify-evenly items-center container mx-auto lg:px-20">
+
+  <!-- Description section -->
+  <div class="w-full xl:w-1/4 flex flex-col justify-center items-center xl:items-start">
     <div>
       <app-main-title subtitle="best selling"></app-main-title>
     </div>
@@ -33,7 +31,7 @@
   </div>
 
   <!-- caruosel section -->
-  <div class="w-full xl:w-3/4  ">
+  <div class="w-full xl:w-3/4 -p-2 ">
     <div class="card">
       <p-carousel
         [value]="(bestSellerProducts | async) || []"
@@ -52,6 +50,7 @@
                 [value]="i.rateAvg"
                 [price]="i.priceAfterDiscount"
                 [priceBefore]="i.price"
+                [badges]="i.badges"
             >
             </app-product-card>
         </ng-template>
@@ -59,15 +58,3 @@
     </div>
   </div>
 </section>
-
-
-
-<!-- <app-product-card
-[image]="i.image"
-[alt]="i.slug"
-[title]="i.title"
-[rate]="i.rateAvg"
-[price]="i.priceAfterDiscount"
-[priceBefore]="i.price"
->
-</app-product-card> -->

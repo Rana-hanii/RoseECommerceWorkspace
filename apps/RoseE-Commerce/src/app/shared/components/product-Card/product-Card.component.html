@@ -1,15 +1,26 @@
-<section class=" flex items-center justify-center my-5 py-5 ">
+<section class=" flex items-center justify-center my-5 ">
 
     <!-- Card -->
-    <div class="flex flex-col justify-center items-center h-[364px] w-[302px]">
+    <div class="flex flex-col justify-center items-center h-[364px] w-[302px] ">
 
         <!-- image -->
         <div class="relative group">
-            <img [src]="image" [alt]="alt" class=" w-[302px] h-[272px] object-cover rounded-2xl" >
+
+            <img [src]="image" [alt]="alt" class=" w-[302px] h-[272px] object-cover rounded-2xl " >
+            
+            <!-- badge details -->
+            <div class="absolute top-3 right-3 z-20 flex gap-2 ">
+                @for (badge of badges; track $index) {
+                    <app-product-card-badge 
+                    [type]="badge">
+                    </app-product-card-badge>
+                }
+               
+            </div>
 
 
              <div class="absolute inset-0 bg-[#E6507380] opacity-0 rounded-2xl
-              group-hover:opacity-90 transition-opacity duration-300 flex items-center justify-center gap-1 ">
+              group-hover:opacity-90 transition-opacity duration-300 flex items-center justify-center gap-2 ">
                 <button class="h-[35px] w-[35px] cursor-pointer rounded-full bg-white flex items-center justify-center">
                             <i class="pi pi-heart text-[var(--color-primary)] !text-xl"></i>
                         </button>
@@ -20,7 +31,7 @@
         </div>
         
         <!-- card content -->
-        <div class="flex flex-col justify-between items-start h-full w-full">
+        <div class="flex flex-col justify-between items-start h-full w-full ">
 
             <!-- title -->
              <div class=" mt-5 ">

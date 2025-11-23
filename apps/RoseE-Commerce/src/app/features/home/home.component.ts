@@ -37,7 +37,8 @@ export class HomeComponent implements OnInit {
     // (,") == > Fetching Best Selling Data 
     getBestSellerProducts():void{
        this.bestSellerProducts$=this.homeService.getBestSeller().pipe(
-        map((res:BestSellerData)=>res.bestSeller))
+        map((res:BestSellerData)=>res.bestSeller.map(
+              item=> ({...item , badges:this.getBadge(item) }))))
     }
 
     // (,") == > Fetching Testimonials Data 
@@ -45,6 +46,25 @@ export class HomeComponent implements OnInit {
       this.testimonials$= this.homeService.getTestimonials().pipe(
         map((res:TestimonialsResponse)=>res.testimonials))
       
+    } 
+
+    // (,") == > Condition to get badge value
+    getBadge(product:BestSeller):string[]{ 
+
+      const badges:string[]=[]
+
+      if(product.createdAt.includes('2025')){
+        badges.push('new')
+      }
+      if(product.sold && product.sold >= 100){
+       badges.push('hot')
+      }
+
+      if(product.quantity < 1){
+        badges.push('out of stock')
+      }
+
+      return badges
     }
   
 }
