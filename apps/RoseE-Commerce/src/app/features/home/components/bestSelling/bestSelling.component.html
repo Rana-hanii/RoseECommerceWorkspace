@@ -33,7 +33,8 @@
   <!-- caruosel section -->
   <div class="w-full xl:w-3/4 -p-2 ">
     <div class="card">
-      <p-carousel
+      @if (isBrowser()) {
+          <p-carousel
         [value]="(bestSellerProducts | async) || []"
         [numVisible]="3"
         [numScroll]="1"
@@ -51,10 +52,31 @@
                 [price]="i.priceAfterDiscount"
                 [priceBefore]="i.price"
                 [badges]="i.badges"
+                [images]="i.imagesNav"
+                (imgNav)="openGallery($event)"
             >
             </app-product-card>
         </ng-template>
       </p-carousel>
+      }
     </div>
   </div>
+
+      <!-- Navigator for product Images  (should put it in every Component using Card to preview images in each Card)-->
+
+
+          <p-galleria 
+              [value]="selectedImages"
+              [(visible)]="displayGallery"
+              [fullScreen]="true"
+              [showThumbnails]="false"
+              [circular]="true"
+              [showItemNavigators]="true"
+          >
+              <ng-template pTemplate="item" let-item>
+                  <img [src]="item" class="w-full" />
+              </ng-template>
+          </p-galleria>
+      
+     
 </section>

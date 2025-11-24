@@ -38,7 +38,10 @@ export class HomeComponent implements OnInit {
     getBestSellerProducts():void{
        this.bestSellerProducts$=this.homeService.getBestSeller().pipe(
         map((res:BestSellerData)=>res.bestSeller.map(
-              item=> ({...item , badges:this.getBadge(item) }))))
+              item=> ({...item ,
+                 badges:this.getBadge(item),
+                  imagesNav:item.images
+                }))))
     }
 
     // (,") == > Fetching Testimonials Data 

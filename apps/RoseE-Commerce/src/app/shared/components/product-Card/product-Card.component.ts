@@ -1,11 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Rating } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import { ProductCardBadgeComponent } from "../product-card-badge/product-card-badge.component";
-
-
-
 
 @Component({
   selector: 'app-product-card',
@@ -23,8 +20,34 @@ export class ProductCardComponent {
   @Input() priceBefore!:number
   @Input() value!:number
   @Input() badges:string[]=[]
-  
- 
+  @Input() images!:string[] 
 
+  @Output() imgNav:EventEmitter<string[]> =new EventEmitter();
+  
+
+  previewNav():void{
+    console.log(this.images);
+    this.imgNav.emit(this.images)
+  }
+
+
+    responsiveOptions: any[] = [
+        {
+            breakpoint: '1500px',
+            numVisible: 5
+        },
+        {
+            breakpoint: '1024px',
+            numVisible: 3
+        },
+        {
+            breakpoint: '768px',
+            numVisible: 2
+        },
+        {
+            breakpoint: '560px',
+            numVisible: 1
+        }
+    ];
 
 }
