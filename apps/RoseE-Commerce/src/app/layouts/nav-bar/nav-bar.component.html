@@ -1,0 +1,120 @@
+<Section>
+  <!-- Main Body -->
+  <div class="w-full flex flex-col lg:flex-row justify-evenly items-center px-2 md:px-16 py-3">
+
+      <!-- logo , location , button -->
+        <div class="w-full lg:w-1/8 flex justify-between items-center px-3 md:px-5 flex-2 order-1 lg:order-1 mb-4 lg:mb-0">
+
+            <!-- Logo -->
+            <div class="flex">
+                <img src="footer-sec/footerlogo.webp" alt="navbar-logo"
+                class="w-[65px] h-[60px] md:w-[85px] md:h-[80px] object-cover">
+            </div>
+
+            <!-- Location -->
+            <div class="flex flex-col items-center justify-evenly text-center">
+                <h1 class="text-[var(--color-text-gray)]">Deliver to</h1>
+                <a><i class="pi pi-map-marker text-[var(--color-primary)] font-[500]"> {{locationMessage}}</i></a>
+            </div>
+
+            <!-- Mobile Button -->
+            <button 
+                class="flex justify-center items-center p-2 bg-[var(--color-secondary)] text-[#A1A1AA]
+                 focus:ring-[#A1A1AA] focus:ring-1 rounded-lg lg:hidden cursor-pointer"
+                (click)="toggleProfile()">
+                <i class="pi pi-align-justify !text-xl"></i>
+            </button>
+
+        </div>
+
+      <!-- Search Bar -->
+      <div class="w-full lg:w-4/8 bg-white border-[1px] border-[#A1A1AA] rounded-xl px-5 flex items-center flex-7 order-3 lg:order-2">
+          <i class="pi pi-search text-[#A1A1AA]"></i>
+          <input type="search" placeholder=" What awesome gift are you looking for ?" 
+          class="w-full py-3 border-white outline-none focus:outline-none font-[400]
+          focus:ring-0 text-lg pl-4 text-[#7c7c84]">
+      </div>
+
+      <!--  profile  icons  language -->
+      <div class="w-full lg:w-1/8 justify-between items-center flex-3 text-xl 
+                  order-2 lg:order-3 mb-4 lg:mb-0 hidden lg:flex">
+
+          <div class="w-1/3 flex justify-center items-center gap-2 border-r-2">
+              <a routerLink="/auth/login"  class="flex items-center gap-2 cursor-pointer"> 
+                  <i class="pi pi-user !text-xl text-[#3F3F46]"></i>
+                  <span class="text-xl">login</span>
+              </a>
+          </div>
+
+          <div class="w-1/3 flex items-center justify-center gap-3 border-r-2">
+              <a><i class="pi pi-heart !text-2xl !text-[#3F3F46] cursor-pointer "></i></a>
+              <a><i class="pi pi-shopping-cart !text-2xl !text-[#3F3F46] cursor-pointer"></i></a>
+              <a><i class="pi pi-bell !text-2xl text-[#3F3F46] cursor-pointer"></i></a>
+          </div>
+
+          <div class="w-1/3 text-center cursor-pointer text-[#3F3F46] cursor-pointer">العربية</div>
+
+      </div>
+  </div>
+
+        <!-- Dropdown Menu -->
+        <div class="p-2 lg:p-0">
+            <div *ngIf="showProfileMenu" class="w-full px-6 py-4  bg-[var(--color-secondary)] border-[1px]
+            rounded-2xl lg:hidden flex flex-col justify-center items-start gap-2 border-[#A1A1AA]">
+            <div class="flex items-center cursor-pointer" >
+                <a routerLink="/auth/login" class="space-x-2 mb-2" >
+                    <i class="pi pi-user !text-xl !text-[#3F3F46]"></i> 
+                    <span class="!text-xl !text-[#3F3F46]">Login</span>
+                </a>
+            </div>
+            <div class="flex items-center gap-4">
+                 <a><i class="pi pi-heart !text-2xl !text-[#3F3F46] cursor-pointer "></i></a>
+              <a><i class="pi pi-shopping-cart !text-2xl !text-[#3F3F46] cursor-pointer"></i></a>
+              <a><i class="pi pi-bell !text-2xl text-[#3F3F46] cursor-pointer"></i></a>
+            </div>
+            <div class="!text-xl text-[#3F3F46]"><a class="">العربية</a></div>
+        </div>
+        </div>
+
+</Section>
+
+<section>
+    <div class="w-full  bg-[var(--color-text-maroon)] px-4 lg:px-0 ">
+        
+       <ul class="flex items-center justify-start lg:justify-center flex-wrap gap-8 gap-y-2
+            lg:gap-14 py-4 text-white !text-xl space-x-6 lg:space-x-0">
+
+        <li class="cursor-pointer text-[#FFC2D0] space-x-2">    
+            <i class="pi pi-home !text-xl"></i>
+            <span>Home</span>
+        </li>
+       
+        <li class="cursor-pointer hover:text-[#FFC2D0]  space-x-2 ">    
+            <i class="pi pi-gift !text-xl"></i>
+            <span>Products</span>
+        </li>
+       
+        <li class="cursor-pointer hover:text-[#FFC2D0]  space-x-2 ">    
+            <i class="pi pi-clipboard !text-xl"></i>
+            <span>Categories</span>
+        </li>
+       
+        <li class="cursor-pointer hover:text-[#FFC2D0]  space-x-2 ">    
+            <i class="pi pi-sparkles !text-xl"></i>
+            <span>Occasions</span>
+        </li>
+       
+        <li class="cursor-pointer hover:text-[#FFC2D0]  space-x-2 ">    
+            <i class="pi pi-headphones !text-xl"></i>
+            <span>Contact</span>
+        </li>
+       
+        <li class="cursor-pointer hover:text-[#FFC2D0]  space-x-2 ">    
+            <i class="pi pi-exclamation-circle !text-xl"></i>
+            <span>About</span>
+        </li>
+       
+    </ul>
+    </div>
+
+</section>
