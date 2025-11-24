@@ -74,7 +74,7 @@
               [showItemNavigators]="true"
           >
               <ng-template pTemplate="item" let-item>
-                  <img [src]="item" class="w-full" />
+                  <img [src]="item" [alt]="item.title" class="w-full" />
               </ng-template>
           </p-galleria>
       
