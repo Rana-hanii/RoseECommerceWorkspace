@@ -1,0 +1,10 @@
+:host ::ng-deep .p-carousel-prev,
+:host ::ng-deep .p-carousel-next {
+  background-color: #A6252A !important;
+  border-radius: 50% !important;
+}
+
+:host ::ng-deep .p-carousel-prev .pi,
+:host ::ng-deep .p-carousel-next .pi {
+  color: white !important;
+}

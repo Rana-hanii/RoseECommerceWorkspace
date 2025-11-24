@@ -1,6 +1,5 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ProductCardComponent } from './product-card.component';
+import { ProductCardComponent } from './product-Card.component';
 
 describe('ProductCardComponent', () => {
   let component: ProductCardComponent;
@@ -8,8 +7,7 @@ describe('ProductCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProductCardComponent,HttpClientTestingModule],
-      providers:[]
+      imports: [ProductCardComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProductCardComponent);

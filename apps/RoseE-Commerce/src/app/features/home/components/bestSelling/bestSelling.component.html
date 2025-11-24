@@ -1,15 +1,13 @@
-<section
-  class="w-full flex flex-col xl:flex-row justify-evenly items-center container container mx-auto lg:px-20"
->
-  <div
-    class="w-full xl:w-1/4 flex flex-col justify-center items-center xl:items-start"
-  >
+<section class="w-full flex flex-col xl:flex-row justify-evenly items-center container mx-auto lg:px-20">
+
+  <!-- Description section -->
+  <div class="w-full xl:w-1/4 flex flex-col justify-center items-center xl:items-start">
     <div>
       <app-main-title subtitle="best selling"></app-main-title>
     </div>
     <div>
       <h1
-        class="w-3/4 sm:w-1/2 xl:w-3/4 my-2 text-3xl font-[700] text-[1.875rem] text-[var(--color-text-maroon)]"
+        class="w-3/4 sm:w-1/2 xl:w-3/4 my-2 text-3xl font-[700] text-[1.875rem] text-[var(--color-text-maroon)] "
       >
         <span class="text-[var(--color-text-pink)]">Check Out </span>
         What Everyone's
@@ -33,52 +31,52 @@
   </div>
 
   <!-- caruosel section -->
-  <div class="w-full xl:w-3/4 ">
+  <div class="w-full xl:w-3/4 -p-2 ">
     <div class="card">
-      <p-carousel
+      @if (isBrowser()) {
+          <p-carousel
         [value]="(bestSellerProducts | async) || []"
         [numVisible]="3"
         [numScroll]="1"
         [circular]="true"
         [showIndicators]="false"
         [responsiveOptions]="responsiveOptions"
-        autoplayInterval="3000"
+        autoplayInterval="2000"
       >
         <ng-template pTemplate="item" let-i>
-          <div
-            class="border border-surface-200 dark:border-surface-700 rounded m-2 p-4"
-          >
-            <div class="mb-4">
-              <div class="relative mx-auto">
-                <img
-                  [src]="i.imgCover"
-                  [alt]="i.title"
-                  class="w-full rounded-border"
-                />
-                <p-tag
-                  [value]="i.inventoryStatus"
-                  class="absolute dark:!bg-surface-900"
-                  [ngStyle]="{ 'left.px': 5, 'top.px': 5 }"
-                />
-              </div>
-            </div>
-
-            <div class="mb-4 font-medium">{{ i.title }}</div>
-
-            <div class="flex justify-between items-center">
-              <div class="mt-0 font-semibold text-xl">{{  i.price | currency:'EGP' }}</div>
-              <span>
-                <p-button
-                  icon="pi pi-heart"
-                  severity="secondary"
-                  [outlined]="true"
-                />
-                <p-button icon="pi pi-shopping-cart" styleClass="ml-2" />
-              </span>
-            </div>
-          </div>
+            <app-product-card
+                [image]="i.imgCover"
+                [alt]="i.slug"
+                [title]="i.title"
+                [value]="i.rateAvg"
+                [price]="i.priceAfterDiscount"
+                [priceBefore]="i.price"
+                [badges]="i.badges"
+                [images]="i.imagesNav"
+                (imgNav)="openGallery($event)"
+            >
+            </app-product-card>
         </ng-template>
       </p-carousel>
+      }
     </div>
   </div>
+
+      <!-- Navigator for product Images  (should put it in every Component using Card to preview images in each Card)-->
+
+
+          <p-galleria 
+              [value]="selectedImages"
+              [(visible)]="displayGallery"
+              [fullScreen]="true"
+              [showThumbnails]="false"
+              [circular]="true"
+              [showItemNavigators]="true"
+          >
+              <ng-template pTemplate="item" let-item>
+                  <img [src]="item" [alt]="item.title" class="w-full" />
+              </ng-template>
+          </p-galleria>
+      
+     
 </section>
