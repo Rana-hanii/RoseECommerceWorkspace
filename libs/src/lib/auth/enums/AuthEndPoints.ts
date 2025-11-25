@@ -11,4 +11,6 @@ export class AuthEndPoint {
   static FORGETPASSWORD = `/auth/forgotPassword`;
   static VERIFY = `/auth/verifyResetCode`;
   static RESETPASSWORD = `/auth/resetPassword`;
+  //(,'') GET USER DATA
+  static USERDATA= '/auth/profile-data';
 }

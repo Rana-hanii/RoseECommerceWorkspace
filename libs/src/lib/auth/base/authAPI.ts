@@ -10,6 +10,7 @@ import { IVerifyRes } from "../interfaces/verify-code/IVerifyRes";
 import { IResetReq } from "../interfaces/reset-password/IResetReq";
 import { IResetRes } from "../interfaces/reset-password/IResetRes";
 import { ILogOutRes } from "../interfaces/log-out/ILogOutRes";
+import { UserDataRes } from "../interfaces/user-data/user-data-RES";
 
 
 export abstract class authAPI {
@@ -19,4 +20,5 @@ export abstract class authAPI {
   abstract ForgetPassword(data: IForgetPasswordReq): Observable<IForgetPasswordRes>;
   abstract VerifyCode(data: IVerifyReq): Observable<IVerifyRes>;
   abstract ResetPassword(data: IResetReq): Observable<IResetRes>;
+  abstract getData(): Observable<UserDataRes>;
 }

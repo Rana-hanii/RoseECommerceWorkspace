@@ -56,6 +56,10 @@ export class LoginComponent {
           next: (res) => {
             // save token
             this.cookieService.set('roseToken', res.token);
+
+            // (,'') ====> behaviourSbuject
+            this.authService.isLogginSubject.next(true)
+            
             // successful login message
             this.toastr.success('Login successful!', 'Success');
             // navigate to home

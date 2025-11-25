@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { RouterLink, RouterLinkActive } from "@angular/router";
+import { Router, RouterLink, RouterLinkActive } from "@angular/router";
+import { AuthService } from '@rose-ecommerce-workspace/auth';
+import { CookieService } from 'ngx-cookie-service';
+
 
 @Component({
   selector: 'app-nav-bar',
@@ -12,19 +15,45 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
 export class NavBarComponent implements OnInit{
 
 
-  showProfileMenu: boolean = false;
-  locationMessage: string = '';
- 
+  showMobileMenu= false;
+  locationMessage= '';
 
-  constructor(private http: HttpClient) {}
+  showUserMenu= false ;
+  isLogin=false;
+  userName=''
+  lastName=''
+ 
+  private readonly http=inject(HttpClient)
+  private readonly authService=inject(AuthService)
+  private readonly cookieService=inject(CookieService)
+  private readonly plat_Id=inject(PLATFORM_ID)
+
+
+
 
   ngOnInit(): void {
-    this.getUserLocation();
+
+    if (isPlatformBrowser(this.plat_Id)) {
+        this.getUserLocation();
+         this.userData()
+          this.checkLoggedUser() 
+    }
+
+       
+       
+  } 
+
+  checkLoggedUser():void{
+      this.authService.isLogged$.subscribe(value => {this.isLogin=value})
+  }
+
+  userMenu(){
+    this.showUserMenu = !this.showUserMenu
   }
 
 
-   toggleProfile() {
-    this.showProfileMenu = !this.showProfileMenu;
+   toggleMenu() {
+    this.showMobileMenu = !this.showMobileMenu;
   }
 
   getUserLocation() {
@@ -58,4 +87,27 @@ export class NavBarComponent implements OnInit{
       }
     });
   }
+
+
+
+  logout():void{
+     this.cookieService.delete('roseToken')
+    // (,'') to show login icon when loggedout
+    this.authService.isLogginSubject.next(false)
+  } 
+
+
+  userData():void{
+    this.authService.getData().subscribe({
+      next:(res)=>{
+        this.userName=res.user.firstName
+        this.lastName=res.user.lastName
+      },error:(err)=>{
+          console.log(err);
+          
+      }
+    })
+  }
+
+  
 }
