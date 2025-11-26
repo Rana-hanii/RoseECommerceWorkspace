@@ -25,7 +25,9 @@ export class BestSellingComponent implements OnInit {
     displayGallery = false;
   
     ngOnInit(): void {
-        this.responsive()
+        if (isPlatformBrowser(this.Plat_Id)) {
+            this.responsive()
+        }
     } 
 
     isBrowser(){

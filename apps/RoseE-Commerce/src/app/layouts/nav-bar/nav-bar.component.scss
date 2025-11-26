@@ -6,3 +6,18 @@
   background-color: #3F3F46; 
   margin-left: 7px;
 }
+
+.line {
+  display: inline-block;
+  position: relative;
+  align-items: center;
+}
+.line::after {
+  content: "";
+  position: absolute;
+  min-width: 100px;
+  height: 3px; 
+  background-color: #FFC2D0; 
+  left: 0;
+  bottom: -9px;
+}

@@ -1,14 +1,15 @@
 import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser, AsyncPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Router, RouterLink, RouterLinkActive } from "@angular/router";
+import { RouterLink, RouterLinkActive } from "@angular/router";
 import { AuthService } from '@rose-ecommerce-workspace/auth';
 import { CookieService } from 'ngx-cookie-service';
+import { Observable } from 'rxjs';
 
 
 @Component({
   selector: 'app-nav-bar',
-  imports: [CommonModule, RouterLink, RouterLinkActive],
+  imports: [CommonModule, RouterLink, RouterLinkActive ,AsyncPipe],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.scss',
 })
@@ -19,7 +20,7 @@ export class NavBarComponent implements OnInit{
   locationMessage= '';
 
   showUserMenu= false ;
-  isLogin=false;
+  isLogin$!:Observable<boolean>;
   userName=''
   lastName=''
  
@@ -29,22 +30,17 @@ export class NavBarComponent implements OnInit{
   private readonly plat_Id=inject(PLATFORM_ID)
 
 
-
-
   ngOnInit(): void {
 
     if (isPlatformBrowser(this.plat_Id)) {
+      this.checkLoggedUser() 
         this.getUserLocation();
          this.userData()
-          this.checkLoggedUser() 
     }
-
-       
-       
   } 
 
   checkLoggedUser():void{
-      this.authService.isLogged$.subscribe(value => {this.isLogin=value})
+      this.isLogin$ = this.authService.isLogged$
   }
 
   userMenu(){
@@ -79,6 +75,7 @@ export class NavBarComponent implements OnInit{
     this.http.get<any>(url).subscribe({
       next: (data) => {
         const city = data.address.city
+        
         this.locationMessage = `${city}`;
       },
       error: (err) => {

@@ -43,16 +43,16 @@
       <div class="w-full lg:w-1/8 justify-between items-center flex-3 text-xl 
                   order-2 lg:order-3 mb-4 lg:mb-0 hidden lg:flex ">
 
-      
+        
                   <!-- here will use condition if login or not  -->
-                   @if (!isLogin) {
-                       <div *ngIf="!isLogin" class="w-1/3 flex justify-center items-center gap-2 wrapper">
+                   @if ((isLogin$ |async) === false) {
+                       <div  class="w-1/3 flex justify-center items-center gap-2 wrapper">
                             <a routerLink="/auth/login"  class="flex items-center gap-2 cursor-pointer"> 
                                 <i class="pi pi-user !text-xl text-[#3F3F46]"></i>
                                 <span class="text-xl">login</span>
                             </a>
                         </div>
-                   } @if(isLogin){
+                   } @else{
                         <div class="w-1/2 flex justify-center items-center gap-2 wrapper">
                             <!-- greetings with userName -->
                              <div class="flex flex-col justify-center  items-start">  
@@ -124,14 +124,14 @@
                         rounded-2xl lg:hidden flex flex-col justify-center items-start gap-2 border-[#A1A1AA]">
 
                         <!-- here also will use condition if login or not  -->
-                    @if (!isLogin) {
+                    @if ((isLogin$ |async)===false) {
                             <div class="flex items-center cursor-pointer px-3 py-1  hover:bg-[#f9d9d9] w-full hover:rounded-2xl" >
                             <a routerLink="/auth/login" class="space-x-2 mb-2" >
                                 <i class="pi pi-user !text-xl !text-[var(--color-text-maroon)] font-[500]"></i> 
                                 <span class="!text-xl !text-[var(--color-text-maroon)] font-[500]">Login</span>
                             </a>
                         </div>
-                    } @if (isLogin) {
+                    } @else{
                         <div class="px-3 flex justify-center items-center gap-2">
                             <!-- greetings with userName -->
                              <div class="flex flex-col justify-center  items-start">  
@@ -207,40 +207,40 @@
     <div class="w-full bg-[var(--color-text-maroon)] px-4 lg:px-0 ">
         
        <ul class=" grid grid-cols-3 lg:flex lg:flex-row items-center lg:justify-center flex-nowrap gap-8 
-            lg:gap-14 py-4 text-white !text-xl space-x-6 lg:space-x-0">
+            lg:gap-14 py-4 text-white lg:!text-xl space-x-6 lg:space-x-0">
 
         <li routerLink="/main/home"
-            routerLinkActive="text-[#FFC2D0]"
-            class="w-full lg:w-1/12 cursor-pointer space-x-2">    
-            <i class="pi pi-home !text-xl"></i>
-            <span>Home</span>
+            routerLinkActive="text-[#FFC2D0] line"
+            class="w-full lg:w-1/12 cursor-pointer space-x-2 lg:space-x-2 flex justify-start items-center ">    
+            <i class="pi pi-home !text-lg lg:!text-xl"></i>
+            <span class="text-lg lg:text-xl">Home</span>
         </li>
        
         <li routerLink="/main/products" 
             routerLinkActive="text-[#FFC2D0]"
-            class="w-full lg:w-1/12 cursor-pointer hover:text-[#FFC2D0]  space-x-2 ">    
-            <i class="pi pi-gift !text-xl"></i>
-            <span>Products</span>
+            class="w-full lg:w-1/12 cursor-pointer hover:text-[#FFC2D0] space-x-2 lg:space-x-2 flex justify-start items-center ">    
+            <i class="pi pi-gift !text-lg lg:!text-xl"></i>
+            <span class="text-lg lg:text-xl">Products</span>
         </li>
        
-        <li class="w-full lg:w-1/12 cursor-pointer hover:text-[#FFC2D0]  space-x-2 ">    
-            <i class="pi pi-clipboard !text-xl"></i>
-            <span>Categories</span>
+        <li class="w-full lg:w-1/12 cursor-pointer hover:text-[#FFC2D0] space-x-1 lg:space-x-2 flex justify-start items-center">    
+            <i class="pi pi-clipboard !text-lg lg:!text-xl"></i>
+            <span class="text-lg lg:text-xl">Categories</span>
         </li>
        
-        <li class="w-full lg:w-1/12 cursor-pointer hover:text-[#FFC2D0]  space-x-2 ">    
-            <i class="pi pi-sparkles !text-xl"></i>
-            <span>Occasions</span>
+        <li class="w-full lg:w-1/12 cursor-pointer hover:text-[#FFC2D0] space-x-2 lg:space-x-2 flex justify-start items-center ">    
+            <i class="pi pi-sparkles !text-lg lg:!text-xl "></i>
+            <span class="text-lg lg:text-xl">Occasions</span>
         </li>
        
-        <li class="w-full lg:w-1/12 cursor-pointer hover:text-[#FFC2D0]  space-x-2 ">    
-            <i class="pi pi-headphones !text-xl"></i>
-            <span>Contact</span>
+        <li class="w-full lg:w-1/12 cursor-pointer hover:text-[#FFC2D0] space-x-2 lg:space-x-2 flex justify-start items-center ">    
+            <i class="pi pi-headphones !text-lg lg:!text-xl"></i>
+            <span class="text-lg lg:text-xl">Contact</span>
         </li>
        
-        <li class="w-full lg:w-1/12 cursor-pointer hover:text-[#FFC2D0]  space-x-2 ">    
-            <i class="pi pi-exclamation-circle !text-xl"></i>
-            <span>About</span>
+        <li class="w-full lg:w-1/12 cursor-pointer hover:text-[#FFC2D0]  space-x-2 lg:space-x-2 flex justify-start items-center ">    
+            <i class="pi pi-exclamation-circle !text-lg lg:!text-xl"></i>
+            <span class="text-lg lg:text-xl">About</span>
         </li>
        
     </ul>

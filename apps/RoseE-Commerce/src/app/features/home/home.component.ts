@@ -9,12 +9,13 @@ import { HomeService } from './services/home.service';
 import { Testimonials, TestimonialsResponse } from '../../shared/interfaces/testimonials/testimonials-response';
 import { map, Observable } from 'rxjs';
 import { BestSeller, BestSellerData } from '../../shared/interfaces/bestSeller/best-seller';
+import { TrustedByComponent } from "./components/trusted-by/trusted-by.component";
 
 
 @Component({
   selector: 'app-home',
   imports: [CommonModule, AboutSectionComponent, BestSellingComponent, BenefitsSectionComponent,
-     TestimonialsComponent, GallarySectionComponent, ],
+    TestimonialsComponent, GallarySectionComponent, TrustedByComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
