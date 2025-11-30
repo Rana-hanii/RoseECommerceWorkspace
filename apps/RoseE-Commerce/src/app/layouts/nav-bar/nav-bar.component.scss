@@ -20,4 +20,14 @@
   background-color: #FFC2D0; 
   left: 0;
   bottom: -9px;
-}
+} 
+
+:host ::ng-deep {
+  .nav-btn {
+  background: var(--color-secondary) !important;
+  color: var(--color-text-maroon) !important;
+  border-color: white ;
+
+  }
+} 
+

@@ -1,7 +1,6 @@
-import { CookieService } from 'ngx-cookie-service';
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
+import { inject, Injectable} from '@angular/core';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { AuthAPIResService } from './adapter/authAPIRes.adapter';
 import { authAPI } from './base/authAPI';
 import { AuthEndPoint } from './enums/AuthEndPoints';
@@ -28,15 +27,7 @@ export class AuthService implements authAPI {
   _adaptorService = inject(AuthAPIResService);
   private readonly Base_API_URL = inject(API_URL);
 
-  private readonly cookieService = inject(CookieService);
-
-  isLogginSubject=new BehaviorSubject<boolean>(this.getToken())
-  isLogged$= this.isLogginSubject.asObservable()
-
-  getToken():boolean{
-    return !!this.cookieService.get('roseToken')
-  }
-
+  
 
   SignUp(data: ISignUpReq): Observable<AdaptedSignUpRes> {
     return this._httpClient
