@@ -121,7 +121,7 @@ export class NavBarComponent implements OnInit{
         this.drawerRef.close(e);
     }
 
-    visible: boolean = false;
+    visible= false;
 
 
     userItems():void{
