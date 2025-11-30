@@ -16,6 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 import { LineComponent } from '../../../../shared/components/line/line.component';
 import { PASSWORD_PATTERN } from '../../../../shared/constants/regex.constants';
 import { Subject, takeUntil } from 'rxjs';
+import { HomeService } from '../../../home/services/home.service';
 
 @Component({
   selector: 'app-login',
@@ -35,6 +36,7 @@ import { Subject, takeUntil } from 'rxjs';
 export class LoginComponent {
   private readonly fb = inject(FormBuilder);
   private readonly authService = inject(AuthService);
+  private readonly homeService=inject(HomeService)
   private readonly router = inject(Router);
   private readonly cookieService = inject(CookieService);
   private readonly toastr = inject(ToastrService);
@@ -56,6 +58,10 @@ export class LoginComponent {
           next: (res) => {
             // save token
             this.cookieService.set('roseToken', res.token);
+
+            // (,'') ====> behaviourSbuject
+            this.homeService.isLogged.set(true)
+            
             // successful login message
             this.toastr.success('Login successful!', 'Success');
             // navigate to home

@@ -15,6 +15,13 @@ export const mainRoutes: Routes = [
             (c) => c.HomeComponent
           ),
       },
+      {
+        path: 'products',
+        loadComponent: () =>
+          import('../../../features/home/components/products/products.component').then(
+            (c) => c.ProductsComponent
+          ),
+      },
     ],
   },
 ];

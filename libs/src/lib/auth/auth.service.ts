@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable} from '@angular/core';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { AuthAPIResService } from './adapter/authAPIRes.adapter';
 import { authAPI } from './base/authAPI';
@@ -18,6 +18,7 @@ import { ISignUpRes } from './interfaces/sign-up/ISignUpRes';
 import { IVerifyReq } from './interfaces/verify-code/IVerifyReq';
 import { IVerifyRes } from './interfaces/verify-code/IVerifyRes';
 import { API_URL } from './tokens/tokens';
+import { UserDataRes } from './interfaces/user-data/user-data-RES';
 @Injectable({
   providedIn: 'root',
 })
@@ -25,6 +26,9 @@ export class AuthService implements authAPI {
   _httpClient = inject(HttpClient);
   _adaptorService = inject(AuthAPIResService);
   private readonly Base_API_URL = inject(API_URL);
+
+  
+
   SignUp(data: ISignUpReq): Observable<AdaptedSignUpRes> {
     return this._httpClient
       .post<ISignUpRes>(this.Base_API_URL + AuthEndPoint.SIGNUP, data)
@@ -80,5 +84,13 @@ export class AuthService implements authAPI {
         map((res: IResetRes) => res),
         catchError((err) => throwError(() => err))
       );
+  }
+
+
+  getData():Observable<UserDataRes>{
+    return this._httpClient.get<UserDataRes>(this.Base_API_URL +AuthEndPoint.USERDATA).pipe(
+      map((res:UserDataRes)=> res),
+      catchError((err)=>throwError(()=>err))
+    )
   }
 }

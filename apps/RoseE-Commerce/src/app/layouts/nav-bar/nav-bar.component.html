@@ -1,0 +1,267 @@
+<Section>
+  <!-- Main Body -->
+  <div class="w-full flex flex-col lg:flex-row justify-evenly items-center px-2 md:px-16 py-3">
+
+      <!-- logo , location , button -->
+        <div class="w-full lg:w-1/2 flex justify-evenly items-center px-3 md:px-5 flex-2 order-1 lg:order-1 mb-4 lg:mb-0">
+
+            <!-- Logo -->
+            <div class="flex w-1/3">
+                <img src="footer-sec/footerlogo.webp" alt="navbar-logo"
+                class="w-[65px] h-[60px] md:w-[85px] md:h-[80px] object-cover">
+            </div>
+
+            <!-- Location -->
+            <div class="flex flex-col items-center justify-evenly text-center w-1/2">
+                <h1 class="text-[var(--color-text-gray)] font-[400]">Deliver to</h1>
+                <a class="text-[var(--color-primary)] font-[500]">
+                    <i class="pi pi-map-marker text-[var(--color-primary)] font-[500]"></i>
+                     {{locationMessage}}
+                    </a>
+            </div>
+
+            <!-- Mobile Button -->
+           <div class="w-1/3 flex justify-end itemsc-center lg:hidden">
+                    <p-button (click)="visible = true"  icon="pi pi-bars" 
+                    styleClass=" !border-2 !bg-[var(--color-secondary)] !text-[var(--color-text-maroon)] !border-[var(--color-text-maroon)]
+                     hover:!bg-[var(--color-text-maroon)] hover:!text-[var(--color-secondary)]" />
+           </div>
+
+        </div>
+
+      <!-- Search Bar -->
+      <div class="w-full lg:w-4/8 bg-white border-[1px] border-[#A1A1AA] rounded-xl px-5 flex items-center flex-7 order-3 lg:order-2">
+          <i class="pi pi-search text-[#A1A1AA]"></i>
+          <input type="search" placeholder=" What awesome gift are you looking for ?" 
+          class="w-full py-3 border-white outline-none focus:outline-none font-[400]
+          focus:ring-0 text-lg pl-4 text-[#7c7c84]">
+      </div>
+
+      <!--  profile  icons  language -->
+      <div class="w-full lg:w-1/8 justify-between items-center flex-3 text-xl 
+                  order-2 lg:order-3 mb-4 lg:mb-0 hidden lg:flex ">
+
+        
+                  <!-- here will use condition if login or not  -->
+                   @if (!isLogin()) { 
+                       <div  class="w-1/3 flex justify-center items-center gap-2 wrapper">
+                            <a routerLink="/auth/login"  class="flex items-center gap-2 cursor-pointer"> 
+                                <i class="pi pi-user !text-xl text-[#3F3F46]"></i>
+                                <span class="text-xl">login</span>
+                            </a>
+                        </div>
+                   } @else{
+                                    <div class="px-3 flex justify-center items-center gap-2 wrapper ">
+                                        <!-- greetings with userName -->
+                                        <div class="flex flex-col justify-center  items-start">  
+                                            <p class="text-[16px]  text-[var(--color-text-gray)]">Hello</p>
+                                            <h2 class="text-2xl text-[var(--color-text-maroon)] font-semibold  ">{{userName}}</h2>
+                                            
+
+                                        </div>
+                                        <!-- dropdown Menu for user settings -->
+                                        <div class="flex flex-col justify-end items-center mt-9 ">
+                                            <div class=" ">
+                                                 <p-button (click)="menu.toggle($event)" icon="pi pi-angle-down" 
+                                                 outlined="true" styleClass="!p-0 !border-0 !text-gray-500 
+                                                                            hover:!bg-transparent hover:!scale-[1.2]  !w-full "/>
+                                            </div>
+                                            <div class="card">
+                                                <p-menu #menu [model]="items" [popup]="true"
+                                                        appendTo="body"  styleClass="" />
+                                               
+                                            </div>
+                                        
+                                        </div>
+
+                                    </div>
+                                }
+       
+
+          <div class="w-1/3 flex items-center justify-center gap-3 wrapper ">
+              <a><i class="pi pi-heart !text-2xl !text-[#3F3F46] cursor-pointer hover:scale-[1.2] duration-[.5s]  "></i></a>
+              <a><i class="pi pi-shopping-cart !text-2xl !text-[#3F3F46] cursor-pointer hover:scale-[1.2] duration-[.5s]"></i></a>
+              <a><i class="pi pi-bell !text-2xl text-[#3F3F46] cursor-pointer hover:scale-[1.2] duration-[.5s]"></i></a>
+          </div>
+
+          <div class="w-1/3 text-center cursor-pointer text-[#3F3F46] py-3 cursor-pointer">العربية</div>
+
+      </div>
+  </div>
+
+        <!-- Dropdown Menu -->
+     
+
+</Section>
+
+
+        <!-- Second Section -->
+        <!-- Navigation Bar with Links  -->
+<section>
+    <div class="w-0 xl:w-full bg-[var(--color-text-maroon)]  xl:px-0 ">
+        
+       <ul class="hidden lg:flex lg:flex-row lg:items-center lg:justify-center  
+            lg:gap-14 py-4 text-white lg:!text-xl space-x-6 lg:space-x-0">
+
+        <li routerLink="/main/home"
+            routerLinkActive="text-[#FFC2D0] line"
+            class="w-full lg:w-1/12 cursor-pointer space-x-2 lg:space-x-2 flex justify-start items-center ">    
+            <i class="pi pi-home !text-lg lg:!text-xl"></i>
+            <span class="text-lg lg:text-xl">Home</span>
+        </li>
+       
+        <li routerLink="/main/products" 
+            routerLinkActive="text-[#FFC2D0]"
+            class="w-full lg:w-1/12 cursor-pointer hover:text-[#FFC2D0] space-x-2 lg:space-x-2 flex justify-start items-center ">    
+            <i class="pi pi-gift !text-lg lg:!text-xl"></i>
+            <span class="text-lg lg:text-xl">Products</span>
+        </li>
+       
+        <li class="w-full lg:w-1/12 cursor-pointer hover:text-[#FFC2D0] space-x-1 lg:space-x-2 flex justify-start items-center">    
+            <i class="pi pi-clipboard !text-lg lg:!text-xl"></i>
+            <span class="text-lg lg:text-xl">Categories</span>
+        </li>
+       
+        <li class="w-full lg:w-1/12 cursor-pointer hover:text-[#FFC2D0] space-x-2 lg:space-x-2 flex justify-start items-center ">    
+            <i class="pi pi-sparkles !text-lg lg:!text-xl "></i>
+            <span class="text-lg lg:text-xl">Occasions</span>
+        </li>
+       
+        <li class="w-full lg:w-1/12 cursor-pointer hover:text-[#FFC2D0] space-x-2 lg:space-x-2 flex justify-start items-center ">    
+            <i class="pi pi-headphones !text-lg lg:!text-xl"></i>
+            <span class="text-lg lg:text-xl">Contact</span>
+        </li>
+       
+        <li class="w-full lg:w-1/12 cursor-pointer hover:text-[#FFC2D0]  space-x-2 lg:space-x-2 flex justify-start items-center ">    
+            <i class="pi pi-exclamation-circle !text-lg lg:!text-xl"></i>
+            <span class="text-lg lg:text-xl">About</span>
+        </li>
+       
+    </ul>
+
+    <!-- side-bar for mobile screen  -->
+     <div class="card flex justify-end items-start lg:hidden py-3">
+        <p-drawer #drawerRef [(visible)]="visible" >
+            <ng-template #headless>
+                <div class="flex flex-col h-full  bg-[var(--color-text-maroon)]">
+                    <div class="flex items-center justify-between px-3 pt-4 shrink-0"> 
+
+                        <div class="!text-xl w-full py-1 hover:rounded-2xl cursor-pointer  hover:text-[#FFC2D0]
+                            text-white font-[500] space-x-2">
+                                         <i class="pi pi-globe !text-2xl"></i>
+                                        <a class="">العربية</a>
+                        </div>
+                       
+                            <p-button type="button" (click)="closeCallback($event)" icon="pi pi-times" 
+                             rounded="true"  styleClass="h-8 w-8  !bg-[var(--color-secondary)] hover:!bg-[#FFC2D0] 
+                             !text-[var(--color-text-maroon)] !border-0"  ></p-button>
+                        
+                    </div>
+
+
+                    <!-- user settings -->
+                    <div class=" w-full  lg:p-0 mt-3">
+
+                       
+                            <div  class="w-full px-2 py-4 border-y-[7px] bg-[var(--color-secondary)] border-[1px] relative
+                                     lg:hidden flex flex-col justify-center items-start gap-2 border-[#A1A1AA]">
+
+                                    <!-- here also will use condition if login or not  -->
+                                @if (isLogin()===false) {
+                                        <div class="flex items-center cursor-pointer px-3 py-1  hover:bg-[#f9d9d9] w-full hover:rounded-2xl" >
+                                        <a routerLink="/auth/login" class="space-x-2 mb-2" >
+                                            <i class="pi pi-user !text-xl !text-[var(--color-text-maroon)] font-[500]"></i> 
+                                            <span class="!text-xl !text-[var(--color-text-maroon)] font-[500]">Login</span>
+                                        </a>
+                                    </div>
+                                } @else{
+                                    <div class="px-3 flex justify-center items-center gap-2">
+                                        <!-- greetings with userName -->
+                                        <div class="flex flex-col justify-center  items-start">  
+                                            <p class="text-[16px]  text-[var(--color-text-gray)]">Hello</p>
+                                            <h2 class="text-2xl text-[var(--color-text-maroon)] font-semibold  ">{{userName}}</h2>
+                                            
+
+                                        </div>
+                                        <!-- dropdown Menu for user settings -->
+                                        <div class="flex flex-col justify-end items-center mt-9 ">
+                                            <div class=" ">
+                                                 <p-button (click)="menu.toggle($event)" icon="pi pi-angle-down" 
+                                                 outlined="true" styleClass="!p-0 !border-0 !text-gray-500 
+                                                                            hover:!bg-transparent hover:!scale-[1.2]  !w-full "/>
+                                            </div>
+                                            <div class="card">
+                                                <p-menu #menu [model]="items" [popup]="true"
+                                                        appendTo="body"  styleClass="" />
+                                               
+                                            </div>
+                                        
+                                        </div>
+
+                                    </div>
+                                }
+
+                                    <div class="flex items-center gap-4 px-3 py-1 w-full py-1 ">
+                                        <a><i class="pi pi-heart !text-2xl hover:scale-[1.3] duration-[.5s] !text-[var(--color-text-maroon)] font-[500] cursor-pointer "></i></a>
+                                        <a><i class="pi pi-shopping-cart !text-2xl hover:scale-[1.3] duration-[.5s] !text-[var(--color-text-maroon)] font-[500] cursor-pointer"></i></a>
+                                        <a><i class="pi pi-bell !text-2xl hover:scale-[1.3] duration-[.5s] text-[var(--color-text-maroon)] font-[500] cursor-pointer"></i></a>
+                                    </div>
+
+                                    
+                                    
+                                </div>
+
+                        
+                    
+                    </div>
+                    
+                    <!-- navigation pages -->
+                    <div class="overflow-y-auto">
+                    
+                        <ul class="list-none p-4 space-y-3 m-0 text-white ">
+                                
+                                    <li routerLink="/main/home"
+                                        routerLinkActive="text-[#FFC2D0]"
+                                        class="w-full lg:w-1/12 cursor-pointer space-x-2 lg:space-x-2 flex justify-start items-center ">    
+                                        <i class="pi pi-home !text-lg lg:!text-xl"></i>
+                                        <span class="text-lg lg:text-xl">Home</span>
+                                    </li>
+                                
+                                    <li routerLink="/main/products" 
+                                        routerLinkActive="text-[#FFC2D0]"
+                                        class="w-full lg:w-1/12 cursor-pointer hover:text-[#FFC2D0] space-x-2 lg:space-x-2 flex justify-start items-center ">    
+                                        <i class="pi pi-gift !text-lg lg:!text-xl"></i>
+                                        <span class="text-lg lg:text-xl">Products</span>
+                                    </li>
+                                
+                                    <li class="w-full lg:w-1/12 cursor-pointer hover:text-[#FFC2D0] space-x-1 lg:space-x-2 flex justify-start items-center">    
+                                        <i class="pi pi-clipboard !text-lg lg:!text-xl"></i>
+                                        <span class="text-lg lg:text-xl">Categories</span>
+                                    </li>
+                                
+                                    <li class="w-full lg:w-1/12 cursor-pointer hover:text-[#FFC2D0] space-x-2 lg:space-x-2 flex justify-start items-center ">    
+                                        <i class="pi pi-sparkles !text-lg lg:!text-xl "></i>
+                                        <span class="text-lg lg:text-xl">Occasions</span>
+                                    </li>
+                                
+                                    <li class="w-full lg:w-1/12 cursor-pointer hover:text-[#FFC2D0] space-x-2 lg:space-x-2 flex justify-start items-center ">    
+                                        <i class="pi pi-headphones !text-lg lg:!text-xl"></i>
+                                        <span class="text-lg lg:text-xl">Contact</span>
+                                    </li>
+                                
+                                    <li class="w-full lg:w-1/12 cursor-pointer hover:text-[#FFC2D0]  space-x-2 lg:space-x-2 flex justify-start items-center ">    
+                                        <i class="pi pi-exclamation-circle !text-lg lg:!text-xl"></i>
+                                        <span class="text-lg lg:text-xl">About</span>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                </div>
+            </ng-template>
+        </p-drawer>
+        
+        </div>
+    </div>
+
+</section>
