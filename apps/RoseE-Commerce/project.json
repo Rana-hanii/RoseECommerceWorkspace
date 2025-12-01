@@ -22,6 +22,7 @@
             "input": "apps/RoseE-Commerce/public"
           }
         ],
+        "sourceMap":true ,
         "styles": [
           "node_modules/intl-tel-input/build/css/intlTelInput.css",
           "node_modules/primeicons/primeicons.css",

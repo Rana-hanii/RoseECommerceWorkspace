@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start-rose": "npx nx run RoseE-Commerce:s -o"
+    "start-rose": "npx nx run RoseE-Commerce:s -o",
+    "compodoc": "npx compodoc -p apps/RoseE-Commerce/tsconfig.doc.json"
   },
   "private": true,
   "dependencies": {
@@ -29,6 +30,7 @@
     "primeicons": "^7.0.0",
     "primeng": "^19.1.4",
     "rxjs": "~7.8.0",
+    "source-map-explorer": "^2.5.3",
     "tailwindcss": "^4.1.14",
     "zone.js": "~0.15.0"
   },
@@ -39,6 +41,7 @@
     "@angular/cli": "~19.1.0",
     "@angular/compiler-cli": "~19.1.0",
     "@angular/language-service": "~19.1.0",
+    "@compodoc/compodoc": "^1.1.26",
     "@eslint/js": "^9.8.0",
     "@nx/angular": "20.4.0",
     "@nx/cypress": "20.4.0",
