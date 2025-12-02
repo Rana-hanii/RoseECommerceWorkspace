@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, PLATFORM_ID, signal, Signal, ViewChild, WritableSignal } from '@angular/core';
+import { Component, inject, OnInit, PLATFORM_ID, signal, ViewChild } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { RouterLink, RouterLinkActive } from "@angular/router";
@@ -9,15 +9,13 @@ import { DrawerModule } from 'primeng/drawer';
 import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
 import { Drawer } from 'primeng/drawer';
-import { StyleClass } from 'primeng/styleclass';
-import { MenuItem } from 'primeng/api';
 import { Menu } from 'primeng/menu';
 
 
 
 @Component({
   selector: 'app-nav-bar',
-  imports: [CommonModule, RouterLink, RouterLinkActive ,DrawerModule, ButtonModule, AvatarModule ,StyleClass , Menu  ],
+  imports: [CommonModule, RouterLink, RouterLinkActive ,DrawerModule, ButtonModule, AvatarModule , Menu  ],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.scss',
 })

@@ -7,7 +7,9 @@ export const API_ENDPOINTS = {
   },
 
   //*Products endpoints
-  products: {},
+  products: {
+    products:'/products'
+  },
 
   //*Cart endpoints
   cart: {},
