@@ -15,7 +15,7 @@
 
             <!-- here will be a forloop on products array which will contain Reusable-Card-Component -->
 
-            @for (item of (allProducts$ | async); track $index) {
+            @for (item of (allProducts$ | async) | sortPrice:'lowHigh'; track $index) {
 
                  <app-product-card
                     [image]="item.imgCover"

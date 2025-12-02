@@ -4,11 +4,12 @@ import { ProductCardComponent } from "../../shared/components/product-Card/produ
 import { ProductsService } from './services/products.service';
 import { ProductData, ProductsRES} from '../../shared/interfaces/products/products-res';
 import { map, Observable } from 'rxjs';
+import { SortPricePipe } from '../../shared/pipes/sort-price/sort-price.pipe';
 
 
 @Component({
   selector: 'app-products',
-  imports: [CommonModule, ProductCardComponent ,AsyncPipe],
+  imports: [CommonModule, ProductCardComponent ,AsyncPipe ,SortPricePipe],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
 })
