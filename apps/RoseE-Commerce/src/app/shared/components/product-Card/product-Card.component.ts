@@ -21,12 +21,18 @@ export class ProductCardComponent {
   @Input() value!:number
   @Input() badges:string[]=[]
   @Input() images!:string[] 
-
+  @Input() wishlistBtn=false
   @Output() imgNav:EventEmitter<string[]> =new EventEmitter();
   
+  
+  isWishlisted = false;
+
+  
+  toggleWishlist() {
+    this.isWishlisted = !this.isWishlisted;
+  }
 
   previewNav():void{
-    console.log(this.images);
     this.imgNav.emit(this.images)
   }
 

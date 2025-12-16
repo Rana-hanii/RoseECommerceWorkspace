@@ -1,3 +1,66 @@
 section{
     font-family: var(--font-primary);
+} 
+
+
+.wishlist-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: white;
+  color: var(--color-text-maroon);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  padding: 8px 6px;
+  transition: width 0.5s ease, border-radius 0.5s ease;
+  cursor: pointer;
+
+  svg {
+    width: 25px;
+    height: 25px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+
+  span {
+    margin-left: 8px;
+    max-width: 0;
+    opacity: 0;
+    white-space: nowrap;
+    display: inline-block;
+    transform: translateX(-10px); 
+    transition: max-width .5s ease, opacity 1s ease, transform 0.5s ease;
+  }
+
+  &:hover {
+    width: 159px; 
+    border-radius: 80px;
+    padding : 0 12px;
+
+    span {
+      max-width: 100px;
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+   &.active {
+    background:#27272A;
+
+    svg {
+      color: white;
+    }
+     span {
+     color: white;
+     
+    }
+    
+    &:hover {
+    width: 210px; 
+    border-radius: 105px;
+    padding : 0 12px;
+    }
+  }
 }

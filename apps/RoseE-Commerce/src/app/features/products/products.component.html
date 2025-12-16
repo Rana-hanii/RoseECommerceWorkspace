@@ -1,0 +1,36 @@
+<section class="container mx-auto lg:px-20">
+
+    <!-- The main Division -->
+    <div class="w-full flex flex-col justify-center items-center lg:flex-row gap-3 py-14 ">
+
+        <!-- Filters Section  -->
+         <div class="w-1/4 flex flex-col items-start justify-start gap-3">
+
+         </div>
+
+
+
+         <!-- Products Section -->
+          <div class="w-3/4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 ">
+
+            <!-- here will be a forloop on products array which will contain Reusable-Card-Component -->
+
+            @for (item of (allProducts$ | async) | sortPrice:'lowHigh'; track $index) {
+
+                 <app-product-card
+                    [image]="item.imgCover"
+                    [alt]="item.slug"
+                    [title]="item.title"
+                    [value]="item.rateAvg"
+                    [price]="item.priceAfterDiscount"
+                    [priceBefore]="item.price"
+                    [badges]="item.badges"
+                    [wishlistBtn]="true"
+                ></app-product-card>
+            }
+               
+
+          </div>
+    </div>
+
+</section>
