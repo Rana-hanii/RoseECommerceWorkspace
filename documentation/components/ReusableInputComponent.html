@@ -1,0 +1,1119 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>@rose-ecommerce-workspace/source documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">@rose-ecommerce-workspace/source documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ReusableInputComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>apps/RoseE-Commerce/src/app/shared/components/reusableInput/reusableInput.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-reusable-input</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>InputTextModule</code>
+                            <code>ReactiveFormsModule</code>
+                            <code>NgxIntlTelInputModule</code>
+                                <code><a href="../components/ErrorMsgComponent.html" target="_self" >ErrorMsgComponent</a></code>
+                            <code>Select</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./reusableInput.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./reusableInput.component.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Public</span>
+                                <a href="#controlDir" >controlDir</a>
+                            </li>
+                            <li>
+                                <a href="#showPassword" >showPassword</a>
+                            </li>
+                            <li>
+                                <a href="#value" >value</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#registerOnChange" >registerOnChange</a>
+                            </li>
+                            <li>
+                                <a href="#registerOnTouched" >registerOnTouched</a>
+                            </li>
+                            <li>
+                                <a href="#togglePasswordEye" >togglePasswordEye</a>
+                            </li>
+                            <li>
+                                <a href="#writeValue" >writeValue</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#customClass" >customClass</a>
+                            </li>
+                            <li>
+                                <a href="#label" >label</a>
+                            </li>
+                            <li>
+                                <a href="#options" >options</a>
+                            </li>
+                            <li>
+                                <a href="#placeholder" >placeholder</a>
+                            </li>
+                            <li>
+                                <a href="#type" >type</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#control" >control</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(controlDir: NgControl)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">apps/RoseE-Commerce/src/app/shared/components/reusableInput/reusableInput.component.ts:31</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>controlDir</td>
+                                                  
+                                                        <td>
+                                                                    <code>NgControl</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="customClass"></a>
+                        <b>customClass</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">apps/RoseE-Commerce/src/app/shared/components/reusableInput/reusableInput.component.ts:28</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="label"></a>
+                        <b>label</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">apps/RoseE-Commerce/src/app/shared/components/reusableInput/reusableInput.component.ts:26</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="options"></a>
+                        <b>options</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">apps/RoseE-Commerce/src/app/shared/components/reusableInput/reusableInput.component.ts:25</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="placeholder"></a>
+                        <b>placeholder</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">apps/RoseE-Commerce/src/app/shared/components/reusableInput/reusableInput.component.ts:27</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="type"></a>
+                        <b>type</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;text&quot; | &quot;password&quot; | &quot;rePassword&quot; | &quot;email&quot; | &quot;tel&quot; | &quot;select&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;text&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">apps/RoseE-Commerce/src/app/shared/components/reusableInput/reusableInput.component.ts:24</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registerOnChange"></a>
+                    <span class="name">
+                        <span ><b>registerOnChange</b></span>
+                        <a href="#registerOnChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>registerOnChange(fn: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="42"
+                                    class="link-to-prism">apps/RoseE-Commerce/src/app/shared/components/reusableInput/reusableInput.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fn</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registerOnTouched"></a>
+                    <span class="name">
+                        <span ><b>registerOnTouched</b></span>
+                        <a href="#registerOnTouched"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>registerOnTouched(fn: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="46"
+                                    class="link-to-prism">apps/RoseE-Commerce/src/app/shared/components/reusableInput/reusableInput.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fn</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="togglePasswordEye"></a>
+                    <span class="name">
+                        <span ><b>togglePasswordEye</b></span>
+                        <a href="#togglePasswordEye"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>togglePasswordEye()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="54"
+                                    class="link-to-prism">apps/RoseE-Commerce/src/app/shared/components/reusableInput/reusableInput.component.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="writeValue"></a>
+                    <span class="name">
+                        <span ><b>writeValue</b></span>
+                        <a href="#writeValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>writeValue(obj: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="39"
+                                    class="link-to-prism">apps/RoseE-Commerce/src/app/shared/components/reusableInput/reusableInput.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>obj</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="controlDir"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Public</span>
+                        <span ><b>controlDir</b></span>
+                        <a href="#controlDir"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>NgControl</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Self()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">apps/RoseE-Commerce/src/app/shared/components/reusableInput/reusableInput.component.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showPassword"></a>
+                    <span class="name">
+                        <span ><b>showPassword</b></span>
+                        <a href="#showPassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">apps/RoseE-Commerce/src/app/shared/components/reusableInput/reusableInput.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="value"></a>
+                    <span class="name">
+                        <span ><b>value</b></span>
+                        <a href="#value"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | number | undefined</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">apps/RoseE-Commerce/src/app/shared/components/reusableInput/reusableInput.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="control"></a>
+                        <span class="name"><b>control</b><a href="#control"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>control()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">apps/RoseE-Commerce/src/app/shared/components/reusableInput/reusableInput.component.ts:50</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input, OnInit, Self } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { FormControl, NgControl, ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
+import { InputTextModule } from &#x27;primeng/inputtext&#x27;;
+import { Select } from &#x27;primeng/select&#x27;;
+import { NgxIntlTelInputModule } from &#x27;ngx-intl-tel-input&#x27;;
+import { ErrorMsgComponent } from &#x27;../errorMsg/errorMsg.component&#x27;;
+
+
+@Component({
+  selector: &#x27;app-reusable-input&#x27;,
+  imports: [
+    CommonModule,
+    InputTextModule,
+    ReactiveFormsModule,
+    NgxIntlTelInputModule,
+    ErrorMsgComponent,
+    Select,
+  ],
+  templateUrl: &#x27;./reusableInput.component.html&#x27;,
+  styleUrl: &#x27;./reusableInput.component.css&#x27;,
+})
+export class ReusableInputComponent {
+  @Input() type: &#x27;text&#x27; | &#x27;password&#x27; | &#x27;rePassword&#x27; | &#x27;email&#x27; | &#x27;tel&#x27; | &#x27;select&#x27; &#x3D; &#x27;text&#x27;;
+  @Input() options: string[] &#x3D; [];
+  @Input() label &#x3D; &#x27;&#x27;;
+  @Input() placeholder &#x3D; &#x27;&#x27;;
+  @Input() customClass &#x3D; &#x27;&#x27;;
+
+  showPassword &#x3D; false;
+  value: string | number | undefined;
+
+
+  constructor(@Self() public controlDir: NgControl) {
+    this.controlDir.valueAccessor &#x3D; this;
+     
+  }
+
+  writeValue(obj: any): void {
+    this.value &#x3D; obj;
+  }
+  registerOnChange(fn: any): void {
+    this.value &#x3D; fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.value &#x3D; fn;
+  }
+
+  get control(): FormControl {
+    return this.controlDir.control as FormControl;
+  }
+
+  togglePasswordEye(): void {
+    this.showPassword &#x3D; !this.showPassword;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;flex justify-center items-center&quot;&gt;
+  &lt;div
+    [ngClass]&#x3D;&quot;customClass&quot;
+    class&#x3D;&quot;flex flex-col items-start justify-center gap-1 my-0&quot;
+  &gt;
+    &lt;label for&#x3D;&quot;{{ label }}&quot;
+      &gt;&lt;strong&gt;{{ label }}&lt;/strong&gt;&lt;/label
+    &gt;
+
+    @if (type !&#x3D;&#x3D; &#x27;select&#x27;) {
+
+    &lt;div class&#x3D;&quot;w-full relative&quot;&gt;
+      @if (type!&#x3D;&#x3D; &#x27;tel&#x27;) {
+      &lt;input
+        class&#x3D;&quot;form-input relative&quot;
+        id&#x3D;&quot;{{ label }}&quot;
+        [type]&#x3D;&quot;
+          type &#x3D;&#x3D;&#x3D; &#x27;password&#x27; ? (showPassword ? &#x27;text&#x27; : &#x27;password&#x27;) : type
+        &quot;
+        placeholder&#x3D;&quot;{{ placeholder }}&quot;
+        value&#x3D;&quot;{{ value }}&quot;
+        [formControl]&#x3D;&quot;control&quot;
+        [class]&#x3D;&quot;
+          control.touched
+            ? control.invalid
+              ? &#x27;valid-input&#x27;
+              : &#x27;invalid-input&#x27;
+            : null
+        &quot;
+      /&gt;
+
+      } @if (type &#x3D;&#x3D;&#x3D; &#x27;password&#x27;) {
+      &lt;button
+        type&#x3D;&quot;button&quot;
+        class&#x3D;&quot;absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-gray-700&quot;
+        (click)&#x3D;&quot;togglePasswordEye()&quot;
+        [attr.aria-label]&#x3D;&quot;showPassword ? &#x27;Hide password&#x27; : &#x27;Show password&#x27;&quot;
+      &gt;
+        &lt;i
+          class&#x3D;&quot;cursor-pointer pi&quot;
+          [class]&#x3D;&quot;showPassword ? &#x27;pi-eye-slash&#x27; : &#x27;pi-eye&#x27;&quot;
+        &gt;&lt;/i&gt;
+      &lt;/button&gt;
+      } 
+       @if (type &#x3D;&#x3D;&#x3D;&#x27;rePassword&#x27; ) {
+      &lt;button
+        type&#x3D;&quot;button&quot;
+        class&#x3D;&quot;absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-gray-700&quot;
+        (click)&#x3D;&quot;togglePasswordEye()&quot;
+        [attr.aria-label]&#x3D;&quot;showPassword ? &#x27;Hide password&#x27; : &#x27;Show password&#x27;&quot;
+      &gt;
+        &lt;i
+          class&#x3D;&quot;cursor-pointer pi&quot;
+          [class]&#x3D;&quot;showPassword ? &#x27;pi-eye-slash&#x27; : &#x27;pi-eye&#x27;&quot;
+        &gt;&lt;/i&gt;
+      &lt;/button&gt;
+      } 
+      
+      @if(type &#x3D;&#x3D;&#x3D; &#x27;tel&#x27;){
+
+      &lt;ngx-intl-tel-input
+        [cssClass]&#x3D;&quot;&#x27;form-input&#x27;&quot;
+        [preferredCountries]&#x3D;&quot;[&#x27;eg&#x27;]&quot;
+        [enableAutoCountrySelect]&#x3D;&quot;true&quot;
+        [enablePlaceholder]&#x3D;&quot;true&quot;
+        [searchCountryFlag]&#x3D;&quot;true&quot;
+        [selectFirstCountry]&#x3D;&quot;true&quot;
+        [formControl]&#x3D;&quot;control&quot;
+        [separateDialCode]&#x3D;&quot;true&quot;
+        [phoneValidation]&#x3D;&quot;true&quot;
+        type&#x3D;&quot;tel&quot;
+      &gt;&lt;/ngx-intl-tel-input&gt;
+
+      }
+    &lt;/div&gt;
+
+    } @if (type &#x3D;&#x3D;&#x3D; &#x27;select&#x27;) {
+
+         &lt;div class&#x3D;&quot;form-input !py-1 &quot;&gt;
+          &lt;p-select
+            [options]&#x3D;&quot;options&quot;
+            [placeholder]&#x3D;&quot;placeholder&quot;
+            [formControl]&#x3D;&quot;control&quot;
+            styleClass&#x3D;&quot; w-full !border-0 no-prime-style&quot;
+            panelStyleClass&#x3D;&quot;&quot;
+          /&gt;
+        &lt;/div&gt;
+    }
+
+    &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+      &lt;app-error-msg
+        [control]&#x3D;&quot;control&quot;
+        [label]&#x3D;&quot;label&quot;
+        [type]&#x3D;&quot;type&quot;
+      &gt;&lt;/app-error-msg&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="flex justify-center items-center">  <div    [ngClass]="customClass"    class="flex flex-col items-start justify-center gap-1 my-0"  >    <label for="{{ label }}"      ><strong>{{ label }}</strong></label    >    @if (type !== \'select\') {    <div class="w-full relative">      @if (type!== \'tel\') {      <input        class="form-input relative"        id="{{ label }}"        [type]="          type === \'password\' ? (showPassword ? \'text\' : \'password\') : type        "        placeholder="{{ placeholder }}"        value="{{ value }}"        [formControl]="control"        [class]="          control.touched            ? control.invalid              ? \'valid-input\'              : \'invalid-input\'            : null        "      />      } @if (type === \'password\') {      <button        type="button"        class="absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-gray-700"        (click)="togglePasswordEye()"        [attr.aria-label]="showPassword ? \'Hide password\' : \'Show password\'"      >        <i          class="cursor-pointer pi"          [class]="showPassword ? \'pi-eye-slash\' : \'pi-eye\'"        ></i>      </button>      }        @if (type ===\'rePassword\' ) {      <button        type="button"        class="absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-gray-700"        (click)="togglePasswordEye()"        [attr.aria-label]="showPassword ? \'Hide password\' : \'Show password\'"      >        <i          class="cursor-pointer pi"          [class]="showPassword ? \'pi-eye-slash\' : \'pi-eye\'"        ></i>      </button>      }             @if(type === \'tel\'){      <ngx-intl-tel-input        [cssClass]="\'form-input\'"        [preferredCountries]="[\'eg\']"        [enableAutoCountrySelect]="true"        [enablePlaceholder]="true"        [searchCountryFlag]="true"        [selectFirstCountry]="true"        [formControl]="control"        [separateDialCode]="true"        [phoneValidation]="true"        type="tel"      ></ngx-intl-tel-input>      }    </div>    } @if (type === \'select\') {         <div class="form-input !py-1 ">          <p-select            [options]="options"            [placeholder]="placeholder"            [formControl]="control"            styleClass=" w-full !border-0 no-prime-style"            panelStyleClass=""          />        </div>    }    <div class="mb-3">      <app-error-msg        [control]="control"        [label]="label"        [type]="type"      ></app-error-msg>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AboutSectionComponent', 'selector': 'app-about-section'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'AuthHeaderFooterComponent', 'selector': 'app-auth-header-footer'},{'name': 'AuthTitleComponent', 'selector': 'app-auth-title'},{'name': 'BenefitsSectionComponent', 'selector': 'app-benefits-section'},{'name': 'BenefitsUIComponent', 'selector': 'app-benefits-ui'},{'name': 'BestSellingComponent', 'selector': 'app-best-selling'},{'name': 'CustomButtonComponent', 'selector': 'app-custom-button'},{'name': 'ErrorMsgComponent', 'selector': 'app-error-msg'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'GallarySectionComponent', 'selector': 'app-gallary-section'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LineComponent', 'selector': 'app-line'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'MainTitleComponent', 'selector': 'app-main-title'},{'name': 'NavBarComponent', 'selector': 'app-nav-bar'},{'name': 'NxWelcomeComponent', 'selector': 'app-nx-welcome'},{'name': 'ProductCardBadgeComponent', 'selector': 'app-product-card-badge'},{'name': 'ProductCardComponent', 'selector': 'app-product-card'},{'name': 'ProductsComponent', 'selector': 'app-products'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ReusableInputComponent', 'selector': 'app-reusable-input'},{'name': 'SectionTitleComponent', 'selector': 'app-section-title'},{'name': 'TestimonialsComponent', 'selector': 'app-testimonials'},{'name': 'TrustedByComponent', 'selector': 'app-trusted-by'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ReusableInputComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ReusableInputComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
