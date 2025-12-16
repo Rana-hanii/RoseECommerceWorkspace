@@ -10,12 +10,14 @@ import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
 import { Drawer } from 'primeng/drawer';
 import { Menu } from 'primeng/menu';
+import { FormsModule } from '@angular/forms';
+import { ProductsService } from '../../features/products/services/products.service';
 
 
 
 @Component({
   selector: 'app-nav-bar',
-  imports: [CommonModule, RouterLink, RouterLinkActive ,DrawerModule, ButtonModule, AvatarModule , Menu  ],
+  imports: [CommonModule, RouterLink, RouterLinkActive ,DrawerModule, ButtonModule, AvatarModule , Menu ,FormsModule  ],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.scss',
 })
@@ -28,10 +30,12 @@ export class NavBarComponent implements OnInit{
   userName=''
   lastName=''
   items:any[]=[]
+  textSearch=signal<string>('')
  
   private readonly http=inject(HttpClient)
   private readonly authService=inject(AuthService)
   private readonly homeService=inject(HomeService)
+  private readonly productsService=inject(ProductsService)
   private readonly cookieService=inject(CookieService)
   private readonly plat_Id=inject(PLATFORM_ID)
 
@@ -54,6 +58,10 @@ export class NavBarComponent implements OnInit{
     this.showUserMenu = !this.showUserMenu
   }
 
+
+  search():void{
+     this.productsService.setSearchText(this.textSearch());
+  }
 
  
 
@@ -126,7 +134,7 @@ export class NavBarComponent implements OnInit{
        this.items = [
             {
                 label: `${this.userName} ${ this.lastName} `,
-               
+                
                 items: [
                     {
                         label: 'My Profile',

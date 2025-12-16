@@ -1,0 +1,47 @@
+:host ::ng-deep{
+    .p-paginator {
+         display: inline-flex !important;
+
+    .p-paginator-page {
+             width: 38px !important;
+            height: 38px !important;
+            border-radius: 8px !important;
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+
+            &:hover{
+                background:  #27272A !important;
+                color: white !important;
+            } 
+            &:focus{
+                background:  #A6252A !important;
+                color: white !important;
+            } 
+            
+    }   
+         .p-paginator-prev:hover,.p-paginator-next:hover ,.p-paginator-last:hover , .p-paginator-first:hover{
+            width: 38px !important;
+            height: 38px !important;
+            border-radius: 8px !important;
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+         }
+
+    .p-paginator-page {
+        background: white !important; 
+        color: black !important;
+        border-color: var(--color-primary) !important;
+        border: 1px solid #d4d4d8 !important;
+    }
+    .p-highlight{
+        background: var(--color-primary) !important;
+    }
+}
+
+}  
+
+section{
+    font-family: var(--font-primary);
+}

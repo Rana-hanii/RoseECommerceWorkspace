@@ -1,0 +1,42 @@
+<section >
+    <div class="w-full h-[277px] overflow-y-scroll flex flex-col justify-start items-start gap-y-3 ">
+        <!-- title section and reset button -->
+         <div class="flex flex-row w-full justify-between items-center ">
+            <h1 class="justify-start font-[600] text-xl">Category</h1>
+            <button class="text-[var(--color-primary)] justify-end  items-center inline-flex cursor-pointer font-[500]
+                        hover:scale-[1.2] duration-[1s] mr-3 hover:bg-[var(--color-secondary)] hover:rounded-xl hover:px-2"
+                (click)="reset()">
+
+                <svg width="22" height="22" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.25 3.75L3.75 11.25M3.75 3.75L11.25 11.25" stroke="#DC2626" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+
+                Reset</button>
+                
+         </div>
+         
+         <!-- loop on Categories -->
+         @for (item of allCategories$ |async; track item._id) {
+                
+             <div tabindex="0" role="button" (keydown.enter)="selectCategory(item._id)" 
+             class="w-[320px] flex flex-row justify-center items-center cursor-pointer pr-3"
+               (click)="selectCategory(item._id)" >
+
+                <!-- logo -->
+            <div class="w-1/6 flex items-center justify-center rounded-l-md transition-colors"
+            [ngClass]="{'bg-[var(--color-primary)]': selectedId === item._id,
+                        'bg-[#71717A]': selectedId !== item._id}">
+                <img [src]="item.image" class="object-contain w-[30px] h-[30px] p-1 filter  brightness-0 invert" alt="category-logo">
+            </div>
+
+            <!-- title -->
+            <div class="w-5/6 flex items-center justify-start  rounded-r-md h-[30px] transition-colors"
+                [ngClass]="{'bg-[#FBEAEA]': selectedId === item._id,
+                            'bg-[#E4E4E7]': selectedId !== item._id}">
+                <a><span class="ml-4 text-xl uppercase" >{{item.name}}</span></a>
+            </div>
+        </div>
+            }
+            
+    </div>
+</section>

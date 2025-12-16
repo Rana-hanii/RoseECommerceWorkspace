@@ -30,7 +30,8 @@
 
 ::ng-deep p-rating .pi-star,
 ::ng-deep p-rating .pi-star-fill,
-::ng-deep p-rating .pi-star-half {
+::ng-deep p-rating .pi-star-half, 
+::ng-deep p-rating .p-menu-submenu-label{
   color: #fbbf24 !important; // Amber-400
 }
 
@@ -38,6 +39,16 @@ p-rating {
   --p-rating-icon-active-color: #facc15;
 } 
 
+// (,'') ==> for styling drop menu 
+:root{
+  --p-menu-submenu-label-color:#741C21 !important;
+  --p-menu-submenu-label-font-weight: 700 !important;
+  --p-menu-item-icon-color:#A6252A !important ;
+  --p-menu-item-icon-focus-color:#A6252A!important ;
+  --p-menu-item-focus-background:#fbeaea !important ;
+  --p-menu-item-color:#741C21 !important;
+  --p-menu-item-focus-color:#A6252A !important;
+}
 
 @theme {
   --color-primary: #A6252A;

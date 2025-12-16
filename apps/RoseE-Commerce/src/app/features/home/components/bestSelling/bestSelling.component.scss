@@ -10,4 +10,22 @@
 }
 section{
     font-family: var(--font-primary);
+} 
+
+
+:host ::ng-deep {
+    .p-galleria-prev-button{
+      left: 10% !important;
+      background-color: #A6252A !important;
+    }
+    .p-galleria-next-button{
+      right: 10% !important;
+      background-color: #A6252A !important;
+    }
+    .p-galleria-close-button{
+      background-color: #A6252A !important;
+    }
+  
 }
+
+
