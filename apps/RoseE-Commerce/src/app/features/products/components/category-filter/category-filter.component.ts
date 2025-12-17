@@ -1,14 +1,15 @@
-import { Component, EventEmitter, inject, Input, OnInit, Output, signal, WritableSignal } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import * as categoriesActions from "../../../../store/Categories/categories.actions"
 import * as categoriesSelectors from "../../../../store/Categories/categories.selectors"
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Categories} from 'apps/RoseE-Commerce/src/app/shared/interfaces/category-card/category-res';
+import { ResetButtonComponent } from "apps/RoseE-Commerce/src/app/shared/components/reset-button/reset-button.component";
 
 @Component({
   selector: 'app-category-filter',
-  imports: [CommonModule],
+  imports: [CommonModule, ResetButtonComponent],
   templateUrl: './category-filter.component.html',
   styleUrl: './category-filter.component.scss',
 })
@@ -17,10 +18,10 @@ export class CategoryFilterComponent implements OnInit {
   private readonly store=inject(Store)
 
   allCategories$!:Observable<Categories[]>
-  selectedId: string | null = null
+  selectedId = signal<string[]>([])
   
 
-  @Output() categorySelected = new EventEmitter<string|null>();
+  @Output() categorySelected = new EventEmitter<string[]|null>();
     
 
 
@@ -38,18 +39,24 @@ export class CategoryFilterComponent implements OnInit {
   // (,") ====> set Categories in the array 
   setCategories():void{
     this.allCategories$=this.store.select(categoriesSelectors.selectAllCategories)
+    
   } 
   
   // (,") ====> function to filter products with category id
   selectCategory(id:string) {
-    this.selectedId=id
-    this.categorySelected.emit(id) 
+    const current = this.selectedId();
+    if (current.includes(id)) {
+      this.selectedId.set(current.filter(item => item !== id));
+    }else{
+       this.selectedId.set([...current, id]);
+    }
+    this.categorySelected.emit(this.selectedId()) 
   } 
 
   // (,") ====> function to reset filter 
   reset() {
-      this.selectedId = null;
-      this.categorySelected.emit(null);
+      this.selectedId.set([])
+      this.categorySelected.emit([]);
   }
 
 

@@ -4,7 +4,7 @@
     <div class="w-full flex flex-col justify-center lg:flex-row py-14 gap-x-2 ">
 
         <!-- Filters Section  -->
-         <div class="w-1/4 min-h-[100vh]  flex flex-col items-start justify-start">
+         <div class="w-1/4  flex flex-col items-start justify-start">
 
             <!-- Categories Filter -->
             <app-category-filter 
@@ -17,7 +17,26 @@
             <app-occasions-filter
             (OccasionSelected)="onOccationsSelected($event)"
             >
-            </app-occasions-filter>
+            </app-occasions-filter> 
+
+            <app-price-filter>
+
+            </app-price-filter>
+            
+
+            <!-- reset All button  -->
+            <div class="bg-[var(--color-secondary)] w-[297px] py-2 rounded-xl px-5 mt-6">
+
+                <div class=" w-full flex justify-center items-center">
+                     <app-reset-button
+                    [buttonName]="'Reset All'"
+                    (click)="resetAll()"
+                    >
+                    </app-reset-button>
+                </div>
+            </div> 
+
+
             
           
          </div>

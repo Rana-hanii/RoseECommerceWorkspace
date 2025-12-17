@@ -11,11 +11,13 @@ import * as productsActions from '../../store/products/products.actions';
 import * as productsSelectors from '../../store/products/products.selectors';
 import { CategoryFilterComponent } from "./components/category-filter/category-filter.component";
 import { OccasionsFilterComponent } from "./components/occassions-filter/occasions-filter.component";
+import { ResetButtonComponent } from "../../shared/components/reset-button/reset-button.component";
+import { PriceFilterComponent } from "./components/price-filter/price-filter.component";
 
 
 @Component({
   selector: 'app-products',
-  imports: [CommonModule, ProductCardComponent, AsyncPipe, PaginatorModule, CategoryFilterComponent, OccasionsFilterComponent],
+  imports: [CommonModule, ProductCardComponent, AsyncPipe, PaginatorModule, CategoryFilterComponent, OccasionsFilterComponent, ResetButtonComponent, PriceFilterComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
 })
@@ -50,12 +52,12 @@ export class ProductsComponent implements OnInit  {
        // (,") == > Set Products in Store
       setProducts():void{
         this.store.dispatch(productsActions.loadProducts())
-        this.store.dispatch(productsActions.sortingProducts({sorting : "LOW_TO_HIGH"}))
+        
       } 
 
       // (,") == > get Sorted Products from Store
       getProducts():void{
-        this.sortedProducts$=this.store.select(productsSelectors.sortByFilter)
+        this.sortedProducts$=this.store.select(productsSelectors.selectFilteredProducts)
         this.pagination()
       }
 
@@ -64,7 +66,7 @@ export class ProductsComponent implements OnInit  {
 
       //(,") ==> paginator function and make the first page shown  
         first = 0;
-        rows = 6;
+        rows = 9;
         onPageChange(event: PaginatorState) {
             this.first = event.first ?? 0;
             this.rows = event.rows ?? 10;
@@ -78,15 +80,19 @@ export class ProductsComponent implements OnInit  {
         }
         
 
-        onCategorySelected(categoryID: string |null) {
-          this.store.dispatch(productsActions.categorizedProducts({ categoryID }));
+        onCategorySelected(categoryID: string[]|null) {
+          this.store.dispatch(productsActions.filteringProducts({ filter:{categoryID}}));
           this.first = 0;
           this.pagination();
         }
       
-        onOccationsSelected(occasionsID:string|null){
-          this.store.dispatch(productsActions.occaionsProducts({occasionsID}))
+        onOccationsSelected(occasionID:string[]|null){
+          this.store.dispatch(productsActions.filteringProducts({filter :{occasionID}}))
           this.first=0
           this.pagination()
+        }
+
+        resetAll():void{
+          this.store.dispatch(productsActions.resetAllFilters())
         }
 }

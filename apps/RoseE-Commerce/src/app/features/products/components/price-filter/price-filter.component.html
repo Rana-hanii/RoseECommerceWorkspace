@@ -1,1 +1,42 @@
-<p>price-filter works!</p>
+<section class="w-[320px] mt-6 mr-5 " >
+    <div class="w-full min-h-[277px]  flex flex-col justify-start items-start gap-y-3  py-8   ">
+        <!-- title section and reset button -->
+         <div class="flex flex-row w-full justify-between items-center ">
+            <h1 class="justify-start font-[600] text-xl">Price</h1>
+           <app-reset-button
+            [buttonName]="'Reset'"
+           
+            ></app-reset-button>
+                
+         </div>
+         
+         <!-- loop on occasions -->
+          <div class="w-full flex justify-between items-center my-3 "> 
+
+            <!-- from input -->
+                <div class="">
+                 <p-floatlabel>
+                    <input pInputText id="pricefrom_label" [(ngModel)]="value" autocomplete="off"
+                      ngClass="!w-[120px]  !border-[var(--color-primary)] !py-3 !text-gray-700 !font-[600] "  />
+                    <label for="pricefrom_label" ngClass="!text-[var(--color-primary)] ">From</label>
+                </p-floatlabel>
+                </div>
+
+               
+                
+                <div class="">
+                 <p-floatlabel>
+                    <input pInputText id="priceto_label" [(ngModel)]="value2" autocomplete="off" 
+                     ngClass="!w-[120px] !border-[var(--color-primary)] !py-3  !text-gray-700 !font-[600] "  />
+                    <label for="priceto_label" ngClass="!text-[var(--color-primary)]">to</label>
+                </p-floatlabel>
+                </div>
+
+             <!-- to input  -->
+               <!-- <input type="text" class="py-4 px-2 border-amber-300 border-[1px] w-4/9 rounded-xl "> -->
+
+             </div>
+          
+            
+    </div>
+</section>

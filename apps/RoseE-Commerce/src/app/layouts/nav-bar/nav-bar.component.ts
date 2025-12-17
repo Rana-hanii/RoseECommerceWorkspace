@@ -12,6 +12,8 @@ import { Drawer } from 'primeng/drawer';
 import { Menu } from 'primeng/menu';
 import { FormsModule } from '@angular/forms';
 import { ProductsService } from '../../features/products/services/products.service';
+import { Store } from '@ngrx/store';
+import * as productsActions from "./../../store/products/products.actions"
 
 
 
@@ -38,6 +40,7 @@ export class NavBarComponent implements OnInit{
   private readonly productsService=inject(ProductsService)
   private readonly cookieService=inject(CookieService)
   private readonly plat_Id=inject(PLATFORM_ID)
+  private readonly store=inject(Store)
 
 
   ngOnInit(): void {
@@ -58,10 +61,11 @@ export class NavBarComponent implements OnInit{
     this.showUserMenu = !this.showUserMenu
   }
 
-
-  search():void{
-     this.productsService.setSearchText(this.textSearch());
+  onSearch(event:Event){
+    const value = (event.target as HTMLInputElement).value
+    this.store.dispatch(productsActions.filteringProducts({filter :{search :value}}))
   }
+
 
  
 

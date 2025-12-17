@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NavBarComponent } from './nav-bar.component';
 import { API_URL } from '@rose-ecommerce-workspace/auth';
 import { ActivatedRoute } from '@angular/router';
-
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('NavBarComponent', () => {
   let component: NavBarComponent;
@@ -14,6 +14,7 @@ describe('NavBarComponent', () => {
       imports: [NavBarComponent ,HttpClientTestingModule],
        providers: [
         { provide: API_URL, useValue: 'https://flower.elevateegy.com/api/v1'},
+        provideMockStore({ initialState: {} }),
         {
         provide: ActivatedRoute,
          useValue: {

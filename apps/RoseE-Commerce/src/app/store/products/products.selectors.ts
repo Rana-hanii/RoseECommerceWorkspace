@@ -10,41 +10,4 @@ export const selectLoadingStatus = createSelector(selectProductsState , (state)=
 
 export const selectErrorMsg = createSelector(selectProductsState , (state)=>state.error) 
 
-export const selectProductsWithBadges = createSelector(   selectAllProducts, (products) =>
-      products.map(p => ({
-      ...p,
-      badges: productsUti.getBadge(p), 
-    }))) 
-
-export const selectSortingType = createSelector(selectProductsState, (state)=> state.sorting)    
-
-export const selectCategory= createSelector(selectProductsState , (state)=>state.categoryID) 
-
-export const selectOccasion= createSelector(selectProductsState , (state)=>state.occasionsID) 
-
-
-// (,'') ===> this selector is for showing products on filter
-export const sortByFilter = createSelector(selectAllProducts , selectCategory ,selectSortingType , selectOccasion ,
-  (products , categoryID , sortType , occasionsID) => { 
-
-    if (categoryID) {
-      return [...products].filter( p=> p.category === categoryID )
-    } 
-    
-    if (occasionsID) {
-      return [...products].filter( p=> p.occasion === occasionsID)
-    }
-    
-    if(sortType === 'LOW_TO_HIGH'){
-      return [...products].sort((a,b) => a.priceAfterDiscount - b.priceAfterDiscount)
-    } 
-
-
-    return [...products]
-    } 
-
-
-
-
-  
-)
+export const selectFilteredProducts = createSelector (selectProductsState , (state =>state.filteredProducts))

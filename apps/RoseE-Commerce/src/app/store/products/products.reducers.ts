@@ -1,13 +1,16 @@
 import { createReducer, on } from "@ngrx/store";
-import { initialProductsState, SortType } from "./products.state";
+import { initialProductsState } from "./products.state";
 import * as productsActions from './products.actions'
+import { applyAllFilters } from "./products.filter";
 
 export const productsReducer=createReducer(initialProductsState,
     on(productsActions.loadProducts,(state)=>({ ...state , isLoading:true})),
 
     on(productsActions.setProducts,(state , {products}) => ({
         ...state,
-        products
+        products,
+        filteredProducts:applyAllFilters(products , state.filter),
+        isLoading:false
     })) ,
 
     on(productsActions.loadproductsFailure,(state , {error}) => ({
@@ -15,19 +18,32 @@ export const productsReducer=createReducer(initialProductsState,
         isLoading:false , 
         error
     })), 
-    on(productsActions.sortingProducts , (state)=> ({
-        ...state , 
-        sorting:'LOW_TO_HIGH' as SortType
-    })) , 
 
+    on(productsActions.filteringProducts , (state , {filter})=>{
+       const updatedFilters = {
+        ...state.filter , 
+        ...filter
+       }
 
-    on(productsActions.categorizedProducts , (state ,{categoryID})=>({
-        ...state , 
-        categoryID
-    })) , 
+       return{
+        ...state,
+        filter:updatedFilters,
+        filteredProducts:applyAllFilters(state.products , updatedFilters)
 
-    on(productsActions.occaionsProducts , (state ,{occasionsID})=>({
-        ...state , 
-        occasionsID
+       }
+    }) ,
+
+    on(productsActions.resetAllFilters , (state)=>({
+        ...state ,
+        filter :{
+            categoryID: [],
+            occasionID: [],
+            lowPrice: 0,
+            highPrice: 0,
+            minRating: 0,
+            search: '',
+            sorting: null
+        } ,
+        filteredProducts:[...state.products]
     }))
 )

@@ -3,7 +3,7 @@ import { ApiService } from '../../../core/services/api.service';
 import { Observable } from 'rxjs';
 import { API_ENDPOINTS } from '../../../core/constants/api-endPoints';
 import { ProductsRES } from '../../../shared/interfaces/products/products-res';
-import { CategoryRES } from '../../../shared/interfaces/category-card/category-res';
+
 
 @Injectable({
   providedIn: 'root'
