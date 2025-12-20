@@ -13,23 +13,23 @@ export function applyAllFilters(products:ProductData[] , filters:filterProducts)
         result = result.filter(data=> filters.occasionID?.includes(data.occasion))
     }
     
-    if(filters.lowPrice){
-        result = result.filter(data => data.priceAfterDiscount >= filters.lowPrice)
+    if(filters.lowPrice != null){
+        result = result.filter(data => data.priceAfterDiscount >= filters.lowPrice!)
     }
 
-    if(filters.highPrice){
-        result = result.filter(data => data.priceAfterDiscount <= filters.highPrice)
+    if(filters.highPrice != null){
+        result = result.filter(data => data.priceAfterDiscount <= filters.highPrice!)
     }
 
-    if(filters.minRating){
-        result = result.filter(data=> data.rateAvg >= filters.minRating)
+    if(filters.minRating != null){
+        result = result.filter(data=> data.rateAvg == filters.minRating!)
     }
 
     if(filters.sorting === 'LOW_TO_HIGH'){
-        result = result.sort((a,b) => a.priceAfterDiscount - b.priceAfterDiscount)
+        result = [...result].sort((a,b) => a.priceAfterDiscount - b.priceAfterDiscount)
     }
     if(filters.sorting === 'HIGH_TO_LOW'){
-        result = result.sort((a,b) => b.priceAfterDiscount - a.priceAfterDiscount)
+        result = [...result].sort((a,b) => b.priceAfterDiscount - a.priceAfterDiscount)
     }
     
     if (filters.search) {

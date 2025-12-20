@@ -1,0 +1,33 @@
+<section>
+     <div class="w-full lg:w-[335px] min-h-[150px]  flex flex-col justify-start items-center gap-y-2  py-2 px-2 lg:px-0 ">
+        <!-- title section and reset button -->
+
+         <div class="flex flex-row w-full justify-between items-center ">
+            <h1 class="justify-start font-[600] text-xl">Price</h1>
+        
+                
+         </div>
+        
+         
+         <!-- toggle sort from (high to low) and (low to high) -->
+
+
+        <div class=" flex flex-row justify-center items-center gap-6 mt-5 px-3 lg:px-0 ">
+            <p-toggleswitch [(ngModel)]="checked" class="scale-[1.5] !custom-toggle" (ngModelChange)="onSortChange($event)">
+                <ng-template #handle let-checked="checked">
+                    <i [ngClass]="['!text-[9px]', '!text-[var(--color-primary)]' , 'pi', checked ? 'pi-arrow-up' : 'pi-arrow-down']"  ></i>
+                </ng-template>
+            </p-toggleswitch>
+
+            <div class="text-md lg:text-xl font-[600] text-[var(--color-primary)] mb-3">
+                  @if (checked) {
+                    <h1><i class="pi pi-sort-amount-down scale-150"></i> High to low</h1>
+
+                    }@else {
+                        <h1><i class="pi pi-sort-amount-down-alt scale-150 "></i> Low to high</h1>
+                    }
+            </div>
+        </div>
+
+     </div>  
+</section>

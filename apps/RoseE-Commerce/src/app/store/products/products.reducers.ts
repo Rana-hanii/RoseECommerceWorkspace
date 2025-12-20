@@ -38,9 +38,9 @@ export const productsReducer=createReducer(initialProductsState,
         filter :{
             categoryID: [],
             occasionID: [],
-            lowPrice: 0,
-            highPrice: 0,
-            minRating: 0,
+            lowPrice: null,
+            highPrice: null,
+            minRating: null,
             search: '',
             sorting: null
         } ,

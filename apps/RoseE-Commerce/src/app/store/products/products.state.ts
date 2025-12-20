@@ -5,9 +5,9 @@ export type SortType = 'LOW_TO_HIGH' | 'HIGH_TO_LOW' | null;
 export interface filterProducts{
     categoryID : string[]|null
     occasionID : string[]|null
-    lowPrice : number
-    highPrice : number
-    minRating : number
+    lowPrice : number|null
+    highPrice : number|null
+    minRating : number|null
     search:string
     sorting :SortType
 }

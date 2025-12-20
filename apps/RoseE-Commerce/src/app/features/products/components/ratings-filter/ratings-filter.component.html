@@ -1,1 +1,25 @@
-<p>ratings-filter works!</p>
+<section class="w-[320px] mt-6 mr-5 px-2 lg:px-0 ">
+     <div class="w-full  flex flex-col justify-start items-start gap-y-3 ">
+        <!-- title section and reset button -->
+         <div class="flex flex-row w-full justify-between items-center ">
+            <h1 class="justify-start font-[600] text-xl">Rating</h1>
+            <app-reset-button
+            [buttonName]="'Reset'"
+            (click)="reset()"
+            ></app-reset-button>
+                
+         </div>
+         
+     
+            <!-- Rating Stars icons -->
+         <div class="card flex items-center justify-center">
+
+            <p-rating [(ngModel)]="ratingValue"
+                        (ngModelChange)="onRating($event)"
+                        class="custom-rating !gap-2 !mt-4" />
+
+        </div>
+       
+            
+    </div>
+</section>

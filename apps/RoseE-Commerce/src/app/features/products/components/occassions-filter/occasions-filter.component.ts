@@ -5,6 +5,7 @@ import {  Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as occasionActions from "./../../../../store/Occasions/occasions.actions"
 import * as occasionSelectors from "./../../../../store/Occasions/occaisons.selectors"
+import * as productsSelectors from "../../../../store/products/products.selectors"
 import { ResetButtonComponent } from "apps/RoseE-Commerce/src/app/shared/components/reset-button/reset-button.component";
 
 
@@ -30,7 +31,7 @@ export class OccasionsFilterComponent implements OnInit {
       ngOnInit(): void {
           this.getOccasions()
           this.setOccasionsData() 
-        
+          this.emptyFilteredOccasions()
       } 
 
       // (,") ====> get Occasions from Store 
@@ -42,6 +43,19 @@ export class OccasionsFilterComponent implements OnInit {
       setOccasionsData():void{
         this.allOccasions$ = this.store.select(occasionSelectors.selectAllOccasions) 
       } 
+
+
+      // (,") ====> empty the array of selected Id
+      emptyFilteredOccasions():void{
+        this.store.select(productsSelectors.selectCategoriesIDs).subscribe({
+          next: res => {
+            if (res?.length == 0 ) {
+              this.selectedId.set([])
+              
+            }
+          }
+        })
+      }
 
       // (,") ====> function to filter products with occasion id
       selectOccasions(id:string){

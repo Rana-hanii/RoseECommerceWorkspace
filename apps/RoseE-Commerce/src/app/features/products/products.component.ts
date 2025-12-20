@@ -1,5 +1,5 @@
 import { setCategories } from './../../store/Categories/categories.actions';
-import { Component, inject, OnInit, Signal } from '@angular/core';
+import { Component, inject, OnInit, Signal, ViewChild } from '@angular/core';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { ProductCardComponent } from "../../shared/components/product-Card/product-Card.component";
 import { ProductsService } from './services/products.service';
@@ -13,11 +13,17 @@ import { CategoryFilterComponent } from "./components/category-filter/category-f
 import { OccasionsFilterComponent } from "./components/occassions-filter/occasions-filter.component";
 import { ResetButtonComponent } from "../../shared/components/reset-button/reset-button.component";
 import { PriceFilterComponent } from "./components/price-filter/price-filter.component";
+import { RatingsFilterComponent } from "./components/ratings-filter/ratings-filter.component";
+import { SortFilterComponent } from "./components/sort-filter/sort-filter.component";
+import { ButtonModule } from 'primeng/button';
+import { Drawer, DrawerModule } from 'primeng/drawer';
 
 
 @Component({
   selector: 'app-products',
-  imports: [CommonModule, ProductCardComponent, AsyncPipe, PaginatorModule, CategoryFilterComponent, OccasionsFilterComponent, ResetButtonComponent, PriceFilterComponent],
+  imports: [CommonModule, ProductCardComponent, AsyncPipe, PaginatorModule,ButtonModule,DrawerModule,
+     CategoryFilterComponent, OccasionsFilterComponent, ResetButtonComponent, PriceFilterComponent,
+      RatingsFilterComponent, SortFilterComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
 })
@@ -35,6 +41,9 @@ export class ProductsComponent implements OnInit  {
    sub!:Subscription 
 
    selectedCategoryId: string | null = null;
+
+
+   visible= false;
 
   ngOnInit(): void {
       this.setProducts()
@@ -94,5 +103,13 @@ export class ProductsComponent implements OnInit  {
 
         resetAll():void{
           this.store.dispatch(productsActions.resetAllFilters())
-        }
+        } 
+
+
+
+             @ViewChild('drawerRef') drawerRef!: Drawer;
+        
+            closeCallback(e:any): void {
+                this.drawerRef.close(e);
+            }
 }
