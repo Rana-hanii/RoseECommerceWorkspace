@@ -35,15 +35,7 @@ export const productsReducer=createReducer(initialProductsState,
 
     on(productsActions.resetAllFilters , (state)=>({
         ...state ,
-        filter :{
-            categoryID: [],
-            occasionID: [],
-            lowPrice: null,
-            highPrice: null,
-            minRating: null,
-            search: '',
-            sorting: null
-        } ,
+        filter :{...initialProductsState.filter } ,
         filteredProducts:[...state.products]
     }))
 )

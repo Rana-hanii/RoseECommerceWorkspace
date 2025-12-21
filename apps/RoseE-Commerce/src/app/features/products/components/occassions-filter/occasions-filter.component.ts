@@ -1,7 +1,7 @@
-import { Component, EventEmitter, inject, Input, OnInit, Output, signal } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Occasions } from 'apps/RoseE-Commerce/src/app/shared/interfaces/occasions-card/occasions-res';
-import {  Observable } from 'rxjs';
+import {  Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as occasionActions from "./../../../../store/Occasions/occasions.actions"
 import * as occasionSelectors from "./../../../../store/Occasions/occaisons.selectors"
@@ -16,14 +16,14 @@ import { ResetButtonComponent } from "apps/RoseE-Commerce/src/app/shared/compone
   templateUrl: './occasions-filter.component.html',
   styleUrl: './occasions-filter.component.scss',
 })
-export class OccasionsFilterComponent implements OnInit {
+export class OccasionsFilterComponent implements OnInit ,OnDestroy {
 
       private readonly store=inject(Store)
 
 
       allOccasions$!:Observable<Occasions[]>
       selectedId= signal<string[]>([])
-
+      sub!:Subscription
 
       @Output() OccasionSelected = new EventEmitter<string[]|null>();
 
@@ -47,7 +47,7 @@ export class OccasionsFilterComponent implements OnInit {
 
       // (,") ====> empty the array of selected Id
       emptyFilteredOccasions():void{
-        this.store.select(productsSelectors.selectCategoriesIDs).subscribe({
+        this.sub = this.store.select(productsSelectors.selectCategoriesIDs).subscribe({
           next: res => {
             if (res?.length == 0 ) {
               this.selectedId.set([])
@@ -75,6 +75,8 @@ export class OccasionsFilterComponent implements OnInit {
       } 
 
      
-     
+     ngOnDestroy(): void {
+         this.sub.unsubscribe()
+     }
       
 }

@@ -23,7 +23,15 @@ export interface productsState {
 export const initialProductsState:productsState={
     products:[] as ProductData[],
     filteredProducts :[] as ProductData[],
-    filter:{} as filterProducts,
+    filter:{
+            categoryID: [],
+            occasionID: [],
+            lowPrice: null,
+            highPrice: null,
+            minRating: null,
+            search: '',
+            sorting: null
+            } as filterProducts,
     isLoading: false ,
     error: null ,
     

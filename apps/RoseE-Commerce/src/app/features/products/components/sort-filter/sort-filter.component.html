@@ -12,7 +12,7 @@
          <!-- toggle sort from (high to low) and (low to high) -->
 
 
-        <div class=" flex flex-row justify-center items-center gap-6 mt-5 px-3 lg:px-0 ">
+        <div class=" w-full flex flex-row justify-evenly items-center gap-6 mt-5 px-3 lg:px-0 ">
             <p-toggleswitch [(ngModel)]="checked" class="scale-[1.5] !custom-toggle" (ngModelChange)="onSortChange($event)">
                 <ng-template #handle let-checked="checked">
                     <i [ngClass]="['!text-[9px]', '!text-[var(--color-primary)]' , 'pi', checked ? 'pi-arrow-up' : 'pi-arrow-down']"  ></i>

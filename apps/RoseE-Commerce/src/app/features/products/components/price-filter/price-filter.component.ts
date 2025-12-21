@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnInit, signal } from '@angular/core';
+import { Component, effect, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ResetButtonComponent } from "apps/RoseE-Commerce/src/app/shared/components/reset-button/reset-button.component";
 import { InputTextModule } from 'primeng/inputtext';
@@ -7,6 +7,7 @@ import { FloatLabel } from 'primeng/floatlabel';
 import { Store } from '@ngrx/store';
 import * as productsActions from"../../../../store/products/products.actions"
 import * as productsSelectors from"../../../../store/products/products.selectors"
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-price-filter',
@@ -14,13 +15,13 @@ import * as productsSelectors from"../../../../store/products/products.selectors
   templateUrl: './price-filter.component.html',
   styleUrl: './price-filter.component.scss',
 })
-export class PriceFilterComponent implements OnInit {
+export class PriceFilterComponent implements OnInit , OnDestroy{
 
   private readonly store=inject(Store)
 
    lowPrice = signal<number | null>(null)
    highPrice = signal<number | null>(null)
-
+    sub!:Subscription
 
 
    ngOnInit(): void {
@@ -50,7 +51,7 @@ export class PriceFilterComponent implements OnInit {
 
 
     emptyPriceInputs():void{
-     this.store.select(productsSelectors.selectPricesValues).subscribe({
+     this.sub = this.store.select(productsSelectors.selectPricesValues).subscribe({
       next : res => {
         if (res.lowPrice == null && res.highPrice == null) {
           this.lowPrice.set(null)
@@ -66,5 +67,8 @@ export class PriceFilterComponent implements OnInit {
       this.highPrice.set(null);
       this.store.dispatch(productsActions.resetAllFilters());
     }
- 
+   
+    ngOnDestroy(): void {
+        this.sub.unsubscribe()
+    }
 }

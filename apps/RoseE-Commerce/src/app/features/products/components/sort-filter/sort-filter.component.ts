@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToggleSwitch } from 'primeng/toggleswitch';
 import { FormsModule } from '@angular/forms';
@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import * as productsActions from"../../../../store/products/products.actions"
 import * as productsSelectors from"../../../../store/products/products.selectors"
 import { SortType } from 'apps/RoseE-Commerce/src/app/store/products/products.state';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -14,16 +15,17 @@ import { SortType } from 'apps/RoseE-Commerce/src/app/store/products/products.st
   templateUrl: './sort-filter.component.html',
   styleUrl: './sort-filter.component.scss',
 })
-export class SortFilterComponent implements OnInit {
+export class SortFilterComponent implements OnInit , OnDestroy {
 
   private readonly store=inject(Store)
 
   checked = false;
   sortType = signal<SortType>('LOW_TO_HIGH')
-
+  sub!:Subscription
 
   ngOnInit(): void {
      this.setProductsSorting()
+     this.setDefaultSort()
   }
 
 
@@ -41,8 +43,8 @@ export class SortFilterComponent implements OnInit {
   }  
 
 
-  setDDefaultSort():void{
-    this.store.select(productsSelectors.selectSortType).subscribe({
+  setDefaultSort():void{
+    this.sub =  this.store.select(productsSelectors.selectSortType).subscribe({
       next:res=>{
        if (res===null) {
          this.sortType.set(null)
@@ -50,6 +52,11 @@ export class SortFilterComponent implements OnInit {
       }
     })
   } 
+
+
+  ngOnDestroy(): void {
+      this.sub?.unsubscribe()
+  }
 
 
 

@@ -1,11 +1,11 @@
 import { selectCategoriesIDs } from './../../../../store/products/products.selectors';
-import { Component, EventEmitter, inject, OnInit, Output, signal } from '@angular/core';
+import { Component, EventEmitter, inject, OnDestroy, OnInit, Output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import * as categoriesActions from "../../../../store/Categories/categories.actions"
 import * as categoriesSelectors from "../../../../store/Categories/categories.selectors"
 import * as productsSelectors from "../../../../store/products/products.selectors"
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Categories} from 'apps/RoseE-Commerce/src/app/shared/interfaces/category-card/category-res';
 import { ResetButtonComponent } from "apps/RoseE-Commerce/src/app/shared/components/reset-button/reset-button.component";
 
@@ -15,12 +15,13 @@ import { ResetButtonComponent } from "apps/RoseE-Commerce/src/app/shared/compone
   templateUrl: './category-filter.component.html',
   styleUrl: './category-filter.component.scss',
 })
-export class CategoryFilterComponent implements OnInit {
+export class CategoryFilterComponent implements OnInit , OnDestroy {
 
   private readonly store=inject(Store)
 
   allCategories$!:Observable<Categories[]>
   selectedId = signal<string[]>([])
+  sub!:Subscription
   
 
   @Output() categorySelected = new EventEmitter<string[]|null>();
@@ -47,7 +48,7 @@ export class CategoryFilterComponent implements OnInit {
 
   // (,") ====> empty the array of selected Id
   emptyFilteredCategories():void{
-    this.store.select(productsSelectors.selectCategoriesIDs).subscribe({
+   this.sub =  this.store.select(productsSelectors.selectCategoriesIDs).subscribe({
       next: res => {
         if (res?.length == 0 ) {
           this.selectedId.set([])
@@ -73,7 +74,9 @@ export class CategoryFilterComponent implements OnInit {
       this.selectedId.set([])
       this.categorySelected.emit([]);
   }
-
-
+  
+  ngOnDestroy(): void {
+      this.sub.unsubscribe()
+  }
 
 }
