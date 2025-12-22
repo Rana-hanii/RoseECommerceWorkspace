@@ -1,12 +1,12 @@
 <section class=" flex items-center justify-center my-5 ">
 
     <!-- Card -->
-    <div class="flex flex-col justify-center items-center h-[364px] w-[302px] ">
+    <div class="flex flex-col justify-center items-center p-2 md:p-0 h-[280px] w-[250px] md:h-[364px] md:w-[302px] ">
 
         <!-- image -->
         <div class="relative group">
 
-            <img [src]="image" [alt]="alt" class=" w-[302px] h-[272px] object-cover rounded-2xl " >
+            <img [src]="image" [alt]="alt" class=" w-[240px] md:w-[302px] h-[192px] md:h-[272px] object-cover rounded-2xl " >
             
             <!-- badge details -->
             <div class="absolute top-3 right-3 z-20 flex flex-col items-end gap-2 ">
@@ -59,11 +59,11 @@
 
             <!-- title -->
              <div class=" mt-5 ">
-                <h1 class="text-[var(--color-text-maroon)] text-xl font-[600] line-clamp-1">{{title}}</h1>
+                <h1 class="text-[var(--color-text-maroon)] text-md lg:text-xl font-[600] line-clamp-1">{{title}}</h1>
              </div>
 
              <!-- description -->
-             <div class="flex flex-row justify-between items-center w-full mt-4">
+             <div class="flex flex-row justify-between items-end lg:items-center w-full mt-4">
 
                 <!-- rating-Price  -->
                 <div class="w-3/4 flex flex-col justify-center items-start ">
@@ -72,7 +72,8 @@
                         <p-rating [(ngModel)]="value" [readonly]="true" />
                     </div>
                     <div>
-                        <p class="text-xl font-semibold text-[var(--color-text-maroon)] gap-x-2 flex flex-nowrap ">{{price| currency:'EGP' }} 
+                        <p class="text-md lg:text-xl font-semibold text-[var(--color-text-maroon)] 
+                                    gap-x-2 flex flex-wrap-reverse lg:flex-nowrap ">{{price| currency:'EGP' }} 
                             <span class="line-through font-light text-gray-400">{{priceBefore |currency:'EGP'}}</span></p>
                     </div>
                 </div>
@@ -80,7 +81,7 @@
                 <!-- button -->
                 <div class="w-1/4 flex justify-end items-end">
                 
-                      <button class="h-[42px] w-[42px] rounded-full bg-[var(--color-primary)] flex items-center justify-center">
+                      <button class="h-[42px] w-[42px] rounded-full bg-[#A6252A] flex items-center justify-center">
                             <i class="pi pi-shopping-cart cursor-pointer text-white !text-2xl"></i>
                         </button>
                   

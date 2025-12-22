@@ -1,0 +1,36 @@
+<section class=" mt-6" >
+    <div class="w-full min-h-[277px] px-2 lg:px-0  flex flex-col justify-start items-start gap-y-3  py-8  ">
+        <!-- title section and reset button -->
+         <div class="flex flex-row w-full justify-between items-center ">
+            <h1 class="justify-start font-[600] text-xl">Occasions</h1>
+           <app-reset-button
+            [buttonName]="'Reset'"
+            (click)="reset()"
+            ></app-reset-button>
+                
+         </div>
+         
+         <!-- loop on occasions -->
+          <div class="grid grid-cols-2 max-h-[250px] gap-2 overflow-y-scroll">
+                  @for (item of allOccasions$ |async; track item._id) {
+               
+                    <div class=" relative rounded-2xl cursor-pointer p-1" (keydown.enter)="selectOccasions(item._id)" 
+                    tabindex="0" role="button" (click)="selectOccasions(item._id)"
+                     [ngClass]="selectedId().includes(item._id) ? 'shade' : 'bg-transparent'">
+
+                        <img [src]="'https://flower.elevateegy.com/uploads/'+item.image"  alt="occasion-photo" 
+                              class="object-cover rounded-xl w-[153px] h-[88px]  cursor-pointer "  >
+
+                        <div class=" absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  ">
+                            <h1 class="text-white text-center text-nowrap text-lg font-[600] ">{{item.name}}</h1>
+                        </div>
+                    </div> 
+                   
+               
+            }
+          </div>
+          
+            
+    </div>
+</section>
+

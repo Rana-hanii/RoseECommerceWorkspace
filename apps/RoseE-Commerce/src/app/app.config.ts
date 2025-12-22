@@ -21,6 +21,14 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import { API_URL } from '@rose-ecommerce-workspace/auth';
 import { CookieService } from 'ngx-cookie-service';
 import { headersInterceptor } from './core/interceptors/headers.interceptor';
+import { provideStore } from '@ngrx/store';
+import { productsReducer } from './store/products/products.reducers';
+import { provideEffects } from '@ngrx/effects';
+import { productsEffects } from './store/products/products.effects';
+import { categoriesReducer } from './store/Categories/categories.reducers';
+import { categotiesEffect } from './store/Categories/categories.effects';
+import { occasionsReducer } from './store/Occasions/occations.reducers';
+import { occasionsEffect } from './store/Occasions/occasions.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -44,5 +52,19 @@ export const appConfig: ApplicationConfig = {
       },
     }),
     { provide: API_URL, useValue: 'https://flower.elevateegy.com/api/v1' },
-  ],
+
+    
+
+    provideStore({
+      products:productsReducer,
+      categories:categoriesReducer,
+      occasions:occasionsReducer
+    }),
+
+
+    provideEffects(
+      [productsEffects , categotiesEffect , occasionsEffect]
+    ),
+
+  ], 
 };

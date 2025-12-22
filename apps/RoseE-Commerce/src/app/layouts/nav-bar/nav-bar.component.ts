@@ -10,12 +10,16 @@ import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
 import { Drawer } from 'primeng/drawer';
 import { Menu } from 'primeng/menu';
+import { FormsModule } from '@angular/forms';
+import { ProductsService } from '../../features/products/services/products.service';
+import { Store } from '@ngrx/store';
+import * as productsActions from "./../../store/products/products.actions"
 
 
 
 @Component({
   selector: 'app-nav-bar',
-  imports: [CommonModule, RouterLink, RouterLinkActive ,DrawerModule, ButtonModule, AvatarModule , Menu  ],
+  imports: [CommonModule, RouterLink, RouterLinkActive ,DrawerModule, ButtonModule, AvatarModule , Menu ,FormsModule  ],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.scss',
 })
@@ -28,12 +32,15 @@ export class NavBarComponent implements OnInit{
   userName=''
   lastName=''
   items:any[]=[]
+  textSearch=signal<string>('')
  
   private readonly http=inject(HttpClient)
   private readonly authService=inject(AuthService)
   private readonly homeService=inject(HomeService)
+  private readonly productsService=inject(ProductsService)
   private readonly cookieService=inject(CookieService)
   private readonly plat_Id=inject(PLATFORM_ID)
+  private readonly store=inject(Store)
 
 
   ngOnInit(): void {
@@ -52,6 +59,11 @@ export class NavBarComponent implements OnInit{
 
   userMenu(){
     this.showUserMenu = !this.showUserMenu
+  }
+
+  onSearch(event:Event){
+    const value = (event.target as HTMLInputElement).value
+    this.store.dispatch(productsActions.filteringProducts({filter :{search :value}}))
   }
 
 
@@ -126,7 +138,7 @@ export class NavBarComponent implements OnInit{
        this.items = [
             {
                 label: `${this.userName} ${ this.lastName} `,
-               
+                
                 items: [
                     {
                         label: 'My Profile',

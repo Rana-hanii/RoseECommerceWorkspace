@@ -29,7 +29,7 @@ export class ProductCardComponent {
 
   
   toggleWishlist() {
-    this.isWishlisted = !this.isWishlisted;
+    this.isWishlisted = !this.isWishlisted; 
   }
 
   previewNav():void{

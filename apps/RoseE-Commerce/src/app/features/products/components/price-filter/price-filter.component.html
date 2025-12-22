@@ -1,0 +1,44 @@
+<section class="w-[320px] mt-6 mr-5 " >
+    <div class="w-full min-h-[187px]  flex flex-col justify-start items-start gap-y-3 px-3 lg:px-0 py-8   ">
+        <!-- title section and reset button -->
+         <div class="flex flex-row w-full justify-between items-center ">
+            <h1 class="justify-start font-[600] text-xl">Price</h1>
+           <app-reset-button
+            [buttonName]="'Reset'"
+            (click)="reset()"
+            ></app-reset-button>
+                
+         </div>
+         
+         <!-- Price Inputs -->
+          <div class="w-full flex justify-between items-center my-3 "> 
+
+            <!-- from input -->
+                <div class="">
+                 <p-floatlabel>
+                    <input pInputText id="pricefrom_label" [value]="lowPrice()"
+                     (input)="onLowPrice($event)" autocomplete="off"
+                      ngClass="!w-[120px]  !border-[var(--color-primary)] !py-3 !text-gray-700 !font-[600] "  />
+                    <label for="pricefrom_label" ngClass="!text-[var(--color-primary)] ">From</label>
+                </p-floatlabel>
+                </div>
+
+               
+                 <!-- to input  -->
+                <div class="">
+                 <p-floatlabel>
+                    <input pInputText id="priceto_label" [value]="highPrice()" 
+                    (input)="onLHighPrice($event)" autocomplete="off" 
+                     ngClass="!w-[120px] !border-[var(--color-primary)] !py-3  !text-gray-700 !font-[600] "  />
+                    <label for="priceto_label" ngClass="!text-[var(--color-primary)]">to</label>
+                </p-floatlabel>
+                </div>
+
+            
+              
+
+             </div>
+          
+            
+    </div>
+</section>

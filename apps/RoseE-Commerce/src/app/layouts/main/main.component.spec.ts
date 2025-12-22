@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MainComponent } from './main.component';
 import { API_URL } from '@rose-ecommerce-workspace/auth';
 import { ActivatedRoute } from '@angular/router';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('MainComponent', () => {
   let component: MainComponent;
@@ -22,7 +23,8 @@ describe('MainComponent', () => {
                   data: {},
                   outlet: 'primary'
                 }
-              }
+              },
+               provideMockStore({ initialState: {} }),
       ]
     }).compileComponents();
 

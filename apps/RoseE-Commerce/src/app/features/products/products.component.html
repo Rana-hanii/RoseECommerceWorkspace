@@ -1,21 +1,145 @@
-<section class="container mx-auto lg:px-20">
+<section class="container mx-auto lg:px-20 ">
 
     <!-- The main Division -->
-    <div class="w-full flex flex-col justify-center items-center lg:flex-row gap-3 py-14 ">
+    <div class="w-full flex flex-col justify-center lg:flex-row  lg:py-14 gap-x-2 ">
 
+          <!-- Mobile Button -->
+            
+           <div class="w-full pr-5 flex justify-end items-center gap-3 lg:hidden">
+                 <button (click)="visible = true"  class="text-xl font-[600] text-[var(--color-text-maroon)] 
+                  hover:text-[var(--color-primary)]">Filter Products <i class="pi pi-sliders-v 
+                   bg-[var(--color-secondary)] text-[var(--color-text-maroon)]
+                     hover:bg-[var(--color-text-maroon)] hover:text-[var(--color-secondary)] "></i></button>
+           </div>
+
+           
+           <!-- Mobile Side Bar Filters -->
+            <div class=" w-full  lg:hidden ">
+             
+                <p-drawer #drawerRef [(visible)]="visible" >
+                    <ng-template #headless>
+                        <div class="flex flex-col !min-vh-100 overflow-y-scroll  bg-white">
+
+                            <div class="flex justify-end items-center p-3">
+                                <p-button type="button" (click)="closeCallback($event)" icon="pi pi-times" 
+                                rounded="true"  styleClass="h-8 w-8  !bg-[var(--color-secondary)] hover:!bg-[#FFC2D0] 
+                                !text-[var(--color-text-maroon)] !border-0 "  ></p-button>
+                            </div>
+                            
+
+
+                            <div class="w-full flex flex-col justify-center items-start py-12">
+
+                                <!-- sort By low to high  -->
+                                <app-sort-filter
+                                >
+                                </app-sort-filter>
+                                
+                                <!-- Categories Filter -->
+                                <app-category-filter 
+                                (categorySelected)="onCategorySelected($event)"
+                                >
+                                </app-category-filter> 
+
+
+                                <!-- occasions Filter -->
+                                <app-occasions-filter
+                                (OccasionSelected)="onOccationsSelected($event)"
+                                >
+                                </app-occasions-filter> 
+
+
+                                <!-- ratings filter --> 
+                                <app-ratings-filter>
+                                    
+                                </app-ratings-filter>
+
+                                <!-- price FIlter -->
+                                <app-price-filter>
+
+                                </app-price-filter>
+                                
+
+                                <!-- reset All button  -->
+                                <div class="bg-[var(--color-secondary)] self-center w-[297px] py-2 rounded-xl px-5 ">
+
+                                    <div class=" w-full flex justify-center items-center">
+                                        <app-reset-button
+                                        [buttonName]="'Reset All'"
+                                        (click)="resetAll()"
+                                        >
+                                        </app-reset-button>
+                                    </div>
+                                </div> 
+
+
+                                
+                            
+                            </div>
+
+                        
+                        </div>
+                    </ng-template>
+                </p-drawer>
+            </div>
+        
         <!-- Filters Section  -->
-         <div class="w-1/4 flex flex-col items-start justify-start gap-3">
+         <div class="hidden lg:w-1/4  lg:flex lg:flex-col  lg:items-start lg:justify-start">
 
+            <!-- sort By low to high  -->
+            <app-sort-filter
+            >
+            </app-sort-filter>
+               
+            <!-- Categories Filter -->
+            <app-category-filter 
+            (categorySelected)="onCategorySelected($event)"
+            >
+            </app-category-filter> 
+
+
+            <!-- occasions Filter -->
+            <app-occasions-filter
+            (OccasionSelected)="onOccationsSelected($event)"
+            >
+            </app-occasions-filter> 
+
+
+            <!-- ratings filter --> 
+             <app-ratings-filter>
+                
+             </app-ratings-filter>
+
+            <!-- price FIlter -->
+            <app-price-filter>
+
+            </app-price-filter>
+            
+
+            <!-- reset All button  -->
+            <div class="bg-[var(--color-secondary)] self-center w-[297px] lg:mr-4 py-2 rounded-xl px-5 mt-2">
+
+                <div class=" w-full flex justify-center items-center">
+                     <app-reset-button
+                    [buttonName]="'Reset All'"
+                    (click)="resetAll()"
+                    >
+                    </app-reset-button>
+                </div>
+            </div> 
+
+
+            
+          
          </div>
 
 
 
          <!-- Products Section -->
-          <div class="w-3/4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 ">
+          <div class="w-full lg:w-3/4 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-y-14 lg:gap-y-0 gap-2 mt-5 lg:mt-0  lg:place-items-start">
 
             <!-- here will be a forloop on products array which will contain Reusable-Card-Component -->
-
-            @for (item of (allProducts$ | async) | sortPrice:'lowHigh'; track $index) {
+            @for (item of (paginatedProducts$ |async) ; track $index) {
 
                  <app-product-card
                     [image]="item.imgCover"
@@ -27,10 +151,15 @@
                     [badges]="item.badges"
                     [wishlistBtn]="true"
                 ></app-product-card>
-            }
-               
+            } 
 
           </div>
+           
     </div>
+
+            <div class=" card w-full lg:w-3/4 flex justify-center lg:justify-end items-center my-5">
+                <p-paginator  (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" 
+                          [totalRecords]="(sortedProducts$| async)?.length"/>
+            </div>
 
 </section>

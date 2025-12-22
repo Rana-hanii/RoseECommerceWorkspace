@@ -10,6 +10,12 @@ export const API_ENDPOINTS = {
   products: {
     products:'/products'
   },
+  categories: {
+    categories:'/categories'
+  },
+  occasions:{
+    occasions:'/occasions'
+  },
 
   //*Cart endpoints
   cart: {},
