@@ -60,6 +60,15 @@ p-rating {
   --color-text-pink: #ff668b;
   --color-text-maroon: #741C21;
   --color-text-gray:#71717A
+  
+  --dark-primary: #ffc2d0;
+  --dark-secondary: #27272A;
+  --dark-third:#3F3F46;
+  --dark-text-primary: #71717A;
+  --dark-text-secondary: #FFC2D0;
+  --dark-background-button: #ffa3b9;
+  --dark-hover-card: #e6507380;
+  --dark-text: #d75458;
 
   /* ===============================
      Typography System
@@ -78,12 +87,4 @@ p-rating {
   --font-size-xl: 24px;
   --font-size-xxl: 36px;
   --font-size-xxxl: 48px;
-}
-/*  Dark Mode */
-[data-theme='dark'] {
-  --color-primary: #ffc2d0;
-  --color-secondary: #2a2a2a;
-  --color-background-button: #ffa3b9;
-  --color-hover-card: #e6507380;
-  --color-text: #d75458;
 }
