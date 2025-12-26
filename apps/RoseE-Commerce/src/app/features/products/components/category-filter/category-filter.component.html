@@ -2,7 +2,7 @@
     <div class="w-full  h-[277px]  flex flex-col justify-start items-start gap-y-3 ">
         <!-- title section and reset button -->
          <div class="flex flex-row w-full justify-between items-center px-2 lg:px-0">
-            <h1 class="justify-start font-[600] text-xl">Category</h1>
+            <h1 class="justify-start font-[600] text-xl dark:text-white">Category</h1>
             <app-reset-button
             [buttonName]="'Reset'"
             (click)="reset()"
@@ -20,14 +20,14 @@
 
                 <!-- logo -->
             <div class="w-1/6 flex items-center justify-center rounded-l-md transition-colors "
-            [ngClass]=" selectedId().includes(item._id) ? 'bg-[var(--color-primary)]' : 'bg-[#71717A]'" >
+            [ngClass]=" selectedId().includes(item._id) ? 'bg-[var(--color-primary)] dark:bg-[#FFA3B9]' : 'bg-[#71717A]'" >
                 <img [src]="item.image" class="object-contain w-[30px] h-[35px] p-1 filter  brightness-0 invert" alt="category-logo">
             </div>
 
             <!-- title -->
             <div class="w-5/6 flex items-center justify-start  rounded-r-md h-[35px] transition-colors "
-                [ngClass]=" selectedId().includes(item._id) ? 'bg-[#FBEAEA]' : 'bg-[#E4E4E7]'">
-                <a><span class="ml-4 text-xl uppercase" >{{item.name}}</span></a>
+                [ngClass]=" selectedId().includes(item._id) ? 'bg-[#FBEAEA] dark:bg-[#FFE0E7]' : 'bg-[#E4E4E7] dark:bg-[#3F3F46] '">
+                <a><span class="ml-4 text-xl uppercase dark:text-gray-500" >{{item.name}}</span></a>
             </div>
         </div>
             }

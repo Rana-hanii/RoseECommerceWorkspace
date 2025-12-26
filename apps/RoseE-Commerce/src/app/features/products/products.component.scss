@@ -5,10 +5,12 @@
     .p-paginator-page {
              width: 38px !important;
             height: 38px !important;
-            border-radius: 8px !important;
+            border-radius: 12px !important;
             display: flex;
             justify-content: center;
             align-items: center; 
+            background: #4a4a4e !important;
+            color: #f0f0f4 !important;
 
             &:hover{
                 background:  #27272A !important;
@@ -18,20 +20,29 @@
                 background:  #A6252A !important;
                 color: white !important;
             } 
+
+            .dark &:focus{
+                background:#FFA3B9 !important;
+                color: #27272A !important;
+            }
+            .dark &:hover{
+                background:  #fb7d9b!important;
+                color: white !important;
+            }
             
     }   
          .p-paginator-prev:hover,.p-paginator-next:hover ,.p-paginator-last:hover , .p-paginator-first:hover{
             width: 38px !important;
             height: 38px !important;
-            border-radius: 8px !important;
+            border-radius: 14px !important;
             display: flex;
             justify-content: center;
             align-items: center; 
          }
 
     .p-paginator-page {
-        background: white !important; 
-        color: black !important;
+       
+        color: rgb(194, 188, 188) !important;
         border-color: var(--color-primary) !important;
         border: 1px solid #d4d4d8 !important;
     }

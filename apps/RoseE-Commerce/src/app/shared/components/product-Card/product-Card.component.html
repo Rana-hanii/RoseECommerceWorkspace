@@ -59,7 +59,7 @@
 
             <!-- title -->
              <div class=" mt-5 ">
-                <h1 class="text-[var(--color-text-maroon)] text-md lg:text-xl font-[600] line-clamp-1">{{title}}</h1>
+                <h1 class="text-[var(--color-text-maroon)] dark:text-[var(--dark-text-secondary)] text-md lg:text-xl font-[600] line-clamp-1">{{title}}</h1>
              </div>
 
              <!-- description -->
@@ -72,7 +72,7 @@
                         <p-rating [(ngModel)]="value" [readonly]="true" />
                     </div>
                     <div>
-                        <p class="text-md lg:text-xl font-semibold text-[var(--color-text-maroon)] 
+                        <p class="text-md lg:text-xl font-semibold text-[var(--color-text-maroon)] dark:text-[var(--dark-text-secondary)]
                                     gap-x-2 flex flex-wrap-reverse lg:flex-nowrap ">{{price| currency:'EGP' }} 
                             <span class="line-through font-light text-gray-400">{{priceBefore |currency:'EGP'}}</span></p>
                     </div>
@@ -81,7 +81,7 @@
                 <!-- button -->
                 <div class="w-1/4 flex justify-end items-end">
                 
-                      <button class="h-[42px] w-[42px] rounded-full bg-[#A6252A] flex items-center justify-center">
+                      <button class="h-[42px] w-[42px] rounded-full bg-[#A6252A] dark:bg-[#CD2E33] flex items-center justify-center">
                             <i class="pi pi-shopping-cart cursor-pointer text-white !text-2xl"></i>
                         </button>
                   
