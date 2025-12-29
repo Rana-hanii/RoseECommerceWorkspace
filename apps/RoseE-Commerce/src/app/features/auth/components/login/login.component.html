@@ -1,4 +1,4 @@
-<main>
+<main >
   <app-auth-title text="Welcome back!"></app-auth-title>
   <app-line></app-line>
   <form action="" [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
@@ -19,7 +19,7 @@
     <div class="forgetPassword text-lg text-right mb-2">
       <a
         routerLink="/auth/forgotpassword"
-        class="text-red-900 hover:text-red-800 transition-colors duration-200 cursor-pointer"
+        class="text-red-900 hover:text-red-800 transition-colors duration-200 cursor-pointer dark:!text-[#FFA3B9]"
       >
         Forgot your password?
       </a>
@@ -31,9 +31,9 @@
     <app-line></app-line>
   </form>
 
-  <div class="mt-5 flex justify-center">
+  <div class="mt-5 flex justify-center dark:text-white">
     <p>Don’t have an account yet?</p>
-    <a class="cursor-pointer CreateAccount" routerLink="/auth/register">
+    <a class="cursor-pointer CreateAccount dark:!text-[#FFA3B9]" routerLink="/auth/register">
       Create one now!
     </a>
   </div>

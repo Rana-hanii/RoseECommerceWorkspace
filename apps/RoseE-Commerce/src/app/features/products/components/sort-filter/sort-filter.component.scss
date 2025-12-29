@@ -3,3 +3,8 @@
   --p-toggleswitch-checked-hover-background: #cf3035;
 
 }
+
+  :host-context(.dark) ::ng-deep {
+  --p-toggleswitch-checked-background: #FFC2D0;
+  --p-toggleswitch-checked-hover-background: #FFC2D0;
+}

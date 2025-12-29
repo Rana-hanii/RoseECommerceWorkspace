@@ -6,29 +6,35 @@
   background-color: #3F3F46; 
   margin-left: 7px;
 }
+ .dark .wrapper::after{
+  background-color: white;
+ }
 
+ 
 .line {
   display: inline-block;
   position: relative;
   align-items: center;
 }
+
 .line::after {
   content: "";
   position: absolute;
   min-width: 100px;
   height: 3px; 
-  background-color: #FFC2D0; 
+  background-color: #9c5163; 
   left: 0;
   bottom: -9px;
 } 
+
 
 :host ::ng-deep {
   .nav-btn {
   background: var(--color-secondary) !important;
   color: var(--color-text-maroon) !important;
   border-color: white ;
-
   } 
+
 }  
 
 section{

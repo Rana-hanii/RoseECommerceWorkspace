@@ -2,7 +2,7 @@
     <div class="w-full min-h-[187px]  flex flex-col justify-start items-start gap-y-3 px-3 lg:px-0 py-8   ">
         <!-- title section and reset button -->
          <div class="flex flex-row w-full justify-between items-center ">
-            <h1 class="justify-start font-[600] text-xl">Price</h1>
+            <h1 class="justify-start font-[600] text-xl dark:text-white">Price</h1>
            <app-reset-button
             [buttonName]="'Reset'"
             (click)="reset()"
@@ -18,8 +18,8 @@
                  <p-floatlabel>
                     <input pInputText id="pricefrom_label" [value]="lowPrice()"
                      (input)="onLowPrice($event)" autocomplete="off"
-                      ngClass="!w-[120px]  !border-[var(--color-primary)] !py-3 !text-gray-700 !font-[600] "  />
-                    <label for="pricefrom_label" ngClass="!text-[var(--color-primary)] ">From</label>
+                      ngClass="!w-[120px] dark:!bg-[#3F3F46]  !border-[var(--color-primary)] dark:!border-[var(--dark-text-secondary)] !py-3 !text-gray-700 !font-[600] "  />
+                    <label for="pricefrom_label" ngClass="!text-[var(--color-primary)] dark:!text-[var(--dark-text-secondary)] ">From</label>
                 </p-floatlabel>
                 </div>
 
@@ -29,8 +29,8 @@
                  <p-floatlabel>
                     <input pInputText id="priceto_label" [value]="highPrice()" 
                     (input)="onLHighPrice($event)" autocomplete="off" 
-                     ngClass="!w-[120px] !border-[var(--color-primary)] !py-3  !text-gray-700 !font-[600] "  />
-                    <label for="priceto_label" ngClass="!text-[var(--color-primary)]">to</label>
+                     ngClass="!w-[120px] dark:!bg-[#3F3F46] !border-[var(--color-primary)] dark:!border-[var(--dark-text-secondary)] !py-3  !text-gray-700 !font-[600] "  />
+                    <label for="priceto_label" ngClass="!text-[var(--color-primary)] dark:!text-[var(--dark-text-secondary)]">to</label>
                 </p-floatlabel>
                 </div>
 

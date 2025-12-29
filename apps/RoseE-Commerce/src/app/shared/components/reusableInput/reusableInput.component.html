@@ -1,7 +1,7 @@
 <div class="flex justify-center items-center">
   <div
     [ngClass]="customClass"
-    class="flex flex-col items-start justify-center gap-1 my-0"
+    class="flex flex-col items-start justify-center gap-1 my-0 dark:text-white "
   >
     <label for="{{ label }}"
       ><strong>{{ label }}</strong></label
@@ -12,7 +12,7 @@
     <div class="w-full relative">
       @if (type!== 'tel') {
       <input
-        class="form-input relative"
+        class="form-input relative dark:bg-[#3F3F46] dark:text-white dark:focus:bg-[#3F3F46]"
         id="{{ label }}"
         [type]="
           type === 'password' ? (showPassword ? 'text' : 'password') : type
@@ -32,7 +32,7 @@
       } @if (type === 'password') {
       <button
         type="button"
-        class="absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-gray-700"
+        class="absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-gray-700 dark:focus:bg-[#3F3F46]" 
         (click)="togglePasswordEye()"
         [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'"
       >
@@ -81,8 +81,8 @@
             [options]="options"
             [placeholder]="placeholder"
             [formControl]="control"
-            styleClass=" w-full !border-0 no-prime-style"
-            panelStyleClass=""
+            styleClass=" w-full !border-0 no-prime-style dark:!bg-[#3F3F46] dark:!text-white"
+            panelStyleClass="dark:!text-red-500"
           />
         </div>
     }
