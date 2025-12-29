@@ -2,7 +2,8 @@ import { inject, Injectable, signal } from '@angular/core';
 import { ApiService } from '../../../core/services/api.service';
 import { Observable } from 'rxjs';
 import { API_ENDPOINTS } from '../../../core/constants/api-endPoints';
-import { ProductsRES } from '../../../shared/interfaces/products/products-res';
+import { ProductData, ProductsRES } from '../../../shared/interfaces/products/products-res';
+import { specificProduct } from '../../../shared/interfaces/products/productDetails.res';
 
 
 @Injectable({
@@ -29,6 +30,16 @@ export class ProductsService {
     return this.apiService.get<ProductsRES>(API_ENDPOINTS.products.products)
   } 
 
+
+  // (,'') ====> Get Specific Product by ID
+  getSpecificProduct(id:string|null):Observable<specificProduct>{
+    return this.apiService.get<specificProduct>(`${API_ENDPOINTS.products.products}/${id}`)
+  }
+
+
+
+  // (,'') ====> Get product reviews 
+  
 
  
  

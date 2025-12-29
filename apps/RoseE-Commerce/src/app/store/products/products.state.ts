@@ -1,3 +1,4 @@
+import { Product } from "../../shared/interfaces/products/productDetails.res";
 import { ProductData } from "../../shared/interfaces/products/products-res";
 export type SortType = 'LOW_TO_HIGH' | 'HIGH_TO_LOW' | null;
 
@@ -14,7 +15,9 @@ export interface filterProducts{
 
 export interface productsState {
     products:ProductData[];
+    product:Product |null
     filteredProducts:ProductData[];
+    id:string|null
     filter:filterProducts
     isLoading:boolean; 
     error:string|null 
@@ -22,7 +25,9 @@ export interface productsState {
 
 export const initialProductsState:productsState={
     products:[] as ProductData[],
+    product:null,
     filteredProducts :[] as ProductData[],
+    id:null,
     filter:{
             categoryID: [],
             occasionID: [],
