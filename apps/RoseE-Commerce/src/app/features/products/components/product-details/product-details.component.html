@@ -89,6 +89,8 @@
    
     </div>
 
+
+    
     <!-- product Review -->
      <div class="flex flex-col items-start justify-start w-full mt-5">
 
@@ -100,18 +102,84 @@
 
             <h1 class="mt-5 text-2xl font-[600]">Genral rating:</h1>
             <p class="text-black text-3xl ">{{productFromStore()?.rateAvg}} <span class="text-blue-700 text-lg">({{productFromStore()?.rateCount}} ratings)</span></p>
-            <div class="card  mt-3 ">
-                  <p-rating [ngModel]="productFromStore()?.rateAvg" [readonly]="true" />
+            <div class="card  mt-3 pb-4 ">
+                  <p-rating [ngModel]="productFromStore()?.rateAvg" [readonly]="true" class="big-rating" />
             </div>
       </div>
 
 
       <!-- second section reviews and add review  -->
-       <div class="flex flex-row w-full">
+       <div class="flex flex-row w-full pb-7">
 
         <!-- reviews -->
-         <div class="w-1/2">
+         <div class="w-[56%] py-4 line2 ">
 
+          <!-- check if the product has no reviews -->
+          @if ((reviews$|async)?.length === 0 ) {
+            <h1 class="text-2xl font-[600] text-[var(--color-text-maroon)] capitalize">
+              this Product has no reviews add your review in the right side </h1>
+
+
+          }@else if ((reviews$|async)?.length !== 0 ) {
+                 @for (item of (reviews$|async); track $index) {
+            <app-review-card
+                [userImg]="item.user.photo"
+                [userName]="item.user.firstName + item.user.lastName"
+                [date]="item.createdAt"
+                [rateAvg]="item.rating"
+                [reviewTitle]="item.title"
+                [review]="item.comment"
+            >
+            </app-review-card>
+          }
+         
+          }
+
+       
+          
+         </div>
+         <!-- separate line between 2 divs shows only in lg view -->
+         <div class="w-[4%] column py-3 flex justify-center"></div>
+
+
+         <!-- add review -->
+         <div class="w-[40%] flex flex-col justify-start items-start p-3 mt-3">
+            <form [formGroup]="reviewForm" (ngSubmit)="addReview()" class="w-full">
+              <div class="flex flex-row items-center justify-start gap-x-2">
+                   <h1 class="font-[600] text-xl">Your Rating :  </h1>
+
+                   <p-rating 
+                        (onRate)="onRating($event.value)"
+                        formControlName="rating"
+                        class="custom-rating !gap-2 big-rating" />
+              </div>
+           
+
+              <div class="flex flex-col justify-start items-start gap-y-3 mt-5">
+                 <label for="title" class="font-[600] text-xl"> Title</label>
+                 <input 
+                 formControlName="title"
+                  type="text" 
+                  id="title" 
+                  class="border-2 border-gray-300 focus:border-[var(--color-primary)] py-2 px-3 w-full rounded-lg outline-none transition-colors duration-300"
+                />
+              </div>
+              <div class="flex flex-col justify-start items-start gap-y-3 mt-5">
+                 <label for="review" class="font-[600] text-xl">Review</label>
+                 <textarea formControlName="comment"
+                  type="text" 
+                  id="review" 
+                  rows="4"
+                  class="border-2 border-gray-300 focus:border-[var(--color-primary)] py-2 px-3 w-full rounded-lg outline-none transition-colors duration-300"></textarea>
+              </div>
+
+                <button type="submit" class="h-[48px] mt-5 rounded-xl bg-[#A6252A] dark:bg-[#CD2E33] w-full flex items-center justify-center cursor-pointer gap-x-3">
+                      <span class="text-white text-lg">
+                          Add Review
+                      </span>
+
+                  </button>
+            </form>
          </div>
 
        </div>

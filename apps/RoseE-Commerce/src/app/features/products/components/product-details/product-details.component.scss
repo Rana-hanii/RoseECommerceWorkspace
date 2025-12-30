@@ -12,4 +12,37 @@ section{
     margin-top: 10px; 
     margin-bottom: 10px; 
   
+} 
+.line2::after{
+    content: '';
+    height: 2px;
+    width: 100%;
+    display: block;
+    background-color: #D4D4D8;
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+  
+} 
+.column::after{
+    content: '';
+    height: 100%;
+    width: 2px;
+    display: block;
+    background-color: #D4D4D8;
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+}
+
+:host ::ng-deep .big-rating .p-rating-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #FFA508;
+} 
+
+:host ::ng-deep .big-rating .p-rating-icon:hover {
+  color:#FBA707 !important; 
+}
+
+:host ::ng-deep .big-rating .p-rating-icon.p-rating-icon-active {
+  color: #FBA707 !important; 
 }

@@ -2,8 +2,11 @@ import { inject, Injectable, signal } from '@angular/core';
 import { ApiService } from '../../../core/services/api.service';
 import { Observable } from 'rxjs';
 import { API_ENDPOINTS } from '../../../core/constants/api-endPoints';
-import { ProductData, ProductsRES } from '../../../shared/interfaces/products/products-res';
+import { ProductsRES } from '../../../shared/interfaces/products/products-res';
 import { specificProduct } from '../../../shared/interfaces/products/productDetails.res';
+import { ProductReview } from '../interfaces/product-review/product-review';
+import { ProductReviewReq } from '../interfaces/product-reviewReq/product-review-req';
+import { ProductReviewRes, Review } from '../interfaces/product-reviewRes/product-review-res';
 
 
 @Injectable({
@@ -39,6 +42,16 @@ export class ProductsService {
 
 
   // (,'') ====> Get product reviews 
+    getProductReviews(id:string):Observable<ProductReview>{
+      return this.apiService.get<ProductReview>(`${API_ENDPOINTS.products.products}/${id}${API_ENDPOINTS.reviews.reviews}`)
+    }
+
+  // (,'') ====> post product review 
+    postReview(data:ProductReviewReq):Observable<ProductReviewRes>{
+      return this.apiService.post<ProductReviewRes>(`${API_ENDPOINTS.reviews.reviews}` , data)
+    }
+   
+
   
 
  

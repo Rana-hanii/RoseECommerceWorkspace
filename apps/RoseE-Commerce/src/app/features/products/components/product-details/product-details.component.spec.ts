@@ -3,6 +3,8 @@ import { ProductDetailsComponent } from './product-details.component';
 import { provideMockStore } from '@ngrx/store/testing';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
+import { provideHttpClientTesting, HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideToastr } from 'ngx-toastr';
 
 describe('ProductDetailsComponent', () => {
   let component: ProductDetailsComponent;
@@ -10,9 +12,11 @@ describe('ProductDetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProductDetailsComponent],
+      imports: [ProductDetailsComponent,HttpClientTestingModule],
       providers:[
         provideMockStore({initialState:{products: {  products: [],filteredProducts: [],filter: {}} }}),
+        provideHttpClientTesting(),
+        provideToastr(),
         {provide:ActivatedRoute , useValue:{params: of({ id: '1' }),snapshot: { paramMap: { get: () => '1' } }}}
       ]
     }).compileComponents();

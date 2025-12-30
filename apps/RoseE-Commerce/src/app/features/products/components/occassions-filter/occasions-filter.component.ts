@@ -76,7 +76,7 @@ export class OccasionsFilterComponent implements OnInit ,OnDestroy {
 
      
      ngOnDestroy(): void {
-         this.sub.unsubscribe()
+         this.sub?.unsubscribe()
      }
       
 }

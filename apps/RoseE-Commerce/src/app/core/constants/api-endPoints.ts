@@ -17,6 +17,10 @@ export const API_ENDPOINTS = {
     occasions:'/occasions'
   },
 
+  reviews:{
+    reviews:'/reviews'
+  },
+
   //*Cart endpoints
   cart: {},
 
