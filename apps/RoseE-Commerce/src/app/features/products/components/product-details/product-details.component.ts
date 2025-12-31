@@ -1,6 +1,6 @@
 import { ProductReview } from './../../interfaces/product-review/product-review';
-import { Component, computed, inject, OnDestroy, OnInit, Signal } from '@angular/core';
-import { AsyncPipe, CommonModule, CurrencyPipe } from '@angular/common';
+import { Component, computed, inject, OnDestroy, OnInit, PLATFORM_ID, signal, Signal } from '@angular/core';
+import { AsyncPipe, CommonModule, CurrencyPipe, isPlatformBrowser } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
 import * as productsSelectors from '../../../../store/products/products.selectors';
@@ -18,11 +18,14 @@ import { Review } from '../../interfaces/product-review/product-review';
 import { FloatLabel } from 'primeng/floatlabel';
 import { ProductReviewRes } from '../../interfaces/product-reviewRes/product-review-res';
 import { ToastrService } from 'ngx-toastr';
+import { HomeService } from '../../../home/services/home.service';
+import { RelatedProduct, RelatedProductRes } from '../../interfaces/related-roductRes/related-product-res';
+import { RelatedProductsComponent } from "../related-products/related-products.component";
 
 @Component({
   selector: 'app-product-details',
-  imports: [CommonModule, AsyncPipe, CurrencyPipe, GalleriaModule, SectionTitleComponent 
-    ,Rating , FormsModule , ReviewCardComponent ,ReactiveFormsModule ,FloatLabel],
+  imports: [CommonModule, AsyncPipe, CurrencyPipe, GalleriaModule, SectionTitleComponent,
+    Rating, FormsModule, ReviewCardComponent, ReactiveFormsModule, FloatLabel, RelatedProductsComponent],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.scss',
 })
@@ -33,26 +36,37 @@ export class ProductDetailsComponent implements OnInit , OnDestroy {
     private readonly productsService=inject(ProductsService)
     private readonly fb=inject(FormBuilder) 
     private readonly toast=inject(ToastrService) 
+    private readonly homeService=inject(HomeService) 
+    private readonly plat_id=inject(PLATFORM_ID) 
     
     productId!:string
     reviews$!:Observable<Review[]>
     value1!:string
     reviewForm!:FormGroup 
     sub!:Subscription
-
+    isLogin=signal<boolean>(true)
+    relatedProducts=signal<RelatedProduct[]>([])
+  
 
 
 
     ngOnInit(): void {
         this.loadProduct()
         this.getReviews()
+        this.checkLoggedUser()
+        this.getAllrelatedProducts()
+        this.isBrowser()
      
     } 
+
+
+       isBrowser(){
+              return  isPlatformBrowser(this.plat_id)
+            }
 
       loadProduct():void{
         const id = this.route.snapshot.paramMap.get('id')!;
         this.productId=id
-        console.log(this.productId , "productid");
 
         this.reviewForm   = this.fb.group({
           product: this.productId,
@@ -110,6 +124,25 @@ export class ProductDetailsComponent implements OnInit , OnDestroy {
           }
          
         } 
+
+        checkLoggedUser():void{
+          this.isLogin = this.homeService.isLogged
+        }
+
+
+
+        getAllrelatedProducts():void{
+          this.sub = this.productsService.getRelatedProducts(this.productId).subscribe({
+            next:(res:RelatedProductRes)=>{
+              this.relatedProducts.set(res.relatedProducts)
+    
+            }
+          })
+         
+        }
+
+
+   
 
         ngOnDestroy(): void {
             this.sub?.unsubscribe()

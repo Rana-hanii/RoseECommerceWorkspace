@@ -6,7 +6,8 @@ import { ProductsRES } from '../../../shared/interfaces/products/products-res';
 import { specificProduct } from '../../../shared/interfaces/products/productDetails.res';
 import { ProductReview } from '../interfaces/product-review/product-review';
 import { ProductReviewReq } from '../interfaces/product-reviewReq/product-review-req';
-import { ProductReviewRes, Review } from '../interfaces/product-reviewRes/product-review-res';
+import { ProductReviewRes } from '../interfaces/product-reviewRes/product-review-res';
+import { RelatedProductRes } from '../interfaces/related-roductRes/related-product-res';
 
 
 @Injectable({
@@ -49,6 +50,12 @@ export class ProductsService {
   // (,'') ====> post product review 
     postReview(data:ProductReviewReq):Observable<ProductReviewRes>{
       return this.apiService.post<ProductReviewRes>(`${API_ENDPOINTS.reviews.reviews}` , data)
+    }
+
+
+    // (,'') ====> Get Related Products 
+    getRelatedProducts(id:string):Observable<RelatedProductRes>{
+      return this.apiService.get<RelatedProductRes>(`${API_ENDPOINTS.relatedCategories.relatedCategories}/${id}`)
     }
    
 

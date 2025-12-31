@@ -27,10 +27,8 @@ export class productsEffects {
     loadProductById = createEffect(() =>
         this.actions.pipe(
             ofType(productsActions.loadProductbyId),
-            tap(action => console.log('EFFECT TRIGGERED', action)),
              switchMap(({ id }) =>
           this.productService.getSpecificProduct(id).pipe(
-                tap(res => console.log('API RESPONSE', res)),
               map(res => productsActions.getProductById({ product:res.product }))
         )
         )));

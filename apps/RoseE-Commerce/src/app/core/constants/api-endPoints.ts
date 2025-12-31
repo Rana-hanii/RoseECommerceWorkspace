@@ -20,6 +20,10 @@ export const API_ENDPOINTS = {
   reviews:{
     reviews:'/reviews'
   },
+  
+  relatedCategories:{
+    relatedCategories:'/related/category'
+  },
 
   //*Cart endpoints
   cart: {},

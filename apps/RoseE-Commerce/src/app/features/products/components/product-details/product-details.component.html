@@ -143,8 +143,16 @@
 
 
          <!-- add review -->
-         <div class="w-[40%] flex flex-col justify-start items-start p-3 mt-3">
-            <form [formGroup]="reviewForm" (ngSubmit)="addReview()" class="w-full">
+          
+         <div class="w-[40%] flex flex-col justify-start items-start p-3 mt-3 relative ">
+
+                                 @if (!isLogin()) {
+                                  <div class=" absolute z-10 top-[50%] left-[50%] -translate-y-[50%] -translate-x-[50%] flex flex-col items-center justify-center ">
+                                      <h1 class=" text-xl font-[600] text-center ">Please login to be able to review the product</h1>
+                                   </div>
+                                 }
+            <form [formGroup]="reviewForm" (ngSubmit)="addReview()" 
+                  [class]="isLogin() ? 'w-full' : 'blur-sm w-full'" >
               <div class="flex flex-row items-center justify-start gap-x-2">
                    <h1 class="font-[600] text-xl">Your Rating :  </h1>
 
@@ -159,6 +167,7 @@
                  <label for="title" class="font-[600] text-xl"> Title</label>
                  <input 
                  formControlName="title"
+                 placeholder="Enter Review Title"
                   type="text" 
                   id="title" 
                   class="border-2 border-gray-300 focus:border-[var(--color-primary)] py-2 px-3 w-full rounded-lg outline-none transition-colors duration-300"
@@ -168,12 +177,13 @@
                  <label for="review" class="font-[600] text-xl">Review</label>
                  <textarea formControlName="comment"
                   type="text" 
+                  placeholder="What do you think of this product ? "
                   id="review" 
                   rows="4"
                   class="border-2 border-gray-300 focus:border-[var(--color-primary)] py-2 px-3 w-full rounded-lg outline-none transition-colors duration-300"></textarea>
               </div>
 
-                <button type="submit" class="h-[48px] mt-5 rounded-xl bg-[#A6252A] dark:bg-[#CD2E33] w-full flex items-center justify-center cursor-pointer gap-x-3">
+                <button  [disabled]="!isLogin()" type="submit"  class="h-[48px] mt-5 rounded-xl bg-[#A6252A] dark:bg-[#CD2E33] w-full flex items-center justify-center cursor-pointer gap-x-3">
                       <span class="text-white text-lg">
                           Add Review
                       </span>
@@ -184,6 +194,22 @@
 
        </div>
     
+     </div> 
+
+
+     <!-- Related Products -->
+     <div #ref class="w-full py-5 ">
+      @if (isBrowser()) {
+           @defer (on viewport(ref)) {
+            <div>
+              <app-related-products
+              [relatedProducts]="relatedProducts()"
+              ></app-related-products>
+          </div>
+          }
+      }
+      
+     
      </div>
 
 </section>
