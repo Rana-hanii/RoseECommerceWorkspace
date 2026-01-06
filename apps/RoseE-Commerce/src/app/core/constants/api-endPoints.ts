@@ -17,6 +17,14 @@ export const API_ENDPOINTS = {
     occasions:'/occasions'
   },
 
+  reviews:{
+    reviews:'/reviews'
+  },
+  
+  relatedCategories:{
+    relatedCategories:'/related/category'
+  },
+
   //*Cart endpoints
   cart: {},
 

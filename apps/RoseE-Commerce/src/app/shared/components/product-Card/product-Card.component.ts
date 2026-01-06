@@ -3,10 +3,11 @@ import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Rating } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import { ProductCardBadgeComponent } from "../product-card-badge/product-card-badge.component";
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-product-card',
-  imports: [CommonModule, Rating, FormsModule, CurrencyPipe, ProductCardBadgeComponent],
+  imports: [CommonModule, Rating, FormsModule, CurrencyPipe, ProductCardBadgeComponent, RouterLink],
   templateUrl: './product-Card.component.html',
   styleUrl: './product-Card.component.scss',
 })
@@ -22,6 +23,7 @@ export class ProductCardComponent {
   @Input() badges:string[]=[]
   @Input() images!:string[] 
   @Input() wishlistBtn=false
+  @Input() id!:string
   @Output() imgNav:EventEmitter<string[]> =new EventEmitter();
   
   

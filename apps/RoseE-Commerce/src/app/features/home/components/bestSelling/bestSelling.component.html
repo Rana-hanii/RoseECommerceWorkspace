@@ -54,11 +54,13 @@
                 [priceBefore]="i.price"
                 [badges]="i.badges"
                 [images]="i.imagesNav"
+                [id]="i._id"
                 (imgNav)="openGallery($event)"
+                [wishlistBtn]="true"
             >
             </app-product-card>
         </ng-template>
-      </p-carousel>
+          </p-carousel>
       }
     </div>
   </div>

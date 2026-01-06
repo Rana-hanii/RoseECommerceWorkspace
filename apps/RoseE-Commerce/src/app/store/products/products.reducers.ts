@@ -37,5 +37,11 @@ export const productsReducer=createReducer(initialProductsState,
         ...state ,
         filter :{...initialProductsState.filter } ,
         filteredProducts:[...state.products]
+    })) ,
+
+    
+    on(productsActions.getProductById , (state , {product})=>({
+        ...state,
+        product
     }))
 )

@@ -24,4 +24,8 @@ export const selectPricesValues = createSelector(selectProductsState ,
 
 
 export const selectRatingValue=createSelector(selectProductsState , state => state.filter.minRating)
-export const selectSortType=createSelector(selectProductsState , state => state.filter.sorting)
+export const selectSortType=createSelector(selectProductsState , state => state.filter.sorting) 
+
+// get product ID and another selector for the Product
+export const selectProductById = (id:string|null)=> createSelector(selectProductsState , state => state.products.find(p=>p._id === id))
+export const selectSpecificProduct =createSelector(selectProductsState , state => state.product)

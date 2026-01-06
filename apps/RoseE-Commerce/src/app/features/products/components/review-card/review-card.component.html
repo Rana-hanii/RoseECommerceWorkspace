@@ -1,0 +1,32 @@
+<section>
+         <!-- the main Division -->
+    <div class="flex flex-col justify-start items-start w-full gap-y-2">
+        <!-- user picture and details -->
+        <div class="flex flex-row items-center justify-start gap-x-4">
+            <!-- picture -->
+             <div>
+                <img [src]="userImg()" alt="user-photo" class="w-[45px] h-[45px] rounded-full bg-[var(--color-primary)]">
+             </div>
+             <!-- name and date -->
+             <div>
+                <h2 class="text-xl font-[500] text-black capitalize">{{userName()}} </h2>
+                <p class="text-lg font-[500] text-[#A1A1AA]">{{date()|date}}</p>
+             </div>
+        </div> 
+
+        <!-- rate stars -->
+        <div class="flex flex-row items-center justify-start gap-x-3">
+             <p-rating [ngModel]="rateAvg()" [readonly]="true" class="big-rating"  />
+             <p class="text-2xl text-black font-[600]">({{rateAvg()}})</p>
+        </div>
+
+        <!-- review -->
+        <div class="flex flex-col items-start justify-start">
+            <!-- review title -->
+            <h1 class="font-[700] text-2xl">{{reviewTitle()}}</h1>
+            <!-- full review -->
+            <p class="text-xl text-black">{{review()}}</p>
+        </div>
+
+    </div>
+</section>

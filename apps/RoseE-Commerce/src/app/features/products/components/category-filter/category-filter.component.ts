@@ -1,4 +1,3 @@
-import { selectCategoriesIDs } from './../../../../store/products/products.selectors';
 import { Component, EventEmitter, inject, OnDestroy, OnInit, Output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import * as categoriesActions from "../../../../store/Categories/categories.actions"
@@ -76,7 +75,7 @@ export class CategoryFilterComponent implements OnInit , OnDestroy {
   }
   
   ngOnDestroy(): void {
-      this.sub.unsubscribe()
+      this.sub?.unsubscribe()
   }
 
 }

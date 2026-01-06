@@ -1,0 +1,19 @@
+section{
+    font-family: var(--font-primary);
+} 
+
+
+:host ::ng-deep{
+    
+    .p-button-text.p-button-secondary{
+     background-color: #A6252A !important;
+     color:white !important;
+    }
+
+
+   .p-button-text.p-button-secondary:hover{
+     background-color: #CE1016 !important;
+     color:rgb(255, 255, 255) !important;
+    }
+
+}

@@ -1,0 +1,35 @@
+<section class="w-full">
+    <app-section-title
+    [title]="'Related Products'"
+    ></app-section-title>
+
+
+      <div class="w-full mt-6 ">
+    <div class="card ">
+      @if (isBrowser()) {
+          <p-carousel
+        [value]="relatedProducts()"
+        [numVisible]="4"
+        [numScroll]="1"
+        [circular]="true"
+        [showIndicators]="false"
+        [responsiveOptions]="responsiveOptions"
+        autoplayInterval="3000"
+      >
+        <ng-template pTemplate="item" let-i>
+            <app-product-card
+                [image]="i.imgCover"
+                [alt]="i.title"
+                [title]="i.title"
+                [value]="i.rateAvg"
+                [price]="i.priceAfterDiscount"
+                [id]="i._id"
+                [wishlistBtn]="true"
+            >
+            </app-product-card>
+        </ng-template>
+      </p-carousel>
+      }
+    </div>
+  </div>
+</section>

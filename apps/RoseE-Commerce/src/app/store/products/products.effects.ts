@@ -2,7 +2,7 @@ import { loadProducts } from './products.actions';
 import { inject, Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { ProductsService } from "../../features/products/services/products.service";
-import { catchError, map, of, switchMap } from 'rxjs';
+import { catchError, map, of, switchMap, tap } from 'rxjs';
 import { ProductsRES } from '../../shared/interfaces/products/products-res';
 import * as productsActions from '../../store/products/products.actions';
 import * as productsUti from './productsBadges.utils';
@@ -21,5 +21,15 @@ export class productsEffects {
             catchError(error => of(productsActions.loadproductsFailure({error:error.message})))
     
     ))
-    )) 
-}
+    ))  
+
+
+    loadProductById = createEffect(() =>
+        this.actions.pipe(
+            ofType(productsActions.loadProductbyId),
+             switchMap(({ id }) =>
+          this.productService.getSpecificProduct(id).pipe(
+              map(res => productsActions.getProductById({ product:res.product }))
+        )
+        )));
+    }
