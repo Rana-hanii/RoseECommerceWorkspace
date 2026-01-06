@@ -1,4 +1,4 @@
-import { loadCategories } from './categories.actions';
+
 import { inject, Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { StoreServicesService } from "../services/store-services.service";

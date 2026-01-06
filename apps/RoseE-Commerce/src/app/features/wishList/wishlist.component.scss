@@ -1,0 +1,14 @@
+section{
+    font-family: var(--font-primary);
+}
+
+.line::after{
+    content: '';
+    height: 2px;
+    width: 100%;
+    display: block;
+    background-color: #D4D4D8;
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+  
+} 

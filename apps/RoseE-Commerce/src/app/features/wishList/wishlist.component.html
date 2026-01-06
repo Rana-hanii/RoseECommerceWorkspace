@@ -1,0 +1,73 @@
+<Section class="container mx-auto lg:px-20 my-12">
+
+    <div class=" flex justify-between items-center ">
+        <h1 class="text-4xl font-[700] ">
+            Wishlist <span class="text-lg text-[var(--color-text-gray)] font-[400]">{{(wishlistedProducts$|async)?.length}} Products</span>
+        </h1>
+
+        <button (click)="clearWishlist()" class="bg-[var(--color-secondary)] text-primary text-lg  cursor-pointer rounded-xl px-8 py-2 flex items-center gap-2">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13.3338 18.3337L12.5004 15.0003M15.8338 11.6587C16.0548 11.6587 16.2667 11.5709 16.423 11.4146C16.5793 11.2583 16.6671 11.0463 16.6671 10.8253V10.0003C16.6671 9.5583 16.4915 9.13437 16.1789 8.82181C15.8664 8.50925 15.4425 8.33366 15.0004 8.33366H12.5004C12.2794 8.33366 12.0675 8.24586 11.9112 8.08958C11.7549 7.9333 11.6671 7.72134 11.6671 7.50033V3.33366C11.6671 2.89163 11.4915 2.46771 11.1789 2.15515C10.8664 1.84259 10.4425 1.66699 10.0004 1.66699C9.55841 1.66699 9.13449 1.84259 8.82192 2.15515C8.50936 2.46771 8.33377 2.89163 8.33377 3.33366V7.50033C8.33377 7.72134 8.24597 7.9333 8.08969 8.08958C7.93341 8.24586 7.72145 8.33366 7.50044 8.33366H5.00044C4.55841 8.33366 4.13449 8.50925 3.82192 8.82181C3.50936 9.13437 3.33377 9.5583 3.33377 10.0003V10.8253C3.33377 11.0463 3.42157 11.2583 3.57785 11.4146C3.73413 11.5709 3.94609 11.6587 4.1671 11.6587M6.6671 18.3337L7.50044 15.0003M4.1671 11.667H15.8338L17.4779 17.3062C17.5073 17.4287 17.5085 17.5563 17.4814 17.6793C17.4544 17.8023 17.3998 17.9177 17.3217 18.0166C17.2437 18.1155 17.1442 18.1954 17.0308 18.2503C16.9174 18.3052 16.7931 18.3337 16.6671 18.3337H3.33377C3.20778 18.3337 3.08342 18.3052 2.97004 18.2503C2.85666 18.1954 2.7572 18.1155 2.67916 18.0166C2.60111 17.9177 2.5465 17.8023 2.51945 17.6793C2.49239 17.5563 2.49358 17.4287 2.52294 17.3062L4.1671 11.667Z" stroke="#A6252A" stroke-width="1.45833" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Clear Wishlist
+        </button>
+    </div>
+    <div class="w-full min-h-fit border-[1px] rounded-2xl border-gray-400 p-4 mt-7 flex flex-col justify-center items-center">
+
+
+        @if ((wishlistedProducts$|async)?.length === 0) {
+            <div class="w-full h-full ">
+                 <h1 class="text-4xl text-[var(--color-text-maroon)] font-[600] text-center"> Your Wishlist is Empty </h1>
+                
+            </div>
+
+        }@else {
+              <!-- wishlist product Card -->
+         @for (prod of wishlistedProducts$ |async; track $index) {
+            <div class="w-full h-[170px] flex flex-row items-center justify-around my-3">
+
+                <!-- product img  -->
+                <div class="w-1/6">
+                    <img [src]="prod.imgCover" alt="Wishlist-product" class="w-[145px] h-[170px] rounded-lg object-cover">
+                </div>
+
+                <!-- Details -->
+                <div class="w-3/6 h-full flex flex-col justify-between items-start">
+                   
+                    <div class="justify-start">
+                         <!-- title -->
+                     <h1 class="text-[var(--color-text-maroon)] capitalize text-3xl font-[600]">{{prod.title}}</h1>
+                    <!-- rate -->
+                    <div class="flex items-center gap-x-2 ">
+                    <svg width="23" height="22" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.66849 0.975237C8.70501 0.901454 8.76143 0.839347 8.83137 0.795925C8.90131 0.752502 8.982 0.729492 9.06433 0.729492C9.14665 0.729492 9.22734 0.752502 9.29728 0.795925C9.36723 0.839347 9.42364 0.901454 9.46016 0.975237L11.3852 4.8744C11.512 5.13104 11.6992 5.35308 11.9307 5.52145C12.1622 5.68982 12.4311 5.7995 12.7143 5.84107L17.0193 6.47107C17.1009 6.48289 17.1775 6.5173 17.2406 6.5704C17.3036 6.62351 17.3505 6.69319 17.376 6.77158C17.4015 6.84996 17.4046 6.93391 17.3848 7.01393C17.3651 7.09396 17.3233 7.16686 17.2643 7.2244L14.151 10.2561C13.9457 10.4562 13.7921 10.7031 13.7034 10.9758C13.6147 11.2484 13.5935 11.5385 13.6418 11.8211L14.3768 16.1044C14.3912 16.1859 14.3824 16.2699 14.3514 16.3466C14.3204 16.4234 14.2684 16.4899 14.2014 16.5386C14.1345 16.5872 14.0551 16.6161 13.9725 16.6218C13.89 16.6276 13.8074 16.61 13.7343 16.5711L9.88599 14.5477C9.63242 14.4146 9.35031 14.345 9.06391 14.345C8.77751 14.345 8.49539 14.4146 8.24183 14.5477L4.39433 16.5711C4.32127 16.6097 4.23882 16.6271 4.15637 16.6213C4.07391 16.6154 3.99476 16.5865 3.9279 16.5379C3.86105 16.4893 3.80919 16.4229 3.77821 16.3463C3.74723 16.2696 3.73837 16.1858 3.75266 16.1044L4.48683 11.8219C4.53532 11.5392 4.51431 11.2489 4.42561 10.9761C4.3369 10.7033 4.18317 10.4562 3.97766 10.2561L0.864325 7.22524C0.80482 7.16776 0.762653 7.09473 0.742627 7.01447C0.722602 6.9342 0.725523 6.84992 0.751058 6.77123C0.776592 6.69254 0.823714 6.6226 0.887056 6.56939C0.950397 6.51617 1.02741 6.48182 1.10933 6.47024L5.41349 5.84107C5.69704 5.79982 5.96632 5.69028 6.19815 5.52189C6.42997 5.3535 6.61741 5.1313 6.74433 4.8744L8.66849 0.975237Z" fill="#FFA508" stroke="#FFA508" stroke-width="1.45833" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+
+                        <p class="text-2xl">Rating: {{prod.rateAvg}}/5</p>
+
+                    </div>
+                    </div>
+                    <!-- price -->
+                    <div class="justify-end">
+                        <h1 class="text-2xl font-[700]">{{prod.priceAfterDiscount |currency}} <span class="text-xl">EGP</span></h1>
+                    </div>
+                </div>
+
+                <div class="w-2/6 flex justify-end">
+                        <button (click)="removeItem(prod.id)" class="bg-[var(--color-background-button)] text-white text-lg cursor-pointer rounded-xl px-4 py-3 flex items-center gap-2">
+                        <i class="pi pi-trash"></i>
+                            Remove
+                        </button>
+                </div>
+
+
+            </div>
+            <div class="line w-full">
+
+            </div>
+         }
+        }
+      
+      
+    </div>
+</Section>

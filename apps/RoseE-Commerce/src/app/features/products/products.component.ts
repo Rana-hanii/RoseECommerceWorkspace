@@ -1,3 +1,4 @@
+import { addToWishlist } from './../../store/wishList/wishlist.actions';
 import { setCategories } from './../../store/Categories/categories.actions';
 import { Component, inject, OnInit, Signal, ViewChild } from '@angular/core';
 import { AsyncPipe, CommonModule } from '@angular/common';
@@ -17,6 +18,9 @@ import { RatingsFilterComponent } from "./components/ratings-filter/ratings-filt
 import { SortFilterComponent } from "./components/sort-filter/sort-filter.component";
 import { ButtonModule } from 'primeng/button';
 import { Drawer, DrawerModule } from 'primeng/drawer';
+import* as WishlistActions from '../../store/wishList/wishlist.actions'
+import* as WishlistSelectors from '../../store/wishList/wishlist.selectors'
+
 
 
 @Component({
@@ -35,7 +39,8 @@ export class ProductsComponent implements OnInit  {
 
    sortedProducts$!:Observable<ProductData[]>
    paginatedProducts$!: Observable<ProductData[]>;
-  
+
+   wishlistIds$!:Observable<string[]>
   
    text!:Signal<string>
    sub!:Subscription 
@@ -48,7 +53,7 @@ export class ProductsComponent implements OnInit  {
   ngOnInit(): void {
       this.setProducts()
       this.getProducts()
-
+      this.selectWishlistId()
       this.search()
   }
 
@@ -68,7 +73,7 @@ export class ProductsComponent implements OnInit  {
       getProducts():void{
         this.sortedProducts$=this.store.select(productsSelectors.selectFilteredProducts)
         this.pagination()
-      }
+      } 
 
      
 
@@ -104,6 +109,19 @@ export class ProductsComponent implements OnInit  {
         resetAll():void{
           this.store.dispatch(productsActions.resetAllFilters())
         } 
+
+
+        addToWishlist(productId: string):void{
+          this.store.dispatch(WishlistActions.addToWishlist({productId}))
+        }
+
+        removeFromWishlist(productId: string):void {
+          this.store.dispatch(WishlistActions.removeFromWishlist({ productId }));
+        }
+
+        selectWishlistId():void{
+          this.wishlistIds$ = this.store.select(WishlistSelectors.selectWishlistIds)
+        }
 
 
 

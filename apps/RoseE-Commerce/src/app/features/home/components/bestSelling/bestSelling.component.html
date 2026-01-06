@@ -57,6 +57,9 @@
                 [id]="i._id"
                 (imgNav)="openGallery($event)"
                 [wishlistBtn]="true"
+                [isWishlisted]="(wishlistIds$ | async)?.includes(i._id)||false"
+                (addToWishlist)="addToWishlist($event)"
+                (removeFromWishlist)="removeFromWishlist($event)"
             >
             </app-product-card>
         </ng-template>

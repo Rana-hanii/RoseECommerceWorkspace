@@ -29,6 +29,8 @@ import { categoriesReducer } from './store/Categories/categories.reducers';
 import { categotiesEffect } from './store/Categories/categories.effects';
 import { occasionsReducer } from './store/Occasions/occations.reducers';
 import { occasionsEffect } from './store/Occasions/occasions.effects';
+import { wishlistReducer } from './store/wishList/wishlist.reducers';
+import { wishlistEffects } from './store/wishList/wishlist.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -58,12 +60,13 @@ export const appConfig: ApplicationConfig = {
     provideStore({
       products:productsReducer,
       categories:categoriesReducer,
-      occasions:occasionsReducer
+      occasions:occasionsReducer,
+      wishlist:wishlistReducer
     }),
 
 
     provideEffects(
-      [productsEffects , categotiesEffect , occasionsEffect]
+      [productsEffects , categotiesEffect , occasionsEffect ,wishlistEffects]
     ),
 
   ], 
