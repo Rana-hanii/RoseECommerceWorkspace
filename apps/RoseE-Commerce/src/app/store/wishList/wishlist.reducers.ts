@@ -25,8 +25,8 @@ export const wishlistReducer = createReducer( initialWishlistState ,
     })) ,
        on(WishlistActions.clearWishlist , (state)=>({
         ...state , 
-        wishlistedProducts:[],
-        wishlistedProductIds:[]
+        wishlistedProducts:initialWishlistState.wishlistedProducts,
+        wishlistedProductIds:initialWishlistState.wishlistedProductIds
     })),
 
 

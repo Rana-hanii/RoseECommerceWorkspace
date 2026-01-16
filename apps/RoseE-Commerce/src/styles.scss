@@ -27,6 +27,18 @@
 .iti--allow-dropdown input.iti__tel-input {
   padding-right: 150px !important;
 } 
+ngx-intl-tel-input {
+  width: 100% !important;
+  display: block !important;
+}
+
+ngx-intl-tel-input .iti {
+  width: 100% !important;
+}
+
+ngx-intl-tel-input input {
+  width: 100% !important;
+}
 
 ::ng-deep p-rating .pi-star,
 ::ng-deep p-rating .pi-star-fill,

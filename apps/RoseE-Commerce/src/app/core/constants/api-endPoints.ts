@@ -33,5 +33,13 @@ export const API_ENDPOINTS = {
   //*Cart endpoints
   cart: {},
 
+
+  //(,'') Update Profile
+  auth:{
+    editProfile:'/auth/editProfile',
+    uploadPhoto:'/auth/upload-photo',
+    changePassword:'/auth/change-password'
+  }
+
   //*All endpoints will be added here
 };
