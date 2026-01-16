@@ -8,6 +8,9 @@ import { Observable } from 'rxjs';
 import { MainTitleComponent } from "../shared/main-title/main-title.component";
 import { ProductCardComponent } from "apps/RoseE-Commerce/src/app/shared/components/product-Card/product-Card.component";
 import { GalleriaModule } from 'primeng/galleria';
+import { Store } from '@ngrx/store';
+import* as WishlistActions from '../../../../store/wishList/wishlist.actions'
+import* as WishlistSelectors from '../../../../store/wishList/wishlist.selectors'
 
 @Component({
   selector: 'app-best-selling',
@@ -18,17 +21,37 @@ import { GalleriaModule } from 'primeng/galleria';
 export class BestSellingComponent implements OnInit {
 
   private readonly Plat_Id=inject(PLATFORM_ID)  
+  private readonly store=inject(Store)
+  
   @Input()bestSellerProducts!: Observable<BestSeller[]> 
 
     responsiveOptions: any[] =[]
     selectedImages: string[] = [];
     displayGallery = false;
+
+
+    wishlistIds$!:Observable<string[]>
   
     ngOnInit(): void {
         if (isPlatformBrowser(this.Plat_Id)) {
             this.responsive()
+            this.selectWishlistId()
         }
     } 
+
+
+          addToWishlist(productId: string):void{
+              this.store.dispatch(WishlistActions.addToWishlist({productId}))
+            }
+    
+            removeFromWishlist(productId: string):void {
+              this.store.dispatch(WishlistActions.removeFromWishlist({ productId }));
+            }
+    
+            selectWishlistId():void{
+              this.wishlistIds$ = this.store.select(WishlistSelectors.selectWishlistIds)
+            }
+    
 
     isBrowser(){
       return  isPlatformBrowser(this.Plat_Id)

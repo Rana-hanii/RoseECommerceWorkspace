@@ -25,6 +25,11 @@ export const API_ENDPOINTS = {
     relatedCategories:'/related/category'
   },
 
+  // *Wishlist endpoints
+  wishlist:{
+    wishlist:'/wishlist',
+    clearWishlist:'/wishlist/clear'
+  },
   //*Cart endpoints
   cart: {},
 

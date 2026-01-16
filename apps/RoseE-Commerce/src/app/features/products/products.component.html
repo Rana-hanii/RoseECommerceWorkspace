@@ -151,6 +151,9 @@
                     [badges]="item.badges"
                     [id]="item._id"
                     [wishlistBtn]="true"
+                    [isWishlisted]="(wishlistIds$ | async)?.includes(item._id)||false"
+                    (addToWishlist)="addToWishlist($event)"
+                    (removeFromWishlist)="removeFromWishlist($event)">
                 ></app-product-card>
             } 
 

@@ -12,8 +12,9 @@ export const mainRoutes: Routes = [
       { path: 'products',loadComponent: () =>import('../../../features/products/products.component').then((c) => c.ProductsComponent),},
       
       {path:'productDetails/:id' , loadComponent:()=>import('../../../features/products/components/product-details/product-details.component').then(
-          (c)=> c.ProductDetailsComponent), data: { renderMode: 'client' } }
-    
+          (c)=> c.ProductDetailsComponent), data: { renderMode: 'client' } } ,
+            
+      {path:'wishlist' , loadComponent:()=> import(`../../../features/wishList/wishlist.component`).then((c)=>c.WishlistComponent), title:'Wish-List'}
     ],
   },
 ]; 

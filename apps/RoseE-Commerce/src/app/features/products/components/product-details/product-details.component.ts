@@ -1,3 +1,4 @@
+import { addToWishlist } from './../../../../store/wishList/wishlist.actions';
 import { ProductReview } from './../../interfaces/product-review/product-review';
 import { Component, computed, inject, OnDestroy, OnInit, PLATFORM_ID, signal, Signal } from '@angular/core';
 import { AsyncPipe, CommonModule, CurrencyPipe, isPlatformBrowser } from '@angular/common';
@@ -21,6 +22,7 @@ import { ToastrService } from 'ngx-toastr';
 import { HomeService } from '../../../home/services/home.service';
 import { RelatedProduct, RelatedProductRes } from '../../interfaces/related-roductRes/related-product-res';
 import { RelatedProductsComponent } from "../related-products/related-products.component";
+import* as WishlistActions from '../../../../store/wishList/wishlist.actions'
 
 @Component({
   selector: 'app-product-details',
@@ -139,6 +141,11 @@ export class ProductDetailsComponent implements OnInit , OnDestroy {
             }
           })
          
+        } 
+
+
+        addToWishlist(productId:string):void{
+          this.store.dispatch(WishlistActions.addToWishlist({productId}))
         }
 
 

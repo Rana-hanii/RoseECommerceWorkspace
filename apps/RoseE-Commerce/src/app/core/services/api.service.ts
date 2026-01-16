@@ -27,6 +27,9 @@ export class ApiService {
   post<T>(endpoint: string, data: unknown) {
     return this.http.post<T>(`${this.baseUrl}${endpoint}`, data);
   }
+  postEmpty<T>(endpoint: string) {
+    return this.http.post<T>(`${this.baseUrl}${endpoint}`,{});
+  }
 
   patch<T>(endpoint: string, data: unknown) {
     return this.http.patch<T>(`${this.baseUrl}${endpoint}`, data);

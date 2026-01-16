@@ -1,9 +1,13 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { addToWishlist } from './../../../store/wishList/wishlist.actions';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Rating } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import { ProductCardBadgeComponent } from "../product-card-badge/product-card-badge.component";
 import { RouterLink } from "@angular/router";
+import { Store } from '@ngrx/store';
+import { Product } from '../../../features/wishList/interfaces/wishlist-Res/wishlist-res';
+import { WishlistReq } from '../../../features/wishList/interfaces/wishlist-Req/wishlist-req';
 
 @Component({
   selector: 'app-product-card',
@@ -12,6 +16,9 @@ import { RouterLink } from "@angular/router";
   styleUrl: './product-Card.component.scss',
 })
 export class ProductCardComponent {
+
+  private readonly store=inject(Store)
+
 
   @Input() image!:string
   @Input() alt!:string
@@ -25,13 +32,22 @@ export class ProductCardComponent {
   @Input() wishlistBtn=false
   @Input() id!:string
   @Output() imgNav:EventEmitter<string[]> =new EventEmitter();
+
+  @Input() product!: Product;
+  @Output() addToWishlist = new EventEmitter<string>();
   
   
-  isWishlisted = false;
+  @Input() isWishlisted = false;
+  @Output() removeFromWishlist = new EventEmitter<string>();
+
 
   
   toggleWishlist() {
-    this.isWishlisted = !this.isWishlisted; 
+     if (this.isWishlisted) {
+      this.removeFromWishlist.emit(this.id);
+    } else {
+      this.addToWishlist.emit(this.id);
+    }
   }
 
   previewNav():void{

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, PLATFORM_ID, signal, ViewChild } from '@angular/core';
+import { Component, computed, inject, OnInit, PLATFORM_ID, Signal, signal, ViewChild } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { RouterLink, RouterLinkActive } from "@angular/router";
@@ -12,8 +12,11 @@ import { Drawer } from 'primeng/drawer';
 import { Menu } from 'primeng/menu';
 import { FormsModule } from '@angular/forms';
 import { ProductsService } from '../../features/products/services/products.service';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import * as productsActions from "./../../store/products/products.actions"
+import * as wishlistSelectors from "./../../store/wishList/wishlist.selectors"
+import { Observable } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 
 
@@ -32,12 +35,13 @@ export class NavBarComponent implements OnInit{
   userName=''
   lastName=''
   items:any[]=[]
-  textSearch=signal<string>('')
+  textSearch=signal<string>('') 
+  wishlistCount$!:Observable<number>
+  
  
   private readonly http=inject(HttpClient)
   private readonly authService=inject(AuthService)
   private readonly homeService=inject(HomeService)
-  private readonly productsService=inject(ProductsService)
   private readonly cookieService=inject(CookieService)
   private readonly plat_Id=inject(PLATFORM_ID)
   private readonly store=inject(Store)
@@ -50,8 +54,14 @@ export class NavBarComponent implements OnInit{
         this.getUserLocation();
          this.userData()
          
+         
     }
   } 
+
+
+  wishlistIds = toSignal(this.store.pipe(select(wishlistSelectors.selectWishlistIds)), { initialValue: [] });
+  wishlistCount: Signal<number> = computed(() => this.wishlistIds().length);
+
 
   checkLoggedUser():void{
       this.isLogin = this.homeService.isLogged
@@ -65,6 +75,8 @@ export class NavBarComponent implements OnInit{
     const value = (event.target as HTMLInputElement).value
     this.store.dispatch(productsActions.filteringProducts({filter :{search :value}}))
   }
+
+
 
 
  
