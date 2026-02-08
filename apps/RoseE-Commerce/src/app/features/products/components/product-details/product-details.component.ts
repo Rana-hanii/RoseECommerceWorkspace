@@ -16,7 +16,6 @@ import { ReviewCardComponent } from '../review-card/review-card.component';
 import { ProductsService } from '../../services/products.service';
 import { map, Observable, Subscription } from 'rxjs';
 import { Review } from '../../interfaces/product-review/product-review';
-import { FloatLabel } from 'primeng/floatlabel';
 import { ProductReviewRes } from '../../interfaces/product-reviewRes/product-review-res';
 import { ToastrService } from 'ngx-toastr';
 import { HomeService } from '../../../home/services/home.service';
@@ -27,7 +26,7 @@ import* as WishlistActions from '../../../../store/wishList/wishlist.actions'
 @Component({
   selector: 'app-product-details',
   imports: [CommonModule, AsyncPipe, CurrencyPipe, GalleriaModule, SectionTitleComponent,
-    Rating, FormsModule, ReviewCardComponent, ReactiveFormsModule, FloatLabel, RelatedProductsComponent],
+    Rating, FormsModule, ReviewCardComponent, ReactiveFormsModule, RelatedProductsComponent],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.scss',
 })

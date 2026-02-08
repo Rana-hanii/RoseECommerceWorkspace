@@ -155,6 +155,7 @@ export class NavBarComponent implements OnInit{
                     {
                         label: 'My Profile',
                         icon: 'pi pi-user',
+                        routerLink:'profile'
                         
                     },
                     {
