@@ -84,17 +84,30 @@
                 <a><i routerLink="/main/wishlist"
                      class=" pi pi-heart !text-2xl text-[#3F3F46] dark:text-white cursor-pointer hover:scale-[1.2] duration-[.5s] "
                     ></i></a>
-                      @if (wishlistCount() > 0) {
+                        @if ((wishlistidsCount$|async)?.length ||0 > 0) {
                               <span class="absolute -top-1 -left-2 bg-red-600 text-white text-xs
                                         font-bold w-[18px] h-[18px] flex items-center justify-center rounded-full"
-                                        [class.hidden]="wishlistCount() === 0"
+                                        
                                >
-                                 {{ wishlistCount() }}
+                                 {{ (wishlistidsCount$|async)?.length || 0 }}
                                 </span>
-                       }
+                            }
                 </div>
               <!-- Cart -->
-              <a><i class="pi pi-shopping-cart !text-2xl text-[#3F3F46] dark:text-white cursor-pointer hover:scale-[1.2] duration-[.5s]"></i></a>
+            <div class="relative">
+                 <a><i 
+                 [routerLink]="['/main/cart' ,cartId]"
+                 class="pi pi-shopping-cart !text-2xl text-[#3F3F46] dark:text-white cursor-pointer hover:scale-[1.2] duration-[.5s]"
+                 ></i></a>
+                      @if ((cartidsCount$|async)?.length ||0 > 0) {
+                              <span class="absolute -top-1 -left-2 bg-red-600 text-white text-xs
+                                        font-bold w-[18px] h-[18px] flex items-center justify-center rounded-full"
+                                        
+                               >
+                                 {{ (cartidsCount$|async)?.length || 0 }}
+                                </span>
+                            }
+            </div>
               <!-- notifications -->
               <a><i class="pi pi-bell !text-2xl text-[#3F3F46] dark:text-white  cursor-pointer hover:scale-[1.2] duration-[.5s]"></i></a>
           </div>
@@ -219,15 +232,31 @@
                                     <div class="flex items-center gap-4 px-3 py-1 w-full py-1 ">
                                       <div class="relative">
                                           <a><i  routerLink="/main/wishlist"
+                                                (click)="closeCallback($event)"
+                                                (keydown.enter)="closeCallback($event)"
+                                                tabindex="0"   role="button"
                                                  class="relative pi pi-heart !text-2xl hover:scale-[1.3] duration-[.5s] !text-[var(--color-text-maroon)] dark:!text-[var(--dark-text-secondary)] font-[500] cursor-pointer "></i>
-                                             @if (wishlistCount() > 0) {
+                                             @if ((wishlistidsCount$|async)?.length ||0 > 0) {
                                                 <span class="absolute -top-1 -left-2 bg-red-600 text-white text-xs font-bold w-[18px] h-[18px] flex items-center justify-center rounded-full">
-                                                {{ wishlistCount() }}
+                                                 {{ (wishlistidsCount$|async)?.length || 0 }}
                                                 </span>
                                             }
                                         </a>
                                       </div>
-                                        <a><i class="pi pi-shopping-cart !text-2xl hover:scale-[1.3] duration-[.5s] !text-[var(--color-text-maroon)] dark:!text-[var(--dark-text-secondary)] font-[500] cursor-pointer"></i></a>
+                                      <div class="relative">
+                                            <a><i
+                                            [routerLink]="['/main/cart' ,cartId]"
+                                            (click)="closeCallback($event)"
+                                            tabindex="0"   role="button"
+                                            (keydown.enter)="closeCallback($event)"
+                                            class="pi pi-shopping-cart !text-2xl hover:scale-[1.3] duration-[.5s] !text-[var(--color-text-maroon)] dark:!text-[var(--dark-text-secondary)] font-[500] cursor-pointer"
+                                            ></i></a>
+                                              @if ((cartidsCount$|async)?.length ||0 > 0) {
+                                                <span class="absolute -top-1 -left-2 bg-red-600 text-white text-xs font-bold w-[18px] h-[18px] flex items-center justify-center rounded-full">
+                                                 {{ (cartidsCount$|async)?.length || 0 }}
+                                                </span>
+                                            }
+                                      </div>
                                         <a><i class="pi pi-bell !text-2xl hover:scale-[1.3] duration-[.5s] text-[var(--color-text-maroon)] dark:!text-[var(--dark-text-secondary)] font-[500] cursor-pointer"></i></a>
                                     </div>
 
@@ -245,6 +274,9 @@
                         <ul class="list-none p-4 space-y-3 m-0 text-white ">
                                 
                                     <li routerLink="/main/home"
+                                        tabindex="0"   role="button"
+                                        (click)="closeCallback($event)"
+                                        (keydown.enter)="closeCallback($event)"
                                         routerLinkActive="text-[#FFC2D0]"
                                         class="w-full lg:w-1/12 cursor-pointer space-x-2 lg:space-x-2 flex justify-start items-center ">    
                                         <i class="pi pi-home !text-lg lg:!text-xl"></i>
@@ -252,6 +284,9 @@
                                     </li>
                                 
                                     <li routerLink="/main/products" 
+                                        tabindex="0"   role="button"
+                                        (click)="closeCallback($event)"
+                                        (keydown.enter)="closeCallback($event)"
                                         routerLinkActive="text-[#FFC2D0]"
                                         class="w-full lg:w-1/12 cursor-pointer hover:text-[#FFC2D0] space-x-2 lg:space-x-2 flex justify-start items-center ">    
                                         <i class="pi pi-gift !text-lg lg:!text-xl"></i>
