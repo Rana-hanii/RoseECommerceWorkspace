@@ -11,12 +11,15 @@ import { AvatarModule } from 'primeng/avatar';
 import { Drawer } from 'primeng/drawer';
 import { Menu } from 'primeng/menu';
 import { FormsModule } from '@angular/forms';
-import { ProductsService } from '../../features/products/services/products.service';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import * as productsActions from "./../../store/products/products.actions"
 import * as wishlistSelectors from "./../../store/wishList/wishlist.selectors"
+import * as wishlistActions from "./../../store/wishList/wishlist.actions"
+import * as CartActions from "./../../store/cart/cart.actions"
+import * as CartSelectors from "./../../store/cart/cart.selectors"
 import { Observable } from 'rxjs';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { CartService } from '../../features/cart/services/cart.service';
+import { UserCart } from '../../features/cart/interfaces/userCart/user-cart';
 
 
 
@@ -36,31 +39,33 @@ export class NavBarComponent implements OnInit{
   lastName=''
   items:any[]=[]
   textSearch=signal<string>('') 
-  wishlistCount$!:Observable<number>
+  wishlistidsCount$!:Observable<string[]>
+  cartidsCount$!:Observable<string[]>
+  cartId!:string
   
  
   private readonly http=inject(HttpClient)
   private readonly authService=inject(AuthService)
   private readonly homeService=inject(HomeService)
+  private readonly cartService=inject(CartService)
   private readonly cookieService=inject(CookieService)
   private readonly plat_Id=inject(PLATFORM_ID)
   private readonly store=inject(Store)
 
 
   ngOnInit(): void {
-
+    
     if (isPlatformBrowser(this.plat_Id)) {
       this.checkLoggedUser() 
         this.getUserLocation();
          this.userData()
-         
+          this.getUsersCartId()
+          this.loadWishlist()
+          this.loadCart()
          
     }
   } 
 
-
-  wishlistIds = toSignal(this.store.pipe(select(wishlistSelectors.selectWishlistIds)), { initialValue: [] });
-  wishlistCount: Signal<number> = computed(() => this.wishlistIds().length);
 
 
   checkLoggedUser():void{
@@ -155,7 +160,8 @@ export class NavBarComponent implements OnInit{
                     {
                         label: 'My Profile',
                         icon: 'pi pi-user',
-                        routerLink:'profile'
+                        routerLink:'profile',
+                        command: (event:any)=>this.closeCallback(event)
                         
                     },
                     {
@@ -178,6 +184,25 @@ export class NavBarComponent implements OnInit{
                 ]
             }
         ];
+    }
+
+
+
+    getUsersCartId():void{
+      this.cartService.getLoggedUserCart().subscribe({
+        next:(res:UserCart)=>{
+          this.cartId=res.cart._id
+        }
+      })
+    } 
+
+    loadWishlist():void{
+      this.store.dispatch(wishlistActions.loadWishlist())
+      this.wishlistidsCount$= this.store.select(wishlistSelectors.selectWishlistIds)
+    }
+    loadCart():void{
+      this.store.dispatch(CartActions.loadCart())
+      this.cartidsCount$= this.store.select(CartSelectors.selectUserCartIds)
     }
 
   

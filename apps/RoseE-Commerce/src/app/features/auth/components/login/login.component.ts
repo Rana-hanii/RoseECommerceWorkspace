@@ -58,7 +58,7 @@ export class LoginComponent {
           next: (res) => {
             // save token
             this.cookieService.set('roseToken', res.token);
-
+                
             // (,'') ====> behaviourSbuject
             this.homeService.isLogged.set(true)
             

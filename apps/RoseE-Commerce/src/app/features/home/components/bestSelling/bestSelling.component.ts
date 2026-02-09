@@ -11,6 +11,7 @@ import { GalleriaModule } from 'primeng/galleria';
 import { Store } from '@ngrx/store';
 import* as WishlistActions from '../../../../store/wishList/wishlist.actions'
 import* as WishlistSelectors from '../../../../store/wishList/wishlist.selectors'
+import* as CarttActions from '../../../../store/cart/cart.actions'
 
 @Component({
   selector: 'app-best-selling',
@@ -50,7 +51,12 @@ export class BestSellingComponent implements OnInit {
     
             selectWishlistId():void{
               this.wishlistIds$ = this.store.select(WishlistSelectors.selectWishlistIds)
-            }
+            } 
+
+
+                  addtoCart(productId:string):void{
+                      this.store.dispatch(CarttActions.addItemToCart({productId}))
+                    }
     
 
     isBrowser(){

@@ -22,6 +22,7 @@ import { HomeService } from '../../../home/services/home.service';
 import { RelatedProduct, RelatedProductRes } from '../../interfaces/related-roductRes/related-product-res';
 import { RelatedProductsComponent } from "../related-products/related-products.component";
 import* as WishlistActions from '../../../../store/wishList/wishlist.actions'
+import* as CartActions from '../../../../store/cart/cart.actions'
 
 @Component({
   selector: 'app-product-details',
@@ -145,6 +146,12 @@ export class ProductDetailsComponent implements OnInit , OnDestroy {
 
         addToWishlist(productId:string):void{
           this.store.dispatch(WishlistActions.addToWishlist({productId}))
+          this.toast.success(`this product added successfuly to your Wishlist `)
+        }
+
+
+        addToCart(productId:string):void{
+          this.store.dispatch(CartActions.addItemToCart({productId}))
         }
 
 

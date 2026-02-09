@@ -35,7 +35,7 @@ export class ProductCardComponent {
 
   @Input() product!: Product;
   @Output() addToWishlist = new EventEmitter<string>();
-  
+  @Output() addItemToCart=new EventEmitter<string>()
   
   @Input() isWishlisted = false;
   @Output() removeFromWishlist = new EventEmitter<string>();
@@ -48,6 +48,10 @@ export class ProductCardComponent {
     } else {
       this.addToWishlist.emit(this.id);
     }
+  } 
+
+  addToCart():void{
+    this.addItemToCart.emit(this.id)
   }
 
   previewNav():void{

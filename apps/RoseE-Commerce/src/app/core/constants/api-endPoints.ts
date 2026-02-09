@@ -30,8 +30,11 @@ export const API_ENDPOINTS = {
     wishlist:'/wishlist',
     clearWishlist:'/wishlist/clear'
   },
+  
   //*Cart endpoints
-  cart: {},
+  cart: {
+    cart:'/cart'
+  },
 
 
   //(,'') Update Profile
@@ -40,6 +43,7 @@ export const API_ENDPOINTS = {
     uploadPhoto:'/auth/upload-photo',
     changePassword:'/auth/change-password'
   }
+  
 
   //*All endpoints will be added here
 };
