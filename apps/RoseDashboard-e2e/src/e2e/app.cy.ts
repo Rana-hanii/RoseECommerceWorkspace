@@ -1,7 +1,6 @@
 
 
-describe('RoseE-Commerce-e2e', () => {
+describe('RoseDashboard-e2e', () => {
   beforeEach(() => cy.visit('/'));
-
 
 });
