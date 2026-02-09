@@ -1,10 +1,10 @@
 <section class="container mx-auto lg:px-20 mt-2 ">
 
     <!-- product Details -->
-    <div class="w-full flex flex-row justify-center items-center py-7" > 
+    <div class="w-full flex flex-col  lg:flex-row justify-between lg:justify-center items-center gap-4 lg:gap-0 py-7" > 
 
       <!-- images Section -->
-       <div class="w-1/2 "> 
+       <div class="w-full lg:w-1/2 "> 
           <div class="card">
 
             <p-galleria [value]="galleriaImages()" [responsiveOptions]="responsiveOptions" 
@@ -21,20 +21,20 @@
 
 
       <!-- Description Section -->
-       <div class="w-1/2 flex flex-col justify-end items-start  "> 
+       <div class="w-full lg:w-1/2 flex flex-col justify-end items-start px-4 lg:px-0 "> 
           <!-- title -->
            <div class=" line w-full ">
               <h1 class="text-4xl font-[600] capitalize mb-3">{{productFromStore()?.title}}</h1>
               
               <!-- price and stock -->
-              <div class="flex flex-row gap-4">
-                 <p class="text-4xl flex flex-row font-[700] text-black gap-3 ">
+              <div class="flex flex-row  gap-4">
+                 <p class="text-4xl flex flex-row items-center  font-[700] text-black gap-3 ">
                   <span class=" text-[#D4D4D8] gap-3 line-through font-[500]">{{productFromStore()?.price}}</span>
                   {{productFromStore()?.priceAfterDiscount |currency:'EGP'}}
                 </p>
                 <!-- stock Badge  -->
-                <div class="bg-[#F4F4F5] rounded-2xl px-3 py-1 flex  items-center justify-center ">
-                  <p class="text-black font-[600]">
+                <div class="bg-[#F4F4F5] rounded-2xl px-3 py-1 flex items-center justify-center ">
+                  <p class="text-black text-center font-[600]">
                     <i class="pi pi-box"></i>
                     {{productFromStore()?.quantity}} left in Stock
                   </p>
@@ -52,16 +52,16 @@
            </div>
 
            <!-- describtion -->
-            <div class=" w-full h-[290px]">
+            <div class=" w-full min-h-[180px] lg:h-[290px]">
 
-              <p class="self-start text-[16px] font-semibold"> {{productFromStore()?.description}}</p>
+              <p class="self-start my-4 text-[16px] font-semibold"> {{productFromStore()?.description}}</p>
             </div>
 
 
             <!-- buttons -->
-            <div class="w-full flex justify-center items-center gap-4 ">
+            <div class="w-full flex justify-center items-center my-5 lg:my-0 gap-2 lg:gap-4 ">
                   <!-- wishlist button  -->
-              <div class="w-1/12 flex justify-start">
+              <div class="w-2/12 lg:w-1/12 flex justify-center lg:justify-start">
                   <button (click)="addToWishlist(productId)" class="h-[46px] w-[52px] rounded-xl bg-[#F4F4F5] dark:bg-[#CD2E33] flex items-center justify-center cursor-pointer">
                      <svg width="24" height="24" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.125 14.625L9 15.75L3.75 10.5C2.625 9.4125 1.5 8.1 1.5 6.375C1.5 5.28098 1.9346 4.23177 2.70818 3.45818C3.48177 2.6846 4.53098 2.25 5.625 2.25C6.945 2.25 7.875 2.625 9 3.75C10.125 2.625 11.055 2.25 12.375 2.25C12.9798 2.2507 13.5771 2.38439 14.1245 2.64162C14.6719 2.89884 15.1561 3.2733 15.5427 3.73846C15.9293 4.20363 16.2088 4.74811 16.3616 5.33335C16.5143 5.91858 16.5365 6.53024 16.4265 7.125M11.25 11.25H15.75M13.5 9V13.5" 
@@ -71,8 +71,8 @@
                 </div>
 
                 <!-- add to cart button -->
-              <div class="w-11/12 flex justify-start ">
-                  <button class="h-[46px] rounded-xl bg-[#A6252A] dark:bg-[#CD2E33] w-full flex items-center justify-center cursor-pointer gap-x-3">
+              <div class="w-9/12 lg:w-11/12 flex justify-start ">
+                  <button (click)="addToCart(productId)" class="h-[46px] rounded-xl bg-[#A6252A] dark:bg-[#CD2E33] w-full flex items-center justify-center cursor-pointer gap-x-3">
                      <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M0.875 0.875H2.95833L5.72917 13.8125C5.83081 14.2863 6.09445 14.7099 6.4747 15.0103C6.85495 15.3107 7.32803 15.4691 7.8125 15.4583H18C18.4741 15.4576 18.9338 15.2951 19.3032 14.9977C19.6725 14.7004 19.9293 14.286 20.0313 13.8229L21.75 6.08333H4.07292M8.11458 20.6146C8.11458 21.1899 7.64821 21.6562 7.07292 21.6562C6.49762 21.6562 6.03125 21.1899 6.03125 20.6146C6.03125 20.0393 6.49762 19.5729 7.07292 19.5729C7.64821 19.5729 8.11458 20.0393 8.11458 20.6146ZM19.5729 20.6146C19.5729 21.1899 19.1065 21.6562 18.5312 21.6562C17.956 21.6562 17.4896 21.1899 17.4896 20.6146C17.4896 20.0393 17.956 19.5729 18.5312 19.5729C19.1065 19.5729 19.5729 20.0393 19.5729 20.6146Z"
                        stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
@@ -92,7 +92,7 @@
 
     
     <!-- product Review -->
-     <div class="flex flex-col items-start justify-start w-full mt-5">
+     <div class="flex flex-col items-start justify-start w-full mt-8 lg:mt-5 px-4 lg:px-0">
 
       <!-- first part ratings and stars  -->
       <div class="line w-full">
@@ -109,10 +109,10 @@
 
 
       <!-- second section reviews and add review  -->
-       <div class="flex flex-row w-full pb-7">
+       <div class="flex flex-col items-start justify-center lg:flex-row w-full pb-7 px-4 lg:px-0">
 
         <!-- reviews -->
-         <div class="w-[56%] py-4 line2 ">
+         <div class="w-full lg:w-[56%] py-4 line2 ">
 
           <!-- check if the product has no reviews -->
           @if ((reviews$|async)?.length === 0 ) {
@@ -139,12 +139,12 @@
           
          </div>
          <!-- separate line between 2 divs shows only in lg view -->
-         <div class="w-[4%] column py-3 flex justify-center"></div>
+         <div class="w-0 lg:w-[4%] column py-3 flex justify-center"></div>
 
 
          <!-- add review -->
           
-         <div class="w-[40%] flex flex-col justify-start items-start p-3 mt-3 relative ">
+         <div class="w-full lg:w-[40%] flex flex-col justify-start items-start p-3 mt-3 relative ">
 
                                  @if (!isLogin()) {
                                   <div class=" absolute z-10 top-[50%] left-[50%] -translate-y-[50%] -translate-x-[50%] flex flex-col items-center justify-center ">
@@ -198,7 +198,7 @@
 
 
      <!-- Related Products -->
-     <div #ref class="w-full py-5 ">
+     <div #ref class="w-full py-5 px-4 lg:px-0">
       @if (isBrowser()) {
            @defer (on viewport(ref)) {
             <div>

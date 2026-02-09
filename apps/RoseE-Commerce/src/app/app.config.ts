@@ -31,6 +31,8 @@ import { occasionsReducer } from './store/Occasions/occations.reducers';
 import { occasionsEffect } from './store/Occasions/occasions.effects';
 import { wishlistReducer } from './store/wishList/wishlist.reducers';
 import { wishlistEffects } from './store/wishList/wishlist.effects';
+import { cartReducer } from './store/cart/cart.reducers';
+import { cartEffects } from './store/cart/cart.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -61,12 +63,13 @@ export const appConfig: ApplicationConfig = {
       products:productsReducer,
       categories:categoriesReducer,
       occasions:occasionsReducer,
-      wishlist:wishlistReducer
+      wishlist:wishlistReducer ,
+      cart:cartReducer
     }),
 
 
     provideEffects(
-      [productsEffects , categotiesEffect , occasionsEffect ,wishlistEffects]
+      [productsEffects , categotiesEffect , occasionsEffect ,wishlistEffects ,cartEffects]
     ),
 
   ], 

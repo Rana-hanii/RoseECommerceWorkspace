@@ -1,5 +1,5 @@
 import { HomeService } from './../home/services/home.service';
-import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal, ViewChild, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReusableInputComponent } from "../../shared/components/reusableInput/reusableInput.component";
 import { FormBuilder, FormGroup, FormsModule, Validators, ReactiveFormsModule } from "@angular/forms";
@@ -14,11 +14,13 @@ import { PASSWORD_PATTERN } from '../../shared/constants/regex.constants';
 import { ChangePasswordRes } from './interfaces/change-password-res';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { Drawer, DrawerModule } from 'primeng/drawer';
+import { ButtonModule } from 'primeng/button';
 
 
 @Component({
   selector: 'app-profile',
-  imports: [CommonModule, ReusableInputComponent, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, ReusableInputComponent, FormsModule, ReactiveFormsModule ,DrawerModule , ButtonModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
 })
@@ -36,7 +38,7 @@ export class ProfileComponent implements OnInit ,OnDestroy {
 
   userPhoto!:string
   selectedFile!:File
-
+  visible= false;
   sub!:Subscription
   
   updateUserForm:FormGroup = this.formBuilder.group({
@@ -64,9 +66,9 @@ export class ProfileComponent implements OnInit ,OnDestroy {
 
   editProfile():void{
     if (this.updateUserForm.invalid) {
-        this.toastrService.error(`you have to put all inputs`)
+        this.toastrService.error(`you have to fill all inputs`)
         
-    }else if (this.updateUserForm.valid) {
+    }else if (this.updateUserForm.valid) { 
               const payload = {
                 ...this.updateUserForm.value,
                  phone: this.updateUserForm.get('phone')?.value?.e164Number || ''}
@@ -74,6 +76,10 @@ export class ProfileComponent implements OnInit ,OnDestroy {
             this.updateProfileService.editProfile(payload).subscribe({
               next:(res:UpdateProfileRes)=>{        
                     this.toastrService.success('your profile has been updated' , res.message)
+                    this.getUserData()
+                    if(this.selectedFile){
+                      this.changeUserPhoto()
+                    }
             
               },error:(err:UpdateProfileRes)=>{
                 this.toastrService.error('Error' , err.message)
@@ -102,7 +108,7 @@ export class ProfileComponent implements OnInit ,OnDestroy {
 
     if(input.files && input.files.length > 0 ){
       this.selectedFile = input.files[0]
-      this.changeUserPhoto()
+      this.toastrService.success('your photo has updated')
     } 
     
   }
@@ -125,10 +131,11 @@ export class ProfileComponent implements OnInit ,OnDestroy {
 
 
     changePassword():void{
-       this.sub = this.updateProfileService.changePassword(this.changePasswordForm.value).subscribe({
+      if (this.changePasswordForm.valid) {
+            this.sub = this.updateProfileService.changePassword(this.changePasswordForm.value).subscribe({
         next:((res:ChangePasswordRes)=>{
-
-           this.toastrService.success('your password has been changed' ,res.message)
+            this.cookieService.delete('roseToken')
+            this.toastrService.success('your password has been changed' ,res.message)
             this.cookieService.set('roseToken' , res.token)
             this.homeService.isLogged.set(false)
           setTimeout(() => {
@@ -139,8 +146,18 @@ export class ProfileComponent implements OnInit ,OnDestroy {
           this.toastrService.error('error' , err.message)
         })
       })
+      }else{
+        this.toastrService.error(`you must fill the input`)
+      }
+  
     }
+   
 
+         @ViewChild('drawerRef') drawerRef!: Drawer;
+        
+            closeCallback(e:any): void {
+                this.drawerRef.close(e);
+            }
 
 
   ngOnDestroy(): void {

@@ -60,6 +60,7 @@
                 [isWishlisted]="(wishlistIds$ | async)?.includes(i._id)||false"
                 (addToWishlist)="addToWishlist($event)"
                 (removeFromWishlist)="removeFromWishlist($event)"
+                (addItemToCart)="addtoCart($event)"
             >
             </app-product-card>
         </ng-template>

@@ -20,7 +20,7 @@ import { ButtonModule } from 'primeng/button';
 import { Drawer, DrawerModule } from 'primeng/drawer';
 import* as WishlistActions from '../../store/wishList/wishlist.actions'
 import* as WishlistSelectors from '../../store/wishList/wishlist.selectors'
-
+import* as CarttActions from '../../store/cart/cart.actions'
 
 
 @Component({
@@ -117,6 +117,10 @@ export class ProductsComponent implements OnInit  {
 
         removeFromWishlist(productId: string):void {
           this.store.dispatch(WishlistActions.removeFromWishlist({ productId }));
+        }
+
+        addtoCart(productId:string):void{
+          this.store.dispatch(CarttActions.addItemToCart({productId}))
         }
 
         selectWishlistId():void{

@@ -9,7 +9,8 @@ export const wishlistReducer = createReducer( initialWishlistState ,
 
     on(WishlistActions.setWishlist , (state , {wishlistedProducts})=>({
         ...state , 
-        wishlistedProducts
+        wishlistedProducts,
+        wishlistedProductIds:wishlistedProducts.map(i=>i._id)
     })),
 
     on(WishlistActions.addToWishlist , (state , {productId})=>({

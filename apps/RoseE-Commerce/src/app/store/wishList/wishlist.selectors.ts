@@ -6,6 +6,4 @@ export const selectWishlistState= createFeatureSelector<wishListState>('wishlist
 
 export const selectWishlistArray = createSelector(selectWishlistState , (state)=> state.wishlistedProducts)
 
-export const selectWishlistIds = createSelector(selectWishlistState, (state) => state?.wishlistedProductIds ?? [])
-
-export const selectWishlistCount = createSelector(selectWishlistState,(state) => state?.wishlistedProductIds?.length ?? 0)
+export const selectWishlistIds = createSelector(selectWishlistState, (state) => state.wishlistedProductIds)
