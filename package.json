@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start-rose": "npx nx run RoseE-Commerce:s -o",
+    "start-dashboard": "npx nx run RoseDashboard:s -o",
     "compodoc": "npx compodoc -p apps/RoseE-Commerce/tsconfig.doc.json"
   },
   "private": true,
