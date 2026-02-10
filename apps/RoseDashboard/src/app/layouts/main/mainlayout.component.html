@@ -1,8 +1,8 @@
 <section class="w-full bg-[#FAFAFA]  flex justify-center items-start">
 
            <!-- sidebar -->
-            <div class="w-1/6 bg-white min-h-[100vh] border-r-gray-300 border-r-[1px]">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, vel!
+            <div class="lg:w-1/6 hidden lg:block bg-white min-h-[100vh] border-r-gray-300 border-r-[1px]">
+                <app-sidebar></app-sidebar>
             </div> 
 
             <!-- main latout that will changed  -->
@@ -13,8 +13,8 @@
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus error officiis repellendus exercitationem quod! Numquam harum minus, recusandae, adipisci maiores quos, magni exercitationem sapiente dolores alias quidem provident quas laborum.
                 </div>
 
-                <div class="p-3">
-                    <app-home></app-home>
+                <div class="p-3 w-full ">
+                    <router-outlet></router-outlet>
                 </div>
 
 
