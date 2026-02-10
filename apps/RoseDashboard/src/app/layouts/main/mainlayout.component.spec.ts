@@ -1,5 +1,7 @@
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MainlayoutComponent } from './mainlayout.component';
+import { provideRouter } from '@angular/router';
 
 describe('MainlayoutComponent', () => {
   let component: MainlayoutComponent;
@@ -8,6 +10,10 @@ describe('MainlayoutComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MainlayoutComponent],
+      providers:[
+        provideRouter([]),
+        provideAnimations()
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(MainlayoutComponent);
