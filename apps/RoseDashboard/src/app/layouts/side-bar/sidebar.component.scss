@@ -1,0 +1,21 @@
+.custom-menu {
+  width: 260px;
+  height: 180px;
+}
+
+.p-menu-overlay {
+    box-shadow: var(--p-menu-shadow);
+}
+
+:host ::ng-deep {
+
+.p-menu {
+   height: 90px !important;
+   display: flex !important;
+   flex-direction: column !important;
+   justify-items: space-around !important;
+   align-items: start !important;
+}
+
+
+}
