@@ -16,13 +16,9 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 })
 export class OrderStatusComponent implements OnInit {
   data: any;
-
   options: any;
-
   platformId = inject(PLATFORM_ID);
-
   constructor(private cd: ChangeDetectorRef) {}
-
   ngOnInit() {
     this.initChart();
   }
@@ -33,12 +29,11 @@ export class OrderStatusComponent implements OnInit {
       const textColor = documentStyle.getPropertyValue('--p-text-color');
 
       this.data = {
-        labels: ['A', 'B', 'C'],
         datasets: [
           {
             data: [300, 50, 100],
             backgroundColor: [
-              documentStyle.getPropertyValue('!--p-cyan-500'),
+              documentStyle.getPropertyValue('--p-cyan-500'),
               documentStyle.getPropertyValue('--p-orange-500'),
               documentStyle.getPropertyValue('--p-gray-500'),
             ],

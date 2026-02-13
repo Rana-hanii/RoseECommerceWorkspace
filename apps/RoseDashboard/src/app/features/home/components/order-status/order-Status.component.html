@@ -1,8 +1,34 @@
-<div class="card flex justify-center">
-  <p-chart
-    type="doughnut"
-    [data]="data"
-    [options]="options"
-    class="w-full md:w-[30rem]"
-  />
+<div class="card w-[300px] bg-white p-7 block">
+  <h2 class="font-semibold text-2xl text-center">Orders Status</h2>
+  <p-chart type="doughnut" [data]="data" [options]="options" class="w-full" />
+
+  <div class="dots">
+    <div class="Complete flex items-center justify-between gap-1">
+      <div class="flex items-center gap-1">
+        <i class="pi pi-circle-fill text-[#00BC7D]"></i>
+        <p>Complete</p>
+      </div>
+      <div class="percentage flex items-center gap-1">
+        <p>216 (33%)</p>
+      </div>
+    </div>
+    <div class="In progress flex items-center justify-between gap-1">
+      <div class="flex items-center gap-1">
+        <i class="pi pi-circle-fill text-[#2B7FFF]"></i>
+        <p>In progress</p>
+      </div>
+      <div class="percentage flex items-center gap-1">
+        <p>513 (57%)</p>
+      </div>
+    </div>
+    <div class="Canceled flex items-center justify-between gap-1">
+      <div class="flex items-center gap-1">
+        <i class="pi pi-circle-fill text-[#DC2626]"></i>
+        <p>Canceled</p>
+      </div>
+      <div class="percentage flex items-center gap-1">
+        <p>19 (10%)</p>
+      </div>
+    </div>
+  </div>
 </div>

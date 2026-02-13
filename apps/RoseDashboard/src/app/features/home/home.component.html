@@ -1,15 +1,19 @@
-<section class="w-full p-20 grid grid-cols-2 gap-4">
+<section
+  class="w-full container mx-auto p-2 flex flex-col justify-start items-start"
+>
   <!-- Row 1 -->
-  <div>
-    <app-statistics></app-statistics>
-  </div>
+  <div class="w-full flex items-start justify-between gap-8">
+    <div class="w-1/2">
+      <app-statistics></app-statistics>
+    </div>
 
-  <div>
-    <app-total-categories></app-total-categories>
+    <div class="w-1/2">
+      <app-total-categories></app-total-categories>
+    </div>
   </div>
 
   <!-- Row 2 -->
-  <div class="col-span-2">
+  <div class="flex justify-start mt-5">
     <app-order-status></app-order-status>
   </div>
 </section>
