@@ -1,8 +1,9 @@
 import { Menu } from 'primeng/menu';
 import { ButtonModule } from 'primeng/button';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterModule } from "@angular/router";
+import { NavigationService } from '../../features/home/services/navigation.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,7 +13,10 @@ import { RouterLink, RouterModule } from "@angular/router";
 })
 export class SidebarComponent implements OnInit{
 
-  isActive: 'overview' | 'categories' |'occasions' | 'products' = 'overview' 
+  private readonly navigationService=inject(NavigationService)
+  
+
+  isActive = this.navigationService.activeButton
   items: any[]=[] 
 
   ngOnInit(): void {
@@ -26,11 +30,11 @@ export class SidebarComponent implements OnInit{
                 items: [
                     {
                         label: 'Account',
-                        icon: 'pi pi-refresh'
+                        icon: 'pi pi-user'
                     },
                     {
                         label: 'Logout',
-                        icon: 'pi pi-upload'
+                        icon: 'pi pi-sign-out'
                     }
                 ]
             }

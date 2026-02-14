@@ -1,21 +1,37 @@
 <section class="w-full bg-[#FAFAFA]  flex justify-center items-start">
 
            <!-- sidebar -->
-            <div class="lg:w-1/6 hidden lg:block bg-white min-h-[100vh] border-r-gray-300 border-r-[1px]">
-                <app-sidebar></app-sidebar>
+            <div class=" lg:w-1/6 hidden lg:block">
+                <div class="lg:w-1/6  fixed left-0 top-0  bg-white min-h-screen border-r-gray-300 border-r-[1px]">
+                    <app-sidebar></app-sidebar>
+                </div>
             </div> 
 
             <!-- main latout that will changed  -->
-            <div class="w-5/6 ">
+            <div class="w-full lg:w-5/6 ">
 
-                <!-- breadcramp -->
-                <div class="w-full h-[70px] bg-white border-b-gray-300 border-b-[2px]">
+                <!-- breadcramp in lg screen -->
+                <div class="w-full hidden lg:block h-[70px] bg-white border-b-gray-300 border-b-[2px]">
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus error officiis repellendus exercitationem quod! Numquam harum minus, recusandae, adipisci maiores quos, magni exercitationem sapiente dolores alias quidem provident quas laborum.
+                </div>
+
+                <!-- navbar in mobile screen -->
+                <div class="w-full lg:hidden   bg-white border-b-gray-300 border-b-[2px] p-3 ">
+                    <app-navbar
+                    [logoImg]="appPhoto"
+                    [userImg]="appPhoto"
+                    ></app-navbar>
                 </div>
 
                 <div class="p-3 w-full ">
                     <router-outlet></router-outlet>
                 </div>
+
+
+                <!-- Bottom Navigation-bar -->
+                 <div class="w-full lg:hidden fixed bottom-0 h-[72px] bg-white">
+                    <app-bottom-navbar></app-bottom-navbar>
+                 </div>
 
 
             </div>

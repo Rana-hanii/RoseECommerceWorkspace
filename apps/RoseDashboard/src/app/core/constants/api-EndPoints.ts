@@ -2,10 +2,10 @@ export const ApiEndPointsDashboard ={
 
     // *OVERVIEW PAGE ENDPOINTS 
     overview:{
-        overAllStatistics:'/statistics/overall',
-        productsStatistics:'/statistics/products',
-        orderStatistics:'/statistics/orders',
-        categoryStatistics:'/statistics/categories'
+        overAllStatistics:'/statistics/overall', //overview
+        productsStatistics:'/statistics/products', //products
+        orderStatistics:'/statistics/orders',//orders
+        categoryStatistics:'/statistics/categories'//categories
     } ,
 
 
