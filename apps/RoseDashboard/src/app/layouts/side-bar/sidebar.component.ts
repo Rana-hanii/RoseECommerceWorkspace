@@ -30,7 +30,8 @@ export class SidebarComponent implements OnInit{
                 items: [
                     {
                         label: 'Account',
-                        icon: 'pi pi-user'
+                        icon: 'pi pi-user',
+                        routerLink:'account'
                     },
                     {
                         label: 'Logout',
