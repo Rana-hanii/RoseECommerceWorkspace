@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TotalCategoriesComponent } from './total-categories.component';
-import { provideHttpClient } from '@angular/common/http';
+import { RevenueComponent } from './Revenue.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-describe('TotalCategoriesComponent', () => {
-  let component: TotalCategoriesComponent;
-  let fixture: ComponentFixture<TotalCategoriesComponent>;
+import { provideHttpClient } from '@angular/common/http';
+describe('RevenueComponent', () => {
+  let component: RevenueComponent;
+  let fixture: ComponentFixture<RevenueComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TotalCategoriesComponent],
+      imports: [RevenueComponent],
       providers: [provideHttpClient(), provideHttpClientTesting()],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TotalCategoriesComponent);
+    fixture = TestBed.createComponent(RevenueComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

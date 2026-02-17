@@ -1,18 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TotalCategoriesComponent } from './total-categories.component';
-import { provideHttpClient } from '@angular/common/http';
+import { TopsellingComponent } from './topselling.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-describe('TotalCategoriesComponent', () => {
-  let component: TotalCategoriesComponent;
-  let fixture: ComponentFixture<TotalCategoriesComponent>;
+import { provideHttpClient } from '@angular/common/http';
+
+describe('TopsellingComponent', () => {
+  let component: TopsellingComponent;
+  let fixture: ComponentFixture<TopsellingComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TotalCategoriesComponent],
+      imports: [TopsellingComponent],
       providers: [provideHttpClient(), provideHttpClientTesting()],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TotalCategoriesComponent);
+    fixture = TestBed.createComponent(TopsellingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

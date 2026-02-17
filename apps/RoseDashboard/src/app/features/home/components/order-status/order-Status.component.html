@@ -1,34 +1,52 @@
-<div class="card w-[300px] bg-white p-7 block">
-  <h2 class="font-semibold text-2xl text-center">Orders Status</h2>
-  <p-chart type="doughnut" [data]="data" [options]="options" class="w-full" />
+<div
+  class="card lg:w-[400px] bg-white p-7 rounded-lg shadow-lg block sm:w-full lg:p-1.25"
+>
+  <!-- Title -->
+  <div class="">
+    <h2 class="font-semibold text-2xl lg:text-center text-left">
+      Orders Status
+    </h2>
+  </div>
+  <!-- Charts And Reports -->
+  <div class="lg:flex lg:flex-col lg:p-4 lg:items-center lg:justify-between">
+    <!-- Charts -->
+    <div class="">
+      <p-chart
+        type="doughnut"
+        [data]="data"
+        [options]="options"
+        class="w-full"
+      />
+    </div>
+    <!-- Reports -->
+    <div class="flex flex-col items-center">
+      @for (status of ordersByStatus; track $index) {
+      <div class="flex items-center justify-between lg:gap-45 w-full">
+        <!-- جهة الشمال: أيقونة + نص -->
+        <div class="flex items-center gap-2">
+          <i
+            class="pi pi-circle-fill"
+            [style.color]="
+              status._id === 'completed'
+                ? 'var(--p-gray-500)'
+                : status._id === 'inProgress'
+                ? 'var(--p-cyan-500)'
+                : status._id === 'pending'
+                ? 'var(--p-yellow-500)'
+                : status._id === 'canceled'
+                ? 'var(--p-orange-500)'
+                : 'var(--p-text-color)'
+            "
+          ></i>
+          <p>{{ status._id }}</p>
+        </div>
 
-  <div class="dots">
-    <div class="Complete flex items-center justify-between gap-1">
-      <div class="flex items-center gap-1">
-        <i class="pi pi-circle-fill text-[#00BC7D]"></i>
-        <p>Complete</p>
+        <!-- جهة اليمين: العدد + النسبة -->
+        <p class="count">
+          {{ status.count }} ({{ getPercentage(status.count) }})
+        </p>
       </div>
-      <div class="percentage flex items-center gap-1">
-        <p>216 (33%)</p>
-      </div>
-    </div>
-    <div class="In progress flex items-center justify-between gap-1">
-      <div class="flex items-center gap-1">
-        <i class="pi pi-circle-fill text-[#2B7FFF]"></i>
-        <p>In progress</p>
-      </div>
-      <div class="percentage flex items-center gap-1">
-        <p>513 (57%)</p>
-      </div>
-    </div>
-    <div class="Canceled flex items-center justify-between gap-1">
-      <div class="flex items-center gap-1">
-        <i class="pi pi-circle-fill text-[#DC2626]"></i>
-        <p>Canceled</p>
-      </div>
-      <div class="percentage flex items-center gap-1">
-        <p>19 (10%)</p>
-      </div>
+      }
     </div>
   </div>
 </div>
