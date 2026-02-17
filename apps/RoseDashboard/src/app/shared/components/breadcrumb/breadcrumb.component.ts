@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MenuItem } from 'primeng/api';
 import { Breadcrumb } from 'primeng/breadcrumb';
 import { RouterModule } from '@angular/router';
+import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -10,17 +10,9 @@ import { RouterModule } from '@angular/router';
   templateUrl: './breadcrumb.component.html',
   styleUrl: './breadcrumb.component.scss',
 })
-export class BreadcrumbComponent implements OnInit {
-   items: MenuItem[] | undefined;
+export class BreadcrumbComponent {
+ breadCrumb=inject(BreadcrumbService)
 
-    home: MenuItem | undefined;
 
- ngOnInit() {
-        this.items = [
-          { icon: 'pi pi-home', route: '/installation' }, 
-          { label: 'Components' , route: '/installation' },
-          { label: 'Form' , route: '/installation' },
-          { label: 'InputText', route: '/inputtext' }];
-    }
 
 }

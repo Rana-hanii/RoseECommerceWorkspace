@@ -1,5 +1,9 @@
-<section>
+<section class="w-full flex justify-start items-center">
     <div class="card flex justify-center">
-    <p-breadcrumb [home]="home" [model]="items" />
+    <p-breadcrumb [model]="breadCrumb.breadCrumbItem()"
+    styleClass="!text-[18px] [&_.p-breadcrumb]:!gap-x-2 [&_.p-breadcrumb-item-label]:!text-[var(--color-primary)]
+                [&_.p-breadcrumb-item-label]:font-[600] [&_.p-breadcrumb-list]:flex [&_.p-breadcrumb-list]:!gap-x-2
+                [&_.p-breadcrumb-item-label:hover]:!text-[var(--color-text-maroon)]
+                [&_.p-icon]:text-[var(--color-text-maroon)] !px-3 " />
     </div>
 </section>
