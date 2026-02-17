@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { TotalCategoriesComponent } from './components/total-categories/total-categories.component';
