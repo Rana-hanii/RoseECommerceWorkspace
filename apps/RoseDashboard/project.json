@@ -22,7 +22,10 @@
             "input": "apps/RoseDashboard/public"
           }
         ],
-        "styles": ["apps/RoseDashboard/src/styles.scss"],
+        "styles": [
+          "apps/RoseDashboard/src/styles.scss",
+          "node_modules/intl-tel-input/build/css/intlTelInput.css"
+        ],
         "scripts": [],
         "server": "apps/RoseDashboard/src/main.server.ts",
         "ssr": {

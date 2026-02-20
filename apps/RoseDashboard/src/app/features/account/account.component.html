@@ -1,3 +1,128 @@
+<h2 class="font-semibold text-2xl">Account Settings</h2>
+
 <section class="w-full min-h-screen p-4 bg-[#FAFAFA]">
-    <p> Account works !</p>
+  <div class="container text-xl bg-white rounded-lg p-5">
+    <div class="flex justify-start items-center gap-3">
+      <div>
+        <img class="w-24 rounded-full" src="/profile.png" alt="" />
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-xl">Upload Photo</h3>
+        <p class="text-base font-normal text-[#71717A]">
+          You can upload a .jpg, .png, or .gif photo with max size of 5MB.
+        </p>
+      </div>
+    </div>
+
+    <div class="card flex flex-col justify-between mt-6">
+      <form
+        [formGroup]="formAccount"
+        (ngSubmit)="onSubmit(formAccount)"
+        class="flex flex-col"
+      >
+        <!-- First And Last Flex Roe -->
+        <div class="flex gap-6 w-full">
+          <div class="flex flex-col gap-1 flex-1">
+            <!-- first Name -->
+            <div class="flex flex-col gap-1">
+              <label class="font-medium text-sm" for="firstName"
+                >First Name</label
+              >
+              <input
+                formControlName="firstName"
+                type="text"
+                id="firstName"
+                placeholder="Jonathan"
+                name="firstName"
+                class="p-2"
+                required
+              />
+            </div>
+          </div>
+          <!-- Last Name -->
+          <div class="flex flex-col gap-1 flex-1">
+            <label class="font-medium text-sm" for="lastName">Last Name</label>
+            <input
+              type="text"
+              id="lastName"
+              placeholder="Adrian"
+              name="lastName"
+              formControlName="lastName"
+              class="p-2"
+              required
+            />
+          </div>
+        </div>
+        <!-- Email -->
+        <div class="flex flex-col gap-1">
+          <label class="font-medium text-sm" for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="jonathan@gmail.com"
+            formControlName="email"
+            required
+            class="p-2"
+            email
+          />
+        </div>
+        <!-- phone -->
+        <div class="flex flex-col gap-1 flex-1">
+          <label class="font-medium text-sm" for="phone">Phone</label>
+
+          <ngx-intl-tel-input
+            [cssClass]="'form-input'"
+            [preferredCountries]="['eg']"
+            [enableAutoCountrySelect]="true"
+            [enablePlaceholder]="true"
+            [searchCountryFlag]="true"
+            [selectFirstCountry]="true"
+            [separateDialCode]="true"
+            [phoneValidation]="true"
+            formControlName="phone"
+            type="tel"
+          ></ngx-intl-tel-input>
+        </div>
+        <!-- Select Gender -->
+        <div class="flex flex-col gap-1">
+          <label class="font-medium text-sm" for="gender">Gender</label>
+
+          <div class="card flex flex-col gap-1 w-full flex-1">
+            <p-select
+              [options]="cities"
+              placeholder="Select a Gender"
+              optionLabel="gender"
+              [disabled]="false"
+              class="w-full md:w-56"
+              formControlName="gender"
+            />
+          </div>
+        </div>
+        <!-- Option Delete Or Change -->
+        <div class="option flex items-center justify-between p-5">
+          <!-- P DeLETE oR  Change -->
+          <div class="flex gap-7">
+            <h3 class="text-[#DC2626] text-base font-medium">
+              Delete My Account
+            </h3>
+            <a
+              class="text-base font-medium text-[#27272A]"
+              routerLink="changePassword"
+            >
+              Change Password
+            </a>
+          </div>
+          <!-- Button -->
+          <button
+            class="bg-[#A6252A] w-fit p-1.5 text-white rounded-lg"
+            type="submit"
+          >
+            <span pButtonLabel>Save Changes</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </section>
