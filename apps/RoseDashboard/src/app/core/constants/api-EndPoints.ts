@@ -19,6 +19,6 @@ export const ApiEndPointsDashboard = {
 
   //* ACCOUNT ENDPOINTS
   account: {
-    connect: '/contact',
+    editProfile: '/auth/editProfile',
   },
 };

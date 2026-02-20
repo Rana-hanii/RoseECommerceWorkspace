@@ -17,12 +17,12 @@
 
     <div class="card flex flex-col justify-between mt-6">
       <form
-        [formGroup]="formAccount"
-        (ngSubmit)="onSubmit(formAccount)"
+        [formGroup]="editForm"
+        (ngSubmit)="onSubmit()"
         class="flex flex-col"
       >
         <!-- First And Last Flex Roe -->
-        <div class="lg:flex sm:flex-col gap-6 w-full">
+        <div class="lg:flex lg:flex-row sm:flex-col gap-6 w-full">
           <div class="flex flex-col gap-1 flex-1">
             <!-- first Name -->
             <div class="flex flex-col gap-1">
@@ -68,6 +68,20 @@
             email
           />
         </div>
+        <!-- Password -->
+        <div class="flex flex-col gap-1">
+          <label class="font-medium text-sm" for="Password">Password</label>
+          <input
+            type="Password"
+            id="Password"
+            name="Password"
+            placeholder="*************"
+            formControlName="Password"
+            required
+            class="p-2"
+            Password
+          />
+        </div>
         <!-- phone -->
         <div class="flex flex-col gap-1 flex-1 p-3">
           <label class="font-medium text-sm" for="phone">Phone</label>
@@ -92,7 +106,7 @@
 
           <div class="card flex flex-col gap-1 w-full flex-1">
             <p-select
-              [options]="cities"
+              [options]="['mail', 'feminine']"
               placeholder="Select a Gender"
               optionLabel="gender"
               [disabled]="false"
@@ -122,7 +136,7 @@
             class="bg-[#A6252A] mt-3 w-fit p-1.5 text-white rounded-lg"
             type="submit"
           >
-            <span pButtonLabel>Save Changes</span>
+            Save Changes
           </button>
         </div>
       </form>

@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -13,7 +14,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageService } from 'primeng/api';
 import { SelectModule } from 'primeng/select';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { AccountService } from './services/account.service';
 @Component({
   selector: 'app-account',
@@ -34,17 +35,16 @@ import { AccountService } from './services/account.service';
   templateUrl: './account.component.html',
   styleUrl: './account.component.scss',
 })
-export class AccountComponent implements OnInit {
+export class AccountComponent {
   private readonly fb = inject(FormBuilder);
   messageService = inject(MessageService);
   private readonly _account = inject(AccountService);
+  private readonly _toaster = inject(ToastrService);
   user: any = {};
   userTel: any = {
     phone: '',
   };
-  cities: any;
-
-  formAccount = this.fb.group({
+  editForm = this.fb.group({
     firstName: [
       '',
       [Validators.required, Validators.minLength(4), Validators.maxLength(20)],
@@ -54,23 +54,24 @@ export class AccountComponent implements OnInit {
       [Validators.required, Validators.minLength(4), Validators.maxLength(20)],
     ],
     email: ['', [Validators.required, Validators.email]],
+    Password: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern(
+          '/^[A-Z](?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{7,}$/'
+        ),
+      ],
+    ],
     phone: [undefined, [Validators.required]],
     gender: [null, Validators.required],
   });
-
-  getAccount() {
-    this._account.PostConnect().subscribe({
+  onSubmit() {
+    this._account.editProfile().subscribe({
       next: (res) => {
         console.log(res);
+        this._toaster.success('success', 'Message In send');
       },
     });
-  }
-  onSubmit(formAccount: any) {
-    console.log(formAccount.value);
-  }
-
-  ngOnInit(): void {
-    this.getAccount();
-    this.cities = [{ name: 'Male' }, { name: 'femail' }];
   }
 }

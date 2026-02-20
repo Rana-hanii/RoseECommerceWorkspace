@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { ApiService } from '../../../core/service/api.service';
 import { Observable } from 'rxjs';
 import { ApiEndPointsDashboard } from '../../../core/constants/api-EndPoints';
-import { Contact } from '../interface/contact';
+import { EditProfile } from '../interface/edit-profile';
 
 @Injectable({
   providedIn: 'root',
@@ -10,9 +10,9 @@ import { Contact } from '../interface/contact';
 export class AccountService {
   private readonly _apiServices = inject(ApiService);
 
-  PostConnect(): Observable<Contact> {
-    return this._apiServices.post<Contact>(
-      ApiEndPointsDashboard.account.connect,
+  editProfile(): Observable<EditProfile> {
+    return this._apiServices.put<EditProfile>(
+      ApiEndPointsDashboard.account.editProfile,
       {}
     );
   }

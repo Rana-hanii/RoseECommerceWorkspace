@@ -12,12 +12,14 @@ import {
   withInterceptors,
 } from '@angular/common/http';
 import { headerInterceptor } from './core/interceptor/header.interceptor';
+import { provideToastr } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideClientHydration(withEventReplay()),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideAnimations(),
+    provideToastr(),
     provideHttpClient(withFetch(), withInterceptors([headerInterceptor])),
     provideRouter(appRoutes),
   ],
