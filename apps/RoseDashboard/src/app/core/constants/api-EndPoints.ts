@@ -17,7 +17,8 @@ export const ApiEndPointsDashboard = {
   //* PRODUCTS ENDPOINTS
   products: {},
 
-    //* ACCOUNT ENDPOINTS
-    account:{
-  connect: '/contact',
-    },
+  //* ACCOUNT ENDPOINTS
+  account: {
+    connect: '/contact',
+  },
+};
