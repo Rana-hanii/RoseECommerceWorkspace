@@ -22,7 +22,7 @@
         class="flex flex-col"
       >
         <!-- First And Last Flex Roe -->
-        <div class="flex gap-6 w-full">
+        <div class="lg:flex sm:flex-col gap-6 w-full">
           <div class="flex flex-col gap-1 flex-1">
             <!-- first Name -->
             <div class="flex flex-col gap-1">
@@ -69,21 +69,22 @@
           />
         </div>
         <!-- phone -->
-        <div class="flex flex-col gap-1 flex-1">
+        <div class="flex flex-col gap-1 flex-1 p-3">
           <label class="font-medium text-sm" for="phone">Phone</label>
-
-          <ngx-intl-tel-input
-            [cssClass]="'form-input'"
-            [preferredCountries]="['eg']"
-            [enableAutoCountrySelect]="true"
-            [enablePlaceholder]="true"
-            [searchCountryFlag]="true"
-            [selectFirstCountry]="true"
-            [separateDialCode]="true"
-            [phoneValidation]="true"
-            formControlName="phone"
-            type="tel"
-          ></ngx-intl-tel-input>
+          <div class="w-full p-3">
+            <ngx-intl-tel-input
+              [cssClass]="'form-input full-width'"
+              [preferredCountries]="['eg']"
+              [enableAutoCountrySelect]="true"
+              [enablePlaceholder]="true"
+              [searchCountryFlag]="true"
+              [selectFirstCountry]="true"
+              [separateDialCode]="true"
+              [phoneValidation]="true"
+              formControlName="phone"
+              type="tel"
+            ></ngx-intl-tel-input>
+          </div>
         </div>
         <!-- Select Gender -->
         <div class="flex flex-col gap-1">
@@ -101,9 +102,9 @@
           </div>
         </div>
         <!-- Option Delete Or Change -->
-        <div class="option flex items-center justify-between p-5">
+        <div class="lg:flex lg:items-center lg:justify-between sm:flex-col p-5">
           <!-- P DeLETE oR  Change -->
-          <div class="flex gap-7">
+          <div class="flex gap-10">
             <h3 class="text-[#DC2626] text-base font-medium">
               Delete My Account
             </h3>
@@ -116,7 +117,7 @@
           </div>
           <!-- Button -->
           <button
-            class="bg-[#A6252A] w-fit p-1.5 text-white rounded-lg"
+            class="bg-[#A6252A] mt-3 w-fit p-1.5 text-white rounded-lg"
             type="submit"
           >
             <span pButtonLabel>Save Changes</span>
