@@ -1,17 +1,17 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HomeComponent } from './home.component';
+import { LowStockComponent } from './lowStock.component';
 
-describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+describe('LowStockComponent', () => {
+  let component: LowStockComponent;
+  let fixture: ComponentFixture<LowStockComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HomeComponent, HttpClientTestingModule],
+      imports: [LowStockComponent, HttpClientTestingModule],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(LowStockComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

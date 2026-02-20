@@ -1,10 +1,11 @@
 export const ApiEndPointsDashboard = {
   // *OVERVIEW PAGE ENDPOINTS
   overview: {
-    overAllStatistics: '/statistics/overall', //overview
-    productsStatistics: '/statistics/products', //products
-    orderStatistics: '/statistics/orders', //orders
-    categoryStatistics: '/statistics/categories', //categories
+    overAllStatistics: '/statistics/overall',
+    productsStatistics: '/statistics/products',
+    orderStatistics: '/statistics/orders',
+    categoryStatistics: '/statistics/categories',
+    salesTrends: '/reports/sales/trends',
   },
 
   // * CATEGORIES ENDPOINTS
@@ -16,8 +17,7 @@ export const ApiEndPointsDashboard = {
   //* PRODUCTS ENDPOINTS
   products: {},
 
-  //* ACCOUNT ENDPOINTS
-  account: {
-    connect: '/contact',
-  },
-};
+    //* ACCOUNT ENDPOINTS
+    account:{
+  connect: '/contact',
+    },

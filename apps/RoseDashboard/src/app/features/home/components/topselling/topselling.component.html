@@ -1,0 +1,22 @@
+<section class="bg-white w-full h-full p-1 lg:p-8 rounded-lg shadow-lg">
+  <h1 class="text-lg font-bold">Top Selling Products</h1>
+
+  @for (product of topSellingProducts; track product._id; let i = $index ) {
+  <div
+    class="flex justify-between w-full items-center my-1 p-1 rounded-lg"
+    [ngClass]="gradientClasses[i] || 'bg-[#F4F4F5]'"
+  >
+    <!-- title -->
+    <div class="w-3/4 flex justify-start">
+      <h2 class="flex-row w-full">
+        {{ product.title }}
+        <span class="text-sm text-gray-500"> ({{ product.price }}) </span>
+      </h2>
+    </div>
+    <!-- price -->
+    <div class="w-1/4 flex justify-end">
+      <h1>{{ product.sold }} Sales</h1>
+    </div>
+  </div>
+  }
+</section>

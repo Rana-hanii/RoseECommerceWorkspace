@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { MainlayoutComponent } from './layouts/main/mainlayout.component';
 import { dashboardRoutes } from './core/routes/dashboard.routes';
 

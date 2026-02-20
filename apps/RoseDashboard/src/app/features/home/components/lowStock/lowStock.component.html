@@ -1,0 +1,23 @@
+<section class="bg-white w-full h-full p-5 rounded-lg shadow-lg">
+  <h1 class="text-lg font-bold">Low Stock Products</h1>
+
+  @for (product of lowStock; track product._id) {
+  <div
+    class="flex justify-between items-center w-full my-1 p-1 rounded-lg border-b border-gray-200"
+  >
+    <!-- title -->
+    <div class="w-1/2 flex justify-start">
+      <h2 class="p-1">{{ product.title }}</h2>
+    </div>
+    <!-- quantity -->
+    <div class="w-1/2 flex justify-end">
+      <h1
+        class="items-end"
+        [ngClass]="{ 'text-red-500': product.quantity <= 4 }"
+      >
+        {{ product.quantity }} Sales
+      </h1>
+    </div>
+  </div>
+  }
+</section>
