@@ -121,12 +121,15 @@
         >
           <!-- P DeLETE oR  Change -->
           <div class="flex gap-5">
-            <h3 class="text-[#DC2626] text-base font-medium">
-              Delete My Account
-            </h3>
+            <button (click)="showDialog()">
+              <h3 class="text-[#DC2626] text-base font-medium">
+                Delete My Account
+              </h3>
+            </button>
+
             <a
               class="text-base font-medium text-[#27272A]"
-              routerLink="changePassword"
+              routerLink="/dash/changePassword"
             >
               Change Password
             </a>
@@ -143,3 +146,32 @@
     </div>
   </div>
 </section>
+
+<div class="card flex flex-col justify-center items-center">
+  <p-dialog [modal]="true" [(visible)]="visible" [style]="{ width: '30rem' }">
+    <div
+      class="flex flex-col items-center justify-center w-50 bg-[#2E2E3026] rounded-full p-5"
+    >
+      <i class="pi pi-trash"></i>
+    </div>
+    <h2 class="font-semibold text-lg">
+      Are you sure you want to delete your account?
+    </h2>
+    <h3 class="text-[#CD2E33] font-medium text-base">
+      This action is permanent and cannot be undone.
+    </h3>
+    <div class="flex justify-between items-center">
+      <p-button
+        class="btn border rounded-lg items-center p-2 mt-5"
+        label="Nope, not doing it"
+        (click)="visible = false"
+      />
+      <p-button
+        class="bg-[#DC2626] p-2 rounded-lg text-white text-base font-semibold"
+        label="Yes, delete"
+        (click)="visible = false"
+        (onClick)="deleteMyAccount()"
+      />
+    </div>
+  </p-dialog>
+</div>

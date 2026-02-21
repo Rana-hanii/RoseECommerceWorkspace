@@ -20,5 +20,8 @@ export const ApiEndPointsDashboard = {
   //* ACCOUNT ENDPOINTS
   account: {
     editProfile: '/auth/editProfile',
+    deleteMyAccount: '/auth/deleteMe',
+    changePassword: '/auth/change-password',
+    logOut: '/auth/logout',
   },
 };

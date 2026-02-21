@@ -16,6 +16,8 @@ import { MessageService } from 'primeng/api';
 import { SelectModule } from 'primeng/select';
 import { RouterLink } from '@angular/router';
 import { AccountService } from './services/account.service';
+import { DialogModule } from 'primeng/dialog';
+
 @Component({
   selector: 'app-account',
   standalone: true,
@@ -30,6 +32,7 @@ import { AccountService } from './services/account.service';
     ReactiveFormsModule,
     SelectModule,
     RouterLink,
+    DialogModule,
   ],
   providers: [MessageService],
   templateUrl: './account.component.html',
@@ -44,6 +47,11 @@ export class AccountComponent {
   userTel: any = {
     phone: '',
   };
+  visible = false;
+
+  showDialog() {
+    this.visible = true;
+  }
   editForm = this.fb.group({
     firstName: [
       '',
@@ -71,6 +79,14 @@ export class AccountComponent {
       next: (res) => {
         console.log(res);
         this._toaster.success('success', 'Message In send');
+      },
+    });
+  }
+
+  deleteMyAccount() {
+    this._account.deleteMyAccount().subscribe({
+      next: (res) => {
+        console.log(res);
       },
     });
   }
