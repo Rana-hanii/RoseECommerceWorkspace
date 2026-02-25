@@ -5,6 +5,7 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { AccountService } from '../../features/account/services/account.service';
 import { ToastrService } from 'ngx-toastr';
+import { ProfileData } from '../../features/account/interface/profile-data';
 
 @Component({
   selector: 'app-sidebar',
@@ -26,9 +27,22 @@ export class SidebarComponent implements OnInit {
   private readonly _toster = inject(ToastrService);
   isActive: 'overview' | 'categories' | 'occasions' | 'products' = 'overview';
   items: any[] = [];
-  user$ = this._accountService.userProfile$;
+  firstName!: string;
+  lastName!: string;
+  email!: string;
   ngOnInit(): void {
     this.dropdownMenu();
+    this.getUserData();
+  }
+
+  getUserData() {
+    this._accountService.ProfileData().subscribe({
+      next: (res) => {
+        this.firstName = res.user.firstName;
+        this.email = res.user.email;
+        this.lastName = res.user.lastName;
+      },
+    });
   }
 
   logOut() {

@@ -151,13 +151,10 @@
         />
       </div>
       <!-- userinfo and button -->
-      <div class="w-3/4 flex justify-between items-center">
+      <div class="w-1xl flex justify-between items-center">
         <div class="justify-start">
-          <h1>
-            {{ (user$ | async)?.user?.firstName }}
-            {{ (user$ | async)?.user?.lastName }}
-          </h1>
-          <h1>{{ (user$ | async)?.user?.email }}</h1>
+          <h1>{{ firstName }} {{ lastName }}</h1>
+          <h1 class="text-sm">{{ email }}</h1>
         </div>
 
         <div class="card flex justify-end">

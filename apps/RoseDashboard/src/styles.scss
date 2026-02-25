@@ -77,3 +77,23 @@
   --p-gray-400: #00bc22;
   --p-text-color: #1f2937;
 }
+.form-input {
+  @apply border-2 border-[#A1A1AA] text-lg hover:border-[#A6252A] rounded-xl px-3 py-2 focus:border-[#A6252A] dark:!text-red-400
+     w-full;
+}
+
+.iti--allow-dropdown input.iti__tel-input {
+  padding-right: 150px !important;
+}
+ngx-intl-tel-input {
+  width: 100% !important;
+  display: block !important;
+}
+
+ngx-intl-tel-input .iti {
+  width: 100% !important;
+}
+
+ngx-intl-tel-input input {
+  width: 100% !important;
+}

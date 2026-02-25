@@ -14,9 +14,10 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageService } from 'primeng/api';
 import { SelectModule } from 'primeng/select';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AccountService } from './services/account.service';
 import { DialogModule } from 'primeng/dialog';
+import { EditProfile } from './interface/edit-profile';
 
 @Component({
   selector: 'app-account',
@@ -38,56 +39,76 @@ import { DialogModule } from 'primeng/dialog';
   templateUrl: './account.component.html',
   styleUrl: './account.component.scss',
 })
-export class AccountComponent {
+export class AccountComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   messageService = inject(MessageService);
-  private readonly _account = inject(AccountService);
+  private readonly _accountService = inject(AccountService);
   private readonly _toaster = inject(ToastrService);
+  private readonly _router = inject(Router);
   user: any = {};
   userTel: any = {
     phone: '',
   };
   visible = false;
-
   showDialog() {
     this.visible = true;
   }
-  editForm = this.fb.group({
-    firstName: [
-      '',
-      [Validators.required, Validators.minLength(4), Validators.maxLength(20)],
-    ],
-    lastName: [
-      '',
-      [Validators.required, Validators.minLength(4), Validators.maxLength(20)],
-    ],
+  profileForm = this.fb.group({
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    Password: [
-      '',
-      [
-        Validators.required,
-        Validators.pattern(
-          '/^[A-Z](?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{7,}$/'
-        ),
-      ],
-    ],
-    phone: [undefined, [Validators.required]],
-    gender: [null, Validators.required],
+    gender: ['', Validators.required],
+    phone: [null as any, Validators.required],
   });
-  onSubmit() {
-    this._account.editProfile().subscribe({
+
+  updateEditProfile() {
+    if (this.profileForm.invalid) {
+      this.profileForm.markAllAsTouched();
+      return;
+    }
+
+    const formValue = this.profileForm.value;
+
+    const body = {
+      firstName: formValue.firstName,
+      lastName: formValue.lastName,
+      email: formValue.email,
+      phone: (formValue.phone as any)?.e164Number,
+    };
+    console.log(body);
+
+    this._accountService.editProfile(body).subscribe({
+      next: (res: EditProfile) => {
+        this._toaster.success('Update', 'Profile Updated Successfully');
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
+  getProfileData(): void {
+    this._accountService.ProfileData().subscribe({
       next: (res) => {
-        console.log(res);
-        this._toaster.success('success', 'Message In send');
+        this.profileForm.patchValue({
+          firstName: res.user.firstName,
+          lastName: res.user.lastName,
+          email: res.user.email,
+          phone: res.user.phone,
+          gender: res.user.gender,
+        });
       },
     });
   }
 
   deleteMyAccount() {
-    this._account.deleteMyAccount().subscribe({
+    this._accountService.deleteMyAccount().subscribe({
       next: (res) => {
-        console.log(res);
+        this._toaster.success('Delete', 'Deleted Is Successful');
       },
     });
+  }
+  ngOnInit(): void {
+    this.getProfileData();
   }
 }

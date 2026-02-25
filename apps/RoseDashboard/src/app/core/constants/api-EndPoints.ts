@@ -19,6 +19,7 @@ export const ApiEndPointsDashboard = {
 
   //* ACCOUNT ENDPOINTS
   account: {
+    ProfileData: '/auth/profile-data',
     editProfile: '/auth/editProfile',
     deleteMyAccount: '/auth/deleteMe',
     changePassword: '/auth/change-password',

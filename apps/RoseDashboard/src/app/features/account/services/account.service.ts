@@ -1,7 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { ApiService } from '../../../core/service/api.service';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ApiEndPointsDashboard } from '../../../core/constants/api-EndPoints';
+import { ProfileData } from '../interface/profile-data';
 import { EditProfile } from '../interface/edit-profile';
 
 @Injectable({
@@ -9,14 +10,10 @@ import { EditProfile } from '../interface/edit-profile';
 })
 export class AccountService {
   private readonly _apiServices = inject(ApiService);
-  private userProfileSubject = new BehaviorSubject<EditProfile | null>(null);
-  userProfile$ = this.userProfileSubject.asObservable();
-  editProfile(): Observable<EditProfile> {
-    return this._apiServices
-      .put<EditProfile>(ApiEndPointsDashboard.account.editProfile, {})
-      .pipe(
-        tap((response: EditProfile) => this.userProfileSubject.next(response))
-      );
+  ProfileData(): Observable<ProfileData> {
+    return this._apiServices.get<ProfileData>(
+      ApiEndPointsDashboard.account.ProfileData
+    );
   }
 
   deleteMyAccount(): Observable<any> {
@@ -35,7 +32,10 @@ export class AccountService {
     return this._apiServices.get(ApiEndPointsDashboard.account.logOut);
   }
 
-  getCurrentValue() {
-    return this.userProfileSubject.value;
+  editProfile(data: any): Observable<EditProfile> {
+    return this._apiServices.put<EditProfile>(
+      ApiEndPointsDashboard.account.editProfile,
+      data
+    );
   }
 }

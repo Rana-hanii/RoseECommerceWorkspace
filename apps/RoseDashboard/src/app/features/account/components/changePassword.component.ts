@@ -10,6 +10,7 @@ import { PasswordModule } from 'primeng/password';
 import { AccountService } from '../services/account.service';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { ToastrService } from 'ngx-toastr';
+import { MessageModule } from 'primeng/message';
 @Component({
   selector: 'app-change-password',
   imports: [
@@ -18,36 +19,34 @@ import { ToastrService } from 'ngx-toastr';
     PasswordModule,
     NgxIntlTelInputModule,
     ReactiveFormsModule,
+    MessageModule,
   ],
   templateUrl: './changePassword.component.html',
   styleUrl: './changePassword.component.scss',
 })
-export class ChangePasswordComponent implements OnInit {
+export class ChangePasswordComponent {
   private readonly fb = inject(FormBuilder);
   private readonly _accountService = inject(AccountService);
   private readonly _toster = inject(ToastrService);
   changePassword = this.fb.group({
-    oldPassword: ['', [Validators.required]],
+    password: ['', [Validators.required]],
     newPassword: ['', [Validators.required]],
-    confirmPassword: ['', [Validators.required]],
   });
 
   patchChangePassword() {
     this._accountService.changePassword(this.changePassword.value).subscribe({
       next: (res) => {
-        this._toster.success('success', 'success');
+        this._toster.success('success', 'success Change Password');
+        console.log(res);
       },
     });
   }
 
   onSubmit() {
     if (this.changePassword.valid) {
-      console.log(this.changePassword);
       this.patchChangePassword();
+    } else {
+      this.changePassword.markAllAsTouched();
     }
-  }
-
-  ngOnInit(): void {
-    this.patchChangePassword();
   }
 }
