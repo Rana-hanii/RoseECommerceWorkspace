@@ -18,7 +18,7 @@ import { Router, RouterLink } from '@angular/router';
 import { AccountService } from './services/account.service';
 import { DialogModule } from 'primeng/dialog';
 import { EditProfile } from './interface/edit-profile';
-
+import { RippleModule } from 'primeng/ripple';
 @Component({
   selector: 'app-account',
   standalone: true,
@@ -34,6 +34,7 @@ import { EditProfile } from './interface/edit-profile';
     SelectModule,
     RouterLink,
     DialogModule,
+    RippleModule,
   ],
   providers: [MessageService],
   templateUrl: './account.component.html',
@@ -41,10 +42,8 @@ import { EditProfile } from './interface/edit-profile';
 })
 export class AccountComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
-  messageService = inject(MessageService);
+  private readonly _messageService = inject(MessageService);
   private readonly _accountService = inject(AccountService);
-  private readonly _toaster = inject(ToastrService);
-  private readonly _router = inject(Router);
   user: any = {};
   userTel: any = {
     phone: '',
@@ -75,11 +74,14 @@ export class AccountComponent implements OnInit {
       email: formValue.email,
       phone: (formValue.phone as any)?.e164Number,
     };
-    console.log(body);
 
     this._accountService.editProfile(body).subscribe({
       next: (res: EditProfile) => {
-        this._toaster.success('Update', 'Profile Updated Successfully');
+        this._messageService.add({
+          severity: 'success',
+          summary: 'Updated',
+          detail: 'Profile Updated Successfully',
+        });
       },
       error: (err) => {
         console.log(err);
@@ -104,7 +106,7 @@ export class AccountComponent implements OnInit {
   deleteMyAccount() {
     this._accountService.deleteMyAccount().subscribe({
       next: (res) => {
-        this._toaster.success('Delete', 'Deleted Is Successful');
+        this._messageService.add({ severity: 'success' });
       },
     });
   }

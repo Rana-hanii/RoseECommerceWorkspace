@@ -13,14 +13,16 @@ import {
 } from '@angular/common/http';
 import { headerInterceptor } from './core/interceptor/header.interceptor';
 import { provideToastr } from 'ngx-toastr';
+import { MessageService } from 'primeng/api';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideClientHydration(withEventReplay()),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideAnimations(),
-    provideToastr(),
+    provideToastr({}),
     provideHttpClient(withFetch(), withInterceptors([headerInterceptor])),
     provideRouter(appRoutes),
+    MessageService,
   ],
 };
