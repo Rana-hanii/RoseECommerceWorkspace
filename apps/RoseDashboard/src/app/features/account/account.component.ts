@@ -14,7 +14,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageService } from 'primeng/api';
 import { SelectModule } from 'primeng/select';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { AccountService } from './services/account.service';
 import { DialogModule } from 'primeng/dialog';
 import { EditProfile } from './interface/edit-profile';
@@ -42,7 +42,7 @@ import { RippleModule } from 'primeng/ripple';
 })
 export class AccountComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
-  private readonly _messageService = inject(MessageService);
+  private readonly _toaster = inject(ToastrService);
   private readonly _accountService = inject(AccountService);
   user: any = {};
   userTel: any = {
@@ -77,11 +77,10 @@ export class AccountComponent implements OnInit {
 
     this._accountService.editProfile(body).subscribe({
       next: (res: EditProfile) => {
-        this._messageService.add({
-          severity: 'success',
-          summary: 'Updated',
-          detail: 'Profile Updated Successfully',
-        });
+        this._toaster.success(
+          'Your profile has been updated successfully.',
+          'Success'
+        );
       },
       error: (err) => {
         console.log(err);
@@ -106,7 +105,7 @@ export class AccountComponent implements OnInit {
   deleteMyAccount() {
     this._accountService.deleteMyAccount().subscribe({
       next: (res) => {
-        this._messageService.add({ severity: 'success' });
+        this._toaster.success('Deleted Is Sacssuflly');
       },
     });
   }

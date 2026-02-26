@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Password, PasswordModule } from 'primeng/password';
+import { PasswordModule } from 'primeng/password';
 import { AccountService } from '../services/account.service';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { ToastrService } from 'ngx-toastr';
