@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
+  AbstractControl,
   FormBuilder,
   FormsModule,
   ReactiveFormsModule,
@@ -38,7 +39,7 @@ export class ChangePasswordComponent {
       validators: this.passwordMatchValidator,
     }
   );
-  passwordMatchValidator(control: any) {
+  passwordMatchValidator(control: AbstractControl) {
     const newPassword = control.get('newPassword')?.value;
     const confirmPas = control.get('confirmPassword')?.value;
 
@@ -52,7 +53,10 @@ export class ChangePasswordComponent {
       };
       this._accountService.changePassword(payload).subscribe({
         next: (res) => {
-          this._toster.success('Password', 'Password Change Sacssuflly');
+          this._toster.success(
+            'Your password has been changed successfully.',
+            'Success'
+          );
           console.log(res);
         },
       });
