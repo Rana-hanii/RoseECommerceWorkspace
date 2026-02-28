@@ -14,6 +14,7 @@ import {
 import { headerInterceptor } from './core/interceptor/header.interceptor';
 import { provideToastr } from 'ngx-toastr';
 import { MessageService } from 'primeng/api';
+import { CookieService } from 'ngx-cookie-service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,6 +22,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideAnimations(),
     provideToastr({}),
+    CookieService,
     provideHttpClient(withFetch(), withInterceptors([headerInterceptor])),
     provideRouter(appRoutes),
     MessageService,

@@ -1,6 +1,7 @@
+import { CustomButtonComponent } from './../../../../../RoseE-Commerce/src/app/shared/components/custom-button/custom-button.component';
 import { ToastrService } from 'ngx-toastr';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
@@ -19,6 +20,7 @@ import { AccountService } from './services/account.service';
 import { DialogModule } from 'primeng/dialog';
 import { EditProfile } from './interface/edit-profile';
 import { RippleModule } from 'primeng/ripple';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-account',
   standalone: true,
@@ -35,6 +37,7 @@ import { RippleModule } from 'primeng/ripple';
     RouterLink,
     DialogModule,
     RippleModule,
+    CustomButtonComponent,
   ],
   providers: [MessageService],
   templateUrl: './account.component.html',
@@ -44,11 +47,13 @@ export class AccountComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly _toaster = inject(ToastrService);
   private readonly _accountService = inject(AccountService);
+  private readonly _destroyRef = inject(DestroyRef);
   user: any = {};
   userTel: any = {
     phone: '',
   };
   visible = false;
+  photoUser!: any;
   showDialog() {
     this.visible = true;
   }
@@ -77,6 +82,7 @@ export class AccountComponent implements OnInit {
 
     this._accountService.editProfile(body).subscribe({
       next: (res: EditProfile) => {
+        this.photoUser = res.user.photo;
         this._toaster.success(
           'Your profile has been updated successfully.',
           'Success'
@@ -89,23 +95,26 @@ export class AccountComponent implements OnInit {
   }
 
   getProfileData(): void {
-    this._accountService.ProfileData().subscribe({
-      next: (res) => {
-        this.profileForm.patchValue({
-          firstName: res.user.firstName,
-          lastName: res.user.lastName,
-          email: res.user.email,
-          phone: res.user.phone,
-          gender: res.user.gender,
-        });
-      },
-    });
+    this._accountService
+      .ProfileData()
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe({
+        next: (res) => {
+          this.profileForm.patchValue({
+            firstName: res.user.firstName,
+            lastName: res.user.lastName,
+            email: res.user.email,
+            phone: res.user.phone,
+            gender: res.user.gender,
+          });
+        },
+      });
   }
 
   deleteMyAccount() {
     this._accountService.deleteMyAccount().subscribe({
       next: (res) => {
-        this._toaster.success('Deleted Is Sacssuflly');
+        this._toaster.success(res.Message, 'Success');
       },
     });
   }

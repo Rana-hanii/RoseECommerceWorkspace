@@ -1,33 +1,26 @@
-@if ((control.touched || control.dirty) && (control.errors || (type === 'rePassword' && control.parent?.errors?.['mismatch']))) {
-  <div class="error-messages">
-    @if (control.errors?.['required']) {
-      <p-message severity="error" icon="pi pi-times-circle" styleClass="ms-0">
-        {{label}} is required
-      </p-message>
-    }
-    
-    @if (control.errors?.['email']) {
-      <p-message severity="error" icon="pi pi-times-circle">
-        {{label}} must be valid
-      </p-message>
-    }
-    
-    @if (type === 'password' && control.errors?.['pattern']) {
-      <p-message severity="error" icon="pi pi-times-circle">
-        {{label}} must contain Capital char and Symbol
-      </p-message>
-    }
-    
-    @if (type === 'rePassword' && control.parent?.errors?.['mismatch']) {
-      <p-message severity="error" icon="pi pi-times-circle">
-        {{label}} and password should match
-      </p-message>
-    }
-    
-    @if (type === 'tel' && control.errors?.['validatePhoneNumber']) {
-      <p-message severity="error" icon="pi pi-times-circle">
-        {{label}} must be Valid Number
-      </p-message>
-    }
-  </div>
+@if ((control?.touched || control?.dirty) && (control?.errors || (type ===
+'rePassword' && control?.parent?.errors?.['mismatch']))) {
+<div class="error-messages">
+  @if (control?.errors?.['required']) {
+  <p-message severity="error" icon="pi pi-times-circle" styleClass="ms-0">
+    {{ label }} is required
+  </p-message>
+  } @if (control?.errors?.['email']) {
+  <p-message severity="error" icon="pi pi-times-circle">
+    {{ label }} must be valid
+  </p-message>
+  } @if (type === 'password' && control?.errors?.['pattern']) {
+  <p-message severity="error" icon="pi pi-times-circle">
+    {{ label }} must contain Capital char and Symbol
+  </p-message>
+  } @if (type === 'rePassword' && control?.parent?.errors?.['mismatch']) {
+  <p-message severity="error" icon="pi pi-times-circle">
+    {{ label }} and password should match
+  </p-message>
+  } @if (type === 'tel' && control?.errors?.['validatePhoneNumber']) {
+  <p-message severity="error" icon="pi pi-times-circle">
+    {{ label }} must be Valid Number
+  </p-message>
+  }
+</div>
 }

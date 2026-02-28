@@ -9,14 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterLink,
-    ButtonModule,
-    Menu,
-    RouterModule,
-    AsyncPipe,
-  ],
+  imports: [CommonModule, RouterLink, ButtonModule, Menu, RouterModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })

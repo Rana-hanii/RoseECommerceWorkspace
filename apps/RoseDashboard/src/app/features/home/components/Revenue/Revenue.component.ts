@@ -1,6 +1,7 @@
 import {
   ChangeDetectorRef,
   Component,
+  DestroyRef,
   inject,
   OnInit,
   PLATFORM_ID,
@@ -10,6 +11,7 @@ import { ChartModule } from 'primeng/chart';
 import { HomeService } from '../../services/home.service';
 import { MonthlyRevenue } from '../../interface/all-revenue';
 import { Data, Trend, Weakly } from '../../interface/weakly';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-revenue',
@@ -25,36 +27,42 @@ export class RevenueComponent implements OnInit {
   weaklyRevenue!: Trend[];
   private readonly cd = inject(ChangeDetectorRef);
   private readonly _home = inject(HomeService);
-
+  private readonly _destroyRef = inject(DestroyRef);
   getAllRevenueMonthly() {
-    this._home.getAllRevenueMonthly().subscribe({
-      next: (res) => {
-        this.monthlyRevenue = res.data.trends.map((t: any) => ({
-          month: new Date(t.date).toLocaleString('default', {
-            month: 'short',
-            year: 'numeric',
-          }),
-          totalSales: t.totalSales,
-        }));
-        this.initChart();
-      },
-    });
+    this._home
+      .getAllRevenueMonthly()
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe({
+        next: (res) => {
+          this.monthlyRevenue = res.data.trends.map((t: any) => ({
+            month: new Date(t.date).toLocaleString('default', {
+              month: 'short',
+              year: 'numeric',
+            }),
+            totalSales: t.totalSales,
+          }));
+          this.initChart();
+        },
+      });
   }
 
   getAllRevenueWeakly() {
-    this._home.getAllRevenueWeakly().subscribe({
-      next: (res) => {
-        this.weaklyRevenue = res.data.trends.map((w: any) => ({
-          // Weakly: `Week of ${new Date(w.date).toLocaleString()}`,
-          date: w.date,
-          totalSales: w.totalSales,
-          orderCount: w.orderCount,
-          averageOrderValue: w.averageOrderValue,
-        }));
-        console.log(this.weaklyRevenue);
-        this.initChart();
-      },
-    });
+    this._home
+      .getAllRevenueWeakly()
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe({
+        next: (res) => {
+          this.weaklyRevenue = res.data.trends.map((w: any) => ({
+            // Weakly: `Week of ${new Date(w.date).toLocaleString()}`,
+            date: w.date,
+            totalSales: w.totalSales,
+            orderCount: w.orderCount,
+            averageOrderValue: w.averageOrderValue,
+          }));
+          console.log(this.weaklyRevenue);
+          this.initChart();
+        },
+      });
   }
 
   ngOnInit() {

@@ -1,8 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
 import { HomeService } from '../../services/home.service';
 import { TopSellingProduct } from '../../interface/iproducts';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-topselling',
   standalone: true,
@@ -12,19 +13,23 @@ import { TopSellingProduct } from '../../interface/iproducts';
 })
 export class TopsellingComponent implements OnInit {
   private _homeServices = inject(HomeService);
+  private readonly _destroyRef = inject(DestroyRef);
   topSellingProducts!: TopSellingProduct[];
   ngOnInit(): void {
     this.getTopSeelingProducts();
   }
 
   getTopSeelingProducts(): void {
-    this._homeServices.getProducts().subscribe({
-      next: (res) => {
-        this.topSellingProducts = res.statistics.topSellingProducts.sort(
-          (a, b) => b.sold - a.sold
-        );
-      },
-    });
+    this._homeServices
+      .getProducts()
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe({
+        next: (res) => {
+          this.topSellingProducts = res.statistics.topSellingProducts.sort(
+            (a, b) => b.sold - a.sold
+          );
+        },
+      });
   }
 
   gradientClasses = [

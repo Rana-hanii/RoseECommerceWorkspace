@@ -58,9 +58,8 @@ export class LoginComponent {
           next: (res) => {
             // save token
             this.cookieService.set('roseToken', res.token);
-            console.log('Token', res.token);
 
-            // (,'') ====> behaviourSbuject
+            // (,'') ====> behavior Subject
             this.homeService.isLogged.set(true);
 
             // successful login message
@@ -69,7 +68,6 @@ export class LoginComponent {
             this.router.navigate(['main/home']);
           },
           error: (err) => {
-            console.error('Login failed', err);
             // Show error toast message
             this.toastr.error('Invalid email or password', 'Error');
           },
