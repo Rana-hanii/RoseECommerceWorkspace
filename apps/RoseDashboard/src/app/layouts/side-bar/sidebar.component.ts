@@ -4,6 +4,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterModule } from "@angular/router";
 import { NavigationService } from '../../features/home/services/navigation.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-sidebar',
@@ -21,6 +22,11 @@ export class SidebarComponent implements OnInit{
 
   ngOnInit(): void {
       this.dropdownMenu()
+  }
+
+  navigateToRose():void{
+    window.location.href=environment.roseEcommerceApp
+    
   }
 
   dropdownMenu():void{
