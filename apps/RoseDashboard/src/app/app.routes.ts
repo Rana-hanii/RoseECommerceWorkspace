@@ -11,11 +11,4 @@ export const appRoutes: Routes = [
     title: 'Dashboard',
     children: dashboardRoutes,
   },
-
-  {
-    path: 'main',
-    component: MainlayoutComponent,
-    title: 'main',
-    children: dashboardRoutes,
-  },
 ];

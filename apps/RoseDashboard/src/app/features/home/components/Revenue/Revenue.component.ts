@@ -9,10 +9,11 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ChartModule } from 'primeng/chart';
 import { HomeService } from '../../services/home.service';
 import { MonthlyRevenue } from '../../interface/all-revenue';
-import { Data, Trend, Weakly } from '../../interface/weakly';
+import { Trend } from '../../interface/weakly';
 
 @Component({
   selector: 'app-revenue',
+  standalone: true,
   imports: [CommonModule, ChartModule],
   templateUrl: './Revenue.component.html',
   styleUrl: './Revenue.component.scss',
@@ -21,13 +22,20 @@ export class RevenueComponent implements OnInit {
   data: any;
   options: any;
   platformId = inject(PLATFORM_ID);
-  monthlyRevenue!: MonthlyRevenue[];
-  weaklyRevenue!: Trend[];
+  monthlyRevenue: MonthlyRevenue[] = [];
+  weaklyRevenue: Trend[] = [];
+  activeTab: 'monthly' | 'weekly' = 'monthly';
+
   private readonly cd = inject(ChangeDetectorRef);
   private readonly _home = inject(HomeService);
 
+  ngOnInit() {
+    this.getAllRevenueMonthly();
+  }
+
   getAllRevenueMonthly() {
-    this._home.getAllRevenueMonthly().subscribe({
+    this.activeTab = 'monthly';
+    this._home.getAllRevenue('monthly').subscribe({
       next: (res) => {
         this.monthlyRevenue = res.data.trends.map((t: any) => ({
           month: new Date(t.date).toLocaleString('default', {
@@ -40,94 +48,87 @@ export class RevenueComponent implements OnInit {
       },
     });
   }
+  getAllRevenueWeekly() {
+    this.activeTab = 'weekly';
+    if (this.weaklyRevenue.length > 0) {
+      this.initChart();
+      return;
+    }
 
-  getAllRevenueWeakly() {
-    this._home.getAllRevenueWeakly().subscribe({
+    this._home.getAllRevenue('weekly').subscribe({
       next: (res) => {
         this.weaklyRevenue = res.data.trends.map((w: any) => ({
-          // Weakly: `Week of ${new Date(w.date).toLocaleString()}`,
-          date: w.date,
+          date: new Date(w.date).toLocaleDateString('en-GB', {
+            day: '2-digit',
+            month: 'short',
+          }),
           totalSales: w.totalSales,
           orderCount: w.orderCount,
           averageOrderValue: w.averageOrderValue,
         }));
-        console.log(this.weaklyRevenue);
         this.initChart();
       },
     });
   }
 
-  ngOnInit() {
-    this.getAllRevenueMonthly();
-    this.getAllRevenueWeakly();
-  }
-
   initChart() {
     if (isPlatformBrowser(this.platformId)) {
       const documentStyle = getComputedStyle(document.documentElement);
-      const textColor = documentStyle.getPropertyValue('--p-text-color');
-      const textColorSecondary = documentStyle.getPropertyValue(
-        '--p-text-muted-color'
-      );
-      const surfaceBorder = documentStyle.getPropertyValue(
-        '--p-content-border-color'
-      );
-      const chartMonthlyData = this.monthlyRevenue.map((d) => d.month);
-      const totalSalesMonthly = this.monthlyRevenue.map((t) => t.totalSales);
-      const chartLabels = this.weaklyRevenue.map(
-        (t) => `Week of ${new Date(t.date).toLocaleDateString()}`
-      );
-      const TotalDataWeakly = this.weaklyRevenue.map((w) => w.totalSales);
-      // const monthlyAndWealy = [...chartMonthlyData, ...chartLabels];
+      const currentLabels =
+        this.activeTab === 'monthly'
+          ? this.monthlyRevenue.map((m) => m.month)
+          : this.weaklyRevenue.map((w) => w.date);
+      const currentData =
+        this.activeTab === 'monthly'
+          ? this.monthlyRevenue.map((m) => m.totalSales)
+          : this.weaklyRevenue.map((w) => w.totalSales);
+
       this.data = {
-        labels: chartMonthlyData,
+        labels: currentLabels,
         datasets: [
           {
-            label: 'Monthly',
-            data: totalSalesMonthly,
-            fill: false,
+            label:
+              this.activeTab === 'monthly'
+                ? 'Monthly Revenue'
+                : 'Weekly Revenue',
+            data: currentData,
+            fill: this.activeTab === 'weekly',
             tension: 0.4,
-            borderColor: documentStyle.getPropertyValue('--p-orange-500'),
-          },
-          {
-            label: 'Last Week',
-            data: TotalDataWeakly,
-            fill: true,
-            borderColor: documentStyle.getPropertyValue('--p-gray-500'),
-            tension: 0.4,
+            borderColor:
+              this.activeTab === 'monthly'
+                ? documentStyle.getPropertyValue('--p-orange-500')
+                : documentStyle.getPropertyValue('--p-gray-500'),
             backgroundColor: 'rgba(107, 114, 128, 0.2)',
           },
         ],
       };
-
-      this.options = {
-        responsive: true,
-        maintainAspectRatio: false,
-        aspectRatio: 0.6,
-        plugins: {
-          legend: {
-            labels: {
-              color: textColor,
-            },
-          },
-        },
-        scales: {
-          x: {
-            ticks: {
-              color: textColorSecondary,
-            },
-          },
-          y: {
-            ticks: {
-              color: textColorSecondary,
-            },
-            grid: {
-              color: surfaceBorder,
-            },
-          },
-        },
-      };
+      this.setOptions(documentStyle);
       this.cd.markForCheck();
     }
+  }
+  private setOptions(documentStyle: any) {
+    const textColor = documentStyle.getPropertyValue('--p-text-color');
+    const textColorSecondary = documentStyle.getPropertyValue(
+      '--p-text-muted-color'
+    );
+    const surfaceBorder = documentStyle.getPropertyValue(
+      '--p-content-border-color'
+    );
+
+    this.options = {
+      responsive: true,
+      maintainAspectRatio: false,
+      aspectRatio: 0.6,
+      plugins: {
+        legend: { labels: { color: textColor } },
+      },
+      scales: {
+        x: { ticks: { color: textColorSecondary } },
+        y: {
+          ticks: { color: textColorSecondary },
+          grid: { color: surfaceBorder },
+        },
+      },
+    };
   }
 }

@@ -1,10 +1,24 @@
-<div class="revenue bg-white rounded-lg shadow-lg card w-full p-0">
-  <h1 class="ms-5 font-semibold text-lg">Revenue</h1>
-  <p-chart
-    type="line"
-    [data]="data"
-    [options]="options"
-    height="440px"
-    width="100%"
-  />
+<div class="card">
+  <div class="flex justify-content-between align-items-center mb-4">
+    <h5 class="font-bold me-10">Revenue</h5>
+
+    <div class="flex gap-2">
+      <button
+        (click)="getAllRevenueMonthly()"
+        [class.active]="activeTab === 'monthly'"
+        class="btn-tab bg-red-600 rounded-lg p-1 text-white"
+      >
+        Monthly
+      </button>
+      <button
+        (click)="getAllRevenueWeekly()"
+        [class.active]="activeTab === 'weekly'"
+        class="btn-tab bg-green-600 rounded-lg p-1 text-white"
+      >
+        Weekly
+      </button>
+    </div>
+  </div>
+
+  <p-chart type="line" [data]="data" [options]="options" />
 </div>
