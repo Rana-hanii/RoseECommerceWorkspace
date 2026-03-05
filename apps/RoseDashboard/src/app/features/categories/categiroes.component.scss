@@ -1,0 +1,26 @@
+::ng-deep {
+  .p-datatable .p-datatable-thead > tr > th {
+    background-color: #ffffff85 !important;
+    border-bottom: 1px solid #f3f4f6 !important;
+    color: #6b7280 !important;
+    font-weight: 600 !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    text-align: left;
+  }
+
+  .p-datatable .p-datatable-tbody > tr > td {
+    border-bottom: 1px solid #f9fafb !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    background-color: transparent !important;
+  }
+  .p-datatable {
+    .p-datatable-wrapper {
+      border: none !important;
+    }
+  }
+}
