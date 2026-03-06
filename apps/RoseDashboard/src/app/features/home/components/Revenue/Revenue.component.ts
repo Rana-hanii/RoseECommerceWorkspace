@@ -30,7 +30,7 @@ export class RevenueComponent implements OnInit {
   private readonly _destroyRef = inject(DestroyRef);
   getAllRevenueMonthly() {
     this._home
-      .getAllRevenueMonthly()
+      .getAllRevenue('2023-01-01', '2026-12-31', 'monthly')
       .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe({
         next: (res) => {
@@ -48,12 +48,11 @@ export class RevenueComponent implements OnInit {
 
   getAllRevenueWeakly() {
     this._home
-      .getAllRevenueWeakly()
+      .getAllRevenue('2023-01-01', '2026-12-31', 'weekly')
       .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe({
         next: (res) => {
           this.weaklyRevenue = res.data.trends.map((w: any) => ({
-            // Weakly: `Week of ${new Date(w.date).toLocaleString()}`,
             date: w.date,
             totalSales: w.totalSales,
             orderCount: w.orderCount,

@@ -33,15 +33,13 @@ export class HomeService {
     );
   }
 
-  getAllRevenueMonthly(): Observable<AllRevenue> {
+  getAllRevenue(
+    startDate: string,
+    endDate: string,
+    interval: string
+  ): Observable<AllRevenue> {
     return this._apiServices.get<AllRevenue>(
-      `${ApiEndPointsDashboard.overview.salesTrends}/?startDate=2023-01-01&endDate=2026-12-31&interval=monthly`
-    );
-  }
-
-  getAllRevenueWeakly(): Observable<Weakly> {
-    return this._apiServices.get<Weakly>(
-      `${ApiEndPointsDashboard.overview.salesTrends}/?startDate=2023-01-01&endDate=2026-12-31&interval=Weakly`
+      `${ApiEndPointsDashboard.overview.salesTrends}/?startDate=${startDate}&endDate=${endDate}&interval=${interval}`
     );
   }
 
