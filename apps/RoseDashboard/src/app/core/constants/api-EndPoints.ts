@@ -11,12 +11,12 @@ export const ApiEndPointsDashboard ={
 
     // * CATEGORIES ENDPOINTS
     categories:{
-
+        categories:'/categories'
     } ,
 
     //* OCCASIONS ENDPOINTS
     occasions:{
-
+        occasions:'/occasions'
     },
 
     //* PRODUCTS ENDPOINTS

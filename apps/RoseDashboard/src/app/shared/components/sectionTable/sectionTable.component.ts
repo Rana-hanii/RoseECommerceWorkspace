@@ -18,6 +18,7 @@ export class SectionTableComponent {
   buttonTitle=input<string>('')
 
 
+
   // search
   // searchValue = input<string>('');
   // searchChange = output<string>();
@@ -29,5 +30,7 @@ export class SectionTableComponent {
   filterFields = input<string[]>([]);
   placeholder = input<string>('');
   rowSelect = output<any>();
+   addRoute=input<string>('')
+   buttonRoute=input<string>('')
 
 }

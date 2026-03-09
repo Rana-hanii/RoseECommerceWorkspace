@@ -11,18 +11,10 @@
          <app-button
          [icon]="buttonIcon()"
          [buttonName]="buttonTitle()"
+         [buttonRoute]="buttonRoute()"
          >
          </app-button>
     </div>
-
-    <!-- Searchbar -->
-     <!-- <div class="w-full mt-6">
-        <app-search
-        [value]="searchValue()"
-        [placeholder]="placeholder()"
-        (valueChange)="searchChange.emit($event)"
-        ></app-search>
-     </div> -->
 
      <!-- Table -->
 
@@ -33,6 +25,7 @@
         [placeholder]="placeholder()"
         [globalFilterFields]="filterFields()"
         (selection)="rowSelect.emit($event)"
+        [addRoute]="addRoute()"
         ></app-table>
      </div>
 </section>

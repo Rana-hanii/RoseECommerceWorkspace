@@ -4,10 +4,11 @@ import { SectionTableComponent } from "../../shared/components/sectionTable/sect
 import { ProductsService } from './services/products.service';
 import { ProdRes, Product } from './interfaces/prod-res';
 import { map, Observable } from 'rxjs';
+import { RouterModule } from "@angular/router";
 
 @Component({
   selector: 'app-products',
-  imports: [CommonModule, SectionTableComponent,AsyncPipe],
+  imports: [CommonModule, SectionTableComponent, AsyncPipe, RouterModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
 })

@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SectionTableComponent } from './sectionTable.component';
+import { provideRouter } from '@angular/router';
 
 describe('SectionTableComponent', () => {
   let component: SectionTableComponent;
@@ -8,6 +9,7 @@ describe('SectionTableComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [SectionTableComponent],
+       providers:[provideRouter([])]
     }).compileComponents();
 
     fixture = TestBed.createComponent(SectionTableComponent);

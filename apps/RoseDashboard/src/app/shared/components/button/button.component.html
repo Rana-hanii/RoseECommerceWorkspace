@@ -1,5 +1,5 @@
 <button class="cursor-pointer w-full text-white dark:text-black p-3 flex items-center gap-3 rounded-xl text-lg  font-[500]
-   bg-[var(--color-primary)] dark:bg-[var(--dark-text-secondary)]" type="button">
+   bg-[var(--color-primary)] dark:bg-[var(--dark-text-secondary)]" type="button" [routerLink]="buttonRoute()">
     <i class="pi {{icon()}}"></i>
     <span class="hidden lg:block">{{buttonName()}}</span>
 </button>
