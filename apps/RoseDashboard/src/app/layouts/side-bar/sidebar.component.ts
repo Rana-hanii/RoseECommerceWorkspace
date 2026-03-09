@@ -2,44 +2,37 @@ import { Menu } from 'primeng/menu';
 import { ButtonModule } from 'primeng/button';
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterModule } from "@angular/router";
-import { NavigationService } from '../../features/home/services/navigation.service';
+import { RouterLink, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [CommonModule, RouterLink ,ButtonModule, Menu ,RouterModule],
+  imports: [CommonModule, RouterLink, ButtonModule, Menu, RouterModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })
-export class SidebarComponent implements OnInit{
-
-  private readonly navigationService=inject(NavigationService)
-  
-
-  isActive = this.navigationService.activeButton
-  items: any[]=[] 
+export class SidebarComponent implements OnInit {
+  isActive: 'overview' | 'categories' | 'occasions' | 'products' = 'overview';
+  items: any[] = [];
 
   ngOnInit(): void {
-      this.dropdownMenu()
+    this.dropdownMenu();
   }
 
-  dropdownMenu():void{
+  dropdownMenu(): void {
     this.items = [
-            {
-                label: 'Firstname + lastName',
-                items: [
-                    {
-                        label: 'Account',
-                        icon: 'pi pi-user',
-                        routerLink:'account'
-                    },
-                    {
-                        label: 'Logout',
-                        icon: 'pi pi-sign-out'
-                    }
-                ]
-            }
-        ];
+      {
+        label: 'Firstname + lastName',
+        items: [
+          {
+            label: 'Account',
+            icon: 'pi pi-refresh',
+          },
+          {
+            label: 'Logout',
+            icon: 'pi pi-upload',
+          },
+        ],
+      },
+    ];
   }
-
 }

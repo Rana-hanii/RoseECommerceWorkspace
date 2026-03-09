@@ -6,14 +6,19 @@ import {
   withEventReplay,
 } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { provideHttpClient, withFetch } from '@angular/common/http';
-import { MessageService } from 'primeng/api';
+import {
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
+} from '@angular/common/http';
+import { headerInterceptor } from './core/interceptor/header.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideClientHydration(withEventReplay()),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideAnimations(),
+    provideHttpClient(withFetch(), withInterceptors([headerInterceptor])),
     provideRouter(appRoutes),
     MessageService,
     provideHttpClient(withFetch()),

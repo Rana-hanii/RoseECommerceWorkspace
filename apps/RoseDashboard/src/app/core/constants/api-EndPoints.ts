@@ -18,10 +18,17 @@ export const ApiEndPointsDashboard = {
 
   //* OCCASIONS ENDPOINTS
   occasions: {},
+  //* OCCASIONS ENDPOINTS
+  occasions: {},
 
   //* PRODUCTS ENDPOINTS
   products: {},
+  //* PRODUCTS ENDPOINTS
+  products: {},
 
+  //* ACCOUNT ENDPOINTS
+  account: {},
+};
   //* ACCOUNT ENDPOINTS
   account: {},
 };
