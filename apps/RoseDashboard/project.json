@@ -23,12 +23,7 @@
           }
         ],
         "styles": ["apps/RoseDashboard/src/styles.scss"],
-        "scripts": [],
-        "server": "apps/RoseDashboard/src/main.server.ts",
-        "ssr": {
-          "entry": "apps/RoseDashboard/src/server.ts"
-        },
-        "prerender": true
+        "scripts": []
       },
       "configurations": {
         "production": {
@@ -86,7 +81,7 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "RoseDashboard:build",
-        "port": 4200,
+        "port": 4300,
         "staticFilePath": "dist/apps/RoseDashboard/browser",
         "spa": true
       }

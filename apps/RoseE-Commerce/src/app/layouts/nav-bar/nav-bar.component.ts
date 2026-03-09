@@ -20,6 +20,7 @@ import * as CartSelectors from "./../../store/cart/cart.selectors"
 import { Observable } from 'rxjs';
 import { CartService } from '../../features/cart/services/cart.service';
 import { UserCart } from '../../features/cart/interfaces/userCart/user-cart';
+import { environment } from '../../environments/environment';
 
 
 
@@ -37,6 +38,7 @@ export class NavBarComponent implements OnInit{
   isLogin=signal<boolean>(true)
   userName=''
   lastName=''
+  role=''
   items:any[]=[]
   textSearch=signal<string>('') 
   wishlistidsCount$!:Observable<string[]>
@@ -133,6 +135,7 @@ export class NavBarComponent implements OnInit{
       next:(res)=>{
         this.userName=res.user.firstName
         this.lastName=res.user.lastName 
+        this.role=res.user.role
         this.userItems()
       },error:(err)=>{
           console.log(err);
@@ -146,46 +149,61 @@ export class NavBarComponent implements OnInit{
 
     closeCallback(e:any): void {
         this.drawerRef.close(e);
+    } 
+
+
+    navigateToDashboard():void{
+      window.location.href=environment.roseDashboard
     }
 
     visible= false;
 
 
     userItems():void{
-       this.items = [
-            {
-                label: `${this.userName} ${ this.lastName} `,
-                
-                items: [
+        this.items = [
                     {
-                        label: 'My Profile',
-                        icon: 'pi pi-user',
-                        routerLink:'profile',
-                        command: (event:any)=>this.closeCallback(event)
-                        
+                      label: 'My Profile',
+                      icon: 'pi pi-user',
+                      routerLink: 'profile',
+                      command: (event: any) => this.closeCallback(event)
                     },
                     {
-                        label: 'My Addresses',
-                        icon: 'pi pi-map-marker'
-                    } ,
+                      label: 'My Addresses',
+                      icon: 'pi pi-map-marker'
+                    },
                     {
-                        label: 'My Orders',
-                        icon: 'pi pi-id-card'
-                    } ,
-                    {
-                        label: 'Dashboard',
-                        icon: 'pi pi-cog'
-                    } ,
-                    {
-                        label: 'Log out',
-                        icon: 'pi pi-sign-out',
-                        command: ()=>this.logout()
-                    } ,
-                ]
-            }
-        ];
-    }
+                      label: 'My Orders',
+                      icon: 'pi pi-id-card'
+                    }
+                  ];
 
+                  
+                  if (this.role == 'admin') {
+                    this.items.push({
+                      label: 'Dashboard',
+                      icon: 'pi pi-cog',
+                      command: () => this.navigateToDashboard()
+                    });
+                  }
+
+                
+                  this.items.push({
+                    label: 'Log out',
+                    icon: 'pi pi-sign-out',
+                    command: () => this.logout()
+                  });
+
+                  
+                  this.items = [
+                    {
+                      label: `${this.userName} ${this.lastName}`,
+                      items: this.items
+                    }
+                  ];
+    }
+  
+      
+                  
 
 
     getUsersCartId():void{

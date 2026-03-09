@@ -1,6 +1,6 @@
 import { Menu } from 'primeng/menu';
 import { ButtonModule } from 'primeng/button';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterModule } from '@angular/router';
 

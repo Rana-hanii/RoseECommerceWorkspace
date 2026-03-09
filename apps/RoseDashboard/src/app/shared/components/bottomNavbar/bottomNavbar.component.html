@@ -1,0 +1,83 @@
+<section>
+          <!-- navigation buttons -->
+                    <div class="w-full p-3 flex justify-evenly items-center gap-x-2 relative ">
+                        <button 
+                            routerLink="/dash/overview"
+                            (click)="isActive.set('overview')"
+                            [class.bg-[#FBEAEA]]="isActive() === 'overview'"
+                            [class.text-[#A6252A]]="isActive() === 'overview'"
+                            [class.text-black]="isActive() !== 'overview'"
+                            class="w-1/4 py-2  flex flex-col items-center justify-start active:bg-[var(--color-secondary)]
+                                        active:text-[var(--color-primary)] rounded-xl cursor-pointer">
+                            
+                            <i class="pi pi-objects-column " style="font-size: 24px;"></i>
+                            <span class="capitalize text-sm font-[600]  py-1  ">
+                                    Overview
+                            </span>
+                        </button>
+                        <button 
+                            routerLink="/dash/categories"
+                            (click)="isActive.set('categories')"
+                            [class.bg-[#FBEAEA]]="isActive() === 'categories'"
+                            [class.text-[#A6252A]]="isActive() === 'categories'"
+                            [class.text-black]="isActive() !== 'categories'"
+                            class="w-1/4 py-2  flex flex-col items-center justify-start active:bg-[var(--color-secondary)]
+                                        active:text-[var(--color-primary)] rounded-xl cursor-pointer">
+                            
+                            <svg  width="19" height="23" viewBox="0 0 19 23" fill="none" xmlns="http://www.w3.org/2000/svg" >
+                                <path  d="M13.5416 3.12508H15.625C16.1775 3.12508 16.7074 3.34457 17.0981 3.73528C17.4888 4.12598 17.7083 4.65588 17.7083 5.20841V19.7917C17.7083 20.3443 17.4888 20.8742 17.0981 21.2649C16.7074 21.6556 16.1775 21.8751 15.625 21.8751H3.12496C2.57242 21.8751 2.04252 21.6556 1.65182 21.2649C1.26112 20.8742 1.04163 20.3443 1.04163 19.7917V5.20841C1.04163 4.65588 1.26112 4.12598 1.65182 3.73528C2.04252 3.34457 2.57242 3.12508 3.12496 3.12508H5.20829M9.37496 10.4167H13.5416M9.37496 15.6251H13.5416M5.20829 10.4167H5.21829M5.20829 15.6251H5.21829M6.24996 1.04175H12.5C13.0753 1.04175 13.5416 1.50812 13.5416 2.08341V4.16675C13.5416 4.74204 13.0753 5.20841 12.5 5.20841H6.24996C5.67466 5.20841 5.20829 4.74204 5.20829 4.16675V2.08341C5.20829 1.50812 5.67466 1.04175 6.24996 1.04175Z"
+                                stroke="currentColor"
+                                stroke-width="2.08333" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+
+                            <span class="capitalize text-sm font-[600]  py-1  ">
+                                    Categories
+                            </span>
+                        </button>
+                        <button 
+                            routerLink="/dash/occasions"
+                            (click)="isActive.set('occasions')"
+                            [class.bg-[#FBEAEA]]="isActive() === 'occasions'"
+                            [class.text-[#A6252A]]="isActive() === 'occasions'"
+                            [class.text-black]="isActive() !== 'occasions'"
+                            class="w-1/4 py-2  flex flex-col items-center justify-start active:bg-[var(--color-secondary)]
+                                        active:text-[var(--color-primary)] rounded-xl cursor-pointer">
+                            
+                            <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.04163 9.37508H19.7916V5.20841C19.7916 4.65588 19.5721 4.12598 19.1814 3.73528C18.7907 3.34457 18.2608 3.12508 17.7083 3.12508H3.12496C2.57242 3.12508 2.04252 3.34457 1.65182 3.73528C1.26112 4.12598 1.04163 4.65588 1.04163 5.20841V19.7917C1.04163 20.3443 1.26112 20.8742 1.65182 21.2649C2.04252 21.6556 2.57242 21.8751 3.12496 21.8751H10.4166M6.24996 1.04175V5.20841M14.5833 1.04175V5.20841M20.0937 14.2709C19.7388 13.9177 19.287 13.6777 18.7957 13.5813C18.3043 13.4849 17.7954 13.5364 17.3333 13.7292C17.0208 13.8542 16.7395 14.0417 16.5 14.2813L16.1458 14.6355L15.7812 14.2813C15.4274 13.9264 14.9762 13.6844 14.4848 13.5862C13.9934 13.4879 13.4839 13.5377 13.0208 13.7292C12.7083 13.8542 12.4375 14.0417 12.1979 14.2813C11.2083 15.2605 11.1562 16.9167 12.4062 18.1772L16.1458 21.8751L19.8958 18.1772C21.1458 16.9167 21.0833 15.2605 20.0937 14.2813V14.2709Z"
+                            stroke="currentColor" stroke-width="2.08333" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+
+                            <span class="capitalize text-sm font-[600]  py-1  ">
+                                    Occasions
+                            </span>
+                        </button>
+                        <button 
+                            routerLink="/dash/products"
+                            (click)="isActive.set('products')"
+                            [class.bg-[#FBEAEA]]="isActive() === 'products'"
+                            [class.text-[#A6252A]]="isActive() === 'products'"
+                            [class.text-black]="isActive() !== 'products'"
+                            class="w-1/4  py-2  flex flex-col items-center justify-start active:bg-[var(--color-secondary)]
+                                        active:text-[var(--color-primary)] rounded-xl cursor-pointer">
+                            
+                            <svg width="21" height="23" viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.4166 21.8729V11.4563M10.4166 11.4563L1.34371 6.24794M10.4166 11.4563L19.4895 6.24794M5.72913 3.4042L15.1041 8.76878M9.37496 21.5917C9.69167 21.7745 10.0509 21.8708 10.4166 21.8708C10.7823 21.8708 11.1416 21.7745 11.4583 21.5917L18.75 17.425C19.0664 17.2424 19.3291 16.9797 19.512 16.6634C19.6948 16.3471 19.7913 15.9883 19.7916 15.6229V7.28961C19.7913 6.92427 19.6948 6.56546 19.512 6.24916C19.3291 5.93286 19.0664 5.6702 18.75 5.48753L11.4583 1.32086C11.1416 1.13801 10.7823 1.04175 10.4166 1.04175C10.0509 1.04175 9.69167 1.13801 9.37496 1.32086L2.08329 5.48753C1.7669 5.6702 1.50411 5.93286 1.32127 6.24916C1.13844 6.56546 1.042 6.92427 1.04163 7.28961V15.6229C1.042 15.9883 1.13844 16.3471 1.32127 16.6634C1.50411 16.9797 1.7669 17.2424 2.08329 17.425L9.37496 21.5917Z"
+                            stroke="currentColor" stroke-width="2.08333" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+
+                            <span class="capitalize text-sm font-[600]  py-1  ">
+                                    Products
+                            </span>
+                        </button>
+                    </div>
+                    <!-- preview Button -->
+                    <div class="absolute -top-5 left-[50%] -translate-x-[50%]">
+                         <button class="w-[50px] h-[50px] rounded-full flex items-center justify-center  bg-[var(--color-primary)]
+                              text-xl text-white gap-x-3 cursor-pointer">
+                            <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.625 12.5C15.625 14.2259 14.2259 15.625 12.5 15.625M15.625 12.5C15.625 10.7741 14.2259 9.375 12.5 9.375M15.625 12.5H17.1875M12.5 15.625C10.7741 15.625 9.375 14.2259 9.375 12.5M12.5 15.625V17.1875M9.375 12.5C9.375 10.7741 10.7741 9.375 12.5 9.375M9.375 12.5H7.8125M12.5 9.375V7.8125M12.5 17.1875C12.5 18.1146 12.2251 19.0209 11.71 19.7917C11.1949 20.5626 10.4629 21.1634 9.60633 21.5182C8.7498 21.873 7.8073 21.9658 6.89802 21.7849C5.98873 21.6041 5.1535 21.1576 4.49794 20.5021C3.84238 19.8465 3.39594 19.0113 3.21507 18.102C3.0342 17.1927 3.12703 16.2502 3.48182 15.3937C3.8366 14.5371 4.43741 13.8051 5.20827 13.29C5.97912 12.7749 6.8854 12.5 7.8125 12.5M12.5 17.1875C12.5 18.1146 12.7749 19.0209 13.29 19.7917C13.8051 20.5626 14.5371 21.1634 15.3937 21.5182C16.2502 21.873 17.1927 21.9658 18.102 21.7849C19.0113 21.6041 19.8465 21.1576 20.5021 20.5021C21.1576 19.8465 21.6041 19.0113 21.7849 18.102C21.9658 17.1927 21.873 16.2502 21.5182 15.3937C21.1634 14.5371 20.5626 13.8051 19.7917 13.29C19.0209 12.7749 18.1146 12.5 17.1875 12.5M7.8125 12.5C6.8854 12.5 5.97912 12.2251 5.20827 11.71C4.43741 11.1949 3.8366 10.4629 3.48182 9.60633C3.12703 8.7498 3.0342 7.8073 3.21507 6.89802C3.39594 5.98873 3.84238 5.1535 4.49794 4.49794C5.1535 3.84238 5.98873 3.39594 6.89802 3.21507C7.8073 3.0342 8.7498 3.12703 9.60633 3.48182C10.4629 3.8366 11.1949 4.43741 11.71 5.20827C12.2251 5.97912 12.5 6.8854 12.5 7.8125M12.5 7.8125C12.5 6.8854 12.7749 5.97912 13.29 5.20827C13.8051 4.43741 14.5371 3.8366 15.3937 3.48182C16.2502 3.12703 17.1927 3.0342 18.102 3.21507C19.0113 3.39594 19.8465 3.84238 20.5021 4.49794C21.1576 5.1535 21.6041 5.98873 21.7849 6.89802C21.9658 7.8073 21.873 8.7498 21.5182 9.60633C21.1634 10.4629 20.5626 11.1949 19.7917 11.71C19.0209 12.2251 18.1146 12.5 17.1875 12.5M8.33334 8.33334L10.2917 10.2917M14.7083 10.2917L16.6667 8.33334M8.33334 16.6667L10.2917 14.7083M14.7083 14.7083L16.6667 16.6667" stroke="white" stroke-width="2.08333" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg> 
+                        </button>
+                    </div>
+</section>
