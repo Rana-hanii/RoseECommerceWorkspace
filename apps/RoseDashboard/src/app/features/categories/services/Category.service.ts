@@ -15,4 +15,11 @@ export class CategoryService {
       ApiEndPointsDashboard.categories.allCategories
     );
   }
+
+  addCategory(data: any): Observable<any> {
+    return this._apiUrl.post(
+      ApiEndPointsDashboard.categories.addCategories,
+      data
+    );
+  }
 }

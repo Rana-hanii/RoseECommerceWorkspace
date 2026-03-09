@@ -1,0 +1,52 @@
+<section class="bg-white p-10 rounded w-100 lg:w-[75%] shadow-lg">
+  <h1 class="font-semibold text-2xl mb-6">Add a New Category</h1>
+
+  <div class="flex flex-col gap-2">
+    <form [formGroup]="categoryForm" (ngSubmit)="Submit()">
+      <label for="name" class="font-medium">
+        Name <span class="text-red-500">*</span>
+      </label>
+
+      <div class="border border-gray-200 p-2 rounded-lg">
+        <input
+          id="name"
+          formControlName="name"
+          pInputText
+          type="text"
+          class="w-full"
+          placeholder="Enter category name"
+          required
+        />
+      </div>
+      <label for="name" class="font-medium"> Category Image </label>
+      <div class="border border-gray-200 p-2 rounded-lg">
+        <p-toast />
+        <div class="card flex flex-wrap gap-6 items-center justify-between">
+          <p-button
+            label="Upload"
+            (onClick)="fu.upload()"
+            severity="secondary"
+          />
+          <p-fileupload
+            #fu
+            mode="basic"
+            chooseLabel="Upload file"
+            chooseIcon="pi pi-upload"
+            name="demo[]"
+            url="https://www.primefaces.org/cdn/api/upload.php"
+            accept="image/*"
+            maxFileSize="1000000"
+            (onSelect)="onFileSelected($event)"
+          />
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="bg-[#A6252A] p-2 mt-45 lg:mt-15 text-white rounded-lg"
+      >
+        Add Category
+      </button>
+    </form>
+  </div>
+</section>

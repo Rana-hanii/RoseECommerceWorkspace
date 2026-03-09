@@ -24,6 +24,26 @@ export const dashboardRoutes: Routes = [
             (c) => c.CategoriesComponent
           ),
         title: 'Categories',
+        children: [
+          {
+            path: 'addCategory',
+            data: { breadcrumb: 'addCategory' },
+            loadComponent: () =>
+              import(
+                '../../features/categories/components/AddCategory/addCategory.component'
+              ).then((c) => c.AddCategoryComponent),
+            title: 'addCategory',
+          },
+          {
+            path: 'updateCategory',
+            data: { breadcrumb: 'updateCategory' },
+            loadComponent: () =>
+              import(
+                '../../features/categories/components/updateCategoty/updateCategory.component'
+              ).then((c) => c.UpdateCategoryComponent),
+            title: 'addCategory',
+          },
+        ],
       },
       {
         path: 'occasions',
@@ -53,5 +73,13 @@ export const dashboardRoutes: Routes = [
         title: 'Account',
       },
     ],
+  },
+  {
+    path: '**',
+    data: { Breadcrumb: 'notFound' },
+    loadComponent: () =>
+      import(
+        '../../shared/components/notFoundPage/notFoundPage.component'
+      ).then((c) => c.NotFoundPageComponent),
   },
 ];
