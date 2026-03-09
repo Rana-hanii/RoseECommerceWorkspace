@@ -3,33 +3,29 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
+  private readonly httpClient = inject(HttpClient);
+  private readonly BaseURL = environment.baseUrl;
 
-   private readonly httpClient=inject(HttpClient)
-   private readonly BaseURL = environment.baseUrl 
+  get<T>(endPoint: string) {
+    return this.httpClient.get<T>(`${this.BaseURL}${endPoint}`);
+  }
 
+  post<T>(endPoint: string, data: unknown) {
+    return this.httpClient.post<T>(`${this.BaseURL}${endPoint}`, data);
+  }
 
-   get<T>(endPoint:string){
-    return this.httpClient.get<T>(`${this.BaseURL}${endPoint}`)
-   }
+  patch<T>(endPoint: string, data: unknown) {
+    return this.httpClient.patch<T>(`${this.BaseURL}${endPoint}`, data);
+  }
 
-   post<T>(endPoint:string , data:unknown){
-    return this.httpClient.post<T>(`${this.BaseURL}${endPoint}`, data)
-   }
+  put<T>(endPoint: string, data: unknown) {
+    return this.httpClient.put<T>(`${this.BaseURL}${endPoint}`, data);
+  }
 
-   patch<T>(endPoint:string , data:unknown){
-    return this.httpClient.patch<T>(`${this.BaseURL}${endPoint}`, data)
-   }
-
-   put<T>(endPoint:string , data:unknown){
-    return this.httpClient.put<T>(`${this.BaseURL}${endPoint}`,data)
-   }
-
-   delete<T>(endPoint:string){
-    return this.httpClient.delete<T>(`${this.BaseURL}${endPoint}`)
-   }
-
-
+  delete<T>(endPoint: string) {
+    return this.httpClient.delete<T>(`${this.BaseURL}${endPoint}`);
+  }
 }

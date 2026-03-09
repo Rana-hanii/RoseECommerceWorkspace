@@ -1,32 +1,22 @@
-export const ApiEndPointsDashboard ={
+export const ApiEndPointsDashboard = {
+  // *OVERVIEW PAGE ENDPOINTS
+  overview: {
+    overAllStatistics: '/statistics/overall',
+    productsStatistics: '/statistics/products',
+    orderStatistics: '/statistics/orders',
+    categoryStatistics: '/statistics/categories',
+    salesTrends: '/reports/sales/trends',
+  },
 
-    // *OVERVIEW PAGE ENDPOINTS 
-    overview:{
-        overAllStatistics:'/statistics/overall', //overview
-        productsStatistics:'/statistics/products', //products
-        orderStatistics:'/statistics/orders',//orders
-        categoryStatistics:'/statistics/categories'//categories
-    } ,
+  // * CATEGORIES ENDPOINTS
+  categories: {},
 
+  //* OCCASIONS ENDPOINTS
+  occasions: {},
 
-    // * CATEGORIES ENDPOINTS
-    categories:{
+  //* PRODUCTS ENDPOINTS
+  products: {},
 
-    } ,
-
-    //* OCCASIONS ENDPOINTS
-    occasions:{
-
-    },
-
-    //* PRODUCTS ENDPOINTS
-    products:{
-
-    },
-
-    //* ACCOUNT ENDPOINTS
-    account:{
-
-    },
-
-}
+  //* ACCOUNT ENDPOINTS
+  account: {},
+};
