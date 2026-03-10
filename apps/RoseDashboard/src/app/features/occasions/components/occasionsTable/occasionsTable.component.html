@@ -1,0 +1,17 @@
+<section class="w-full min-h-screen p-4 bg-[#FAFAFA]">
+        <!-- here will put all system reports components -->
+       <app-section-table
+        [mainTitle]="'All Occasions'"
+        [buttonIcon]="'pi-plus'"
+        [buttonTitle]="'Add a Occasion'"
+        [placeholder]="'Search Occasions .......'"
+        [tableData]="occasions$ | async"
+        [columns]="columns"
+        [filterFields]="filterFields"
+        (rowSelect)="onRowSelect($event)"
+        [addRoute]="'/dash/occasions/addOccasion'"
+        [buttonRoute]="'/dash/occasions/addOccasion'"
+       ></app-section-table> 
+      
+        
+</section>

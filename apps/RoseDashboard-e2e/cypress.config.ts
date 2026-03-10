@@ -10,8 +10,8 @@ export default defineConfig({
         production: 'npx nx run RoseDashboard:serve-static',
       },
       ciWebServerCommand: 'npx nx run RoseDashboard:serve-static',
-      ciBaseUrl: 'http://localhost:4200',
+      ciBaseUrl: 'http://localhost:4300',
     }),
-    baseUrl: 'http://localhost:4200',
+    baseUrl: 'http://localhost:4300',
   },
 });

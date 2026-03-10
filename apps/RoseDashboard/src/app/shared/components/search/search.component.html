@@ -1,0 +1,11 @@
+<div class="w-full  ">
+    <input 
+    class=" border-[2px] border-gray-400 p-3 rounded-2xl w-full px-6 
+            text-lg lg:text-xl text-gray-500 focus:ring-[var(--color-primary)] focus:ring-3
+            focus:outline-0 focus:border-1 "
+    type="text"
+    [placeholder]="placeholder()"
+    [ngModel]="value()"
+    (ngModelChange)="valueChange.emit($event)"
+    >
+</div>

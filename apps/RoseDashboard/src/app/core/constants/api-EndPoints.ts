@@ -1,22 +1,34 @@
-export const ApiEndPointsDashboard = {
-  // *OVERVIEW PAGE ENDPOINTS
-  overview: {
-    overAllStatistics: '/statistics/overall',
-    productsStatistics: '/statistics/products',
-    orderStatistics: '/statistics/orders',
-    categoryStatistics: '/statistics/categories',
-    salesTrends: '/reports/sales/trends',
-  },
+export const ApiEndPointsDashboard ={
 
-  // * CATEGORIES ENDPOINTS
-  categories: {},
+    // *OVERVIEW PAGE ENDPOINTS 
+    overview:{
+        overAllStatistics:'/statistics/overall', //overview
+        productsStatistics:'/statistics/products', //products
+        orderStatistics:'/statistics/orders',//orders
+        categoryStatistics:'/statistics/categories',//categories
+        salesTrends: '/reports/sales/trends', //trends
+    } ,
 
-  //* OCCASIONS ENDPOINTS
-  occasions: {},
 
-  //* PRODUCTS ENDPOINTS
-  products: {},
+    // * CATEGORIES ENDPOINTS
+    categories:{
+        categories:'/categories'
+    } ,
 
-  //* ACCOUNT ENDPOINTS
-  account: {},
-};
+    //* OCCASIONS ENDPOINTS
+    occasions:{
+        occasions:'/occasions'
+    },
+
+    //* PRODUCTS ENDPOINTS
+    products:{
+        products:'/products'
+    },
+
+    //* ACCOUNT ENDPOINTS
+    account:{
+
+    },
+
+}
+
