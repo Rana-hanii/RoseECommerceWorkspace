@@ -51,6 +51,7 @@ export class CategoriesComponent implements OnInit {
   limit!: number;
   totalPages!: number;
   totalItems!: number;
+
   @ViewChild('dt1') dt1!: Table;
   getAllCategory(): void {
     this._categoryService
@@ -59,10 +60,12 @@ export class CategoriesComponent implements OnInit {
       .subscribe({
         next: (res) => {
           this.category = res.categories;
+
           this.currentPage = res.metadata.currentPage;
           this.limit = res.metadata.limit;
           this.totalPages = res.metadata.totalPages;
           this.totalItems = res.metadata.totalItems;
+          console.log(this.totalItems);
         },
       });
     this.loading = false;

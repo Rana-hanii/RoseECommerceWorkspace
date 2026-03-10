@@ -12,6 +12,7 @@ import { ButtonModule } from 'primeng/button';
 import { FileSelectEvent, FileUploadModule } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
 import { CategoryService } from '../../services/Category.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-category',
   imports: [
@@ -29,7 +30,8 @@ import { CategoryService } from '../../services/Category.service';
 export class AddCategoryComponent {
   private readonly fb = inject(FormBuilder);
   private readonly _categoryService = inject(CategoryService);
-  // private readonly _toster = inject(ToastrService);
+  private readonly _toster = inject(ToastrService);
+  private readonly _router = inject(Router);
 
   categoryForm = this.fb.group({
     name: ['', Validators.required],
@@ -52,11 +54,11 @@ export class AddCategoryComponent {
       this._categoryService.addCategory(payload).subscribe({
         next: (res) => {
           console.log(res);
-          // this._toster.success('add AS success');
-        },
-        error: (err) => {
-          console.log(err);
-          // this._toster.error('eerrrr');
+          this._toster.success(
+            'Category created successfully!',
+            'successfully'
+          );
+          this._router.navigate(['/dash/categories']);
         },
       });
     }

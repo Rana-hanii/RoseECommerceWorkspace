@@ -12,6 +12,8 @@ import {
   withInterceptors,
 } from '@angular/common/http';
 import { headerInterceptor } from './core/interceptor/header.interceptor';
+import { MessageService } from 'primeng/api';
+import { provideToastr } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,6 +22,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideHttpClient(withFetch(), withInterceptors([headerInterceptor])),
     provideRouter(appRoutes),
+    provideToastr(),
     MessageService,
     provideHttpClient(withFetch()),
   ],

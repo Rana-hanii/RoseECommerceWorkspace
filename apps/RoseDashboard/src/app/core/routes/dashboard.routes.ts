@@ -1,8 +1,5 @@
 import { Routes } from '@angular/router';
-import { Routes } from '@angular/router';
 
-export const dashboardRoutes: Routes = [
-  { path: '', redirectTo: 'dash', pathMatch: 'full' },
 export const dashboardRoutes: Routes = [
   { path: '', redirectTo: 'dash', pathMatch: 'full' },
 

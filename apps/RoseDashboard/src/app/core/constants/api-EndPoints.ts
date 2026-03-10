@@ -5,6 +5,8 @@ export const ApiEndPointsDashboard = {
     productsStatistics: '/statistics/products', //products
     orderStatistics: '/statistics/orders', //orders
     categoryStatistics: '/statistics/categories', //categories
+    salesTrends:
+      '/reports/sales/trends?startDate=2023-01-01&endDate=2023-12-31&interval=weekly',
   },
 
   // * CATEGORIES ENDPOINTS
@@ -18,17 +20,10 @@ export const ApiEndPointsDashboard = {
 
   //* OCCASIONS ENDPOINTS
   occasions: {},
-  //* OCCASIONS ENDPOINTS
-  occasions: {},
-
-  //* PRODUCTS ENDPOINTS
-  products: {},
   //* PRODUCTS ENDPOINTS
   products: {},
 
   //* ACCOUNT ENDPOINTS
   account: {},
 };
-  //* ACCOUNT ENDPOINTS
-  account: {},
-};
+//* ACCOUNT ENDPOINTS
