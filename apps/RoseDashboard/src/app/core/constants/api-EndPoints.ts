@@ -5,7 +5,8 @@ export const ApiEndPointsDashboard ={
         overAllStatistics:'/statistics/overall', //overview
         productsStatistics:'/statistics/products', //products
         orderStatistics:'/statistics/orders',//orders
-        categoryStatistics:'/statistics/categories'//categories
+        categoryStatistics:'/statistics/categories',//categories
+        salesTrends: '/reports/sales/trends', //trends
     } ,
 
 
@@ -30,3 +31,4 @@ export const ApiEndPointsDashboard ={
     },
 
 }
+

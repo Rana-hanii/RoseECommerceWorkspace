@@ -1,7 +1,7 @@
-import { Routes } from "@angular/router";
+import { Routes } from '@angular/router';
 
-export const dashboardRoutes:Routes=[
-    {path:'' , redirectTo:'dash' , pathMatch:"full"},
+export const dashboardRoutes: Routes = [
+  { path: '', redirectTo: 'dash', pathMatch: 'full' },
 
     {path:'' , data: { breadcrumb: 'Dashboard' }, children:[
         {path:'overview' , data: { breadcrumb: 'Overview' }, loadComponent:()=>import('../../features/home/home.component').then((c)=>c.HomeComponent) ,title:'Overview'},

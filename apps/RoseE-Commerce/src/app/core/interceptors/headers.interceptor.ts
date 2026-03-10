@@ -3,16 +3,14 @@ import { inject } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 
 export const headersInterceptor: HttpInterceptorFn = (req, next) => {
-
-  const cookie=inject(CookieService)
+  const cookie = inject(CookieService);
   const token = cookie.get('roseToken');
   if (token) {
-    req=req.clone(
-      {setHeaders:{
-         Authorization: `Bearer ${token}`
-      }}
-    )
-    
+    req = req.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   }
 
   return next(req);
