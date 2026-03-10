@@ -30,14 +30,17 @@
   <!-- Header -->
   <ng-template #header>
     <tr class=" !text-lg lg:!text-2xl !font-[600] !bg-[#eeeded]   ">
-      <th  *ngFor="let col of columns()" class="!max-w-[180px] !text-center" [pSortableColumn]="col.field"
-      [class.hidden]="col.field === 'sold' || col.field === 'rateCount'"
-      [class.md:table-cell]="col.field === 'sold' || col.field === 'rateCount'"
-      [class.!text-start]="col.field === 'title'"
-      >
-        {{ col.header }}
-        <p-sortIcon [field]="col.field" class="" />
-      </th>
+      @for (col of columns(); track $index) {
+        <th   class="!max-w-[180px] !text-center" [pSortableColumn]="col.field"
+        [class.hidden]="col.field === 'sold' || col.field === 'rateCount'"
+        [class.md:table-cell]="col.field === 'sold' || col.field === 'rateCount'"
+        [class.!text-start]="col.field === 'title'"
+        >
+          {{ col.header }}
+          <p-sortIcon [field]="col.field" class="" />
+        </th>
+      }
+      
 
       <!-- the buttons column -->
        <th class="hidden md:block !text-center !text-lg lg:!text-2xl !font-[600] !bg-[#eeeded]">
@@ -50,7 +53,8 @@
   <!-- Body -->
   <ng-template #body let-row>
     <tr class="hover:!bg-[#FBEAEA]  !text-[#27272A] !text-lg lg:!text-xl  " (click)="showDialog()">
-      <td *ngFor="let col of columns()" class="!max-w-[180px] "
+      @for (col of columns(); track $index) {
+              <td  class="!max-w-[180px] "
         [class.hidden]="col.field === 'sold' || col.field === 'rateCount'"
         [class.md:table-cell]="col.field === 'sold' || col.field === 'rateCount'"
         [class.!font-[600]]="col.field === 'name'"
@@ -64,7 +68,9 @@
       </td>
     
       <!-- buttons -->
-      <td>
+    
+      }
+        <td>
       <div class="hidden md:flex justify-around items-center gap-3">
 
         <button [routerLink]="addRoute()"
