@@ -6,5 +6,13 @@
   "tags": [],
   "implicitDependencies": ["RoseE-Commerce"],
   "// targets": "to see all targets run: nx show project RoseE-Commerce-e2e --web",
-  "targets": {}
+  "targets": {
+     "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/RoseE-Commerce-e2e/cypress.config.ts",
+        "devServerTarget": "RoseE-Commerce:serve"
+      }
+    }
+  }
 }
