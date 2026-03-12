@@ -19,6 +19,8 @@ import { Menu } from 'primeng/menu';
 import { Button } from 'primeng/button';
 import { MenuItem } from 'primeng/api';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 @Component({
   selector: 'app-categiroes',
   standalone: true,
@@ -34,7 +36,8 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
     Button,
     RouterLink,
     RouterOutlet,
-    RouterLink,
+    ButtonModule,
+    DialogModule,
   ],
   templateUrl: './categiroes.component.html',
   styleUrl: './categiroes.component.scss',
@@ -51,6 +54,7 @@ export class CategoriesComponent implements OnInit {
   limit!: number;
   totalPages!: number;
   totalItems!: number;
+  visible = false;
 
   @ViewChild('dt1') dt1!: Table;
   getAllCategory(): void {
@@ -65,10 +69,20 @@ export class CategoriesComponent implements OnInit {
           this.limit = res.metadata.limit;
           this.totalPages = res.metadata.totalPages;
           this.totalItems = res.metadata.totalItems;
-          console.log(this.totalItems);
+          this.loading = false;
         },
       });
-    this.loading = false;
+  }
+
+  deleteCategory(): void {
+    this._categoryService
+      .deleteCategory(this.selectedCategory._id)
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+      });
   }
 
   onGlobalFilter(event: Event) {
@@ -76,23 +90,10 @@ export class CategoriesComponent implements OnInit {
     this.dt1.filterGlobal(input.value, 'contains');
   }
 
+  showDialog() {
+    this.visible = true;
+  }
   ngOnInit(): void {
     this.getAllCategory();
-
-    this.items = [
-      {
-        label: 'Options',
-        items: [
-          {
-            label: 'Refresh',
-            icon: 'pi pi-refresh',
-          },
-          {
-            label: 'Export',
-            icon: 'pi pi-upload',
-          },
-        ],
-      },
-    ];
   }
 }

@@ -31,4 +31,52 @@
   .active-row td {
     background-color: #a6252a1a !important;
   }
+
+  ::ng-deep .delete-dialog .p-dialog-content {
+    background-color: #fde2e4;
+    color: #a6252a;
+    border-radius: 12px;
+    padding: 5rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  ::ng-deep .delete-dialog .p-dialog-header {
+    padding: 10px;
+    background-color: #ffc0c0;
+    color: #a6252a;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-bottom: 2px solid #ffa5a5;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .delete-btn {
+    background-color: #a6252a;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .delete-btn:hover {
+    background-color: #c83035;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(166, 37, 42, 0.5);
+  }
+
+  .cancel-btn {
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .cancel-btn:hover {
+    background-color: #d5d5d5;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
 }

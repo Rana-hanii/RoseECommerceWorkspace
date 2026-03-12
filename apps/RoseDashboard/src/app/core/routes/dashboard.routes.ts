@@ -35,7 +35,7 @@ export const dashboardRoutes: Routes = [
             title: 'addCategory',
           },
           {
-            path: 'updateCategory',
+            path: 'updateCategory/:slug/:id',
             data: { breadcrumb: 'updateCategory' },
             loadComponent: () =>
               import(

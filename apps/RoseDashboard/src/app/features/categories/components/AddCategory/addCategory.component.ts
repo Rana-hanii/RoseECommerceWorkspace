@@ -1,5 +1,5 @@
 import { ToastrService } from 'ngx-toastr';
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
@@ -13,8 +13,10 @@ import { FileSelectEvent, FileUploadModule } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
 import { CategoryService } from '../../services/Category.service';
 import { Router } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-add-category',
+  standalone: true,
   imports: [
     CommonModule,
     FormsModule,
@@ -32,7 +34,7 @@ export class AddCategoryComponent {
   private readonly _categoryService = inject(CategoryService);
   private readonly _toster = inject(ToastrService);
   private readonly _router = inject(Router);
-
+  private readonly _destroyRef = inject(DestroyRef);
   categoryForm = this.fb.group({
     name: ['', Validators.required],
     image: [null as File | null, Validators.required],
@@ -49,18 +51,21 @@ export class AddCategoryComponent {
       const payload = new FormData();
 
       payload.append('name', this.categoryForm.value.name!);
-      payload.append('image', this.categoryForm.value.image!);
+      payload.append('image', this.categoryForm.value.image! as File);
 
-      this._categoryService.addCategory(payload).subscribe({
-        next: (res) => {
-          console.log(res);
-          this._toster.success(
-            'Category created successfully!',
-            'successfully'
-          );
-          this._router.navigate(['/dash/categories']);
-        },
-      });
+      this._categoryService
+        .addCategory(payload)
+        .pipe(takeUntilDestroyed(this._destroyRef))
+        .subscribe({
+          next: (res) => {
+            console.log(res);
+            this._toster.success(
+              'Category created successfully!',
+              'successfully'
+            );
+            this._router.navigate(['/dash/categories']);
+          },
+        });
     }
   }
 }

@@ -22,7 +22,11 @@
             "input": "apps/RoseDashboard/public"
           }
         ],
-        "styles": ["apps/RoseDashboard/src/styles.scss"],
+        "styles": [
+          "node_modules/ngx-spinner/animations/ball-scale-multiple.css",
+          "apps/RoseDashboard/src/styles.scss",
+          "node_modules/ngx-toastr/toastr.css"
+        ],
         "scripts": []
       },
       "configurations": {
