@@ -1,9 +1,8 @@
 export interface OccasionsRes {
- message: string;
+  message: string;
   metadata: Metadata;
   occasions: Occasion[];
 }
-
 
 export interface Occasion {
   _id: string;

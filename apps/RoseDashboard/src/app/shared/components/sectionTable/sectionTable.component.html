@@ -1,31 +1,33 @@
-<section class="container rounded-xl p-4 flex flex-col justify-center items-center bg-white">
-   <!-- title and button -->
-    <div class="w-full flex justify-between items-center">
-        <!-- title -->
-        <div>
-            <h1 class="text-xl lg:text-2xl font-[600] text-[#27272A]  ">
-            {{mainTitle()}}
-            </h1>
-        </div>
-        <!-- button -->
-         <app-button
-         [icon]="buttonIcon()"
-         [buttonName]="buttonTitle()"
-         [buttonRoute]="buttonRoute()"
-         >
-         </app-button>
+<section
+  class="container rounded-xl p-4 flex flex-col justify-center items-center bg-white"
+>
+  <!-- title and button -->
+  <div class="w-full flex justify-between items-center">
+    <!-- title -->
+    <div>
+      <h1 class="text-xl lg:text-2xl font-[600] text-[#27272A]">
+        {{ mainTitle() }}
+      </h1>
     </div>
+    <!-- button -->
+    <app-button
+      [icon]="buttonIcon()"
+      [buttonName]="buttonTitle()"
+      [buttonRoute]="buttonRoute()"
+    >
+    </app-button>
+  </div>
 
-     <!-- Table -->
+  <!-- Table -->
 
-     <div class="w-full mt-6">
-        <app-table
-        [value]="tableData() ?? []"
-        [columns]="columns()"
-        [placeholder]="placeholder()"
-        [globalFilterFields]="filterFields()"
-        (selection)="rowSelect.emit($event)"
-        [addRoute]="addRoute()"
-        ></app-table>
-     </div>
+  <div class="w-full mt-6">
+    <app-table
+      [value]="tableData() ?? []"
+      [columns]="columns()"
+      [placeholder]="placeholder()"
+      [globalFilterFields]="filterFields()"
+      (selection)="rowSelect.emit($event)"
+      [addRoute]="addRoute()"
+    ></app-table>
+  </div>
 </section>
