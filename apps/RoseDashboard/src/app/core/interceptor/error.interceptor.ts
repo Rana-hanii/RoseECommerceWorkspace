@@ -2,16 +2,17 @@ import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, throwError } from 'rxjs';
+import { ErrorService } from '../../shared/services/error/error.service';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
-  const toastr = inject(ToastrService);
+  const _errorService = inject(ErrorService);
 
   return next(req).pipe(
     catchError((err) => {
       // Network error or CORS error
       if (!err.status) {
-        toastr.error(err.error.message);
         console.error('Network or CORS error:', err);
+        _errorService.showError();
         return throwError(() => err);
       }
 
@@ -24,22 +25,22 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
       // Display message based on status code
       switch (err.status) {
         case 400:
-          toastr.error('Bad Request: ' + serverMessage);
+          _errorService.showError();
           break;
         case 401:
-          toastr.error('Unauthorized: ' + serverMessage);
+          _errorService.showError();
           break;
         case 403:
-          toastr.error('Forbidden: ' + serverMessage);
+          _errorService.showError();
           break;
         case 404:
-          toastr.error('Not Found: ' + serverMessage);
+          _errorService.showError();
           break;
         case 500:
-          toastr.error('Server Error: ' + serverMessage);
+          _errorService.showError();
           break;
         default:
-          toastr.error(serverMessage);
+          _errorService.showError();
           break;
       }
 

@@ -1,1 +1,23 @@
-<router-outlet></router-outlet>
+<nav class="bg-gray-800 p-4 text-white">My ERP App</nav>
+
+<div class="main-content">
+  @if (hasError) {
+  <div
+    class="error-page flex flex-col items-center justify-center p-20 text-center"
+  >
+    <img src="errorMeassge.png" alt="error" class="w-64 mb-6" />
+    <h2 class="font-extrabold text-4xl mb-4">Oops, something went wrong!</h2>
+    <p class="text-xl text-gray-600">Please refresh or try again later.</p>
+    <button
+      (click)="hasError = false"
+      class="mt-4 bg-blue-500 text-white px-6 py-2 rounded"
+    >
+      Try Again
+    </button>
+  </div>
+  } @else {
+  <div class="p-4">
+    <router-outlet></router-outlet>
+  </div>
+  }
+</div>
