@@ -1,11 +1,17 @@
 import { Routes } from '@angular/router';
+import { adminGuardGuard } from '../guards/adminGuard/admin-guard.guard';
 
 export const dashboardRoutes: Routes = [
-  { path: '', redirectTo: 'dash', pathMatch: 'full' },
+  {
+    path: '',
+    redirectTo: 'dash',
+    pathMatch: 'full',
+  },
 
   {
     path: '',
     data: { breadcrumb: 'Dashboard' },
+    //
     children: [
       {
         path: 'overview',
@@ -19,6 +25,7 @@ export const dashboardRoutes: Routes = [
       {
         path: 'categories',
         data: { breadcrumb: 'Categories' },
+        canActivate: [adminGuardGuard],
         title: 'Categories',
         loadComponent: () =>
           import('../../features/categories/categiroes.component').then(
@@ -138,5 +145,13 @@ export const dashboardRoutes: Routes = [
         title: 'Account',
       },
     ],
+  },
+  {
+    path: 'unauthorized',
+    title: 'Access Denied',
+    loadComponent: () =>
+      import(
+        '../../shared/components/unauthorized/unauthorized.component'
+      ).then((c) => c.UnauthorizedComponent),
   },
 ];
