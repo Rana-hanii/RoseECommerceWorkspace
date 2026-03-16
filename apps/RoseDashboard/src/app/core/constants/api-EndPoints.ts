@@ -17,8 +17,9 @@ export const ApiEndPointsDashboard = {
   occasions: {
     occasions: `/occasions`,
     add: '/occasions',
-    update: (id: string | null) => `/occasions${id}`,
-    delete: (id: string | null) => `/occasions${id}`,
+    update: (id: string | null) => `/occasions/${id}`,
+    delete: (id: string | null) => `/occasions/${id}`,
+    get: (id: string) => `/occasions/${id}`,
   },
 
   //* PRODUCTS ENDPOINTS

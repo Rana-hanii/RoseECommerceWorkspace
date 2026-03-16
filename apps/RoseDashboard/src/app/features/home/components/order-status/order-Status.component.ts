@@ -50,7 +50,9 @@ export class OrderStatusComponent implements OnInit {
   getPercentage(count: number) {
     if (this.totalOrder === 0) return '0%';
     const percent = (count / this.totalOrder) * 100;
-    return Math.round(percent) + '%';
+    return percent < 1 && percent > 0
+      ? percent.toFixed(2) + '%'
+      : Math.round(percent) + '%';
   }
 
   initChart() {

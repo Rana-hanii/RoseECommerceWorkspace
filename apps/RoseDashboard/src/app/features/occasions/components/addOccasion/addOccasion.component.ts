@@ -64,6 +64,7 @@ export class AddOccasionComponent {
             res.message
           );
           this._router.navigate(['/dash/occasions']);
+          console.log(res);
         },
       });
   }

@@ -35,12 +35,11 @@ export class HomeService {
 
   getAllRevenue(
     interval: 'monthly' | 'weekly',
-    startDate = '2023-01-01',
-    endDate = '2026-12-31'
+    startDate = '2025-01-01',
+    endDate = '2025-12-31'
   ): Observable<AllRevenue> {
-    return this._apiServices.get<AllRevenue>(
-      `${ApiEndPointsDashboard.overview.salesTrends}/?startDate=${startDate}&endDate=${endDate}&interval=${interval}`
-    );
+    const url = `${ApiEndPointsDashboard.overview.salesTrends}?startDate=${startDate}&endDate=${endDate}&interval=${interval}`;
+    return this._apiServices.get<AllRevenue>(url);
   }
 
   getProducts(): Observable<Iproducts> {

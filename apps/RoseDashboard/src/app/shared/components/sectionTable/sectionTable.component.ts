@@ -28,5 +28,7 @@ export class SectionTableComponent {
   placeholder = input<string>('');
   rowSelect = output<any>();
   addRoute = input<string>('');
+  editBaseRoute = input<string>('');
   buttonRoute = input<string>('');
+  deleteRow = output<any>();
 }

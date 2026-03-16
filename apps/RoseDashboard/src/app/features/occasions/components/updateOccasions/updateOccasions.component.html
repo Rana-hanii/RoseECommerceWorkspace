@@ -1,12 +1,61 @@
-<section class="bg-white w-100">
-  <!-- <h2 class="font-semibold text-2xl">Update Occasion: {{ name }}</h2> -->
+<section class="bg-white w-full p-5">
+  <h2 class="font-semibold text-2xl mb-4">
+    Update Occasion: {{ occasionData()?.name }}
+  </h2>
 
-  <form action="">
+  <form [formGroup]="updateForm" (ngSubmit)="onSubmit()" class="w-[75%]">
     <label for="name">Name <span class="text-[#A6252A]">*</span> </label>
-    <div class="Input">
+
+    <div class="Input mb-4">
       <div class="card flex justify-center border border-gray-300 rounded-lg">
-        <input class="w-100 p-1" required type="text" pInputText />
+        <input
+          id="name"
+          class="w-full p-2 rounded-lg"
+          formControlName="name"
+          type="text"
+          pInputText
+        />
+      </div>
+      @if (updateForm.get('name')?.invalid && updateForm.get('name')?.touched) {
+      <div class="mt-1">
+        <p-message severity="error" text="Name Is Required"></p-message>
+      </div>
+      }
+    </div>
+
+    <div class="flex justify-end w-full">
+      <button type="button" (click)="toggleImage()">
+        <div
+          class="bg-white border w-fit rounded-lg border-gray-300 gap-2 p-2.5 flex items-center text-blue-400 hover:bg-gray-50 transition-colors"
+        >
+          <i [class]="showImage() ? 'pi pi-eye-slash' : 'pi pi-image'"></i>
+          <span class="capitalize">
+            {{ showImage() ? 'hide' : 'show' }} occasion image</span
+          >
+        </div>
+      </button>
+    </div>
+
+    <div
+      class="overflow-hidden transition-all duration-300 ease-in-out"
+      [style.max-height]="showImage() ? '500px' : '0'"
+      [style.opacity]="showImage() ? '1' : '0'"
+    >
+      <div class="mt-2 border rounded-lg overflow-hidden w-full shadow-sm">
+        <img
+          [src]="occasionData()?.image"
+          alt="OccasionImage"
+          class="w-full h-auto object-cover"
+        />
       </div>
     </div>
+
+    <button
+      type="submit"
+      [disabled]="updateForm.invalid"
+      class="mt-5 bg-[#A6252A] w-full text-white p-2 rounded-lg disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+    >
+      Update Occasion
+    </button>
   </form>
 </section>

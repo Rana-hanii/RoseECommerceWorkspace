@@ -10,6 +10,8 @@
     [filterFields]="filterFields"
     (rowSelect)="onRowSelect($event)"
     [addRoute]="'/dash/occasions/addOccasion'"
+    [editBaseRoute]="'/dash/occasions/updateOccasions'"
     [buttonRoute]="'/dash/occasions/addOccasion'"
+    (deleteRow)="handelDelete($event)"
   ></app-section-table>
 </section>

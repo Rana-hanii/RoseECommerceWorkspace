@@ -28,6 +28,8 @@
       [globalFilterFields]="filterFields()"
       (selection)="rowSelect.emit($event)"
       [addRoute]="addRoute()"
+      [editBaseRoute]="editBaseRoute()"
+      (deleteAction)="deleteRow.emit($event)"
     ></app-table>
   </div>
 </section>

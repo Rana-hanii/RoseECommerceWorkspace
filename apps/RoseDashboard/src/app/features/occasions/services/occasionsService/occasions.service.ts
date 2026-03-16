@@ -4,6 +4,7 @@ import { ApiService } from 'apps/RoseDashboard/src/app/core/service/api.service'
 import { Observable } from 'rxjs';
 import { OccasionsRes } from '../../interfaces/occasionsRes/occasions-res';
 import { AddOccasion } from '../../interfaces/add-occasion';
+import { GetOccasion } from '../../interfaces/get-occasion';
 
 @Injectable({
   providedIn: 'root',
@@ -32,5 +33,11 @@ export class OccasionsService {
   }
   deleteOccasion(id: string): Observable<any> {
     return this.apiService.delete(ApiEndPointsDashboard.occasions.delete(id));
+  }
+
+  getOccasionId(id: string): Observable<GetOccasion> {
+    return this.apiService.get<GetOccasion>(
+      ApiEndPointsDashboard.occasions.get(id)
+    );
   }
 }

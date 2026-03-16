@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { adminGuardGuard } from '../guards/adminGuard/admin-guard.guard';
-
 export const dashboardRoutes: Routes = [
   {
     path: '',
@@ -25,7 +24,7 @@ export const dashboardRoutes: Routes = [
       {
         path: 'categories',
         data: { breadcrumb: 'Categories' },
-        canActivate: [adminGuardGuard],
+
         title: 'Categories',
         loadComponent: () =>
           import('../../features/categories/categiroes.component').then(
@@ -51,7 +50,7 @@ export const dashboardRoutes: Routes = [
               ).then((c) => c.AddCategoryComponent),
           },
           {
-            path: 'updateCategory/:id',
+            path: 'updateCategory/:slug/:id',
             data: { breadcrumb: 'Update' },
             title: 'Update Category',
             loadComponent: () =>
@@ -69,7 +68,6 @@ export const dashboardRoutes: Routes = [
           import('../../features/occasions/occasions.component').then(
             (c) => c.OccasionsComponent
           ),
-
         children: [
           {
             path: '',
@@ -82,7 +80,7 @@ export const dashboardRoutes: Routes = [
           },
           {
             path: 'addOccasion',
-            data: { breadcrumb: 'Add ' },
+            data: { breadcrumb: 'Add' },
             title: 'Add Occasion',
             loadComponent: () =>
               import(
@@ -90,7 +88,7 @@ export const dashboardRoutes: Routes = [
               ).then((c) => c.AddOccasionComponent),
           },
           {
-            path: 'updateOccasion/:slug/:id',
+            path: 'updateOccasions/:slug/:id',
             data: { breadcrumb: 'Update' },
             title: 'Update Occasion',
             loadComponent: () =>

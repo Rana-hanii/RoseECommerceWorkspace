@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { OccasionsComponent } from './occasions.component';
 
@@ -7,7 +8,7 @@ describe('OccasionsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OccasionsComponent],
+      imports: [OccasionsComponent, HttpClientTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(OccasionsComponent);
