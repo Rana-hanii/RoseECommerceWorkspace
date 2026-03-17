@@ -2,16 +2,14 @@ import { Component, DestroyRef, inject, input, OnInit } from '@angular/core';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { SectionTableComponent } from 'apps/RoseDashboard/src/app/shared/components/sectionTable/sectionTable.component';
 import { map, Observable } from 'rxjs';
-import {
-  Occasion,
-  OccasionsRes,
-} from '../../interfaces/occasionsRes/occasions-res';
+import { Occasion, OccasionsRes } from '../../interfaces/occasions-res';
 import { RouterModule } from '@angular/router';
-import { OccasionsService } from '../../services/occasionsService/occasions.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
+import { ToastrService } from 'ngx-toastr';
+import { OccasionsService } from '../../services/occasions.service';
 @Component({
   selector: 'app-occasions-table',
   imports: [
@@ -29,7 +27,7 @@ import { ToastModule } from 'primeng/toast';
 export class OccasionsTableComponent implements OnInit {
   private readonly occasionsService = inject(OccasionsService);
   private readonly _destroyRef = inject(DestroyRef);
-
+  private readonly _toastrService = inject(ToastrService);
   occasions$!: Observable<Occasion[]>;
 
   columns = [
@@ -53,7 +51,11 @@ export class OccasionsTableComponent implements OnInit {
       .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe({
         next: (res) => {
-          console.log(res);
+          this._toastrService.success(
+            'Item deleted successfully 🗑️',
+            res.message
+          );
+          this.getProductList();
         },
       });
   }

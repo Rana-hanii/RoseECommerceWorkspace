@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { OccasionsService } from './services/occasionsService/occasions.service';
+import { OccasionsService } from './services/occasions.service';
 
 @Component({
   selector: 'app-occasions',

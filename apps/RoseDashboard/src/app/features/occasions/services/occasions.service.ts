@@ -2,9 +2,12 @@ import { inject, Injectable } from '@angular/core';
 import { ApiEndPointsDashboard } from 'apps/RoseDashboard/src/app/core/constants/api-EndPoints';
 import { ApiService } from 'apps/RoseDashboard/src/app/core/service/api.service';
 import { Observable } from 'rxjs';
-import { OccasionsRes } from '../../interfaces/occasionsRes/occasions-res';
-import { AddOccasion } from '../../interfaces/add-occasion';
-import { GetOccasion } from '../../interfaces/get-occasion';
+import { HttpParams } from '@angular/common/http';
+import { OccasionsRes } from '../interfaces/occasions-res';
+import { AddOccasion } from '../interfaces/add-occasion';
+import { UpdateOccasion } from '../interfaces/update-occasion';
+import { DeleteOccasion } from '../interfaces/delete-occasion';
+import { GetOccasion } from '../interfaces/get-occasion';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +16,10 @@ export class OccasionsService {
   private readonly apiService = inject(ApiService);
 
   getAllOccasion(): Observable<OccasionsRes> {
+    const params = new HttpParams().set('limit', '100');
     return this.apiService.get<OccasionsRes>(
-      `${ApiEndPointsDashboard.occasions.occasions}`
+      ApiEndPointsDashboard.occasions.occasions,
+      { params }
     );
   }
 
@@ -25,14 +30,16 @@ export class OccasionsService {
     );
   }
 
-  updateOccasion(id: string, data: any): Observable<any> {
-    return this.apiService.put(
+  updateOccasion(id: string, data: any): Observable<UpdateOccasion> {
+    return this.apiService.put<UpdateOccasion>(
       ApiEndPointsDashboard.occasions.update(id),
       data
     );
   }
-  deleteOccasion(id: string): Observable<any> {
-    return this.apiService.delete(ApiEndPointsDashboard.occasions.delete(id));
+  deleteOccasion(id: string): Observable<DeleteOccasion> {
+    return this.apiService.delete<DeleteOccasion>(
+      ApiEndPointsDashboard.occasions.delete(id)
+    );
   }
 
   getOccasionId(id: string): Observable<GetOccasion> {

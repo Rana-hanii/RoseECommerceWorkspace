@@ -1,20 +1,13 @@
 import { ToastrService } from 'ngx-toastr';
-import {
-  Component,
-  DestroyRef,
-  inject,
-  OnInit,
-  signal,
-  Signal,
-} from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { OccasionsService } from '../../services/occasionsService/occasions.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { switchMap } from 'rxjs';
 import { Occasion } from '../../interfaces/get-occasion';
 import { MessageModule } from 'primeng/message';
+import { OccasionsService } from '../../services/occasions.service';
 @Component({
   selector: 'app-update-occasions',
   standalone: true,
@@ -28,31 +21,26 @@ export class UpdateOccasionsComponent implements OnInit {
   private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _destroyRef = inject(DestroyRef);
   private readonly _toastrService = inject(ToastrService);
-  id!: string | null;
+  public readonly _router = inject(Router);
+  id = '';
+  imagePreview = signal<string | null>(null);
+  showImage = signal(true);
   occasionData = signal<Occasion | null>(null);
-  showImage = signal(false);
   updateForm = this._fb.group({
     name: ['', [Validators.required]],
     image: [null as File | null],
   });
 
-  onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      const file = input.files[0];
-      this.updateForm.patchValue({ image: file });
-    }
+  ngOnInit(): void {
+    this.getOccasionById();
   }
-  toggleImage() {
-    this.showImage.set(!this.showImage());
-  }
+
   getOccasionById(): void {
     this._activatedRoute.paramMap
       .pipe(
         switchMap((params) => {
           const id = params.get('id');
           if (!id) return [];
-
           this.id = id;
           return this._occasionsService.getOccasionId(id);
         }),
@@ -60,16 +48,28 @@ export class UpdateOccasionsComponent implements OnInit {
       )
       .subscribe({
         next: (res) => {
-          this.occasionData.set(res.occasion);
-          this.updateForm.patchValue({
-            name: res.occasion.name,
-          });
+          const occasion = res.occasion;
+          this.occasionData.set(occasion);
+          this.updateForm.patchValue({ name: occasion.name });
+          this.imagePreview.set(occasion.image);
         },
       });
   }
-  ngOnInit(): void {
-    this.getOccasionById();
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+      this.updateForm.patchValue({ image: file });
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview.set(reader.result as string);
+        this.showImage.set(true);
+      };
+      reader.readAsDataURL(file);
+    }
   }
+
   onSubmit(): void {
     if (this.updateForm.valid && this.id) {
       const formData = new FormData();
@@ -82,7 +82,8 @@ export class UpdateOccasionsComponent implements OnInit {
 
       this._occasionsService.updateOccasion(this.id, formData).subscribe({
         next: (res) => {
-          this._toastrService.success('update Succssusfly', res.message);
+          this._toastrService.success('Occasion updated successfully ✨');
+          this._router.navigate(['/dash/occasions']);
         },
       });
     }

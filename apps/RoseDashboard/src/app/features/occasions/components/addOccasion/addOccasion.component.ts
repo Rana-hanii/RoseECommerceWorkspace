@@ -1,7 +1,6 @@
 import { ToastrService } from 'ngx-toastr';
 import { Component, DestroyRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OccasionsService } from '../../services/occasionsService/occasions.service';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { FileUploadModule } from 'primeng/fileupload';
@@ -9,6 +8,7 @@ import { ToastModule } from 'primeng/toast';
 import { Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MessageModule } from 'primeng/message';
+import { OccasionsService } from '../../services/occasions.service';
 @Component({
   selector: 'app-add-occasion',
   imports: [

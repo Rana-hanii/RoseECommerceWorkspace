@@ -29,17 +29,19 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 export class TableComponent {
   private confirmationService = inject(ConfirmationService);
-  private messageService = inject(MessageService);
   onDeleteActionRow(row: any) {
     if (!row) return;
 
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete this item?',
       header: 'Delete Confirmation',
-      icon: 'pi pi-info-circle',
       accept: () => {
         this.deleteAction.emit(row);
         this.visible = false;
+        this.confirmationService.close();
+      },
+      reject: () => {
+        this.confirmationService.close();
       },
     });
   }
