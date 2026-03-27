@@ -24,12 +24,12 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideAnimations(),
     provideHttpClient(
-      withFetch(),
-      withInterceptors([
-        headerInterceptor,
-        errorInterceptor,
-        loadingInterceptor,
-      ])
+      withFetch()
+      // withInterceptors([
+      //   headerInterceptor,
+      //   errorInterceptor,
+      //   loadingInterceptor,
+      // ])
     ),
     provideRouter(appRoutes),
     provideToastr(),
