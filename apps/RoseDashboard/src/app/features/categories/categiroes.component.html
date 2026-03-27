@@ -22,12 +22,13 @@
         <div class="flex justify-between items-center p-2">
           <h1 class="font-semibold text-xl md:text-2xl">All Categories</h1>
           <div class="btn flex justify-between items-center">
-            <a routerLink="addCategory">
-              <button class="bg-[#A6252A] p-2 text-white rounded-lg">
-                <i class="pi pi-plus me-1"></i>
-                <span>Add a new category</span>
-              </button>
-            </a>
+            <button
+              routerLink="/dash/categories/add-category"
+              class="inline-flex items-center bg-[#A6252A] p-2 text-white rounded-lg no-underline"
+            >
+              <i class="pi pi-plus me-1"></i>
+              <span>Add a new category</span>
+            </button>
           </div>
         </div>
         <div class="flex p-2 rounded-lg w-full">
@@ -148,3 +149,4 @@
     </div>
   </p-dialog>
 </div>
+<router-outlet></router-outlet>

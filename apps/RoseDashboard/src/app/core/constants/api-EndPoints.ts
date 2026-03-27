@@ -11,7 +11,7 @@ export const ApiEndPointsDashboard = {
 
   // * CATEGORIES ENDPOINTS
   categories: {
-    allCategories: '/categories',
+    allCategories: '/categories?=limit=100',
     addCategories: '/categories',
     getCategory: (id: string | number) => `/categories/${id}`,
     updateCategory: (id: string | null) => `/categories/${id}`,

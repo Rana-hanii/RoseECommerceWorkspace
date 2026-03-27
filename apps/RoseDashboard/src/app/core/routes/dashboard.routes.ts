@@ -26,7 +26,7 @@ export const dashboardRoutes: Routes = [
         title: 'Categories',
         children: [
           {
-            path: 'addCategory',
+            path: 'add-category',
             data: { breadcrumb: 'addCategory' },
             loadComponent: () =>
               import(
@@ -35,13 +35,13 @@ export const dashboardRoutes: Routes = [
             title: 'addCategory',
           },
           {
-            path: 'updateCategory/:slug/:id',
+            path: 'update-category/:id',
             data: { breadcrumb: 'updateCategory' },
             loadComponent: () =>
               import(
                 '../../features/categories/components/updateCategoty/updateCategory.component'
               ).then((c) => c.UpdateCategoryComponent),
-            title: 'addCategory',
+            title: 'Update Category',
           },
         ],
       },
