@@ -86,7 +86,7 @@
       <td>
         <div class="hidden md:flex justify-around items-center gap-3">
           <button
-            [routerLink]="[editBaseRoute(), row.slug, row._id]"
+            [routerLink]="[editBaseRoute(), row._id]"
             class="bg-[#0063D01A] hover:bg-[#0063D01A] text-[#155DFC] px-4 py-2 rounded-lg cursor-pointer flex justify-center items-center gap-x-2"
           >
             <svg
@@ -156,11 +156,7 @@
   >
     <div class="flex justify-around items-center gap-3 mt-6">
       <button
-        [routerLink]="
-          selectedRow
-            ? [editBaseRoute(), selectedRow.slug, selectedRow._id]
-            : []
-        "
+        [routerLink]="selectedRow ? [editBaseRoute(), selectedRow._id] : []"
         class="bg-[#0063D01A] hover:bg-[#0063D01A] text-[#155DFC] px-4 py-2 rounded-lg cursor-pointer flex justify-center items-center gap-x-2"
       >
         <svg
@@ -204,11 +200,7 @@
   >
     <div class="flex justify-around items-center gap-3 mt-6">
       <button
-        [routerLink]="
-          selectedRow
-            ? [editBaseRoute(), selectedRow.slug, selectedRow._id]
-            : []
-        "
+        [routerLink]="selectedRow ? [editBaseRoute(), selectedRow._id] : []"
         class="bg-[#0063D01A] hover:bg-[#0063D01A] text-[#155DFC] px-4 py-2 rounded-lg cursor-pointer flex justify-center items-center gap-x-2"
       >
         <svg

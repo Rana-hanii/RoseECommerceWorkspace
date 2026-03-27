@@ -76,21 +76,23 @@
     </div>
     }
 
-    <div class="flex gap-3 pt-4">
-      <button
-        type="submit"
+    <div class="flex gap-4 mt-6">
+      <app-button
+        [buttonName]="'Save Changes'"
+        [type]="'submit'"
         [disabled]="updateForm.invalid"
-        class="flex-1 bg-[#A6252A] text-white py-3 rounded-lg font-bold hover:bg-[#8b1e22] disabled:bg-gray-300 disabled:cursor-not-allowed transition-all"
+        [className]="'!bg-[var(--color-primary)] !text-white '"
+        class="flex-1"
       >
-        Save Changes
-      </button>
-      <button
-        type="button"
-        (click)="_router.navigate(['/dash/occasions'])"
-        class="px-6 py-3 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50 font-medium"
+      </app-button>
+
+      <app-button
+        [buttonName]="'Cancel'"
+        [buttonRoute]="['/dash/occasions']"
+        [className]="'!bg-gray-200 border border-gray-500'"
+        class="px-6"
       >
-        Cancel
-      </button>
+      </app-button>
     </div>
   </form>
 </section>

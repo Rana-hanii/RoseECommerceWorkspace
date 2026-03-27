@@ -1,7 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { OccasionsService } from './services/occasions.service';
+import { Document } from './interfaces/delete-occasion';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-occasions',
@@ -11,11 +13,15 @@ import { OccasionsService } from './services/occasions.service';
 })
 export class OccasionsComponent {
   private readonly _occasionsService = inject(OccasionsService);
-  handelDelete(row: any) {
-    this._occasionsService.deleteOccasion(row._id).subscribe({
-      next: (res) => {
-        console.log(res);
-      },
-    });
+  private readonly _destroyRef = inject(DestroyRef);
+  handelDelete(row: Document) {
+    this._occasionsService
+      .deleteOccasion(row._id)
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe({
+        next: (res) => {
+          // console.log(res);
+        },
+      });
   }
 }

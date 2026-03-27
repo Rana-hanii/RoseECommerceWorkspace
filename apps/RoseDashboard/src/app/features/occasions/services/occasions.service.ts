@@ -30,7 +30,7 @@ export class OccasionsService {
     );
   }
 
-  updateOccasion(id: string, data: any): Observable<UpdateOccasion> {
+  updateOccasion(id: string, data: FormData): Observable<UpdateOccasion> {
     return this.apiService.put<UpdateOccasion>(
       ApiEndPointsDashboard.occasions.update(id),
       data

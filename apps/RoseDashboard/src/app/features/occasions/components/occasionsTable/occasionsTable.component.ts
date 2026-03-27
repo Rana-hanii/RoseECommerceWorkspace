@@ -56,6 +56,7 @@ export class OccasionsTableComponent implements OnInit {
             res.message
           );
           this.getProductList();
+          console.log(res, 'occasion Del');
         },
       });
   }

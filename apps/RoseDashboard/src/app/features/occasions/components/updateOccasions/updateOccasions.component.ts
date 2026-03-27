@@ -4,14 +4,15 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { switchMap } from 'rxjs';
+import { EMPTY, switchMap } from 'rxjs';
 import { Occasion } from '../../interfaces/get-occasion';
 import { MessageModule } from 'primeng/message';
 import { OccasionsService } from '../../services/occasions.service';
+import { ButtonComponent } from 'apps/RoseDashboard/src/app/shared/components/button/button.component';
 @Component({
   selector: 'app-update-occasions',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MessageModule],
+  imports: [CommonModule, ReactiveFormsModule, MessageModule, ButtonComponent],
   templateUrl: './updateOccasions.component.html',
   styleUrl: './updateOccasions.component.scss',
 })
@@ -40,7 +41,7 @@ export class UpdateOccasionsComponent implements OnInit {
       .pipe(
         switchMap((params) => {
           const id = params.get('id');
-          if (!id) return [];
+          if (!id) return EMPTY; //empty return observable
           this.id = id;
           return this._occasionsService.getOccasionId(id);
         }),
@@ -61,12 +62,9 @@ export class UpdateOccasionsComponent implements OnInit {
     if (input.files && input.files.length > 0) {
       const file = input.files[0];
       this.updateForm.patchValue({ image: file });
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.imagePreview.set(reader.result as string);
-        this.showImage.set(true);
-      };
-      reader.readAsDataURL(file);
+      const objectUrl = URL.createObjectURL(file);
+      this.imagePreview.set(objectUrl);
+      this.showImage.set(true);
     }
   }
 

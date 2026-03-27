@@ -50,7 +50,7 @@ export const dashboardRoutes: Routes = [
               ).then((c) => c.AddCategoryComponent),
           },
           {
-            path: 'updateCategory/:slug/:id',
+            path: 'updateCategory/:id',
             data: { breadcrumb: 'Update' },
             title: 'Update Category',
             loadComponent: () =>
@@ -88,7 +88,7 @@ export const dashboardRoutes: Routes = [
               ).then((c) => c.AddOccasionComponent),
           },
           {
-            path: 'updateOccasions/:slug/:id',
+            path: 'updateOccasions/:id',
             data: { breadcrumb: 'Update' },
             title: 'Update Occasion',
             loadComponent: () =>
