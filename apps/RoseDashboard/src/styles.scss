@@ -15,20 +15,20 @@
   --p-menu-item-padding: 3px !important;
   --p-menu-item-gap: 10px !important;
   --p-menu-submenu-label-font-weight: 700 !important;
-  	--p-menu-list-gap : 6px !important;
+  --p-menu-list-gap: 6px !important;
 
-    // search bar 
-    --p-datatable-header-border-width: 0rem !important;
+  // search bar
+  --p-datatable-header-border-width: 0rem !important;
 
-    // Table >>>>>>>>>>
-    // header
-    --p-datatable-header-cell-padding:8px !important;
-    
-    // cell padding
-    --p-datatable-body-cell-padding:11px 0px !important; 
-   
-    // dialog popUp
-    .p-dialog {
+  // Table >>>>>>>>>>
+  // header
+  --p-datatable-header-cell-padding: 8px !important;
+
+  // cell padding
+  --p-datatable-body-cell-padding: 11px 0px !important;
+
+  // dialog popUp
+  .p-dialog {
     max-height: 90%;
     transform: scale(1);
     border-radius: var(--p-dialog-border-radius);
@@ -39,27 +39,24 @@
     display: flex;
     flex-direction: column;
     pointer-events: auto;
-    padding:16px;
+    padding: 16px;
 
-      .p-icon {
-        background-color: #A6252A !important;
-        color: white !important;
-        padding: 8px !important;  
-        }
-
-        .p-dialog-title {
-            font-weight: 600 !important;
-            font-size: 24px !important;
-        }
+    .p-icon {
+      background-color: #a6252a !important;
+      color: white !important;
+      padding: 8px !important;
     }
-// popup variables
-  --p-dialog-background:white !important;
-  --p-dialog-border-color:var(--p-menu-item-color) !important;
-  --p-dialog-border-radius:23px !important;
-  --p-dialog-border-padding:23px !important;
 
-
-
+    .p-dialog-title {
+      font-weight: 600 !important;
+      font-size: 24px !important;
+    }
+  }
+  // popup variables
+  --p-dialog-background: white !important;
+  --p-dialog-border-color: var(--p-menu-item-color) !important;
+  --p-dialog-border-radius: 23px !important;
+  --p-dialog-border-padding: 23px !important;
 }
 .dark {
   --p-menu-background: #3f3f46 !important;
@@ -121,4 +118,24 @@
   --p-gray-500: #00bc7d;
   --p-gray-400: #00bc22;
   --p-text-color: #1f2937;
+}
+.form-input {
+  @apply border-2 border-[#A1A1AA] text-lg hover:border-[#A6252A] rounded-xl px-3 py-2 focus:border-[#A6252A] dark:!text-red-400
+     w-full;
+}
+
+.iti--allow-dropdown input.iti__tel-input {
+  padding-right: 150px !important;
+}
+ngx-intl-tel-input {
+  width: 100% !important;
+  display: block !important;
+}
+
+ngx-intl-tel-input .iti {
+  width: 100% !important;
+}
+
+ngx-intl-tel-input input {
+  width: 100% !important;
 }

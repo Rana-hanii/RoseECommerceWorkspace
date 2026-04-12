@@ -15,6 +15,7 @@ export const dashboardRoutes: Routes = [
       {
         path: 'overview',
         data: { breadcrumb: 'Overview' },
+        data: { breadcrumb: 'Overview' },
         loadComponent: () =>
           import('../../features/home/home.component').then(
             (c) => c.HomeComponent
@@ -136,11 +137,20 @@ export const dashboardRoutes: Routes = [
       {
         path: 'account',
         data: { breadcrumb: 'Account' },
+        data: { breadcrumb: 'Account' },
         loadComponent: () =>
           import('../../features/account/account.component').then(
             (c) => c.AccountComponent
           ),
         title: 'Account',
+      },
+      {
+        path: 'changePassword',
+        data: { breadcrumb: 'changePassword' },
+        loadComponent: () =>
+          import(
+            '../../features/account/components/changePassword.component'
+          ).then((C) => C.ChangePasswordComponent),
       },
     ],
   },

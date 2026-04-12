@@ -28,5 +28,11 @@ export const ApiEndPointsDashboard = {
   },
 
   //* ACCOUNT ENDPOINTS
-  account: {},
+  account: {
+    ProfileData: '/auth/profile-data',
+    editProfile: '/auth/editProfile',
+    deleteMyAccount: '/auth/deleteMe',
+    changePassword: '/auth/change-password',
+    logOut: '/auth/logout',
+  },
 };

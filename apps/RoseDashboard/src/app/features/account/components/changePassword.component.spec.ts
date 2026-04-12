@@ -2,31 +2,25 @@ import {
   HttpClientTestingModule,
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
-import { provideAnimations } from '@angular/platform-browser/animations';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MainlayoutComponent } from './mainlayout.component';
-import { provideRouter } from '@angular/router';
+import { ChangePasswordComponent } from './changePassword.component';
 import { ToastrModule } from 'ngx-toastr';
 
-describe('MainlayoutComponent', () => {
-  let component: MainlayoutComponent;
-  let fixture: ComponentFixture<MainlayoutComponent>;
+describe('ChangePasswordComponent', () => {
+  let component: ChangePasswordComponent;
+  let fixture: ComponentFixture<ChangePasswordComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        MainlayoutComponent,
+        ChangePasswordComponent,
         HttpClientTestingModule,
         ToastrModule.forRoot(),
       ],
-      providers: [
-        provideRouter([]),
-        provideAnimations(),
-        provideHttpClientTesting(),
-      ],
+      providers: [provideHttpClientTesting()],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(MainlayoutComponent);
+    fixture = TestBed.createComponent(ChangePasswordComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

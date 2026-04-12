@@ -1,6 +1,7 @@
 import {
   ChangeDetectorRef,
   Component,
+  DestroyRef,
   inject,
   OnInit,
   PLATFORM_ID,
@@ -9,6 +10,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { HomeService } from '../../services/home.service';
 import { OrdersByStatus } from 'apps/RoseDashboard/src/app/features/home/interface/order-status';
 import { ChartModule } from 'primeng/chart';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-order-status',
@@ -26,25 +28,28 @@ export class OrderStatusComponent implements OnInit {
   platformId = inject(PLATFORM_ID);
   private readonly _home = inject(HomeService);
   private readonly cd = inject(ChangeDetectorRef);
-
+  private readonly _destroyRef = inject(DestroyRef);
   ngOnInit() {
     this.getOrderStatus();
   }
 
   getOrderStatus(): void {
-    this._home.getOrderStatus().subscribe({
-      next: (res) => {
-        this.ordersByStatus = res.statistics.ordersByStatus.filter(
-          (item: OrdersByStatus) => item._id !== null
-        );
-        this.totalOrder = this.ordersByStatus.reduce(
-          (acc, curr) => acc + curr.count,
-          0
-        );
+    this._home
+      .getOrderStatus()
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe({
+        next: (res) => {
+          this.ordersByStatus = res.statistics.ordersByStatus.filter(
+            (item: OrdersByStatus) => item._id !== null
+          );
+          this.totalOrder = this.ordersByStatus.reduce(
+            (acc, curr) => acc + curr.count,
+            0
+          );
 
-        this.initChart();
-      },
-    });
+          this.initChart();
+        },
+      });
   }
 
   getPercentage(count: number) {

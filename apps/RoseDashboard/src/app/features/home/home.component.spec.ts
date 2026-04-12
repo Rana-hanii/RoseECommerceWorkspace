@@ -1,6 +1,8 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
+import { provideHttpClient } from '@angular/common/http';
+import { PLATFORM_ID } from '@angular/core';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -8,7 +10,12 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HomeComponent, HttpClientTestingModule],
+      imports: [HomeComponent],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        { provide: PLATFORM_ID, useValue: 'server' },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(HomeComponent);

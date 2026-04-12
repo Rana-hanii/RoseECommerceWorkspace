@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RevenueComponent } from './Revenue.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient } from '@angular/common/http';
+import { PLATFORM_ID } from '@angular/core';
 describe('RevenueComponent', () => {
   let component: RevenueComponent;
   let fixture: ComponentFixture<RevenueComponent>;
@@ -9,7 +10,11 @@ describe('RevenueComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RevenueComponent],
-      providers: [provideHttpClient(), provideHttpClientTesting()],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        { provide: PLATFORM_ID, useValue: 'server' },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(RevenueComponent);

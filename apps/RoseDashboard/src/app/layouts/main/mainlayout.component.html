@@ -1,42 +1,36 @@
-<section class="w-full bg-[#FAFAFA]  flex justify-center items-start">
+<section class="w-full bg-[#FAFAFA] flex justify-center items-start">
+  <!-- sidebar -->
+  <div class="lg:w-1/6 hidden lg:block">
+    <div
+      class="lg:w-1/6 fixed left-0 top-0 bg-white min-h-screen border-r-gray-300 border-r-[1px]"
+    >
+      <app-sidebar></app-sidebar>
+    </div>
+  </div>
 
-           <!-- sidebar -->
-            <div class=" lg:w-1/6 hidden lg:block">
-                <div class="lg:w-1/6  fixed left-0 top-0  bg-white min-h-screen border-r-gray-300 border-r-[1px]">
-                    <app-sidebar></app-sidebar>
-                </div>
-            </div> 
+  <!-- main latout that will changed  -->
+  <div class="w-full lg:w-5/6">
+    <!-- breadcramp in lg screen -->
+    <div
+      class="w-full hidden lg:block h-[70px] bg-white border-b-gray-300 border-b-[2px] p-5"
+    >
+      <app-breadcrumb></app-breadcrumb>
+    </div>
 
-            <!-- main latout that will changed  -->
-            <div class="w-full lg:w-5/6 ">
+    <!-- navbar in mobile screen -->
+    <div class="w-full lg:hidden bg-white border-b-gray-300 border-b-[2px] p-3">
+      <app-navbar [logoImg]="appPhoto" [userImg]="appPhoto"></app-navbar>
+    </div>
 
-                <!-- breadcramp in lg screen -->
-                <div class="w-full hidden lg:block h-[70px] bg-white border-b-gray-300 border-b-[2px] p-5">
-                    <app-breadcrumb></app-breadcrumb>
-                </div>
+    <div class="p-3 w-full h-full mb-16 lg:mb-0 py-2">
+      <router-outlet></router-outlet>
+    </div>
 
-                <!-- navbar in mobile screen -->
-                <div class="w-full lg:hidden   bg-white border-b-gray-300 border-b-[2px] p-3 ">
-                    <app-navbar
-                    [logoImg]="appPhoto"
-                    [userImg]="appPhoto"
-                    ></app-navbar>   
-                    
-                </div>
-
-                <div class="p-3 w-full h-full mb-16 lg:mb-0 py-2  ">
-                    <router-outlet></router-outlet>
-                </div>
-
-
-                <!-- Bottom Navigation-bar -->
-                 <div class="w-full lg:hidden fixed bottom-0  h-[72px] bg-white border-t-gray-300 border-t-[2px] ">
-                    <app-bottom-navbar></app-bottom-navbar>
-                 </div>
-
-
-            </div>
-  
- 
-
-    </section>
+    <!-- Bottom Navigation-bar -->
+    <div
+      class="w-full lg:hidden fixed bottom-0 h-[72px] bg-white border-t-gray-300 border-t-[2px]"
+    >
+      <app-bottom-navbar></app-bottom-navbar>
+    </div>
+  </div>
+</section>
