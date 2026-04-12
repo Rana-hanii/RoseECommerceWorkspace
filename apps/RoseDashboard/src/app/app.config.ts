@@ -5,6 +5,10 @@ import {
   provideClientHydration,
   withEventReplay,
 } from '@angular/platform-browser';
+import {
+  provideClientHydration,
+  withEventReplay,
+} from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import {
   provideHttpClient,
@@ -24,6 +28,7 @@ export const appConfig: ApplicationConfig = {
     MessageService,
     provideHttpClient(withFetch(), withInterceptors([headerInterceptor])),
     provideRouter(appRoutes),
+    provideHttpClient(withFetch()),
     provideHttpClient(withFetch()),
   ],
 };
