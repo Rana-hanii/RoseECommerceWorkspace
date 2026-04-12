@@ -1,9 +1,8 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 
 export const headerInterceptor: HttpInterceptorFn = (req, next) => {
-  // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjk5Y2U2MjBlMzY0ZWY2MTQwNWIyZDc0Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzI0NzE0Mzl9.jvQ5xl9IMoStt7IGyuT27beTRpuShENCNv5tSO_MUZo';
   const adminToken =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjkyNTdhYjM3ZmVlNjhhNGMyZjVkZDVjIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzcwODk0MDk3fQ.l4rxAZlY2LuxbWksrRsElBc6-BDCKFGO5cwo7sUyPlo';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjlkYmQ4MjU2YmJhZjE1ODhiYmJjNWU1Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzYwMTU0MDN9.rtjp3Zn6vr4JCLUj-r1dhPzzrO4XwxbuQxryGpkTmP0';
 
   req = req.clone({
     setHeaders: {
