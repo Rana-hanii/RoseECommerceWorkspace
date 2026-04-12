@@ -98,7 +98,12 @@
         "port": 4200,
         "staticFilePath": "dist/apps/RoseE-Commerce/browser",
         "spa": true
-      }
+      },
+  "configurations": {
+    "production": {
+      "buildTarget": "RoseE-Commerce:build:production"
+    }
+  }
     }
   }
 }

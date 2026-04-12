@@ -3,7 +3,7 @@ import { defineConfig } from 'cypress';
 
 export default defineConfig({
   e2e: {
-    ...nxE2EPreset(__filename, {
+    ...nxE2EPreset(__dirname, {
       cypressDir: 'src',
       webServerCommands: {
         default: 'npx nx run RoseE-Commerce:serve',

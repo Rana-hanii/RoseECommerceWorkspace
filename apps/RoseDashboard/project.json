@@ -87,7 +87,12 @@
         "port": 4300,
         "staticFilePath": "dist/apps/RoseDashboard/browser",
         "spa": true
-      }
+      },
+       "configurations": {
+    "production": {
+      "buildTarget": "RoseDashboard:build:production"
+    }
+  }
     }
   }
 }
