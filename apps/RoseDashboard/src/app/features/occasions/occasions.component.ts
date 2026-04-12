@@ -1,25 +1,27 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OccasionsTableComponent } from "./components/occasionsTable/occasionsTable.component";
-import { RouterModule, RouterOutlet } from '@angular/router';
-import { map, Observable } from 'rxjs';
-import { OccasionsServiceService } from './services/occasionsService/occasions-service.service';
-import { Occasion, OccasionsRes } from './interfaces/occasionsRes/occasions-res';
-import { SectionTableComponent } from "../../shared/components/sectionTable/sectionTable.component";
+import { RouterModule } from '@angular/router';
+import { OccasionsService } from './services/occasions.service';
+import { Document } from './interfaces/delete-occasion';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-occasions',
-  imports: [CommonModule, RouterModule, OccasionsTableComponent, SectionTableComponent],
+  imports: [CommonModule, RouterModule],
   templateUrl: './occasions.component.html',
   styleUrl: './occasions.component.scss',
 })
 export class OccasionsComponent {
-
-
-    
-
-
-
-
-
+  private readonly _occasionsService = inject(OccasionsService);
+  private readonly _destroyRef = inject(DestroyRef);
+  handelDelete(row: Document) {
+    this._occasionsService
+      .deleteOccasion(row._id)
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe({
+        next: (res) => {
+          // console.log(res);
+        },
+      });
+  }
 }

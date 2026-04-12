@@ -24,7 +24,7 @@ export class RevenueComponent implements OnInit {
   platformId = inject(PLATFORM_ID);
   monthlyRevenue: MonthlyRevenue[] = [];
   weaklyRevenue: Trend[] = [];
-  activeTab: 'monthly' | 'weekly' = 'monthly';
+  activeTab: 'monthly' | 'Last Week' = 'monthly';
 
   private readonly cd = inject(ChangeDetectorRef);
   private readonly _home = inject(HomeService);
@@ -37,35 +37,39 @@ export class RevenueComponent implements OnInit {
     this.activeTab = 'monthly';
     this._home.getAllRevenue('monthly').subscribe({
       next: (res) => {
-        this.monthlyRevenue = res.data.trends.map((t: any) => ({
-          month: new Date(t.date).toLocaleString('default', {
-            month: 'short',
-            year: 'numeric',
-          }),
-          totalSales: t.totalSales,
-        }));
+        const allTrends = res.data?.trends || [];
+        this.monthlyRevenue = allTrends
+          .filter((t: any) => new Date(t.date).getFullYear() === 2025)
+          .map((t: any) => ({
+            month: new Date(t.date).toLocaleString('default', {
+              month: 'short',
+              // year: ',
+            }),
+            totalSales: t.totalSales,
+          }));
+
         this.initChart();
       },
     });
   }
   getAllRevenueWeekly() {
-    this.activeTab = 'weekly';
-    if (this.weaklyRevenue.length > 0) {
-      this.initChart();
-      return;
-    }
-
+    this.activeTab = 'Last Week';
     this._home.getAllRevenue('weekly').subscribe({
       next: (res) => {
-        this.weaklyRevenue = res.data.trends.map((w: any) => ({
-          date: new Date(w.date).toLocaleDateString('en-GB', {
+        const allTrends = res.data?.trends || [];
+        const lastSevenDays = allTrends.slice(-7);
+
+        this.weaklyRevenue = lastSevenDays.map((w: any) => ({
+          date: new Date(w.date).toLocaleDateString('en-EG', {
+            weekday: 'long',
             day: '2-digit',
             month: 'short',
           }),
           totalSales: w.totalSales,
-          orderCount: w.orderCount,
-          averageOrderValue: w.averageOrderValue,
+          orderCount: w.orderCount || 0,
+          averageOrderValue: w.averageOrderValue || 0,
         }));
+
         this.initChart();
       },
     });
@@ -92,7 +96,7 @@ export class RevenueComponent implements OnInit {
                 ? 'Monthly Revenue'
                 : 'Weekly Revenue',
             data: currentData,
-            fill: this.activeTab === 'weekly',
+            fill: this.activeTab === 'Last Week',
             tension: 0.4,
             borderColor:
               this.activeTab === 'monthly'
@@ -125,7 +129,14 @@ export class RevenueComponent implements OnInit {
       scales: {
         x: { ticks: { color: textColorSecondary } },
         y: {
-          ticks: { color: textColorSecondary },
+          ticks: {
+            color: textColorSecondary,
+            callback: (value: any) => {
+              if (value >= 1000000) return value / 1000000 + 'M';
+              if (value >= 1000) return value / 1000 + 'K';
+              return value;
+            },
+          },
           grid: { color: surfaceBorder },
         },
       },

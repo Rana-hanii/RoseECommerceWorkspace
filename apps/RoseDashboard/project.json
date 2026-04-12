@@ -22,7 +22,10 @@
             "input": "apps/RoseDashboard/public"
           }
         ],
-        "styles": ["apps/RoseDashboard/src/styles.scss"],
+        "styles": [
+          "apps/RoseDashboard/src/styles.scss",
+          "node_modules/ngx-toastr/toastr.css"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -81,7 +84,7 @@
       }
     },
     "serve-static": {
-    "executor": "@nx/web:file-server",
+      "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "RoseDashboard:build",
         "port": 4300,

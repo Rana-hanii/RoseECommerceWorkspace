@@ -1,7 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-
+export interface ApiOptions {
+  params?: HttpParams;
+  headers?: HttpHeaders;
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -9,8 +12,8 @@ export class ApiService {
   private readonly httpClient = inject(HttpClient);
   private readonly BaseURL = environment.baseUrl;
 
-  get<T>(endPoint: string) {
-    return this.httpClient.get<T>(`${this.BaseURL}${endPoint}`);
+  get<T>(endPoint: string, option?: ApiOptions) {
+    return this.httpClient.get<T>(`${this.BaseURL}${endPoint}`, option);
   }
 
   post<T>(endPoint: string, data: unknown) {

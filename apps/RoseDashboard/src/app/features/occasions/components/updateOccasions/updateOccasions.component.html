@@ -1,1 +1,98 @@
-<p>updateOccasions works!</p>
+<section class="bg-white w-full p-6 rounded-xl shadow-sm">
+  <header class="mb-6 border-b pb-4">
+    <h2 class="font-bold text-2xl text-gray-800">
+      Update Occasion:
+      <span class="text-[#A6252A]">{{ occasionData()?.name }}</span>
+    </h2>
+  </header>
+
+  <form
+    [formGroup]="updateForm"
+    (ngSubmit)="onSubmit()"
+    class="space-y-6 max-w-2xl"
+  >
+    <div class="flex flex-col gap-2">
+      <label for="name" class="font-medium text-gray-700"
+        >Occasion Name <span class="text-red-500">*</span></label
+      >
+      <input
+        id="name"
+        type="text"
+        formControlName="name"
+        pInputText
+        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A6252A] outline-none"
+        placeholder="Enter occasion name"
+      />
+      @if (updateForm.get('name')?.invalid && updateForm.get('name')?.touched) {
+      <p-message severity="error" text="Name is required"></p-message>
+      }
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <!-- <label class="font-medium text-gray-700">Occasion Image</label> -->
+      <div class="flex items-center justify-center w-full">
+        <label
+          for="dropzone-file"
+          class="flex flex-col items-center justify-center w-full border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-all"
+        >
+          <div class="flex flex-col items-center justify-center pt-5 pb-6">
+            <i class="pi pi-cloud-upload text-3xl text-gray-400 mb-2"></i>
+            <p class="text-sm text-gray-500">
+              Click to upload or drag and drop
+            </p>
+          </div>
+          <input
+            id="dropzone-file"
+            type="file"
+            class="hidden"
+            (change)="onFileSelected($event)"
+            accept="image/*"
+          />
+        </label>
+      </div>
+    </div>
+
+    <div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg">
+      <span class="text-sm font-medium text-gray-600">Image Preview</span>
+      <button
+        type="button"
+        (click)="showImage.set(!showImage())"
+        class="text-[#A6252A] flex items-center gap-2 hover:underline"
+      >
+        <i [class]="showImage() ? 'pi pi-eye-slash' : 'pi pi-eye'"></i>
+        {{ showImage() ? 'Hide' : 'Show' }}
+      </button>
+    </div>
+
+    @if (showImage() && imagePreview()) {
+    <div
+      class="relative group rounded-lg overflow-hidden border border-gray-200 shadow-inner bg-white"
+    >
+      <img
+        [src]="imagePreview()"
+        alt="Preview"
+        class="w-full max-h-72 object-contain p-2"
+      />
+    </div>
+    }
+
+    <div class="flex gap-4 mt-6">
+      <app-button
+        [buttonName]="'Save Changes'"
+        [type]="'submit'"
+        [disabled]="updateForm.invalid"
+        [className]="'!bg-[var(--color-primary)] !text-white '"
+        class="flex-1"
+      >
+      </app-button>
+
+      <app-button
+        [buttonName]="'Cancel'"
+        [buttonRoute]="['/dash/occasions']"
+        [className]="'!bg-gray-200 border border-gray-500'"
+        class="px-6"
+      >
+      </app-button>
+    </div>
+  </form>
+</section>
