@@ -1,0 +1,8 @@
+:host ::ng-deep {
+  .p-button-label {
+    color: red !important;
+  }
+  .pi-upload:before {
+    color: red !important;
+  }
+}

@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { mainGuard } from '../../../core/guards/main.guard';
 
 export const authRoutes: Routes = [
- 
   {
     path: '',
     // canActivate: [mainGuard],
