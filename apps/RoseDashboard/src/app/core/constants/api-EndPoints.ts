@@ -11,6 +11,9 @@ export const ApiEndPointsDashboard = {
   // * CATEGORIES ENDPOINTS
   categories: {
     categories: '/categories',
+    get: (id: string | null) => `/categories/${id}`,
+    update: (id: string | null) => `/categories/${id}`,
+    delete: (id: string | null) => `/categories/${id}`,
   },
 
   //* OCCASIONS ENDPOINTS

@@ -57,12 +57,17 @@ export class AccountComponent implements OnInit {
   showDialog() {
     this.visible = true;
   }
+  genderOptions = [
+    { label: 'Male', value: 'male' },
+    { label: 'Female', value: 'female' },
+  ];
   profileForm = this.fb.group({
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    gender: ['', Validators.required],
-    phone: [null as any, Validators.required],
+    Photo: [''],
+    firstName: [''],
+    lastName: [''],
+    email: [''],
+    gender: [''],
+    phone: ['' as string],
   });
 
   updateEditProfile() {
@@ -100,12 +105,14 @@ export class AccountComponent implements OnInit {
       .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe({
         next: (res) => {
+          console.log('User Data:', res.user);
           this.profileForm.patchValue({
+            Photo: res.user.photo,
             firstName: res.user.firstName,
             lastName: res.user.lastName,
             email: res.user.email,
             phone: res.user.phone,
-            gender: res.user.gender,
+            gender: res.user.gender?.toLowerCase(),
           });
         },
       });
@@ -118,6 +125,7 @@ export class AccountComponent implements OnInit {
       },
     });
   }
+
   ngOnInit(): void {
     this.getProfileData();
   }

@@ -86,13 +86,21 @@
         <!-- Select Gender -->
         <div class="flex flex-col gap-1">
           <label class="font-medium text-sm" for="gender">Gender</label>
-
           <div class="card flex flex-col flex-1">
             <p-select
-              [options]="[{ gender: profileForm.value.gender }]"
-              optionLabel="gender"
-              class="form-input !bg-gray-300 !rounded-xl !text-black"
-            />
+              formControlName="gender"
+              [options]="genderOptions"
+              optionLabel="label"
+              optionValue="value"
+              placeholder="Select Gender"
+              class="w-full"
+              [style]="{
+                width: '100%',
+                border: '1px solid #ddd',
+                'border-radius': '8px'
+              }"
+            >
+            </p-select>
           </div>
         </div>
         <!-- Option Delete Or Change -->

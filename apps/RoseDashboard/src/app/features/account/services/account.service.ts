@@ -38,4 +38,10 @@ export class AccountService {
       data
     );
   }
+
+  getLoggedUserInfo(): Observable<ProfileData> {
+    return this._apiServices.get<ProfileData>(
+      ApiEndPointsDashboard.account.ProfileData
+    );
+  }
 }

@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { adminGuardGuard } from '../guards/adminGuard/admin-guard.guard';
 export const dashboardRoutes: Routes = [
   {
     path: '',
@@ -14,7 +13,6 @@ export const dashboardRoutes: Routes = [
     children: [
       {
         path: 'overview',
-        data: { breadcrumb: 'Overview' },
         data: { breadcrumb: 'Overview' },
         loadComponent: () =>
           import('../../features/home/home.component').then(
@@ -137,7 +135,6 @@ export const dashboardRoutes: Routes = [
       {
         path: 'account',
         data: { breadcrumb: 'Account' },
-        data: { breadcrumb: 'Account' },
         loadComponent: () =>
           import('../../features/account/account.component').then(
             (c) => c.AccountComponent
@@ -161,5 +158,12 @@ export const dashboardRoutes: Routes = [
       import(
         '../../shared/components/unauthorized/unauthorized.component'
       ).then((c) => c.UnauthorizedComponent),
+  },
+  {
+    path: '**',
+    loadComponent: () =>
+      import('../../shared/components/notFound/notFound.component').then(
+        (c) => c.NotFoundComponent
+      ),
   },
 ];
