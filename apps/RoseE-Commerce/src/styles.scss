@@ -21,11 +21,13 @@
   .containers{
     @apply  w-[90%] mx-auto
   }
-}
+} 
+
+@variant dark (&:where(.dark, .dark *));
 
 //this class is for the Phone input fixing input border design <Mostafa Allam>
 .iti--allow-dropdown input.iti__tel-input {
-  padding-right: 150px !important;
+  // padding-right: 150px !important;
 } 
 ngx-intl-tel-input {
   width: 100% !important;
@@ -61,7 +63,15 @@ p-rating {
   --p-menu-item-icon-focus-color:#A6252A!important ;
   --p-menu-item-focus-background:#fbeaea !important ;
   --p-menu-item-color:#741C21 !important;
-  --p-menu-item-focus-color:#A6252A !important;
+  --p-menu-item-focus-color:#A6252A !important; 
+
+  --p-galleria-thumbnails-content-background: white !important;
+  --p-galleria-nav-button-background: #A6252A !important;
+  --p-galleria-nav-button-hover-background: rgba(184, 20, 26, 0.777) !important; 
+
+  --bg-button: #A6252A !important;
+  --bg-button-hover: #A6252A !important;
+
 }
 .dark {
   --p-menu-background:#3F3F46 !important;
@@ -72,6 +82,13 @@ p-rating {
   --p-menu-item-focus-background: #18181B !important;
   --p-menu-item-color: #F4C2C2 !important;
   --p-menu-item-focus-color: #FFC2D0 !important;
+
+  --p-galleria-thumbnails-content-background: #fbeaea !important;
+  --p-galleria-nav-button-background: #fab9b9 !important;
+  --p-galleria-nav-button-hover-background: #fb9292 !important; 
+
+  --bg-button:  #f8d8d8 !important;
+  --bg-button-hover: #fab9b9 !important;
 }
 
 @theme {

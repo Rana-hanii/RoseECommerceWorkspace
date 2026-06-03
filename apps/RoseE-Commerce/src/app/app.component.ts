@@ -14,6 +14,6 @@ export class AppComponent implements OnInit {
   private readonly darkMode=inject(DarkModeService)
 
   ngOnInit(): void {
-      this.darkMode.init()
+      
   }
 }

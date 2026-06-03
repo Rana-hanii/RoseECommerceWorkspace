@@ -5,7 +5,7 @@ export const authRoutes: Routes = [
  
   {
     path: '',
-    // canActivate: [mainGuard],
+    canActivate: [mainGuard],
     children: [
       {
         path: 'login',

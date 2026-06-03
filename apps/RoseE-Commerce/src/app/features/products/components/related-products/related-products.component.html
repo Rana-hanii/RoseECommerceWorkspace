@@ -25,6 +25,9 @@
                 [price]="i.priceAfterDiscount"
                 [id]="i._id"
                 [wishlistBtn]="true"
+                (addToWishlist)="addToWishlist($event)"
+                (removeFromWishlist)="removeFromWishlist($event)"
+                (addItemToCart)="addtoCart($event)"
             >
             </app-product-card>
         </ng-template>

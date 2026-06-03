@@ -1,15 +1,15 @@
 <Section class="container mx-auto px-2 lg:px-20 my-4">
 
         <!-- Main Cart Body -->
-    <div class="w-full h-full flex flex-col lg:flex-row justify-center items-center gap-x-5 mt-20">
+    <div class="w-full h-full flex flex-col lg:flex-row justify-center items-center gap-x-5 my-8  ">
 
          <!-- Cart Section -->
-            <div class="w-full lg:w-2/3 ">
+            <div class="w-full lg:w-2/3 min-h-[457px] self-start">
                     <!-- Cart header and clear button -->
-                <div class=" w-full  flex justify-between items-center px-2 lg:px-0 ">
-                    <h1 class="w-2/3 text-4xl font-[700] ">
-                        Cart <span class="text-lg text-[var(--color-text-gray)] font-[400] ">
-                            <span class="text-lg text-gray-500 font-[600]">{{(cartProducts$|async)?.length}}</span>  Products</span>
+                <div class=" w-full flex justify-between items-start px-2 lg:px-0 ">
+                    <h1 class="w-2/3 text-4xl font-[700] dark:text-[#FFA3B9] ">
+                        Cart <span class="text-lg text-[var(--color-text-gray)] font-[400] dark:text-white">
+                            {{(cartProducts$|async)?.length}}  Products</span>
                     </h1>
 
                     <button (click)="clearAllCartItems()"
@@ -22,119 +22,127 @@
                 </div>
 
                 <!-- Cart Items -->
-                <div class="w-full min-h-[497px]  border-[1px] rounded-2xl border-gray-400 p-4 mt-7 flex flex-col justify-start items-center">
+                <div class="w-full min-h-[497px]  border-[1px] rounded-2xl border-gray-400 p-4 mt-7 flex flex-col justify-center items-center">
+                     @if ((cartProducts$|async)?.length === 0) {
+                    <div class="w-full ">
+                        <h1 class="text-2xl lg:text-4xl text-[var(--color-text-maroon)] dark:text-[#FFA3B9] font-[600] text-center"> Your Cart is Empty </h1>
+                        
+                    </div>
 
-                         @for (prod of cartProducts$|async; track $index) {
+                    }@else {
+                            @for (prod of cartProducts$|async; track $index) {
 
-                             <!-- Product card  -->
-                           <div class="w-full h-[170px] flex flex-row items-center justify-around my-3 gap-x-3">
+                                        <!-- Product card  -->
+                                    <div class="w-full h-[170px] flex flex-row items-center justify-around my-3 gap-x-3">
 
-                                <!-- product img  -->
-                                <div class="w-1/2 lg:w-1/6 flex justify-center ">
-                                    <img [src]="prod.product.imgCover" alt="Wishlist-product" class="w-[175px] lg:w-[145px] h-[170px] rounded-lg object-cover">
-                                </div>
+                                            <!-- product img  -->
+                                            <div class="w-1/2 lg:w-1/6 flex justify-center ">
+                                                <img [src]="prod.product.imgCover" alt="Wishlist-product" class="w-[175px] lg:w-[145px] h-[170px] rounded-lg object-cover">
+                                            </div>
 
-                                <!-- Details -->
-                                <div class="w-1/2 lg:w-3/6 h-full flex flex-col justify-between items-start ">
+                                            <!-- Details -->
+                                            <div class="w-1/2 lg:w-3/6 h-full flex flex-col justify-between items-start ">
+                                            
+                                                <div class="justify-start">
+                                                    <!-- title -->
+                                                <div class="flex justify-center items-center">
+                                                    <h1 class="text-[var(--color-text-maroon)] dark:text-[#FFA3B9] capitalize text-lg lg:text-2xl font-[600] text-center lg:text-start">{{prod.product.title}}</h1>
+                                                </div>
+                                                <!-- rate -->
+                                                <div class="flex items-center text-center gap-x-0 lg:gap-x-2 ml-2 lg:ml-0 mt-2 lg:mt-0 ">
+                                                <svg width="23" height="22" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M8.66849 0.975237C8.70501 0.901454 8.76143 0.839347 8.83137 0.795925C8.90131 0.752502 8.982 0.729492 9.06433 0.729492C9.14665 0.729492 9.22734 0.752502 9.29728 0.795925C9.36723 0.839347 9.42364 0.901454 9.46016 0.975237L11.3852 4.8744C11.512 5.13104 11.6992 5.35308 11.9307 5.52145C12.1622 5.68982 12.4311 5.7995 12.7143 5.84107L17.0193 6.47107C17.1009 6.48289 17.1775 6.5173 17.2406 6.5704C17.3036 6.62351 17.3505 6.69319 17.376 6.77158C17.4015 6.84996 17.4046 6.93391 17.3848 7.01393C17.3651 7.09396 17.3233 7.16686 17.2643 7.2244L14.151 10.2561C13.9457 10.4562 13.7921 10.7031 13.7034 10.9758C13.6147 11.2484 13.5935 11.5385 13.6418 11.8211L14.3768 16.1044C14.3912 16.1859 14.3824 16.2699 14.3514 16.3466C14.3204 16.4234 14.2684 16.4899 14.2014 16.5386C14.1345 16.5872 14.0551 16.6161 13.9725 16.6218C13.89 16.6276 13.8074 16.61 13.7343 16.5711L9.88599 14.5477C9.63242 14.4146 9.35031 14.345 9.06391 14.345C8.77751 14.345 8.49539 14.4146 8.24183 14.5477L4.39433 16.5711C4.32127 16.6097 4.23882 16.6271 4.15637 16.6213C4.07391 16.6154 3.99476 16.5865 3.9279 16.5379C3.86105 16.4893 3.80919 16.4229 3.77821 16.3463C3.74723 16.2696 3.73837 16.1858 3.75266 16.1044L4.48683 11.8219C4.53532 11.5392 4.51431 11.2489 4.42561 10.9761C4.3369 10.7033 4.18317 10.4562 3.97766 10.2561L0.864325 7.22524C0.80482 7.16776 0.762653 7.09473 0.742627 7.01447C0.722602 6.9342 0.725523 6.84992 0.751058 6.77123C0.776592 6.69254 0.823714 6.6226 0.887056 6.56939C0.950397 6.51617 1.02741 6.48182 1.10933 6.47024L5.41349 5.84107C5.69704 5.79982 5.96632 5.69028 6.19815 5.52189C6.42997 5.3535 6.61741 5.1313 6.74433 4.8744L8.66849 0.975237Z" fill="#FFA508" stroke="#FFA508" stroke-width="1.45833" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </svg>
+
+                                                    <p class="text-[16px] lg:text-xl dark:text-[#FFA3B9]">Rating: {{prod.product.rateAvg}}/5</p>
+
+                                                </div>
+                                                </div>
+                                                <!-- price -->
+                                                <div class="flex justify-center items-center text-center gap-x-3">
+                                                    <span class="text-primary text-lg font-[600] dark:text-[#FFA3B9]">(x{{prod.quantity}})  </span><h1 class="text-lg lg:text-2xl dark:text-[#FFA3B9] font-[700] text-nowrap">{{prod.product.price|currency}} <span class="text-center lg:text-xl">EGP</span></h1>
+                                                </div>
+                                            </div>
+                                            <!-- buttons -->
+                                            <div class=" lg:w-2/6 hidden lg:flex flex-col justify-between gap-y-12">
+
+                                                <!-- remove button -->
+                                                <div class="w-full flex items-start justify-end">
+                                                    <button (click)="removeItemFromCart(prod.product._id)"
+                                                    class="bg-[var(--color-background-button)] text-white text-lg cursor-pointer rounded-xl px-2 lg:px-4 py-2 lg:py-3  gap-1 lg:gap-2">
+                                                    <i class="pi pi-trash"></i>
+                                                        Remove
+                                                    </button>
+                                            
+                                                </div>
+
+
+                                                <!-- counters -->
+                                                <div class="lg:w-full flex items-center justify-evenly gap-x-2">
+                                                    <!-- decrease -->
+                                                <button 
+                                                    (click)="decreaseItem(prod)"
+                                                class="w-1/4 px-1 py-3 bg-[#FBEAEA] rounded-lg cursor-pointer"><i class="pi pi-minus"></i></button>
+
+                                                    <!-- quantity -->
+                                                    <input
+                                                    type="text"
+                                                    [value]="prod.quantity"
+                                                    disabled
+                                                    class="w-1/2 dark:text-[#FFA3B9] py-3 px-5 text-gray-400 text-xl border-[1px] rounded-xl border-gray-300 focus:outline-none">
+
+                                                <!-- increase -->
+                                                <button 
+                                                    (click)="increaseItem(prod)"
+                                                class="w-1/4 px-1 py-3 bg-[#FBEAEA] rounded-lg cursor-pointer"><i class="pi pi-plus"></i></button>
+                                            
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <!-- buttons in mobile view -->
+                                            <div class="w-full lg:hidden flex flex-row justify-around items-center gap-y-12">
+
+                                                <!-- remove button -->
+                                                <div class="w-1/2 flex items-start justify-center">
+                                                    <button (click)="removeItemFromCart(prod.product._id)"
+                                                    class="bg-[var(--color-background-button)] text-white text-lg cursor-pointer rounded-xl px-2 lg:px-4 py-2 lg:py-3  gap-1 lg:gap-2">
+                                                    <i class="pi pi-trash"></i>
+                                                        Remove
+                                                    </button>
+                                            
+                                                </div>
+
+
+                                                <!-- counters -->
+                                                <div class="w-1/2 flex items-center justify-evenly gap-x-2 px-4">
+                                                    <!-- decrease -->
+                                                <button 
+                                                    (click)="decreaseItem(prod)"
+                                                class="w-1/4 px-1 py-3 bg-[#FBEAEA] rounded-lg cursor-pointer"><i class="pi pi-minus"></i></button>
+
+                                                    <!-- quantity -->
+                                                    <input
+                                                    type="text"
+                                                    [value]="prod.quantity"
+                                                    disabled
+                                                    class="w-1/2 py-3 px-5 text-gray-400 text-xl border-[1px] rounded-xl border-gray-300 focus:outline-none">
+
+                                                <!-- increase -->
+                                                <button 
+                                                    (click)="increaseItem(prod)"
+                                                class="w-1/4 px-1 py-3 bg-[#FBEAEA] rounded-lg cursor-pointer"><i class="pi pi-plus"></i></button>
+                                            
+                                                </div>
+                                            </div>
+                                        <div class="cartLine w-full">
+
+                                        </div>
+
+                                        
+                                    }
+                    }
                                 
-                                    <div class="justify-start">
-                                        <!-- title -->
-                                    <div class="flex justify-center items-center">
-                                        <h1 class="text-[var(--color-text-maroon)] capitalize text-lg lg:text-2xl font-[600] text-center lg:text-start">{{prod.product.title}}</h1>
-                                    </div>
-                                    <!-- rate -->
-                                    <div class="flex items-center text-center gap-x-0 lg:gap-x-2 ml-2 lg:ml-0 mt-2 lg:mt-0 ">
-                                    <svg width="23" height="22" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8.66849 0.975237C8.70501 0.901454 8.76143 0.839347 8.83137 0.795925C8.90131 0.752502 8.982 0.729492 9.06433 0.729492C9.14665 0.729492 9.22734 0.752502 9.29728 0.795925C9.36723 0.839347 9.42364 0.901454 9.46016 0.975237L11.3852 4.8744C11.512 5.13104 11.6992 5.35308 11.9307 5.52145C12.1622 5.68982 12.4311 5.7995 12.7143 5.84107L17.0193 6.47107C17.1009 6.48289 17.1775 6.5173 17.2406 6.5704C17.3036 6.62351 17.3505 6.69319 17.376 6.77158C17.4015 6.84996 17.4046 6.93391 17.3848 7.01393C17.3651 7.09396 17.3233 7.16686 17.2643 7.2244L14.151 10.2561C13.9457 10.4562 13.7921 10.7031 13.7034 10.9758C13.6147 11.2484 13.5935 11.5385 13.6418 11.8211L14.3768 16.1044C14.3912 16.1859 14.3824 16.2699 14.3514 16.3466C14.3204 16.4234 14.2684 16.4899 14.2014 16.5386C14.1345 16.5872 14.0551 16.6161 13.9725 16.6218C13.89 16.6276 13.8074 16.61 13.7343 16.5711L9.88599 14.5477C9.63242 14.4146 9.35031 14.345 9.06391 14.345C8.77751 14.345 8.49539 14.4146 8.24183 14.5477L4.39433 16.5711C4.32127 16.6097 4.23882 16.6271 4.15637 16.6213C4.07391 16.6154 3.99476 16.5865 3.9279 16.5379C3.86105 16.4893 3.80919 16.4229 3.77821 16.3463C3.74723 16.2696 3.73837 16.1858 3.75266 16.1044L4.48683 11.8219C4.53532 11.5392 4.51431 11.2489 4.42561 10.9761C4.3369 10.7033 4.18317 10.4562 3.97766 10.2561L0.864325 7.22524C0.80482 7.16776 0.762653 7.09473 0.742627 7.01447C0.722602 6.9342 0.725523 6.84992 0.751058 6.77123C0.776592 6.69254 0.823714 6.6226 0.887056 6.56939C0.950397 6.51617 1.02741 6.48182 1.10933 6.47024L5.41349 5.84107C5.69704 5.79982 5.96632 5.69028 6.19815 5.52189C6.42997 5.3535 6.61741 5.1313 6.74433 4.8744L8.66849 0.975237Z" fill="#FFA508" stroke="#FFA508" stroke-width="1.45833" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-
-                                        <p class="text-[16px] lg:text-xl">Rating: {{prod.product.rateAvg}}/5</p>
-
-                                    </div>
-                                    </div>
-                                    <!-- price -->
-                                    <div class="flex justify-center items-center text-center gap-x-3">
-                                        <span class="text-primary text-lg font-[600]">(x{{prod.quantity}})  </span><h1 class="text-lg lg:text-2xl font-[700] text-nowrap">{{prod.product.price|currency}} <span class="text-center lg:text-xl">EGP</span></h1>
-                                    </div>
-                                </div>
-                                <!-- buttons -->
-                                <div class=" lg:w-2/6 hidden lg:flex flex-col justify-between gap-y-12">
-
-                                    <!-- remove button -->
-                                      <div class="w-full flex items-start justify-end">
-                                        <button (click)="removeItemFromCart(prod.product._id)"
-                                        class="bg-[var(--color-background-button)] text-white text-lg cursor-pointer rounded-xl px-2 lg:px-4 py-2 lg:py-3  gap-1 lg:gap-2">
-                                        <i class="pi pi-trash"></i>
-                                            Remove
-                                        </button>
-                                
-                                      </div>
-
-
-                                      <!-- counters -->
-                                      <div class="lg:w-full flex items-center justify-evenly gap-x-2">
-                                        <!-- decrease -->
-                                      <button 
-                                        (click)="decreaseItem(prod)"
-                                      class="w-1/4 px-1 py-3 bg-[#FBEAEA] rounded-lg cursor-pointer"><i class="pi pi-minus"></i></button>
-
-                                        <!-- quantity -->
-                                         <input
-                                          type="text"
-                                          [value]="prod.quantity"
-                                          disabled
-                                          class="w-1/2 py-3 px-5 text-gray-400 text-xl border-[1px] rounded-xl border-gray-300 focus:outline-none">
-
-                                      <!-- increase -->
-                                      <button 
-                                        (click)="increaseItem(prod)"
-                                      class="w-1/4 px-1 py-3 bg-[#FBEAEA] rounded-lg cursor-pointer"><i class="pi pi-plus"></i></button>
-                                
-                                      </div>
-                                </div>
-
-                            </div>
-                              <!-- buttons in mobile view -->
-                                <div class="w-full lg:hidden flex flex-row justify-around items-center gap-y-12">
-
-                                    <!-- remove button -->
-                                      <div class="w-1/2 flex items-start justify-center">
-                                        <button (click)="removeItemFromCart(prod.product._id)"
-                                        class="bg-[var(--color-background-button)] text-white text-lg cursor-pointer rounded-xl px-2 lg:px-4 py-2 lg:py-3  gap-1 lg:gap-2">
-                                        <i class="pi pi-trash"></i>
-                                            Remove
-                                        </button>
-                                
-                                      </div>
-
-
-                                      <!-- counters -->
-                                      <div class="w-1/2 flex items-center justify-evenly gap-x-2 px-4">
-                                        <!-- decrease -->
-                                      <button 
-                                        (click)="decreaseItem(prod)"
-                                      class="w-1/4 px-1 py-3 bg-[#FBEAEA] rounded-lg cursor-pointer"><i class="pi pi-minus"></i></button>
-
-                                        <!-- quantity -->
-                                         <input
-                                          type="text"
-                                          [value]="prod.quantity"
-                                          disabled
-                                          class="w-1/2 py-3 px-5 text-gray-400 text-xl border-[1px] rounded-xl border-gray-300 focus:outline-none">
-
-                                      <!-- increase -->
-                                      <button 
-                                        (click)="increaseItem(prod)"
-                                      class="w-1/4 px-1 py-3 bg-[#FBEAEA] rounded-lg cursor-pointer"><i class="pi pi-plus"></i></button>
-                                
-                                      </div>
-                                </div>
-                            <div class="cartLine w-full">
-
-                            </div>
-
-                            
-                         }
                    
                 
                 </div>
@@ -142,14 +150,14 @@
             </div>
 
         <!-- Summary Section -->
-            <div class="w-full lg:w-1/3">
+            <div class="w-full lg:w-1/3 min-h-[457px] self-start mt-10 lg:mt-0">
                 <!-- header -->
-                        <div class="w-full flex flex-row items-center justify-start mt-5 ">
-                            <h1 class="capitalize text-3xl font-[600]  ">Summary</h1>
+                        <div class="w-full flex flex-row items-center justify-start  ">
+                            <h1 class="capitalize text-3xl font-[600] dark:text-[#FFA3B9]  ">Summary</h1>
                         </div>
 
                  <!-- Summary Body -->
-                        <div class="w-full min-h-[457px] bg-[#FAFAFA] rounded-xl flex flex-col justify-start items-center py-7 mt-5 px-3">
+                        <div class="dark:bg-[var(--dark-secondary)] w-full min-h-[457px] bg-[#FAFAFA] rounded-xl flex flex-col justify-start items-center py-7 mt-5 px-3">
 
                             <!-- coupon input -->
                               <div class="w-full flex flex-row items-center justify-between gap-3">
@@ -157,10 +165,13 @@
                                 placeholder="Coupon Code"    
                                 class="rounded-xl border border-gray-400 w-[60%] text-gray-500 px-4 bg-white py-3">
                                 <button 
-                                class="bg-primary cursor-pointer text-white rounded-xl capitalize text-[15px] w-[40%] py-3 flex flex-row items-center justify-center gap-x-2"
+                                class="bg-primary cursor-pointer text-white rounded-xl capitalize text-[15px] w-[40%] py-3 
+                                dark:bg-[var(--color-secondary)] dark:text-[var(--color-text-maroon)]
+                                flex flex-row items-center justify-center gap-x-2"
                                 >
                                  <svg width="22" height="15" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                   <path d="M7.72949 4.72949H7.73949M13.7295 4.72949L7.72949 10.7295M13.7295 10.7295H13.7395M0.729492 4.72949C1.52514 4.72949 2.2882 5.04556 2.85081 5.60817C3.41342 6.17078 3.72949 6.93384 3.72949 7.72949C3.72949 8.52514 3.41342 9.2882 2.85081 9.85081C2.2882 10.4134 1.52514 10.7295 0.729492 10.7295V12.7295C0.729492 13.2599 0.940206 13.7686 1.31528 14.1437C1.69035 14.5188 2.19906 14.7295 2.72949 14.7295H18.7295C19.2599 14.7295 19.7686 14.5188 20.1437 14.1437C20.5188 13.7686 20.7295 13.2599 20.7295 12.7295V10.7295C19.9338 10.7295 19.1708 10.4134 18.6082 9.85081C18.0456 9.2882 17.7295 8.52514 17.7295 7.72949C17.7295 6.93384 18.0456 6.17078 18.6082 5.60817C19.1708 5.04556 19.9338 4.72949 20.7295 4.72949V2.72949C20.7295 2.19906 20.5188 1.69035 20.1437 1.31528C19.7686 0.940206 19.2599 0.729492 18.7295 0.729492H2.72949C2.19906 0.729492 1.69035 0.940206 1.31528 1.31528C0.940206 1.69035 0.729492 2.19906 0.729492 2.72949V4.72949Z" stroke="white" stroke-width="1.45833" stroke-linecap="round" stroke-linejoin="round"/>
+                                   <path d="M7.72949 4.72949H7.73949M13.7295 4.72949L7.72949 10.7295M13.7295 10.7295H13.7395M0.729492 4.72949C1.52514 4.72949 2.2882 5.04556 2.85081 5.60817C3.41342 6.17078 3.72949 6.93384 3.72949 7.72949C3.72949 8.52514 3.41342 9.2882 2.85081 9.85081C2.2882 10.4134 1.52514 10.7295 0.729492 10.7295V12.7295C0.729492 13.2599 0.940206 13.7686 1.31528 14.1437C1.69035 14.5188 2.19906 14.7295 2.72949 14.7295H18.7295C19.2599 14.7295 19.7686 14.5188 20.1437 14.1437C20.5188 13.7686 20.7295 13.2599 20.7295 12.7295V10.7295C19.9338 10.7295 19.1708 10.4134 18.6082 9.85081C18.0456 9.2882 17.7295 8.52514 17.7295 7.72949C17.7295 6.93384 18.0456 6.17078 18.6082 5.60817C19.1708 5.04556 19.9338 4.72949 20.7295 4.72949V2.72949C20.7295 2.19906 20.5188 1.69035 20.1437 1.31528C19.7686 0.940206 19.2599 0.729492 18.7295 0.729492H2.72949C2.19906 0.729492 1.69035 0.940206 1.31528 1.31528C0.940206 1.69035 0.729492 2.19906 0.729492 2.72949V4.72949Z" 
+                                   stroke="currentColor" stroke-width="1.45833" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
 
                                     Apply coupon
@@ -175,10 +186,10 @@
                               </div>
 
                               <!-- Toatal and sub total -->
-                               <div class="w-full flex flex-col justify-between items-center py-3 gap-y-2">
+                               <div class="w-full flex flex-col justify-between items-center py-3 gap-y-2 dark:text-secondary">
 
                                 <!-- SubTotal -->
-                                <div class="w-full flex justify-between items-center">
+                                <div class="w-full flex justify-between items-center ">
                                     <p class="text-xl font-[500]">Subtotal</p>
                                     <p class="text-xl font-[600]">{{totalCartPrice|async}} EGP</p>
                                 </div>
@@ -198,10 +209,10 @@
 
                         <div class="w-full mt-6 ">
                             <button
-                                class="bg-primary text-white rounded-xl capitalize text-xl py-5  w-full cursor-pointer flex justify-center items-center gap-x-2">
+                                class="bg-primary dark:bg-[var(--color-secondary)] text-white dark:text-[var(--color-text-maroon)] rounded-xl capitalize text-xl py-5  w-full cursor-pointer flex justify-center items-center gap-x-2">
                             checkout 
                             <svg width="28" height="24" viewBox="0 0 22 10" fill="none" xmlns="http://www.w3.org/2000/svg" class="mt-1">
-                            <path d="M16.875 0.875L20.875 4.875M20.875 4.875L16.875 8.875M20.875 4.875L0.875 4.875" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16.875 0.875L20.875 4.875M20.875 4.875L16.875 8.875M20.875 4.875L0.875 4.875" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
 
                             </button>

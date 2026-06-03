@@ -43,11 +43,12 @@
 
         
                   <!-- here will use condition if login or not  -->
-                   @if (isLogin() === false) { 
+                  @if(isBrowser()){
+                         @if (isLogin() === false) { 
                        <div  class="w-1/3 flex justify-center items-center gap-2 wrapper ">
                             <a routerLink="/auth/login"  class="flex items-center gap-2 cursor-pointer"> 
-                                <i class="pi pi-user !text-xl text-[#3F3F46] dark:text-white"></i>
-                                <span class="text-xl dark:text-white">login</span>
+                                <i class="pi pi-user !text-xl text-[var(--color-text-maroon)] dark:text-white"></i>
+                                <span class="text-xl text-[var(--color-text-maroon)] dark:text-white">login</span>
                             </a>
                         </div>
                    } @else{
@@ -76,13 +77,15 @@
  
                                     </div>
                                 }
+                  }
+              
        
-
+                  <!-- Clickable Icons Section -->
           <div class="w-1/3 flex items-center justify-center gap-3 wrapper ">
             <!-- Wishlist -->
-              <div class="relative">
-                <a><i routerLink="/main/wishlist"
-                     class=" pi pi-heart !text-2xl text-[#3F3F46] dark:text-white cursor-pointer hover:scale-[1.2] duration-[.5s] "
+              <div class="relative w-full">
+                <a><i routerLink="/main/wishlist" title="Whishlist"
+                     class=" pi pi-heart !text-2xl text-[var(--color-text-maroon)] dark:text-white cursor-pointer hover:scale-[1.2] duration-[.5s] "
                     ></i></a>
                         @if ((wishlistidsCount$|async)?.length ||0 > 0) {
                               <span class="absolute -top-1 -left-2 bg-red-600 text-white text-xs
@@ -94,10 +97,10 @@
                             }
                 </div>
               <!-- Cart -->
-            <div class="relative">
-                 <a><i 
-                 [routerLink]="['/main/cart' ,cartId]"
-                 class="pi pi-shopping-cart !text-2xl text-[#3F3F46] dark:text-white cursor-pointer hover:scale-[1.2] duration-[.5s]"
+            <div class="relative w-full">
+                 <a><i  
+                 [routerLink]="['/main/cart' ,cartId]" title="Cart"
+                 class="pi pi-shopping-cart !text-2xl text-[var(--color-text-maroon)] dark:text-white cursor-pointer hover:scale-[1.2] duration-[.5s]"
                  ></i></a>
                       @if ((cartidsCount$|async)?.length ||0 > 0) {
                               <span class="absolute -top-1 -left-2 bg-red-600 text-white text-xs
@@ -109,10 +112,24 @@
                             }
             </div>
               <!-- notifications -->
-              <a><i class="pi pi-bell !text-2xl text-[#3F3F46] dark:text-white  cursor-pointer hover:scale-[1.2] duration-[.5s]"></i></a>
+              <div class="relative w-full">
+                <a><i title="Notifications" class="pi pi-bell !text-2xl text-[var(--color-text-maroon)] dark:text-white  cursor-pointer hover:scale-[1.2] duration-[.5s]"></i></a>
+              </div>
           </div>
+            <!-- Theme and Language Section -->
+          <div class="w-1/3 flex justify-center items-center text-center  text-[#3F3F46]  dark:text-white py-3">
+            <!-- theme toggle -->
+             <div class="w-1/3 flex items-center justify-center gap-3  ">
+                <button (click)="toggle()" title="Change Theme"
+                ><i  class="pi pi-moon text-[var(--color-text-maroon)] !text-2xl text-[#3F3F46] dark:text-white  cursor-pointer hover:scale-[1.2] duration-[.5s]"></i></button>
+              </div>
+              <!-- language toggle -->
+             <div class="w-1/3 flex items-center justify-center gap-3 cursor-pointer ">
+                <a class="text-[var(--color-text-maroon)] dark:text-white">العربية</a>
+              </div>
 
-          <div class="w-1/3 text-center cursor-pointer text-[#3F3F46]  dark:text-white py-3 cursor-pointer">العربية</div>
+          </div>
+          
 
       </div>
   </div>

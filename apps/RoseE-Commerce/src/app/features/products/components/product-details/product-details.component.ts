@@ -146,7 +146,7 @@ export class ProductDetailsComponent implements OnInit , OnDestroy {
 
         addToWishlist(productId:string):void{
           this.store.dispatch(WishlistActions.addToWishlist({productId}))
-          this.toast.success(`this product added successfuly to your Wishlist `)
+         
         }
 
 
