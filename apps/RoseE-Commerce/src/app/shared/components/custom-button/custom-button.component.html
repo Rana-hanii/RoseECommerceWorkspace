@@ -3,6 +3,8 @@
     class="styleButton cursor-pointer w-full text-white dark:text-black bg-[var(--color-primary)] dark:bg-[var(--dark-text-secondary)]"
     type="button"
     (click)="onClick()"
+    [ngClass]="customClass"
+    
   >
     {{ pageType }}
     <i class="pi {{ icon }} "></i>

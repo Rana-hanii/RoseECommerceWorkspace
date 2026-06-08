@@ -42,8 +42,16 @@ export const API_ENDPOINTS = {
     editProfile:'/auth/editProfile',
     uploadPhoto:'/auth/upload-photo',
     changePassword:'/auth/change-password'
-  }
+  },
   
 
   //*All endpoints will be added here
+
+  // *Adresses Endpoints
+  adress:{
+    updateAdress:'/addresses',
+    addAdress:'/addresses',
+    removeAdress:'/addresses',
+    getAdress:'/addresses',
+  }
 };

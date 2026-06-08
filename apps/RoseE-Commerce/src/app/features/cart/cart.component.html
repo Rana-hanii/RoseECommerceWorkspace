@@ -1,9 +1,10 @@
-<Section class="container mx-auto px-2 lg:px-20 my-4">
+<Section  class="container mx-auto px-2 lg:px-20 my-4">
 
         <!-- Main Cart Body -->
     <div class="w-full h-full flex flex-col lg:flex-row justify-center items-center gap-x-5 my-8  ">
 
-         <!-- Cart Section -->
+        @if(!checkout){
+              <!-- Cart Section -->
             <div class="w-full lg:w-2/3 min-h-[457px] self-start">
                     <!-- Cart header and clear button -->
                 <div class=" w-full flex justify-between items-start px-2 lg:px-0 ">
@@ -148,6 +149,120 @@
                 </div>
 
             </div>
+        }@if(checkout) {
+                <div class="w-full lg:w-2/3 min-h-[457px] flex flex-col justify-start items-center ">
+                    <!-- Stepper for adresses -->
+                <div class="checkout-steps flex justify-around items-center relative">
+
+                            <!-- gray line -->
+                            <div class="line-bg"></div>
+
+                            <!-- colored progress line -->
+                            <div class="line-progress bg-primary dark:bg-[#ffa3b9] overflow-hidden" [style.width]="progressWidth"></div>
+
+                            <div class="step1">
+                                <div
+                                class="step-circle"
+                                [ngClass]="currentStep === 1 || 2 ? 'bg-primary dark:bg-[#ffa3b9] text-white dark:text-[var(--color-text-maroon)]' : 'bg-gray-300'">
+                                1
+                                </div>
+                            </div>
+
+                            <div class="step2">
+                                <div
+                                class="step-circle"
+                                [ngClass]="currentStep === 2 ? 'bg-primary dark:bg-[#ffa3b9] text-white dark:text-[var(--color-text-maroon)]' : 'bg-gray-300'">
+                                2
+                                </div>
+                            </div>
+
+                    </div>
+
+        @if(currentStep === 1){
+                    <!-- Shipping Address -->
+                <div class="w-full mt-10 " >
+                    <h2 class="text-xl lg:text-3xl text-black dark:text-[#FFA3B9] font-bold mb-4 capitalize">Shipping Addresses</h2>
+                    <!-- Shipping address form fields would go here -->
+                     <!-- address card -->
+                    @if ((userAdresses$|async)?.length===0) {
+
+                        <div class="border-[1px] rounded-2xl border-gray-400 p-4 mt-7 flex justify-center items-center w-full">
+                            <p class=" dark:text-[#FFC2D0] text-2xl font-extrabold">There is no addresses added 
+                                press on add adress 
+                            </p>
+                        </div>
+                    }@else {
+                             @for (item of userAdresses$|async; track $index) {
+
+                                <!-- Here the Adresses Cards shown & When user click on it will navigate to step 2   -->
+                      <div 
+                      (click)="selectAddress(item)"
+                      [class]="selectedAddressId() === item._id? 'bg-primary dark:bg-[#FBEAEA]': ''"
+                       class="flex-col justify-center items-start border-[1px] rounded-2xl border-gray-400 p-4 mt-7 cursor-pointer">
+                        <div  class="w-full flex justify-between items-center  ">
+                            <h1 
+                             [class]="selectedAddressId() === item._id? 'text-white dark:text-black': ''"
+                             class="text-3xl font-bold text-black dark:text-[#FFC2D0]">{{item.city}}</h1>
+                            <div class="flex justify-center items-center gap-2 px-2 ">
+                                <div
+                                 [class]="selectedAddressId() === item._id? 'text-white dark:text-black border-[1px] border-white' : ''"
+                                 class="bg-primary dark:bg-[#FFC2D0] text-white dark:text-black w-[33px] h-[33px] flex items-center justify-center rounded-full">
+                                     <i 
+                                    
+                                     class="pi pi-phone  "></i>
+                                </div>
+                               
+                                <p 
+                                [class]="selectedAddressId() === item._id? 'text-white dark:text-black': 'dark:text-white'"
+                                class="text-gray-400  text-2xl">{{item.phone}}</p>
+                            </div>
+                        </div>
+                        <div class="bg-gray-100 rounded-lg px-2 py-1 w-fit mt-4">
+                            <p class="">{{item.street}}</p>
+                        </div>
+                     </div>
+                   }
+                    }
+              
+                     
+
+                    <div class="w-full mt-7">
+                     <app-custom-button
+                     customClass="!py-4 !capitalize !bg-[#FBEAEA] !text-[var(--color-text-maroon)]"
+                     [pageType]="'add a new adress'"
+                     (buttonClick)="showDialog()"
+                     ></app-custom-button>
+                    </div>
+
+
+                    <div class="card flex justify-center">
+                        <p-dialog 
+                        [dismissableMask]="true" [(visible)]="visible" [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+                         [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false" class="dark:!bg-[var(--p-menu-background)]">
+                          @if (visible) {
+                            <app-adresses
+                                [userAdresses]="userAdresses$"
+                                (selectAddress)="selectAddress($event)"
+                                (addressOperationComplete)="onAddressDialogComplete()">
+                            </app-adresses>
+}
+                        </p-dialog>
+                    </div>
+                </div>
+
+
+        }
+           @if(currentStep===2){
+                    <!-- payment -->
+                <div class="w-full mt-10">
+                    <h2 class="text-xl font-bold mb-4">payment</h2>
+                    <!-- payment form fields would go here -->
+                </div>
+        }
+
+
+            </div>
+        }
 
         <!-- Summary Section -->
             <div class="w-full lg:w-1/3 min-h-[457px] self-start mt-10 lg:mt-0">
@@ -209,6 +324,8 @@
 
                         <div class="w-full mt-6 ">
                             <button
+                            (click)="checkoutHandler()"
+                                [class]="checkout?'hidden':'block'"
                                 class="bg-primary dark:bg-[var(--color-secondary)] text-white dark:text-[var(--color-text-maroon)] rounded-xl capitalize text-xl py-5  w-full cursor-pointer flex justify-center items-center gap-x-2">
                             checkout 
                             <svg width="28" height="24" viewBox="0 0 22 10" fill="none" xmlns="http://www.w3.org/2000/svg" class="mt-1">
@@ -221,4 +338,4 @@
 
     </div>
 
-</Section>
+</Section> 
