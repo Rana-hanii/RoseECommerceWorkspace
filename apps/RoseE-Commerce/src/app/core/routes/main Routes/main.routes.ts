@@ -18,6 +18,9 @@ export const mainRoutes: Routes = [
       {path:'wishlist' , loadComponent:()=> import(`../../../features/wishList/wishlist.component`).then((c)=>c.WishlistComponent), title:'Wish-List'} ,
       {path:'profile' , loadComponent: ()=>import(`../../../features/profile/profile.component`).then((c)=>c.ProfileComponent) , title:'Update Profile'},
       {path:'cart/:id' , loadComponent:()=>import(`../../../features/cart/cart.component`).then((c)=>c.CartComponent) , title:'Cart'},
+      {path:'cart' , loadComponent:()=>import(`../../../features/cart/cart.component`).then((c)=>c.CartComponent) , title:'Cart'},
+        
+      {path:'allOrders' , loadComponent:()=>import(`../../../features/orders/orders.component`).then((c)=>c.OrdersComponent) , title:'Orders'},
 
     ],
   },

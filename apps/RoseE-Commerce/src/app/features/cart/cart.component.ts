@@ -12,6 +12,10 @@ import { AdressesComponent } from "../adresses/adresses.component";
 import { Address } from '../adresses/interfaces/adress-res';
 import { UserAdressesService } from '../adresses/services/user Adresses/user-adresses.service';
 import { AdressRes } from '../adresses/interfaces/adress-res';
+import { CheckoutService } from './services/checkout.service';
+import { CashCheckoutReq } from './interfaces/cash-checkout-req/cash-checkout-req';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -33,6 +37,9 @@ export class CartComponent implements OnInit {
 
   
   private readonly store=inject(Store)
+  private readonly checkoutService=inject(CheckoutService)
+  private readonly router=inject(Router)
+  private readonly toastr=inject(ToastrService)
 
 
   ngOnInit(): void {
@@ -129,11 +136,87 @@ export class CartComponent implements OnInit {
     selectAddress(address: Address): void {
       this.shippingAddress.set(address);
         this.selectedAddressId.set(address._id);
-        this.currentStep=2
+      
         console.log(this.shippingAddress());
         
-    } 
+    }  
 
-      
-    
+    nextBtn():void{
+      if (!this.selectedAddressId()) return;
+      this.currentStep=2
+    }
+
+    // selecting payment method
+
+    readonly paymentMethods = [
+      {
+        id: 'cash' as const,
+        title: 'Cash on Delivery',
+        description: 'Pay with cash when your order arrives at your doorstep.',
+        image: '/payment/cash.png',
+      },
+      {
+        id: 'credit' as const,
+        title: 'Credit / Debit Card',
+        description: 'Pay securely online using your credit or debit card.',
+        image: '/payment/credit.png',
+      },
+    ];
+
+    selectedPaymentMethod = signal<'cash' | 'credit' | null>(null);
+
+    selectPaymentMethod(method: 'cash' | 'credit'): void {
+      this.selectedPaymentMethod.set(method);
+    }
+
+    isPlacingOrder = signal(false);
+
+    private buildCheckoutBody(): CashCheckoutReq | null {
+      const address = this.shippingAddress();
+      if (!address) return null;
+
+      return {
+        shippingAddress: {
+          street: address.street,
+          phone: address.phone,
+          city: address.city,
+          lat: address.lat,
+          long: address.long,
+        },
+      };
+    }
+
+    placeOrder(): void {
+      const method = this.selectedPaymentMethod();
+      const body = this.buildCheckoutBody();
+      if (!method || !body || this.isPlacingOrder()) return;
+
+      this.isPlacingOrder.set(true);
+
+      if (method === 'cash') {
+        this.checkoutService.createCashOrder(body).subscribe({
+          next: () => {
+            this.store.dispatch(CartActions.loadCart());
+            this.toastr.success('Order placed successfully', 'Success');
+            this.router.navigate(['/main/orders/allOrders']);
+          },
+          error: () => {
+            this.isPlacingOrder.set(false);
+            this.toastr.error('Could not place order', 'Error');
+          },
+        });
+        return;
+      }
+
+      this.checkoutService.createCreditOrder(body).subscribe({
+        next: (res) => {
+          window.location.href = res.session.url;
+        },
+        error: () => {
+          this.isPlacingOrder.set(false);
+          this.toastr.error('Could not start card checkout', 'Error');
+        },
+      });
+    }
+
 }

@@ -203,7 +203,11 @@
                                 @if (currentStep()===2) {
 
                                     <!-- here will be integration with google maps  -->
-
+                                        <div class="w-full">
+                                            <app-location-picker
+                                            (locationSelected)="onLocationSelected($event)"
+                                            ></app-location-picker>
+                                        </div>
                                     <!-- add button -->
                                     <div class="w-full">
                                         <app-custom-button

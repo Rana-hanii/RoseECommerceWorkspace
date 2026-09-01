@@ -248,6 +248,20 @@
 }
                         </p-dialog>
                     </div>
+
+
+                    <div class="w-full flex justify-end items-center py-4">
+                        <button
+                        (click)="nextBtn()"
+                        [disabled]="!selectedAddressId()"
+                            class="bg-primary dark:bg-[var(--color-secondary)] text-white dark:text-[var(--color-text-maroon)] rounded-xl capitalize text-xl py-2 px-8 cursor-pointer flex justify-center items-center gap-x-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                        Next 
+                        <svg width="28" height="24" viewBox="0 0 22 10" fill="none" xmlns="http://www.w3.org/2000/svg" class="mt-1">
+                        <path d="M16.875 0.875L20.875 4.875M20.875 4.875L16.875 8.875M20.875 4.875L0.875 4.875" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+
+                        </button>
+                    </div>
                 </div>
 
 
@@ -255,8 +269,45 @@
            @if(currentStep===2){
                     <!-- payment -->
                 <div class="w-full mt-10">
-                    <h2 class="text-xl font-bold mb-4">payment</h2>
-                    <!-- payment form fields would go here -->
+                    <h2 class="text-xl lg:text-3xl text-black dark:text-[#FFA3B9] font-bold mb-4 capitalize">Payment Method</h2>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-7">
+                        @for (method of paymentMethods; track method.id) {
+                            <div
+                                (click)="selectPaymentMethod(method.id)"
+                                [class]="selectedPaymentMethod() === method.id ? 'bg-primary dark:bg-[#FBEAEA]' : ''"
+                                class="flex flex-col items-center border-[1px] rounded-2xl border-gray-400 p-4 sm:p-6 cursor-pointer transition-colors">
+                                <img
+                                    [src]="method.image"
+                                    [alt]="method.title"
+                                    [class]="selectedPaymentMethod() === method.id ? 'invert' : ''"
+                                    class="w-24 h-24 sm:w-28 sm:h-28 object-contain transition-all duration-300"
+                                />
+                                <h3
+                                    [class]="selectedPaymentMethod() === method.id ? 'text-white dark:text-black' : ''"
+                                    class="text-xl sm:text-2xl lg:text-3xl font-bold text-black dark:text-[#FFC2D0] mt-4 text-center capitalize">
+                                    {{ method.title }}
+                                </h3>
+                                <p
+                                    [class]="selectedPaymentMethod() === method.id ? 'text-white/90 dark:text-black/80' : ''"
+                                    class="text-gray-400 dark:text-white text-sm sm:text-base lg:text-lg mt-2 text-center">
+                                    {{ method.description }}
+                                </p>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="w-full flex justify-end items-center py-4">
+                        <button
+                            (click)="placeOrder()"
+                            [disabled]="!selectedPaymentMethod() || isPlacingOrder()"
+                            class="bg-primary dark:bg-[var(--color-secondary)] text-white dark:text-[var(--color-text-maroon)] rounded-xl capitalize text-xl py-2 px-8 cursor-pointer flex justify-center items-center gap-x-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                            {{ selectedPaymentMethod() === 'credit' ? 'Pay now' : 'Place order' }}
+                            <svg width="28" height="24" viewBox="0 0 22 10" fill="none" xmlns="http://www.w3.org/2000/svg" class="mt-1">
+                            <path d="M16.875 0.875L20.875 4.875M20.875 4.875L16.875 8.875M20.875 4.875L0.875 4.875" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
         }
 

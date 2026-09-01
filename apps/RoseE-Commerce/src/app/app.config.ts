@@ -15,6 +15,7 @@ import {
 } from '@angular/platform-browser/animations';
 import { provideToastr } from 'ngx-toastr';
 import { providePrimeNG } from 'primeng/config';
+import { MessageService } from 'primeng/api';
 import Aura from '@primeng/themes/aura';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
@@ -47,6 +48,7 @@ export const appConfig: ApplicationConfig = {
       BrowserAnimationsModule,
       CookieService
     ),
+    MessageService,
     providePrimeNG({
       theme: {
         preset: Aura,

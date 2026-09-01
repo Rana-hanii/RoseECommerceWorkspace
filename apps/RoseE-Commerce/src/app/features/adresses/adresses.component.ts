@@ -6,11 +6,12 @@ import { UserAdressesService } from './services/user Adresses/user-adresses.serv
 import { Observable } from 'rxjs';
 import { Address} from './interfaces/adress-res';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { LocationPickerComponent } from "./components/locationPicker/locationPicker.component";
 
 
 @Component({
   selector: 'app-adresses',
-  imports: [CommonModule, CustomButtonComponent ,ReactiveFormsModule],
+  imports: [CommonModule, CustomButtonComponent, ReactiveFormsModule, LocationPickerComponent],
   templateUrl: './adresses.component.html',
   styleUrl: './adresses.component.scss',
 })
@@ -146,7 +147,21 @@ export class AdressesComponent{
     if (this.currentStep() === 1) return '14%';
     if (this.currentStep() === 2) return '80%';
     return '0%';
-  }
+  } 
+
+  // selecting Location
+  onLocationSelected(event: {
+  lat: string;
+  long: string;
+  address: string;
+}): void {
+
+  this.AddressForm.patchValue({
+    street: event.address,
+    lat: event.lat,
+    long: event.long
+  });
+}
 }
 
 

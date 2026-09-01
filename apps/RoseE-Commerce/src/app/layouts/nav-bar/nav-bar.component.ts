@@ -177,7 +177,9 @@ export class NavBarComponent implements OnInit{
                     },
                     {
                       label: 'My Orders',
-                      icon: 'pi pi-id-card'
+                      icon: 'pi pi-id-card',
+                      routerLink: 'allOrders',
+                      command: (event: any) => this.closeCallback(event)
                     }
                   ];
 
