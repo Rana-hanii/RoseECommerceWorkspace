@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { adminGuardGuard } from '../guards/adminGuard/admin-guard.guard';
 export const dashboardRoutes: Routes = [
   {
     path: '',
