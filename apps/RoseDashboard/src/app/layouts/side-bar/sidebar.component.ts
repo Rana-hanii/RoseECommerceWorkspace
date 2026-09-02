@@ -5,6 +5,7 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { AccountService } from '../../features/account/services/account.service';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-sidebar',
@@ -68,5 +69,11 @@ export class SidebarComponent implements OnInit {
         ],
       },
     ];
+  }
+
+
+   navigateToRose():void{
+    window.location.href=environment.roseEcommerceApp
+    
   }
 }

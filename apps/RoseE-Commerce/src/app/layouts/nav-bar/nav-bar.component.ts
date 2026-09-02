@@ -21,6 +21,7 @@ import { Observable } from 'rxjs';
 import { CartService } from '../../features/cart/services/cart.service';
 import { UserCart } from '../../features/cart/interfaces/userCart/user-cart';
 import { environment } from '../../environments/environment';
+import { DarkModeService } from '../../shared/services/dark-mode/dark-mode.service';
 
 
 
@@ -53,6 +54,7 @@ export class NavBarComponent implements OnInit{
   private readonly cookieService=inject(CookieService)
   private readonly plat_Id=inject(PLATFORM_ID)
   private readonly store=inject(Store)
+  private readonly dark=inject(DarkModeService)
 
 
   ngOnInit(): void {
@@ -84,7 +86,9 @@ export class NavBarComponent implements OnInit{
   }
 
 
-
+  isBrowser(){
+    return isPlatformBrowser(this.plat_Id)
+  }
 
  
 
@@ -173,7 +177,9 @@ export class NavBarComponent implements OnInit{
                     },
                     {
                       label: 'My Orders',
-                      icon: 'pi pi-id-card'
+                      icon: 'pi pi-id-card',
+                      routerLink: 'allOrders',
+                      command: (event: any) => this.closeCallback(event)
                     }
                   ];
 
@@ -222,6 +228,13 @@ export class NavBarComponent implements OnInit{
       this.store.dispatch(CartActions.loadCart())
       this.cartidsCount$= this.store.select(CartSelectors.selectUserCartIds)
     }
+   
+    theme = this.dark.currentTheme;
+
+    toggle(){
+        this.dark.toggleTheme();
+    } 
+
 
   
 }

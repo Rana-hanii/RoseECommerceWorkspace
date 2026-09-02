@@ -1,37 +1,42 @@
-<main class="">
+<section class="">
   <app-auth-title [text]="'Become part of our family!'"></app-auth-title>
   <div class="flex flex-col justify-center items-center">
     <app-line></app-line>
-    <form [formGroup]="registerFOrm">
-      <div class="flex justify-between items-center">
-        <app-reusable-input
-          type="text"
-          label="First name"
-          placeholder="Jonathan"
-          customClass="w-3/4"
-          formControlName="firstName"
-        ></app-reusable-input>
-        <app-reusable-input
-          type="text"
-          label="Last Name"
-          placeholder="Adrian"
-          customClass="w-3/4"
-          formControlName="lastName"
-        ></app-reusable-input>
+    <form [formGroup]="registerFOrm" class="flex flex-col justify-center items-center ">
+      <div class="w-full flex justify-center items-center gap-x-4 ">
+        <div class="w-5/12">
+          <app-reusable-input
+            type="text"
+            label="First name"
+            placeholder="Jonathan"
+            customClass="!w-[100%]"
+            formControlName="firstName"
+          ></app-reusable-input>
+        </div>
+        <div class="w-5/12">
+          <app-reusable-input
+            type="text"
+            label="Last Name"
+            placeholder="Adrian"
+            customClass="!w-[100%]"
+            formControlName="lastName"
+          ></app-reusable-input>
+
+        </div>
       </div>
-      <div class="flex-column items-center justify-center">
+      <div class=" w-7/8 flex-column items-center justify-center">
         <app-reusable-input
           type="email"
           label="Email"
           placeholder="Enter Your Email"
-          customClass="w-100"
+          customClass="w-full"
           formControlName="email"
         ></app-reusable-input>
         <app-reusable-input
           type="tel"
           label="phone"
           placeholder="Enter Valid Number"
-          customClass="w-100"
+          customClass="w-full"
           formControlName="phone"
         ></app-reusable-input>
         <app-reusable-input
@@ -39,26 +44,26 @@
           label="Gender"
           [options]="['male', 'female']"
           placeholder="Select Gender "
-          customClass="w-100"
+          customClass="w-full"
           formControlName="gender"
         ></app-reusable-input>
         <app-reusable-input
           type="password"
           label="password"
           placeholder="password@1234 "
-          customClass="w-100"
+          customClass="w-full"
           formControlName="password"
         ></app-reusable-input>
         <app-reusable-input
           type="rePassword"
           label="Confirm Password"
           placeholder="********"
-          customClass="w-100"
+          customClass="w-full"
           formControlName="rePassword"
         ></app-reusable-input>
       </div>
 
-      <app-custom-button (click)="registerSubmit()" pageType="Create Account"></app-custom-button>
+      <app-custom-button class="!w-7/8 mt-5" (click)="registerSubmit()" pageType="Create Account"></app-custom-button>
     </form>
     <app-line></app-line>
   </div>
@@ -69,4 +74,4 @@
       > Login</a
     >
   </div>
-</main>
+</section>

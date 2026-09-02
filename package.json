@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start-rose": "npx nx run RoseE-Commerce:s -o",
-    "start-dashboard": "npx nx run RoseDashboard:s -o",
+    "start-rose": "npx nx run RoseE-Commerce:s -o --no-hmr",
+    "start-dashboard": "npx nx run RoseDashboard:s -o --no-hmr",
     "compodoc": "npx compodoc -p apps/RoseE-Commerce/tsconfig.doc.json",
     "dev": "nx run-many --target=serve --projects=RoseE-Commerce,RoseDashboard"
   },
@@ -15,6 +15,7 @@
     "@angular/compiler": "~19.1.0",
     "@angular/core": "~19.1.0",
     "@angular/forms": "~19.1.0",
+    "@angular/google-maps": "^19.2.19",
     "@angular/platform-browser": "~19.1.0",
     "@angular/platform-browser-dynamic": "~19.1.0",
     "@angular/platform-server": "~19.1.0",

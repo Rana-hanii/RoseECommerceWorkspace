@@ -3,6 +3,8 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import * as WishlistActions from '../../store/wishList/wishlist.actions'
 import * as WishlistSelectors from '../../store/wishList/wishlist.selectors'
+import * as CartActions from '../../store/cart/cart.actions'
+import * as CartSelectors from '../../store/cart/cart.selectors'
 import { Observable } from 'rxjs';
 import { Product } from './interfaces/wishlist-Res/wishlist-res';
 import { WishlistService } from './services/wishlist.service';
@@ -46,4 +48,9 @@ export class WishlistComponent implements OnInit {
     this.loadWishlist()
   }
 
+
+  addtoCart(productId:string):void{
+    this.store.dispatch(CartActions.addItemToCart({productId}))
+    this.removeItem(productId)
+  }
 }

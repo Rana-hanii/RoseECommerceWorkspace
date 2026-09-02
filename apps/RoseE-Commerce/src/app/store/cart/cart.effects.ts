@@ -1,14 +1,17 @@
+import { HttpErrorResponse } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { CartService } from "../../features/cart/services/cart.service";
 import * as CartActions from '../../store/cart/cart.actions' 
-import { map, switchMap } from "rxjs";
+import { catchError, EMPTY, map, switchMap, tap } from "rxjs";
 import { AddProductReq } from '../../features/cart/interfaces/add-product-Req/add-product-req';
+import { MessageService } from "primeng/api";
 
 @Injectable()
 export class cartEffects {
     private readonly actions=inject(Actions)
     private readonly cartService=inject(CartService)
+    private readonly messageService=inject(MessageService)
 
 
 
@@ -25,7 +28,20 @@ export class cartEffects {
         switchMap(({productId}) => {
             const payload:AddProductReq = {product:productId , quantity:1}
             return this.cartService.addProductToCart(payload).pipe(
-                map(()=>CartActions.loadCart())
+                tap((res)=>this.messageService.add({
+                    severity:'success',
+                    summary:'Success',
+                    detail:  'Product added to cart'
+                })),
+                map(()=>CartActions.loadCart()),
+                catchError((error:HttpErrorResponse)=>{
+                    this.messageService.add({
+                        severity:'error',
+                        summary:'Error',
+                        detail: error.error?.error || error.error?.message || 'Could not add product to cart'
+                    })
+                    return EMPTY
+                })
             )
         })
     )) 

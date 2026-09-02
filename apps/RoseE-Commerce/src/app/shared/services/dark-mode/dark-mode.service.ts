@@ -1,65 +1,74 @@
-import { Injectable, signal } from '@angular/core';
-import {setCookie , getCookie} from"./../../utilities/cookie.utils"
+import { isPlatformBrowser } from '@angular/common';
+import { effect, inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 
 
-export type ThemeMode = 'light' | 'dark' | 'system';
+type Theme = 'light' | 'dark';
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class DarkModeService {
-   private readonly cookieKey = 'system';    
-    theme = signal<ThemeMode>('system');
-    private mediaQuery: MediaQueryList | null = null;
+export class DarkModeService { 
+ 
 
- init() {
-    if (typeof window === 'undefined' || typeof document === 'undefined') {
-    return;
-      }
+  private platformId = inject(PLATFORM_ID);
+  private isBrowser = isPlatformBrowser(this.platformId);
 
-      if (!this.mediaQuery) {
-        this.mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      }
+   //Signal holds current theme
+  private theme = signal<Theme>('light');
 
-    if (typeof document === 'undefined') return;
+  // expose readonly
+  currentTheme = this.theme.asReadonly();
 
-    const stored = getCookie(this.cookieKey) as ThemeMode;
-    if (stored) this.theme.set(stored);
+  constructor() {
+    this.initTheme();
+    this.listenToSystemTheme();
+    
+    //effect: runs automatically when theme changes
+    effect(() => {
+       if (!this.isBrowser) return;
+      const value = this.theme();
+      const isDark = value === 'dark';
 
-    this.applyTheme(this.theme());
-
-    this.mediaQuery?.addEventListener('change', e => {
-      if (this.theme() === 'system') this.applyTheme('system');
+      document.documentElement.classList.toggle('dark', isDark);
+      document.body.classList.toggle('dark', isDark);
+      localStorage.setItem('theme', value);
     });
   }
 
-  setTheme(mode: ThemeMode): void {
-    this.theme.set(mode);
-    if (typeof document !== 'undefined') setCookie(this.cookieKey, mode);
-    this.applyTheme(mode);
+  //initialize theme
+  private initTheme() {
+     if (!this.isBrowser) return;
+     const saved = localStorage.getItem('theme') as Theme | null;
+
+    if (saved) {
+      this.theme.set(saved);
+    } else {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      this.theme.set(prefersDark ? 'dark' : 'light');
+    }
   }
 
-  applyTheme(mode: ThemeMode) {
-    if (typeof document === 'undefined') return;
-
-    const html = document.documentElement;
-    html.classList.remove('dark');
-
-    if (mode === 'dark') html.classList.add('dark');
-    else if (mode === 'system' && this.mediaQuery?.matches) html.classList.add('dark');
+  //toggle
+  toggleTheme() {
+    this.theme.update(t => t === 'dark' ? 'light' : 'dark');
   }
 
-  syncSystemTheme() {
-    if (this.theme() === 'system') this.applyTheme('system');
-  }
-
-  watchSystemThemeChanges(callback: (isDark: boolean) => void) {
-    this.mediaQuery?.addEventListener('change', e => {
-      if (this.theme() === 'system') {
-        callback(e.matches);
-        this.applyTheme('system');
-      }
-    });
+  //set manually
+  setTheme(theme: Theme) {
+    this.theme.set(theme);
   }
 
 
+   listenToSystemTheme() {
+  if (!this.isBrowser) return;
+
+  const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+  media.addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme')) {
+      this.theme.set(e.matches ? 'dark' : 'light');
+    }
+  });
+}
+  
 }

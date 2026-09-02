@@ -36,14 +36,31 @@ export const API_ENDPOINTS = {
     cart:'/cart'
   },
 
+  //*Orders endpoints
+  order: {
+    cashOrders:'/orders',
+    orders:'/orders',
+    creditOrders:'/orders/checkout?url=http://localhost:4200/main'
+
+  },
+
+
 
   //(,'') Update Profile
   auth:{
     editProfile:'/auth/editProfile',
     uploadPhoto:'/auth/upload-photo',
     changePassword:'/auth/change-password'
-  }
+  },
   
 
   //*All endpoints will be added here
+
+  // *Adresses Endpoints
+  adress:{
+    updateAdress:'/addresses',
+    addAdress:'/addresses',
+    removeAdress:'/addresses',
+    getAdress:'/addresses',
+  }
 };

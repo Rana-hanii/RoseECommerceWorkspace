@@ -1,82 +1,162 @@
-# RoseEcommerceWorkspace
+# 🌹 Rose App
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+Enterprise-level modular e-commerce platform built with **Angular 19** and **Nx Monorepo Architecture**, featuring both a customer storefront and an admin dashboard.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+## 🚀 Overview
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+Rose App is a scalable e-commerce solution designed using modern Angular architecture and enterprise-level development practices. The project is structured as a monorepo using Nx to support multiple applications, shared libraries, and maintainable front-end workflows.
 
-## Finish your CI setup
+The platform includes:
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app)
+* Customer Storefront
+* 📊 Admin Dashboard
+* Shared UI and Authentication Libraries
+* Scalable State Management
+* Responsive User Experience
 
+---
 
-## Run tasks
+# ✨ Features
 
-To run the dev server for your app, use:
+* 🔐 Authentication & Authorization
+* 👥 Role-Based Access Control (RBAC)
+* Admin Dashboard
+* 📦 Product Management
+* 🛒 Shopping Cart
+* 💳 Payment Integration
+* 📱 Responsive Design
+* 🌙 Dark Mode Support
+* 🌍 Multi-language Support
+* ⚡ Lazy Loading
+* 🧩 Shared Angular Libraries
+* 🔄 State Management with NgRx
+* 🚀 Modern Angular Signals
+* 🏗️ Standalone Components Architecture
 
-```sh
-npx nx serve RoseE-Commerce
+---
+
+# 🛠️ Tech Stack
+
+## 💻 Frontend
+
+* Angular 19
+* Nx Monorepo
+* NgRx
+* RxJS
+* Angular Signals
+* Tailwind CSS
+* PrimeNG
+* Standalone Components
+
+---
+
+# 🏗️ Architecture
+
+The project follows a modular monorepo architecture using Nx.
+
+## 📦 Applications
+
+* `rose-app` → Customer storefront application
+* `rose-dashboard` → Admin dashboard application
+
+## 🧩 Shared Libraries
+
+* `auth-library` → Authentication and authorization logic
+* `ui-library` → Reusable UI components and shared styles
+
+## ⚡ Frontend Architecture
+
+* Feature-based structure
+* Reusable component architecture
+* Lazy-loaded modules and routes
+* Reactive state management using NgRx
+* Shared libraries for scalability and maintainability
+
+---
+
+# 🌟 Key Highlights
+
+* Built using enterprise-level Angular architecture
+* Designed scalable and reusable front-end workflows
+* Implemented responsive and modern UI components
+* Applied reactive programming principles using RxJS and NgRx
+* Developed modular applications inside a single Nx workspace
+* Improved maintainability through shared libraries and standalone components
+
+---
+
+# 📥 Installation
+
+```bash
+# Clone the repository
+git clone <your-repository-url>
+
+# Navigate into the project
+cd rose-app
+
+# Install dependencies
+npm install
 ```
 
-To create a production bundle:
+---
 
-```sh
-npx nx build RoseE-Commerce
+# ▶️ Run the Applications
+
+## 🛍️ Run Storefront App
+
+```bash
+nx serve rose-app
 ```
 
-To see all available targets to run for a project, run:
+## 📊 Run Admin Dashboard
 
-```sh
-npx nx show project RoseE-Commerce
+```bash
+nx serve rose-dashboard
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+---
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+# 📁 Project Structure
 
-## Add new projects
+```bash
+apps/
+ ├── rose-app
+ └── rose-dashboard
 
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-Use the plugin's generator to create new projects.
-
-To generate a new application, use:
-
-```sh
-npx nx g @nx/angular:app demo
+libs/
+ ├── auth-library
+ └── ui-library
 ```
 
-To generate a new library, use:
+---
 
-```sh
-npx nx g @nx/angular:lib mylib
-```
+# 📱 Responsive Design
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+The application is fully responsive and optimized for:
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+* Desktop
+* Tablet
+* Mobile Devices
 
+---
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+# 🔮 Future Improvements
 
-## Install Nx Console
+* Unit Testing
+* E2E Testing
+* CI/CD Pipeline
+* Performance Optimization
+* SSR Support
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+---
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+# 🤝 Team Collaboration
 
-## Useful links
+This project was developed as part of a team collaboration environment following scalable front-end development practices and modular architecture principles.
 
-Learn more:
+---
 
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+# 👨‍💻 Author
 
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Mostafa Allam
+Frontend Developer | Angular Developer

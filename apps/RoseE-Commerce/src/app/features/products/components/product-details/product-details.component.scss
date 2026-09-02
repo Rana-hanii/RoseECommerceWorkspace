@@ -33,16 +33,30 @@ section{
     margin-bottom: 10px; 
 }
 
-:host ::ng-deep .big-rating .p-rating-icon {
+
+
+
+
+:host ::ng-deep{ 
+
+  .big-rating .p-rating-icon {
   width: 1.25rem;
   height: 1.25rem;
   color: #FFA508;
 } 
 
-:host ::ng-deep .big-rating .p-rating-icon:hover {
+  
+  .big-rating .p-rating-icon.p-rating-icon-active {
+  color: #FBA707 !important; 
+} 
+
+.big-rating .p-rating-icon:hover {
   color:#FBA707 !important; 
 }
+  
 
-:host ::ng-deep .big-rating .p-rating-icon.p-rating-icon-active {
-  color: #FBA707 !important; 
+.p-ripple {
+  display: none !important;
 }
+} 
+

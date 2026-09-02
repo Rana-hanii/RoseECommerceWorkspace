@@ -1,21 +1,28 @@
-<main >
+<section>
   <app-auth-title text="Welcome back!"></app-auth-title>
   <app-line></app-line>
-  <form action="" [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
-    <app-reusable-input
-      type="email"
-      label="Email"
-      placeholder="Enter Your Email"
-      formControlName="email"
-      customClass="w-full"
-    ></app-reusable-input>
-    <app-reusable-input
-      type="password"
-      label="Password"
-      placeholder="Enter Your Password"
-      formControlName="password"
-      customClass="w-full"
-    ></app-reusable-input>
+  <form action="" [formGroup]="loginForm" (ngSubmit)="loginSubmit()" class="w-full flex flex-col justify-center items-center">
+
+    <div class="w-7/8">
+      
+      <app-reusable-input
+        type="email"
+        label="Email"
+        placeholder="Enter Your Email"
+        formControlName="email"
+        customClass="!w-full"
+      ></app-reusable-input>
+    </div>
+    <div class="w-7/8">
+      
+      <app-reusable-input
+        type="password"
+        label="Password"
+        placeholder="Enter Your Password"
+        formControlName="password"
+        customClass="!w-full"
+      ></app-reusable-input>
+    </div>
     <div class="forgetPassword text-lg text-right mb-2">
       <a
         routerLink="/auth/forgotpassword"
@@ -25,6 +32,7 @@
       </a>
     </div>
     <app-custom-button
+      class="!w-7/8"
       pageType="Login"
       (buttonClick)="loginSubmit()"
     ></app-custom-button>
@@ -37,4 +45,4 @@
       Create one now!
     </a>
   </div>
-</main>
+</section>

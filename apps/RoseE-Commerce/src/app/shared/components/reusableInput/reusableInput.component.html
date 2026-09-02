@@ -1,7 +1,8 @@
 <div class="">
   <div
     [ngClass]="customClass"
-    class="flex flex-col items-start justify-center gap-1 my-0 dark:text-white"
+    class="w-full flex flex-col items-start justify-center gap-1 my-0 dark:text-white"
+    
   >
     <label for="{{ label }}"
       ><strong>{{ label }}</strong></label
@@ -9,14 +10,16 @@
 
     @if (type !== 'select') {
 
-    <div class="w-full relative">
+    <div class="w-full relative ">
       @if (type!== 'tel') {
       <input
         class="form-input relative dark:bg-[#3F3F46] dark:text-white dark:focus:bg-[#3F3F46]"
         id="{{ label }}"
         [type]="
-          type === 'password' ? (showPassword ? 'text' : 'password') : type
+          type === 'password' ? (showPassword ? 'text' : 'password') : type 
+         
         "
+   
         placeholder="{{ placeholder }}"
         value="{{ value }}"
         [formControl]="control"
